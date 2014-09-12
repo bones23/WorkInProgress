@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package workinprogress;
+package controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;

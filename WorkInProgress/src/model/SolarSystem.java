@@ -5,7 +5,7 @@
 * @author Brandon Jackson 
 * @version 1.0
 */
-package workinprogress;
+package model;
 import java.util.HashMap;
 import java.util.Random;
 public class SolarSystem {

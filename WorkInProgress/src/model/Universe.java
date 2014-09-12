@@ -1,4 +1,4 @@
-package workinprogress;
+package model;
 import java.util.Random;
 public class Universe{
 	private String[] names = {
