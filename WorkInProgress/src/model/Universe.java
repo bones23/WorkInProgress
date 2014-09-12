@@ -1,3 +1,10 @@
+/**
+ * Creates the universe of the game. The universe consists of 119 SolarSystems.
+ * Also creates a 1-D array of the SolarSystem.
+ * 
+ * @author Brandon Jackson
+ * @version 1.0
+ */
 package model;
 import java.util.Random;
 public class Universe{
@@ -130,6 +137,11 @@ public class Universe{
     int x;
     int y;
     
+    /**
+     * Constructor for the Universe object. Instantiates 119 SolarSystems in 
+     * different, random locations on a 150x100 area.
+     * Makes a 1-D array of the SolarSystems.
+     */
     public Universe() {
     	universe = new SolarSystem[names.length];
     	rand = new Random();
@@ -144,6 +156,9 @@ public class Universe{
         }
     }
     
+    /**
+     * Prints the universe through the console.
+     */
     public void printUniverse() {
     	int count = 0;
     	for (int i = 0; i < universe.length; i++) {
@@ -152,7 +167,18 @@ public class Universe{
     	}
     	System.out.println(count + "Solar Systems");
     }
-
+    
+    /**
+     * Getter for the universe. Returns a 1-D array of SolarSystems which make 
+     * up the universe.
+     * 
+     * @return universe - collection of SolarSystems
+     */
+    public SolarSystem[] getUniverse() {
+        return universe;
+    }
+    
+    
     public static void main(String[] args) {
         Universe test = new Universe();
         test.printUniverse();
