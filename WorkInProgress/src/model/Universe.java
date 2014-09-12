@@ -165,7 +165,6 @@ public class Universe{
     		System.out.println(universe[i].toString());
     		count ++;
     	}
-    	System.out.println(count + "Solar Systems");
     }
     
     /**
@@ -177,10 +176,5 @@ public class Universe{
     public SolarSystem[] getUniverse() {
         return universe;
     }
-    
-    
-    public static void main(String[] args) {
-        Universe test = new Universe();
-        test.printUniverse();
-    }
+
 }
