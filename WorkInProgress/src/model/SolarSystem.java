@@ -43,7 +43,9 @@ public class SolarSystem {
      * Constructor for SolarSystem Object. The planet's attributes are randomly
      * assigned.
      * 
-     * @param 
+     * @param name - name of the SolarSystem
+     * @param x - the x coordinate of the SolarSystem
+     * @param y - the y coordinate of the SolarSystem
      */
     public SolarSystem(String name, int x, int y) {
         this.name = name;
