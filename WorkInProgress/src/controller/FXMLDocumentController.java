@@ -21,6 +21,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import org.controlsfx.dialog.Dialogs;
 import model.Person;
+import model.Universe;
+import model.SolarSystem;
 
 /**
  *
@@ -96,6 +98,8 @@ public class FXMLDocumentController implements Initializable {
                     .showInformation();
         // create the model
         } else {
+            Universe universe = new Universe();
+            universe.printUniverse();
             Person player = new Person(name, pilot, fighter, trader, engineer);
             System.out.println(player);
             ((Node)event.getSource()).getScene().getWindow().hide(); 
