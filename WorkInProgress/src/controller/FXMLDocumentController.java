@@ -21,8 +21,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import org.controlsfx.dialog.Dialogs;
 import model.Person;
-import model.Universe;
-import model.SolarSystem;
+import model.Universe; //added to print out universe
+import model.SolarSystem; //added to print out universe
 
 /**
  *
