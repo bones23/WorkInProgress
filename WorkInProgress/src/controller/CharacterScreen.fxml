@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.collections.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="556.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxapplication5.FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="556.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLDocumentController">
    <children>
       <TextField fx:id="Name" layoutX="302.0" layoutY="69.0" prefHeight="26.0" prefWidth="151.0" AnchorPane.bottomAnchor="474.0" AnchorPane.leftAnchor="302.0" AnchorPane.rightAnchor="147.0" AnchorPane.topAnchor="69.0" />
       <ComboBox fx:id="Difficulty" layoutX="303.0" layoutY="115.0" prefHeight="26.0" prefWidth="150.0" promptText="Normal" AnchorPane.bottomAnchor="428.0" AnchorPane.leftAnchor="303.0" AnchorPane.rightAnchor="147.0" AnchorPane.topAnchor="115.0">

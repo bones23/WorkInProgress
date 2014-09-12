@@ -1,4 +1,4 @@
-package javafxapplication5;
+package controller;
 
 import java.io.IOException;
 import java.net.URL;
@@ -20,7 +20,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import org.controlsfx.dialog.Dialogs;
-
+import model.Person;
 
 /**
  *
