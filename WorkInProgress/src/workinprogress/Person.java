@@ -57,4 +57,8 @@ public class Person {
     void setName(String name){
         this.playerName = name;
     }
+    
+    public String toString(){
+        return "Name: " + playerName + "\nPilot Skill: " + pilotSkill + "\nFighter Skill: " + fighterSkill + "\nTrader Skill: " + traderSkill + "\nEngineering Skill: " + engineerSkill;
+    }
 }
