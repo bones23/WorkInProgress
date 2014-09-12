@@ -17,15 +17,15 @@ public class Person {
     private int engineerSkill;
     private String playerName;
     
-    public Person(String name, int[] skills){
-        this.pilotSkill = skills[0];
-        this.fighterSkill = skills[1];
-        this.traderSkill = skills[2];
-        this.engineerSkill = skills[3];
+    public Person(String name, int pSkill, int fSkill, int tSkill, int eSkill){
+        this.pilotSkill = pSkill;
+        this.fighterSkill = fSkill;
+        this.traderSkill = tSkill;
+        this.engineerSkill = eSkill;
         this.playerName = name;
     }
-    public Person(int[] skills){
-        this("Kirk", skills);
+    public Person(int pSkill, int fSkill, int tSkill, int eSkill){
+        this("Kirk", pSkill, fSkill, tSkill, eSkill);
     }
     int getPilotSkill(){
         return pilotSkill;
