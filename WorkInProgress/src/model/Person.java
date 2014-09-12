@@ -1,14 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package model;
 
 /**
  *
- * @author frenc_000
+ * @author CodyMFFries
  */
 public class Person {
     private int pilotSkill;
@@ -57,7 +51,7 @@ public class Person {
     void setName(String name){
         this.playerName = name;
     }
-    
+    @Override
     public String toString(){
         return "Name: " + playerName + "\nPilot Skill: " + pilotSkill + "\nFighter Skill: " + fighterSkill + "\nTrader Skill: " + traderSkill + "\nEngineering Skill: " + engineerSkill;
     }
