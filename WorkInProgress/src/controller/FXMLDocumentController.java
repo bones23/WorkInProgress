@@ -21,8 +21,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import org.controlsfx.dialog.Dialogs;
 import model.Person;
+<<<<<<< HEAD
 import model.Universe; //added to print out universe
 import model.SolarSystem; //added to print out universe
+=======
+>>>>>>> parent of b46c562... Universe and Person are printed to console
 
 /**
  *
@@ -98,8 +101,6 @@ public class FXMLDocumentController implements Initializable {
                     .showInformation();
         // create the model
         } else {
-            Universe universe = new Universe();
-            universe.printUniverse();
             Person player = new Person(name, pilot, fighter, trader, engineer);
             System.out.println(player);
             ((Node)event.getSource()).getScene().getWindow().hide(); 
