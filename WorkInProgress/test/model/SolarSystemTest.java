@@ -1,54 +1,32 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package model;
 
-import org.junit.After;
-import org.junit.AfterClass;
+import java.util.Arrays;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- *
- * @author MT
+ * @author Matthew Taylor
+ * @version 15 September 2014
  */
 public class SolarSystemTest {
+    
+    SolarSystem test;
     
     public SolarSystemTest() {
     }
     
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
     @Before
     public void setUp() {
+        test = new SolarSystem("Test", 17, 29);
     }
     
-    @After
-    public void tearDown() {
-    }
-
     /**
      * Test of getName method, of class SolarSystem.
      */
     @Test
     public void testGetName() {
-        System.out.println("getName");
-        SolarSystem instance = null;
-        String expResult = "";
-        String result = instance.getName();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals("Test", test.getName());
     }
 
     /**
@@ -56,13 +34,7 @@ public class SolarSystemTest {
      */
     @Test
     public void testGetX() {
-        System.out.println("getX");
-        SolarSystem instance = null;
-        int expResult = 0;
-        int result = instance.getX();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(17, test.getX());
     }
 
     /**
@@ -70,13 +42,7 @@ public class SolarSystemTest {
      */
     @Test
     public void testGetY() {
-        System.out.println("getY");
-        SolarSystem instance = null;
-        int expResult = 0;
-        int result = instance.getY();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(29, test.getY());
     }
 
     /**
@@ -84,13 +50,9 @@ public class SolarSystemTest {
      */
     @Test
     public void testGetTech() {
-        System.out.println("getTech");
-        SolarSystem instance = null;
-        String expResult = "";
-        String result = instance.getTech();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        String[] techNames = {"Pre-Algriculture", "Agriculture", "Medieval",
+            "Renaissance", "Early-Industrial", "Industrial", "Post-Industrial", "Hi-Tech"};
+        assertTrue(Arrays.asList(techNames).contains(test.getTech()));
     }
 
     /**
@@ -98,13 +60,9 @@ public class SolarSystemTest {
      */
     @Test
     public void testGetGovernment() {
-        System.out.println("getGovernment");
-        SolarSystem instance = null;
-        String expResult = "";
-        String result = instance.getGovernment();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        String[] governmentNames = {"Monarchy", "Technocracy", "Democracy", 
+            "Corporate State", "Theocracy", "Feudal State", "Socialist State", "Anarchy"};
+        assertTrue(Arrays.asList(governmentNames).contains(test.getGovernment()));
     }
 
     /**
@@ -112,13 +70,11 @@ public class SolarSystemTest {
      */
     @Test
     public void testGetResource() {
-        System.out.println("getResource");
-        SolarSystem instance = null;
-        String expResult = "";
-        String result = instance.getResource();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        String[] resourceNames = {"No Special Resources","No Special Resources",
+            "No Special Resources", "No Special Resources", "Mineral Rich", "Mineral Poor",
+            "Desert", "Lots of Water", "Rich Soil", "Poor Soil", "Rich Fauna", "Lifeless",
+            "Weird Mushrooms", "Lots of Herbs", "Artistic", "Warlike"};
+        assertTrue(Arrays.asList(resourceNames).contains(test.getResource()));
     }
 
     /**
@@ -126,12 +82,8 @@ public class SolarSystemTest {
      */
     @Test
     public void testSetResource() {
-        System.out.println("setResource");
-        String resource = "";
-        SolarSystem instance = null;
-        instance.setResource(resource);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        test.setResource("Something");
+        assertEquals("Something", test.getResource());
     }
 
     /**
@@ -139,13 +91,8 @@ public class SolarSystemTest {
      */
     @Test
     public void testGetPirate() {
-        System.out.println("getPirate");
-        SolarSystem instance = null;
-        String expResult = "";
-        String result = instance.getPirate();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        String[] amountNames = {"None", "Minimal", "Moderate", "Abundant"};
+        assertTrue(Arrays.asList(amountNames).contains(test.getPirate()));
     }
 
     /**
@@ -153,13 +100,8 @@ public class SolarSystemTest {
      */
     @Test
     public void testGetPolice() {
-        System.out.println("getPolice");
-        SolarSystem instance = null;
-        String expResult = "";
-        String result = instance.getPolice();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        String[] amountNames = {"None", "Minimal", "Moderate", "Abundant"};
+        assertTrue(Arrays.asList(amountNames).contains(test.getPolice()));
     }
 
     /**
@@ -167,13 +109,11 @@ public class SolarSystemTest {
      */
     @Test
     public void testToString() {
-        System.out.println("toString");
-        SolarSystem instance = null;
-        String expResult = "";
-        String result = instance.toString();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals("Name: Test\nTech Level: " + test.getTech() + "\nGovernment: "
+            + test.getGovernment() + "\nResource: " + test.getResource() + "\nPolice: "
+            + test.getPolice() + "\nPirate: " + test.getPirate() + "\nLocation: 17"
+            + ", 29\n", test.toString());
+        System.out.println(test.toString());
     }
     
 }

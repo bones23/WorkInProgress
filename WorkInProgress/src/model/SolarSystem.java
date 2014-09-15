@@ -6,7 +6,6 @@
 * @version 1.0
 */
 package model;
-import java.util.HashMap;
 import java.util.Random;
 public class SolarSystem {
     private Random rand = new Random();
@@ -156,8 +155,8 @@ public class SolarSystem {
 
     
     public String toString() {
-    	return "Name: " + name + "\n Tech Level: " + tech + "\n Government: " + government +
-    			"\n Resource: " + resource + "\n Police: " + police + "\n Pirate: " + pirate + "\n Location: "
+    	return "Name: " + name + "\nTech Level: " + tech + "\nGovernment: " + government +
+    			"\nResource: " + resource + "\nPolice: " + police + "\nPirate: " + pirate + "\nLocation: "
     			+ x + ", " + y + "\n";
     }
 }
