@@ -119,7 +119,7 @@ public class FXMLDocumentController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        
+        System.out.println(com.sun.javafx.runtime.VersionInfo.getRuntimeVersion());
     }    
     
     // welcome screen
