@@ -5,36 +5,26 @@
  */
 package model;
 
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- *
- * @author MT
+ * @author Matthew Taylor
+ * @version 15 September 2014
  */
 public class PersonTest {
+    
+    Person test;
+    Person noName;
     
     public PersonTest() {
     }
     
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
     @Before
     public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
+        test = new Person("Me", 3, 4, 5, 8);
+        noName = new Person(8, 5, 4, 3);
     }
 
     /**
@@ -42,13 +32,8 @@ public class PersonTest {
      */
     @Test
     public void testGetPilotSkill() {
-        System.out.println("getPilotSkill");
-        Person instance = null;
-        int expResult = 0;
-        int result = instance.getPilotSkill();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(3, test.getPilotSkill());
+        assertEquals(8, noName.getPilotSkill());
     }
 
     /**
@@ -56,12 +41,10 @@ public class PersonTest {
      */
     @Test
     public void testSetPilotSkill() {
-        System.out.println("setPilotSkill");
-        int newPilot = 0;
-        Person instance = null;
-        instance.setPilotSkill(newPilot);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        test.setPilotSkill(0);
+        noName.setPilotSkill(9);
+        assertEquals(0, test.getPilotSkill());
+        assertEquals(9, noName.getPilotSkill());
     }
 
     /**
@@ -69,13 +52,8 @@ public class PersonTest {
      */
     @Test
     public void testGetFighterSkill() {
-        System.out.println("getFighterSkill");
-        Person instance = null;
-        int expResult = 0;
-        int result = instance.getFighterSkill();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(4, test.getFighterSkill());
+        assertEquals(5, noName.getFighterSkill());
     }
 
     /**
@@ -83,12 +61,10 @@ public class PersonTest {
      */
     @Test
     public void testSetFighterSkill() {
-        System.out.println("setFighterSkill");
-        int newFighter = 0;
-        Person instance = null;
-        instance.setFighterSkill(newFighter);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        test.setFighterSkill(1);
+        noName.setFighterSkill(8);
+        assertEquals(1, test.getFighterSkill());
+        assertEquals(8, noName.getFighterSkill());
     }
 
     /**
@@ -96,13 +72,8 @@ public class PersonTest {
      */
     @Test
     public void testGetTraderSkill() {
-        System.out.println("getTraderSkill");
-        Person instance = null;
-        int expResult = 0;
-        int result = instance.getTraderSkill();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(5, test.getTraderSkill());
+        assertEquals(4, noName.getTraderSkill());
     }
 
     /**
@@ -110,12 +81,10 @@ public class PersonTest {
      */
     @Test
     public void testSetTraderSkill() {
-        System.out.println("setTraderSkill");
-        int newTrader = 0;
-        Person instance = null;
-        instance.setTraderSkill(newTrader);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        test.setTraderSkill(9);
+        noName.setTraderSkill(0);
+        assertEquals(9, test.getTraderSkill());
+        assertEquals(0, noName.getTraderSkill());
     }
 
     /**
@@ -123,26 +92,19 @@ public class PersonTest {
      */
     @Test
     public void testGetEngineerSkill() {
-        System.out.println("getEngineerSkill");
-        Person instance = null;
-        int expResult = 0;
-        int result = instance.getEngineerSkill();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(8, test.getEngineerSkill());
+        assertEquals(3, noName.getEngineerSkill());
     }
 
     /**
      * Test of setEngeineerSkill method, of class Person.
      */
     @Test
-    public void testSetEngeineerSkill() {
-        System.out.println("setEngeineerSkill");
-        int newEngineer = 0;
-        Person instance = null;
-        instance.setEngeineerSkill(newEngineer);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testSetEngineerSkill() {
+        test.setEngineerSkill(7);
+        noName.setEngineerSkill(2);
+        assertEquals(7, test.getEngineerSkill());
+        assertEquals(2, noName.getEngineerSkill());
     }
 
     /**
@@ -150,13 +112,8 @@ public class PersonTest {
      */
     @Test
     public void testGetName() {
-        System.out.println("getName");
-        Person instance = null;
-        String expResult = "";
-        String result = instance.getName();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals("Me", test.getName());
+        assertEquals("Kirk", noName.getName());
     }
 
     /**
@@ -164,12 +121,10 @@ public class PersonTest {
      */
     @Test
     public void testSetName() {
-        System.out.println("setName");
-        String name = "";
-        Person instance = null;
-        instance.setName(name);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        test.setName("9dptn");
+        noName.setName("oxpv87");
+        assertEquals("9dptn", test.getName());
+        assertEquals("oxpv87", noName.getName());
     }
 
     /**
@@ -177,13 +132,10 @@ public class PersonTest {
      */
     @Test
     public void testToString() {
-        System.out.println("toString");
-        Person instance = null;
-        String expResult = "";
-        String result = instance.toString();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals("Name: Me\nPilot Skill: 3\nFighter Skill: 4\nTrader Skill: 5\n"
+            + "Engineering Skill: 8", test.toString());
+        assertEquals("Name: Kirk\nPilot Skill: 8\nFighter Skill: 5\nTrader Skill: 4\n"
+            + "Engineering Skill: 3", noName.toString());
     }
     
 }

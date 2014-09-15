@@ -42,7 +42,7 @@ public class Person {
     int getEngineerSkill(){
         return engineerSkill;
     }
-    void setEngeineerSkill(int newEngineer){
+    void setEngineerSkill(int newEngineer){
         this.engineerSkill = newEngineer;
     }
     String getName(){
