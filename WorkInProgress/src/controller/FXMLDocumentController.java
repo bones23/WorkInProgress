@@ -3,7 +3,6 @@ package controller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import static javafx.application.Application.launch;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,28 +13,28 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import org.controlsfx.dialog.Dialogs;
 import model.Person;
 import model.Universe; //added to print out universe
-import model.SolarSystem; //added to print out universe
 
 
 
 /**
  *
- * @author dblake
+ * @author Dustin Blake
+ * @author Luke Newman
  */
 public class FXMLDocumentController implements Initializable {
+    // stages
     @FXML
     private Stage stage;
     @FXML
     private Stage stage2;
     
+    // components
     @FXML
     private Label label;
     @FXML
@@ -44,8 +43,6 @@ public class FXMLDocumentController implements Initializable {
     private Button OK;
     @FXML
     private Button cancel;
-    //@FXML
-    //Parent root;
     @FXML
     private TextField Name;
     @FXML
@@ -62,20 +59,11 @@ public class FXMLDocumentController implements Initializable {
         
     @FXML
     private void handleButtonAction(ActionEvent event) throws IOException {
-        //this.stage.close();
-       // System.out.println("You clicked me!");
-        //but.setVisible(false);
         Parent root = FXMLLoader.load(getClass().getResource("CharacterScreen.fxml"));
         Scene scene = new Scene(root);
         stage = new Stage();
         stage.setScene(scene);
         stage.show();
-        
-        
-        
-        //label.setText("Hello World!");
-        //st.setVisible(false);
-        //button.setVisible(false);
     }
     
     @FXML
@@ -91,7 +79,8 @@ public class FXMLDocumentController implements Initializable {
         }
         
         // check point allocation
-        if (pilot + fighter + trader + engineer > 20) {
+        int totalPoints = pilot + fighter + trader + engineer;
+        if (totalPoints > 20) {
             Dialogs.create()
                     .owner(this.stage)
                     .title("Too Many Points")
@@ -99,6 +88,13 @@ public class FXMLDocumentController implements Initializable {
                     .message("Your total points cannot exceed 20.")
                     .showInformation();
         // create the model
+        } else if (totalPoints < 20){
+            Dialogs.create()
+                    .owner(this.stage)
+                    .title("Too Little Points")
+                    .masthead(null)
+                    .message("Your total points must equal 20.")
+                    .showInformation();
         } else {
             Universe universe = new Universe();
             universe.printUniverse();
@@ -110,34 +106,11 @@ public class FXMLDocumentController implements Initializable {
     
     @FXML
     private void cancelOnCharacterScreen(ActionEvent event) throws IOException {
-        // close the screen
-        //((Node))(event.getSource())).getScene().getWindow().hide();
-        ((Node)event.getSource()).getScene().getWindow().hide(); 
-        //stage.hide();
+        ((Node)event.getSource()).getScene().getWindow().hide();
     }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        System.out.println(com.sun.javafx.runtime.VersionInfo.getRuntimeVersion());
-    }    
-    
-    // welcome screen
-    //public void start(Stage stage) throws Exception {
-      //  Parent root = FXMLLoader.load(getClass().getResource("WelcomeScreen.fxml"));
-       // Scene scene = new Scene(root);
-        
-       // this.stage = stage;
-        
-        //this.stage.setScene(scene);
-        //this.stage.show();
-    //}
-
-    /**
-     * @param args the command line arguments
-     */
-    //public static void main(String[] args) {
-      //  launch(args);
-    //}
-    
+    }
 }
