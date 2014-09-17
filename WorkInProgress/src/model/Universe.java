@@ -158,13 +158,15 @@ public class Universe{
     
     /**
      * Prints the universe through the console.
+     * 
+     * @return  toString - the Universe's information for each SolarSystem in it
      */
-    public void printUniverse() {
-    	int count = 0;
-    	for (int i = 0; i < universe.length; i++) {
-    		System.out.println(universe[i].toString());
-    		count ++;
+    public String toString() {
+        String toString = "";
+    	for (int i = 0; i < this.universe.length; i++) {
+            toString += (this.universe[i].toString() + "\n");
     	}
+        return toString;
     }
     
     /**

@@ -5,6 +5,8 @@
  */
 package model;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -18,23 +20,14 @@ import static org.junit.Assert.*;
  */
 public class UniverseTest {
     
+    Universe test;
+    
     public UniverseTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
     }
     
     @Before
     public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
+        test = new Universe();
     }
 
     /**
@@ -42,23 +35,26 @@ public class UniverseTest {
      */
     @Test
     public void testPrintUniverse() {
-        System.out.println("printUniverse");
-        Universe instance = new Universe();
-        instance.printUniverse();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        // Counts # times "Name: " appears in toString()
+        String toMatch = "Name: ";
+        Pattern pattern = Pattern.compile(toMatch);
+        Matcher matcher = pattern.matcher(test.toString());
+        int count = 0;
+        while(matcher.find()) {
+            count++;
+        }
+        
+        assertEquals(120, count);
+        System.out.println(test.toString());
     }
 
-    /**
-     * Test of main method, of class Universe.
+     /**
+     * Test of getUniverse method, of class Universe.
      */
-//    @Test
-//    public void testMain() {
-//        System.out.println("main");
-//        String[] args = null;
-//        Universe.main(args);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
+    @Test
+    public void testGetUniverse() {
+        assertEquals(120, test.getUniverse().length);
+    }
     
 }

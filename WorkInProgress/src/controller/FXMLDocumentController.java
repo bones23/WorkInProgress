@@ -97,7 +97,7 @@ public class FXMLDocumentController implements Initializable {
                     .showInformation();
         } else {
             Universe universe = new Universe();
-            universe.printUniverse();
+            System.out.println(universe.toString());
             Person player = new Person(name, pilot, fighter, trader, engineer);
             System.out.println(player);
             ((Node)event.getSource()).getScene().getWindow().hide(); 
