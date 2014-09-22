@@ -10,11 +10,14 @@ import java.util.Random;
 public class SolarSystem {
     private Random rand = new Random();
     
+    private MarketPlace marketplace;
+    
     private String name = "";
     private int x;
     private int y;
     
     private String tech;
+    private int techLevel;
     private String resource;
     
     private String government;
@@ -51,7 +54,8 @@ public class SolarSystem {
         this.x = x;
         this. y = y;
         
-        tech = techNames[rand.nextInt(techNames.length)];
+        techLevel = rand.nextInt(techNames.length);
+        tech = techNames[techLevel];
         resource = resourceNames[rand.nextInt(resourceNames.length)];
         government = governmentNames[rand.nextInt(governmentNames.length)];
         if (government.equals("Anarchy")) {
@@ -69,7 +73,9 @@ public class SolarSystem {
             pirateIntensity = rand.nextInt(4);
             pirate = amountNames[pirateIntensity];
         }
-
+        marketplace = new MarketPlace(techLevel);
+        marketplace.calculateAmount();
+        marketplace.calculatePrices();
     }
 
     /**
@@ -89,7 +95,14 @@ public class SolarSystem {
     public int getX() {
         return x;
     }
-
+    
+    /**
+     * Getter for the tech level of the solar system
+     * @return techLevel - the tech level of the system
+     */
+    public int getTechLevel() {
+        return techLevel;
+    }
     /**
      * Getter for the y location of the solar system.
      * 
