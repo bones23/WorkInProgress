@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -19,6 +20,7 @@ import javafx.stage.Stage;
 import org.controlsfx.dialog.Dialogs;
 import model.Person;
 import model.Universe; //added to print out universe
+import org.controlsfx.dialog.Dialogs;
 
 
 
@@ -101,6 +103,16 @@ public class FXMLDocumentController implements Initializable {
             Person player = new Person(name, pilot, fighter, trader, engineer);
             System.out.println(player);
             ((Node)event.getSource()).getScene().getWindow().hide(); 
+            Parent root = FXMLLoader.load(getClass().getResource("GameScreen.fxml"));
+            Group rot = new Group();
+            rot.getChildren().add(root);
+            Scene scene = new Scene(rot);
+            stage = new Stage();
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.setWidth(975);
+            stage.setHeight(800);
+            stage.show();
         }
     }
     
