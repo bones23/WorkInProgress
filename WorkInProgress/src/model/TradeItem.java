@@ -24,7 +24,9 @@ public class TradeItem {
     private int MTL;    //Min price offered in space trade with random trader (not on a planet)
     private int MTH;    //Max price offered in space trade with random trader (not on a planet)
     private boolean illegal; //Whether this resource is illegal
+    private String name;
     TradeItem(String item){
+        this.name = item;
         switch(item){
             case "Water":
                 this.MTLP = 0;
@@ -241,5 +243,9 @@ public class TradeItem {
      */
     public boolean getIllegal(){
         return this.illegal;
+    }
+    
+    public String getName(){
+        return this.name;
     }
 }
