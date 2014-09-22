@@ -236,5 +236,10 @@ public class TradeItem {
         return this.MTH;
     }
 
-    
+    /**
+     * @return illegal
+     */
+    public boolean getIllegal(){
+        return this.illegal;
+    }
 }
