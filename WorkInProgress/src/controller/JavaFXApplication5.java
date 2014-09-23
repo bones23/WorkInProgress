@@ -1,4 +1,5 @@
 package controller;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
@@ -16,10 +17,10 @@ public class JavaFXApplication5 extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Image background = new Image(JavaFXApplication5.class.getResource("SpaceTrader1.png").toString());
+        Image background = new Image(JavaFXApplication5.class.getResource("/supporting/SpaceTrader1.png").toString());
         ImageView back = new ImageView(background);
         Group rot = new Group(back);
-        Parent root = FXMLLoader.load(getClass().getResource("WelcomeScreen.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/view/WelcomeScreen.fxml"));
         rot.getChildren().add(root);
         Scene scene = new Scene(rot);
         
