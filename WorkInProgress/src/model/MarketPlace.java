@@ -56,11 +56,11 @@ public class MarketPlace {
     
     public void buyingItem(int item, int amountBuying) {
         amount[item] = amount[item] - amountBuying;
-        //Player.setMoney(Player.getMoney() - (amountBuying * totalPrice[item]));
+        Person.setMoney(Person.getMoney() - (amountBuying * totalPrice[item]));
     }
     
     public void sellingItem(int item, int amountSelling) {
         amount[item] = amount[item] + amountSelling;
-        //Player.setMoney(Player.getMoney() + (amountSelling * sellPrice[item]));
+        Person.setMoney(Person.getMoney() + (amountSelling * sellPrice[item]));
     }
 }
