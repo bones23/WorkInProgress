@@ -10,6 +10,7 @@ public class Person {
     private int traderSkill;
     private int engineerSkill;
     private String playerName;
+    private static int money;
     
     public Person(String name, int pSkill, int fSkill, int tSkill, int eSkill){
         this.pilotSkill = pSkill;
@@ -50,6 +51,14 @@ public class Person {
     }
     void setName(String name){
         this.playerName = name;
+    }
+    
+    public static void setMoney(int cash) {
+        money = cash;
+    }
+    
+    public static int getMoney() {
+        return money;
     }
     @Override
     public String toString(){
