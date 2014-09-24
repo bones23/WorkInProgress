@@ -47,9 +47,9 @@ public class MarketPlace {
                 amount[i] = 0;
             } else {
                 amount[i] = (int)((1.0 - ((double)i / 10)) * (rand.nextInt(30 - 10 + 1) + 10 ));
-//                if (techLevel == amount[i].getTTP()) {
-//                    
-//                }
+                if (techLevel == items[i].getTTP()) {
+                    amount[i] = amount[i] * 2;  
+                }
             }
         }
     }
