@@ -7,11 +7,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.image.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="380.0" prefWidth="695.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="380.0" prefWidth="695.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.WelcomeScreenController">
     <children>
             <ImageView fitHeight="47.0" fitWidth="114.0" layoutX="399.0" layoutY="313.0">
                       <image>
-                          <Image url="@SpaceTraderNewGame.png" />
+                          <Image url="@../supporting/SpaceTraderNewGame.png" />
                       </image>                            
                   </ImageView>
         <Button fx:id="but" layoutX="399.0" layoutY="313.0" onAction="#handleButtonAction" prefHeight="47.0" prefWidth="114.0" text="Start new game" textAlignment="CENTER" AnchorPane.topAnchor="313.0">

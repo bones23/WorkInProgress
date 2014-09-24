@@ -3,6 +3,8 @@ package controller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,25 +18,23 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-import org.controlsfx.dialog.Dialogs;
+import javafx.stage.Window;
+
 import model.Person;
-import model.Universe; //added to print out universe
+import model.Universe;
+
 import org.controlsfx.dialog.Dialogs;
-
-
 
 /**
  *
- * @author Dustin Blake
- * @author Luke Newman
+ * @author dblake
  */
-public class FXMLDocumentController implements Initializable {
-    // stages
+public class WelcomeScreenController extends Application implements Initializable {
     @FXML
     private Stage stage;
-    @FXML
-    private Stage stage2;
     
     // components
     @FXML
@@ -58,14 +58,47 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Slider Engineer;
     
+    // screens/windows
+    @FXML
+    private Window welcomeScreen;
+    @FXML
+    private Window characterCreationScreen;
+    
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        launch(args);
+    }
+    
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
+    }
+    
+    @Override
+    public void start(Stage stage) throws Exception {
+        Image background = new Image(WelcomeScreenController.class.getResource("/supporting/SpaceTrader1.png").toString());
+        ImageView back = new ImageView(background);
+        Group rot = new Group(back);
+        Parent root = FXMLLoader.load(getClass().getResource("/view/WelcomeScreen.fxml"));
+        rot.getChildren().add(root);
+        Scene scene = new Scene(rot);
         
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.show();
+    }
+    
     @FXML
     private void handleButtonAction(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("CharacterScreen.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/view/CharacterScreen.fxml"));
         Scene scene = new Scene(root);
         stage = new Stage();
         stage.setScene(scene);
         stage.show();
+        this.welcomeScreen = ((Node) event.getSource()).getScene().getWindow();
+        this.welcomeScreen.hide();
     }
     
     @FXML
@@ -89,7 +122,6 @@ public class FXMLDocumentController implements Initializable {
                     .masthead(null)
                     .message("Your total points cannot exceed 20.")
                     .showInformation();
-        // create the model
         } else if (totalPoints < 20){
             Dialogs.create()
                     .owner(this.stage)
@@ -97,13 +129,15 @@ public class FXMLDocumentController implements Initializable {
                     .masthead(null)
                     .message("Your total points must equal 20.")
                     .showInformation();
+        // create the model
         } else {
             Universe universe = new Universe();
             System.out.println(universe.toString());
             Person player = new Person(name, pilot, fighter, trader, engineer);
             System.out.println(player);
-            ((Node)event.getSource()).getScene().getWindow().hide(); 
-            Parent root = FXMLLoader.load(getClass().getResource("GameScreen.fxml"));
+            this.characterCreationScreen = ((Node)event.getSource()).getScene().getWindow();
+            this.characterCreationScreen.hide();
+            Parent root = FXMLLoader.load(getClass().getResource("/view/GameScreen.fxml"));
             Group rot = new Group();
             rot.getChildren().add(root);
             Scene scene = new Scene(rot);
@@ -118,11 +152,7 @@ public class FXMLDocumentController implements Initializable {
     
     @FXML
     private void cancelOnCharacterScreen(ActionEvent event) throws IOException {
-        ((Node)event.getSource()).getScene().getWindow().hide();
-    }
-    
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        this.characterCreationScreen.hide();
+        // show welcome screen
     }
 }
