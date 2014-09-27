@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package model;
 
 /**
@@ -25,8 +19,11 @@ public class TradeItem {
     private int MTH;    //Max price offered in space trade with random trader (not on a planet)
     private boolean illegal; //Whether this resource is illegal
     private String name;
+    
     TradeItem(String item){
+        
         this.name = item;
+        
         switch(item){
             case "Water":
                 this.MTLP = 0;
@@ -41,6 +38,7 @@ public class TradeItem {
                 this.MTL = 30;
                 this.MTH = 50;
                 this.illegal = false;
+                break;
             case "Furs":
                 this.MTLP = 0;
                 this.MTLU = 0;
@@ -54,6 +52,7 @@ public class TradeItem {
                 this.MTL = 230;
                 this.MTH = 280;
                 this.illegal = false;
+                break;
             case "Food":
                 this.MTLP = 1;
                 this.MTLU = 0;
@@ -67,6 +66,7 @@ public class TradeItem {
                 this.MTL = 90;
                 this.MTH = 160;
                 this.illegal = false;
+                break;
             case "Ore":
                 this.MTLP = 2;
                 this.MTLU = 2;
@@ -80,6 +80,7 @@ public class TradeItem {
                 this.MTL = 350;
                 this.MTH = 420;
                 this.illegal = false;
+                break;
             case "Games":
                 this.MTLP = 3;
                 this.MTLU = 1;
@@ -93,6 +94,7 @@ public class TradeItem {
                 this.MTL = 160;
                 this.MTH = 270;
                 this.illegal = false;
+                break;
             case "Firearms":
                 this.MTLP = 3;
                 this.MTLU = 1;
@@ -106,6 +108,7 @@ public class TradeItem {
                 this.MTL = 600;
                 this.MTH = 1100;
                 this.illegal = true;
+                break;
             case "Medicine":
                 this.MTLP = 4;
                 this.MTLU = 1;
@@ -119,6 +122,7 @@ public class TradeItem {
                 this.MTL = 400;
                 this.MTH = 700;
                 this.illegal = false;
+                break;
             case "Machines":
                 this.MTLP = 4;
                 this.MTLU = 3;
@@ -132,6 +136,7 @@ public class TradeItem {
                 this.MTL = 600;
                 this.MTH = 800;
                 this.illegal = false;
+                break;
             case "Narcotics":
                 this.MTLP = 5;
                 this.MTLU = 0;
@@ -145,6 +150,7 @@ public class TradeItem {
                 this.MTL = 2000;
                 this.MTH = 3000;
                 this.illegal = true;
+                break;
             case "Robots":
                 this.MTLP = 6;
                 this.MTLU = 4;
@@ -158,6 +164,7 @@ public class TradeItem {
                 this.MTL = 3500;
                 this.MTH = 5000;
                 this.illegal = false;
+                break;
         }
     }
 
