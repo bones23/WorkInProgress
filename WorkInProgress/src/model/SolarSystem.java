@@ -163,7 +163,14 @@ public class SolarSystem {
     public String getPolice() {
         return police;
     }
-
+    
+    /**
+     * Getter for marketplace
+     * @return marketplace 
+     */
+    public MarketPlace getMarketPlace() {
+        return marketplace;
+    }
     
     public String toString() {
     	return "Name: " + name + "\nTech Level: " + tech + "\nGovernment: " + government +
