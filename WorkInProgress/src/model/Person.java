@@ -11,6 +11,7 @@ public class Person {
     private int engineerSkill;
     private String playerName;
     private static int money;
+    private static Ship ship;
     
     public Person(String name, int pSkill, int fSkill, int tSkill, int eSkill){
         this.pilotSkill = pSkill;
@@ -18,6 +19,7 @@ public class Person {
         this.traderSkill = tSkill;
         this.engineerSkill = eSkill;
         this.playerName = name;
+        this.ship = new Ship("Flea", name, 14, 10);
     }
     public Person(int pSkill, int fSkill, int tSkill, int eSkill){
         this("Kirk", pSkill, fSkill, tSkill, eSkill);
@@ -59,6 +61,9 @@ public class Person {
     
     public static int getMoney() {
         return money;
+    }
+    public static Ship getShip(){
+        return ship;
     }
     @Override
     public String toString(){

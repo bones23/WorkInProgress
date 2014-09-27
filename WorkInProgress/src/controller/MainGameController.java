@@ -44,12 +44,11 @@ public class MainGameController {
     private Button waterInCargo;
     @FXML
     private Label waterOnPlanet;
-    
+    Universe universe = new Universe();
     
      @FXML
     private void initialize() {
         // Initialize the values in GameScreen.fxml after it is loaded
-        
        String money =(""+Person.getMoney());// isn't 0 if you assign person an initial amount of money
        this.money.setText(money);
        String sellWaterPrice = ("20");// did not know how to get this.
@@ -61,6 +60,10 @@ public class MainGameController {
     
     @FXML
     private void sellWater(ActionEvent event) throws IOException {
-        System.out.println("sell some water");
+        if(0 <= universe.getUniverse()[0].getTechLevel()){
+            Person.getShip().
+            System.out.println("sell some water");
+        }
+        
     }
 }
