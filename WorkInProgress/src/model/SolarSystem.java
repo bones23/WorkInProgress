@@ -74,8 +74,6 @@ public class SolarSystem {
             pirate = amountNames[pirateIntensity];
         }
         marketplace = new MarketPlace(techLevel);
-        marketplace.calculateAmount();
-        marketplace.calculatePrices();
     }
 
     /**
