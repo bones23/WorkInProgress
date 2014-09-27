@@ -22,6 +22,7 @@ import javafx.stage.Stage;
 import model.Person;
 import model.Universe;
 import org.controlsfx.dialog.Dialogs;
+import java.util.*;
 
 /**
  *
@@ -30,6 +31,33 @@ import org.controlsfx.dialog.Dialogs;
 public class MainGameController {
     @FXML
     private Stage stage;
+    
+    @FXML
+    private Label money;
+    @FXML
+    private Label cargo;
+    @FXML
+    private Label sellWaterPrice;
+    @FXML
+    private Label buyWaterPrice;
+    @FXML
+    private Button waterInCargo;
+    @FXML
+    private Label waterOnPlanet;
+    
+    
+     @FXML
+    private void initialize() {
+        // Initialize the values in GameScreen.fxml after it is loaded
+        
+       String money =(""+Person.getMoney());// isn't 0 if you assign person an initial amount of money
+       this.money.setText(money);
+       String sellWaterPrice = ("20");// did not know how to get this.
+       this.sellWaterPrice.setText(sellWaterPrice);
+       String waterInCargo = "Sell: " + "45";// did not know how to get this.
+       this.waterInCargo.setText(waterInCargo);
+       
+    }
     
     @FXML
     private void sellWater(ActionEvent event) throws IOException {
