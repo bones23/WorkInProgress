@@ -73,4 +73,31 @@ public class MarketPlace {
     public int[] getAmount() {
         return amount;
     }
+    
+    /**
+     * getter for the amount at a certain index
+     * @param index
+     * @return amount of a good
+     */
+    public int getAmountAt(int index) {
+        return amount[index];
+    }
+    
+    /**
+     * Getter for the selling price
+     * @param index
+     * @return sellprice for an item
+     */
+    public int getSellingPriceAt(int index) {
+        return sellPrice[index];
+    }
+    
+    /**
+     * getter for the buying price of a good
+     * @param index
+     * @return price of a good 
+     */
+    public int getBuyingPriceAt(int index) {
+        return totalPrice[index];
+    }
 }
