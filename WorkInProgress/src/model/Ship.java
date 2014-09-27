@@ -16,6 +16,7 @@ public class Ship {
     
     public Ship(String type, String pilot, int fuel, int baysSize, int x, int y) {
         this.type = type;
+        this.pilot = pilot;
         this.fuel = fuel;
         this.x = x;
         this.y = y;
@@ -69,7 +70,9 @@ public class Ship {
     public boolean removeItem(TradeItem item) {
         
         for(int i = 0; i < getCargo().length; i++) {
-            if(this.getCargo()[i].getName().equals(item.getName())) {
+            if(this.getCargo()[i] != null
+               && this.getCargo()[i].getName().equals(item.getName())) {
+                
                 this.cargo[i] = null;
                 this.numOccupied--;
                 
@@ -89,19 +92,26 @@ public class Ship {
     }
 
     /**
+     * @param fuel the new fuel
+     */
+    public void setFuel(int fuel) {
+        this.fuel = fuel;
+    }
+    
+    /**
      * @return the x
      */
     public int getX() {
         return this.x;
     }
-
+    
     /**
      * @return the y
      */
     public int getY() {
         return this.y;
     }
-
+    
     /**
      * @return the type
      */
