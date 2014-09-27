@@ -89,7 +89,9 @@ public class Ship {
     public int getFuel() {
         return this.fuel;
     }
-
+    public int getBays(){
+        return this.bays;
+    }
     /**
      * @param fuel the new fuel
      */
