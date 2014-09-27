@@ -65,4 +65,12 @@ public class MarketPlace {
         amount[item] = amount[item] + amountSelling;
         Person.setMoney(Person.getMoney() + (amountSelling * sellPrice[item]));
     }
+    
+    /**
+     * getter for the amount
+     * @return amount
+     */
+    public int[] getAmount() {
+        return amount;
+    }
 }
