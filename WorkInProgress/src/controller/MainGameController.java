@@ -41,27 +41,33 @@ public class MainGameController {
     @FXML
     private Button buyWaterButton;
     //same for all goods
-    
+    private Universe universe;
     
     @FXML
     private void initialize() {
        // create the universe
        // create dummy player
-       
+       universe = new Universe();
        
        // Initialize the values in GameScreen.fxml after it is loaded
         
        String money = "" + Person.getMoney();// isn't 0 if you assign person an initial amount of money
        this.money.setText(money);
-       String sellWaterPrice = "20";// did not know how to get this.
+       String sellWaterPrice = "" + universe.getSolarSystemAt(0).getMarketPlace().getSellingPriceAt(0);
        this.sellWaterPrice.setText(sellWaterPrice);
        String waterInCargo = "Sell: " + "45";// did not know how to get this.
-       
+       String buyWaterPrice = "" + universe.getSolarSystemAt(0).getMarketPlace().getBuyingPriceAt(0);
+       this.buyWaterPrice.setText(buyWaterPrice);
     }
     
     @FXML
     private void sellWater(ActionEvent event) throws IOException {
-        System.out.println("sell some water");
+        int amountBuying = Integer.parseInt(buyWaterQuantity.getText());
+        int amountWater = universe.getSolarSystemAt(0).getMarketPlace().getAmountAt(0);
+        int cost = amountBuying * universe.getSolarSystemAt(0).getMarketPlace().getBuyingPriceAt(0);
+        if (amountWater >= amountBuying && Person.getMoney() >= cost) {
+            
+        }
     }
     
     @FXML
