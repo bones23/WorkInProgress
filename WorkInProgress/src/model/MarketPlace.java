@@ -32,6 +32,8 @@ public class MarketPlace {
         amount = new int[10];
         totalPrice = new int[10];
         sellPrice = new int[10];
+        calculateAmount();
+        calculatePrices();
     }
     
     public void calculatePrices() {
