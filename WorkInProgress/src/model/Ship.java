@@ -140,5 +140,16 @@ public class Ship {
     public TradeItem[] getCargo() {
         return this.cargo;
     }
+    /**
+     * @return the number of a specific type of cargo in ship
+     */
+    public int searchCargo(TradeItem item){
+        int output = 0;
+        for(TradeItem ti: cargo){
+            if(ti.getName().equalsIgnoreCase(item.getName()))
+                output++;
+        }
+        return output;
+    }
     
 }
