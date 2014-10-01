@@ -20,7 +20,7 @@ public class TradeItem {
     private boolean illegal; //Whether this resource is illegal
     private String name;
     
-    TradeItem(String item){
+    public TradeItem(String item){
         
         this.name = item;
         
