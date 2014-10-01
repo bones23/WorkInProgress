@@ -150,6 +150,10 @@ public class MainGameController {
     @FXML
     private Label buyableNarcotics;
     @FXML
+    private Label temp;
+    @FXML
+    private Label temp2;
+    @FXML
     private Label buyableRobots;
     private Universe universe;
     private Ship s;
@@ -195,27 +199,31 @@ public class MainGameController {
     @FXML
     private void buyItem(ActionEvent event) throws IOException {
         int itemNum = -1;
-        String itemName="";
+        String itemName="Water";
         Object source = event.getSource();Button clickedBtn = (Button) source;
         String ite = clickedBtn.getId();
-            if(ite.equals("b0")){itemNum=0;itemName="Water";}
-            else if(ite.equals("b1")){itemNum=1;itemName="Furs";}
-            else if(ite.equals("b2")){itemNum=2;itemName="Food";}
-            else if(ite.equals("b3")){itemNum=3;itemName="Ore";}
-            else if(ite.equals("b4")){itemNum=4;itemName="Games";}
-            else if(ite.equals("b5")){itemNum=5;itemName="Firearms";}
-            else if(ite.equals("b6")){itemNum=6;itemName="Medicine";}
-            else if(ite.equals("b7")){itemNum=7;itemName="Machines";}
-            else if(ite.equals("b8")){itemNum=8;itemName="Narcotics";}
-            else if(ite.equals("b9")){itemNum=9;itemName="Robots";}
+            if(ite.equals("b0")){itemNum=0;itemName="Water";temp=sellableWater;temp2=buyableWater;}
+            else if(ite.equals("b1")){itemNum=1;itemName="Furs";temp=sellableFurs;temp2=buyableFur;}
+            else if(ite.equals("b2")){itemNum=2;itemName="Food";temp=sellableFood;temp2=buyableFood;}
+            else if(ite.equals("b3")){itemNum=3;itemName="Ore";temp=sellableOre;temp2=buyableOre;}
+            else if(ite.equals("b4")){itemNum=4;itemName="Games";temp=sellableGames;temp2=buyableGames;}
+            else if(ite.equals("b5")){itemNum=5;itemName="Firearms";temp=sellableFirearms;temp2=buyableFirearms;}
+            else if(ite.equals("b6")){itemNum=6;itemName="Medicine";temp=sellableMedicine;temp2=buyableMedicine;}
+            else if(ite.equals("b7")){itemNum=7;itemName="Machines";temp=sellableMachines;temp2=buyableMachines;}
+            else if(ite.equals("b8")){itemNum=8;itemName="Narcotics";temp=sellableNarcotics;temp2=buyableNarcotics;}
+            else if(ite.equals("b9")){itemNum=9;itemName="Robots";temp=sellableRobots;temp2=buyableRobots;}
         int cost =universe.getSolarSystemAt(0).getMarketPlace().getBuyingPriceAt(itemNum);
         if (Person.getMoney() >= cost && s.getBays()-s.getNumOccupied()>0 && universe.getSolarSystemAt(0).getMarketPlace().getAmountAt(itemNum)>0 &&s.addItem(new TradeItem(itemName))==true) 
         {
-            Person.setMoney(Person.getMoney()-cost);
+            universe.getSolarSystemAt(0).getMarketPlace().buyingItem(itemNum, 1);
             this.money.setText("" + Person.getMoney());
             int cargo =s.getBays()-s.getNumOccupied();
             this.cargo.setText(""+cargo);
+            int x=s.searchCargo(new TradeItem(itemName));
+            temp.setText(""+x);
+            temp2.setText(""+universe.getSolarSystemAt(0).getMarketPlace().getAmountAt(itemNum));
             //subtact 1 from buyable
+            //add 1 to sellable
             //need set amount in marketplace
         }
     }
@@ -227,24 +235,29 @@ public class MainGameController {
         Object source = event.getSource();
         Button clickedBtn = (Button) source;
         String ite = clickedBtn.getId();
-            if(ite.equals("s0")){itemNum=0;itemName="Water";}
-            else if(ite.equals("s1")){itemNum=1;itemName="Furs";}
-            else if(ite.equals("s2")){itemNum=2;itemName="Food";}
-            else if(ite.equals("s3")){itemNum=3;itemName="Ore";}
-            else if(ite.equals("s4")){itemNum=4;itemName="Games";}
-            else if(ite.equals("s5")){itemNum=5;itemName="Firearms";}
-            else if(ite.equals("s6")){itemNum=6;itemName="Medicine";}
-            else if(ite.equals("s7")){itemNum=7;itemName="Machines";}
-            else if(ite.equals("s8")){itemNum=8;itemName="Narcotics";}
-            else if(ite.equals("s9")){itemNum=9;itemName="Robots";}
+          if(ite.equals("s0")){itemNum=0;itemName="Water";temp=sellableWater;temp2=buyableWater;}
+            else if(ite.equals("s1")){itemNum=1;itemName="Furs";temp=sellableFurs;temp2=buyableFur;}
+            else if(ite.equals("s2")){itemNum=2;itemName="Food";temp=sellableFood;temp2=buyableFood;}
+            else if(ite.equals("s3")){itemNum=3;itemName="Ore";temp=sellableOre;temp2=buyableOre;}
+            else if(ite.equals("s4")){itemNum=4;itemName="Games";temp=sellableGames;temp2=buyableGames;}
+            else if(ite.equals("s5")){itemNum=5;itemName="Firearms";temp=sellableFirearms;temp2=buyableFirearms;}
+            else if(ite.equals("s6")){itemNum=6;itemName="Medicine";temp=sellableMedicine;temp2=buyableMedicine;}
+            else if(ite.equals("s7")){itemNum=7;itemName="Machines";temp=sellableMachines;temp2=buyableMachines;}
+            else if(ite.equals("s8")){itemNum=8;itemName="Narcotics";temp=sellableNarcotics;temp2=buyableNarcotics;}
+            else if(ite.equals("s9")){itemNum=9;itemName="Robots";temp=sellableRobots;temp2=buyableRobots;}
         int cost = 1*universe.getSolarSystemAt(0).getMarketPlace().getSellingPriceAt(itemNum);
         if(s.removeItem(new TradeItem(itemName))==true)
         {
-            Person.setMoney(Person.getMoney()+cost);
+            universe.getSolarSystemAt(0).getMarketPlace().sellingItem(itemNum, 1);
             this.money.setText("" + Person.getMoney());
             int cargo =s.getBays()-s.getNumOccupied();
             this.cargo.setText(""+cargo);
-            //add 1 to sellable
+            int x=s.searchCargo(new TradeItem(itemName));
+            //temp.setText(""+x);
+            temp.setText(""+x);
+            temp2.setText(""+universe.getSolarSystemAt(0).getMarketPlace().getAmountAt(itemNum));
+            //subtract 1 from sellable
+            //add 1 to buyable
         }
     }
 }

@@ -10,7 +10,7 @@ public class Person {
     private int traderSkill;
     private int engineerSkill;
     private String playerName;
-    private static int money;
+    private static int money=10000000;
     private static Ship ship;
     
     public Person(String name, int pSkill, int fSkill, int tSkill, int eSkill){
