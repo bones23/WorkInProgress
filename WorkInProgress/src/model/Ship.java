@@ -146,7 +146,7 @@ public class Ship {
     public int searchCargo(TradeItem item){
         int output = 0;
         for(TradeItem ti: cargo){
-            if(ti.getName().equalsIgnoreCase(item.getName()))
+            if(ti != null && ti.getName().equalsIgnoreCase(item.getName()))
                 output++;
         }
         return output;
