@@ -48,7 +48,7 @@ public class MarketPlace {
             if (techLevel > items[i].getMTLP()) {
                 amount[i] = 0;
             } else {
-                amount[i] = (int)((1.0 - ((double)i / 10)) * (rand.nextInt(30 - 10 + 1) + 10 ));
+                amount[i] = (int)Math.round((1.0 - ((double)i / 10)) * (rand.nextInt(30 - 10 + 1) + 10 ));
                 if (techLevel == items[i].getTTP()) {
                     amount[i] = amount[i] * 2;  
                 }
