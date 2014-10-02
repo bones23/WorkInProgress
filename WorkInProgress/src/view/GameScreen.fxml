@@ -97,7 +97,7 @@
                   <Insets left="60.0" />
                </GridPane.margin>
             </Label>
-            <Button fx:id="waterInCargo" maxWidth="59.0" mnemonicParsing="false" onMouseClicked="#sellWater" prefHeight="23.0" prefWidth="59.0" text="Sell" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <Button fx:id="s0" maxWidth="59.0" mnemonicParsing="false" onAction="#sellItem" prefHeight="23.0" prefWidth="59.0" text="Sell: 1" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets left="50.0" />
                </GridPane.margin>
@@ -105,7 +105,7 @@
                   <Font size="12.0" />
                </font>
             </Button>
-            <Button maxWidth="61.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="61.0" text="Sell" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <Button fx:id="s1" maxWidth="61.0" mnemonicParsing="false" onAction="#sellItem" prefHeight="23.0" prefWidth="61.0" text="Sell: 1" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <font>
                   <Font size="12.0" />
                </font>
@@ -113,7 +113,7 @@
                   <Insets left="50.0" />
                </GridPane.margin>
             </Button>
-            <Button maxWidth="60.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="60.0" text="Sell" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <Button fx:id="s2" maxWidth="60.0" mnemonicParsing="false" onAction="#sellItem" prefHeight="23.0" prefWidth="60.0" text="Sell: 1" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <font>
                   <Font size="12.0" />
                </font>
@@ -121,7 +121,7 @@
                   <Insets left="50.0" />
                </GridPane.margin>
             </Button>
-            <Button maxWidth="59.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="59.0" text="Sell" GridPane.columnIndex="1" GridPane.rowIndex="5">
+            <Button fx:id="s3" maxWidth="59.0" mnemonicParsing="false" onAction="#sellItem" prefHeight="23.0" prefWidth="59.0" text="Sell: 1" GridPane.columnIndex="1" GridPane.rowIndex="5">
                <font>
                   <Font size="12.0" />
                </font>
@@ -129,7 +129,7 @@
                   <Insets left="50.0" />
                </GridPane.margin>
             </Button>
-            <Button maxWidth="59.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="59.0" text="Sell" GridPane.columnIndex="1" GridPane.rowIndex="6">
+            <Button fx:id="s4" maxWidth="59.0" mnemonicParsing="false" onAction="#sellItem" prefHeight="23.0" prefWidth="59.0" text="Sell: 1" GridPane.columnIndex="1" GridPane.rowIndex="6">
                <font>
                   <Font size="12.0" />
                </font>
@@ -137,7 +137,7 @@
                   <Insets left="50.0" />
                </GridPane.margin>
             </Button>
-            <Button maxWidth="59.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="59.0" text="Sell" GridPane.columnIndex="1" GridPane.rowIndex="7">
+            <Button fx:id="s5" maxWidth="59.0" mnemonicParsing="false" onAction="#sellItem" prefHeight="23.0" prefWidth="59.0" text="Sell: 1" GridPane.columnIndex="1" GridPane.rowIndex="7">
                <font>
                   <Font size="12.0" />
                </font>
@@ -145,7 +145,7 @@
                   <Insets left="50.0" />
                </GridPane.margin>
             </Button>
-            <Button maxWidth="58.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="58.0" text="Sell" GridPane.columnIndex="1" GridPane.rowIndex="8">
+            <Button fx:id="s6" maxWidth="58.0" mnemonicParsing="false" onAction="#sellItem" prefHeight="23.0" prefWidth="58.0" text="Sell: 1" GridPane.columnIndex="1" GridPane.rowIndex="8">
                <font>
                   <Font size="12.0" />
                </font>
@@ -153,7 +153,7 @@
                   <Insets left="50.0" />
                </GridPane.margin>
             </Button>
-            <Button maxWidth="59.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="59.0" text="Sell" GridPane.columnIndex="1" GridPane.rowIndex="9">
+            <Button fx:id="s7" maxWidth="59.0" mnemonicParsing="false" onAction="#sellItem" prefHeight="23.0" prefWidth="59.0" text="Sell: 1" GridPane.columnIndex="1" GridPane.rowIndex="9">
                <font>
                   <Font size="12.0" />
                </font>
@@ -161,7 +161,7 @@
                   <Insets left="50.0" />
                </GridPane.margin>
             </Button>
-            <Button maxWidth="57.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="57.0" text="Sell" GridPane.columnIndex="1" GridPane.rowIndex="10">
+            <Button fx:id="s8" maxWidth="57.0" mnemonicParsing="false" onAction="#sellItem" prefHeight="23.0" prefWidth="57.0" text="Sell: 1" GridPane.columnIndex="1" GridPane.rowIndex="10">
                <font>
                   <Font size="12.0" />
                </font>
@@ -169,7 +169,7 @@
                   <Insets left="50.0" />
                </GridPane.margin>
             </Button>
-            <Button maxWidth="58.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="58.0" text="Sell" GridPane.columnIndex="1" GridPane.rowIndex="11">
+            <Button fx:id="s9" maxWidth="58.0" mnemonicParsing="false" onAction="#sellItem" prefHeight="23.0" prefWidth="58.0" text="Sell: 1" GridPane.columnIndex="1" GridPane.rowIndex="11">
                <font>
                   <Font size="12.0" />
                </font>
@@ -182,72 +182,52 @@
                   <Insets left="110.0" />
                </GridPane.margin>
             </Label>
-            <Label text="no trade" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <Label fx:id="sellFurPrice" text="no trade" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets left="110.0" />
                </GridPane.margin>
             </Label>
-            <Label text="no trade" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <Label fx:id="sellFoodPrice" text="no trade" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <GridPane.margin>
                   <Insets left="110.0" />
                </GridPane.margin>
             </Label>
-            <Label text="no trade" GridPane.columnIndex="1" GridPane.rowIndex="5">
+            <Label fx:id="sellOrePrice" text="no trade" GridPane.columnIndex="1" GridPane.rowIndex="5">
                <GridPane.margin>
                   <Insets left="110.0" />
                </GridPane.margin>
             </Label>
-            <Label text="no trade" GridPane.columnIndex="1" GridPane.rowIndex="6">
+            <Label fx:id="sellGamesPrice" text="no trade" GridPane.columnIndex="1" GridPane.rowIndex="6">
                <GridPane.margin>
                   <Insets left="110.0" />
                </GridPane.margin>
             </Label>
-            <Label text="no trade" GridPane.columnIndex="1" GridPane.rowIndex="7">
+            <Label fx:id="sellFirearmsPrice" text="no trade" GridPane.columnIndex="1" GridPane.rowIndex="7">
                <GridPane.margin>
                   <Insets left="110.0" />
                </GridPane.margin>
             </Label>
-            <Label text="no trade" GridPane.columnIndex="1" GridPane.rowIndex="8">
+            <Label fx:id="sellMedicinePrice" text="no trade" GridPane.columnIndex="1" GridPane.rowIndex="8">
                <GridPane.margin>
                   <Insets left="110.0" />
                </GridPane.margin>
             </Label>
-            <Label text="no trade" GridPane.columnIndex="1" GridPane.rowIndex="9">
+            <Label fx:id="sellMachinesPrice" text="no trade" GridPane.columnIndex="1" GridPane.rowIndex="9">
                <GridPane.margin>
                   <Insets left="110.0" />
                </GridPane.margin>
             </Label>
-            <Label text="no trade" GridPane.columnIndex="1" GridPane.rowIndex="10">
+            <Label fx:id="sellNarcoticsPrice" text="no trade" GridPane.columnIndex="1" GridPane.rowIndex="10">
                <GridPane.margin>
                   <Insets left="110.0" />
                </GridPane.margin>
             </Label>
-            <Label text="no trade" GridPane.columnIndex="1" GridPane.rowIndex="11">
+            <Label fx:id="sellRobotsPrice" text="no trade" GridPane.columnIndex="1" GridPane.rowIndex="11">
                <GridPane.margin>
                   <Insets left="110.0" />
                </GridPane.margin>
             </Label>
-            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="39.0" text="1" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="39.0" text="1" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="39.0" text="1" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="39.0" text="1" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="39.0" text="1" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="39.0" text="1" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="39.0" text="1" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="39.0" text="1" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="39.0" text="1" GridPane.columnIndex="1" GridPane.rowIndex="10" />
-            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="39.0" text="1" GridPane.columnIndex="1" GridPane.rowIndex="11" />
-            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="39.0" text="1" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="39.0" text="1" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="39.0" text="1" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="39.0" text="1" GridPane.columnIndex="2" GridPane.rowIndex="7" />
-            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="39.0" text="1" GridPane.columnIndex="2" GridPane.rowIndex="6" />
-            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="39.0" text="1" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="39.0" text="1" GridPane.columnIndex="2" GridPane.rowIndex="10" />
-            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="39.0" text="1" GridPane.columnIndex="2" GridPane.rowIndex="9" />
-            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="39.0" text="1" GridPane.columnIndex="2" GridPane.rowIndex="8" />
-            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="39.0" text="1" GridPane.columnIndex="2" GridPane.rowIndex="11" />
-            <Button maxWidth="50.0" mnemonicParsing="false" onMouseClicked="#sellWater" text="buy" GridPane.columnIndex="2" GridPane.rowIndex="3">
+            <Button fx:id="b1" maxWidth="53.0" mnemonicParsing="false" onAction="#buyItem" prefHeight="23.0" prefWidth="53.0" text="buy: 1" GridPane.columnIndex="2" GridPane.rowIndex="3">
                <font>
                   <Font size="12.0" />
                </font>
@@ -255,7 +235,7 @@
                   <Insets left="50.0" />
                </GridPane.margin>
             </Button>
-            <Button maxWidth="50.0" mnemonicParsing="false" onMouseClicked="#sellWater" text="buy" GridPane.columnIndex="2" GridPane.rowIndex="2">
+            <Button fx:id="b0" maxWidth="53.0" mnemonicParsing="false" onAction="#buyItem" prefHeight="23.0" prefWidth="53.0" text="buy: 1" GridPane.columnIndex="2" GridPane.rowIndex="2">
                <font>
                   <Font size="12.0" />
                </font>
@@ -263,7 +243,7 @@
                   <Insets left="50.0" />
                </GridPane.margin>
             </Button>
-            <Button maxWidth="50.0" mnemonicParsing="false" onMouseClicked="#sellWater" text="buy" GridPane.columnIndex="2" GridPane.rowIndex="4">
+            <Button fx:id="b2" maxWidth="53.0" mnemonicParsing="false" onAction="#buyItem" prefHeight="23.0" prefWidth="53.0" text="buy: 1" GridPane.columnIndex="2" GridPane.rowIndex="4">
                <font>
                   <Font size="12.0" />
                </font>
@@ -271,7 +251,7 @@
                   <Insets left="50.0" />
                </GridPane.margin>
             </Button>
-            <Button maxWidth="50.0" mnemonicParsing="false" onMouseClicked="#sellWater" text="buy" GridPane.columnIndex="2" GridPane.rowIndex="5">
+            <Button fx:id="b3" maxWidth="54.0" mnemonicParsing="false" onAction="#buyItem" prefHeight="23.0" prefWidth="54.0" text="buy: 1" GridPane.columnIndex="2" GridPane.rowIndex="5">
                <font>
                   <Font size="12.0" />
                </font>
@@ -279,7 +259,7 @@
                   <Insets left="50.0" />
                </GridPane.margin>
             </Button>
-            <Button maxWidth="50.0" mnemonicParsing="false" onMouseClicked="#sellWater" text="buy" GridPane.columnIndex="2" GridPane.rowIndex="6">
+            <Button fx:id="b4" maxWidth="55.0" mnemonicParsing="false" onAction="#buyItem" prefHeight="23.0" prefWidth="55.0" text="buy: 1" GridPane.columnIndex="2" GridPane.rowIndex="6">
                <font>
                   <Font size="12.0" />
                </font>
@@ -287,7 +267,7 @@
                   <Insets left="50.0" />
                </GridPane.margin>
             </Button>
-            <Button maxWidth="50.0" mnemonicParsing="false" onMouseClicked="#sellWater" text="buy" GridPane.columnIndex="2" GridPane.rowIndex="7">
+            <Button fx:id="b5" maxWidth="54.0" mnemonicParsing="false" onAction="#buyItem" prefHeight="23.0" prefWidth="54.0" text="buy: 1" GridPane.columnIndex="2" GridPane.rowIndex="7">
                <font>
                   <Font size="12.0" />
                </font>
@@ -295,7 +275,7 @@
                   <Insets left="50.0" />
                </GridPane.margin>
             </Button>
-            <Button maxWidth="50.0" mnemonicParsing="false" onMouseClicked="#sellWater" text="buy" GridPane.columnIndex="2" GridPane.rowIndex="8">
+            <Button fx:id="b6" maxWidth="55.0" mnemonicParsing="false" onAction="#buyItem" prefHeight="23.0" prefWidth="55.0" text="buy: 1" GridPane.columnIndex="2" GridPane.rowIndex="8">
                <font>
                   <Font size="12.0" />
                </font>
@@ -303,7 +283,7 @@
                   <Insets left="50.0" />
                </GridPane.margin>
             </Button>
-            <Button maxWidth="50.0" mnemonicParsing="false" onMouseClicked="#sellWater" text="buy" GridPane.columnIndex="2" GridPane.rowIndex="9">
+            <Button fx:id="b7" maxWidth="54.0" mnemonicParsing="false" onAction="#buyItem" prefHeight="23.0" prefWidth="54.0" text="buy: 1" GridPane.columnIndex="2" GridPane.rowIndex="9">
                <font>
                   <Font size="12.0" />
                </font>
@@ -311,7 +291,7 @@
                   <Insets left="50.0" />
                </GridPane.margin>
             </Button>
-            <Button maxWidth="50.0" mnemonicParsing="false" onMouseClicked="#sellWater" text="buy" GridPane.columnIndex="2" GridPane.rowIndex="10">
+            <Button fx:id="b8" maxWidth="55.0" mnemonicParsing="false" onAction="#buyItem" prefHeight="23.0" prefWidth="55.0" text="buy: 1" GridPane.columnIndex="2" GridPane.rowIndex="10">
                <font>
                   <Font size="12.0" />
                </font>
@@ -319,7 +299,7 @@
                   <Insets left="50.0" />
                </GridPane.margin>
             </Button>
-            <Button maxWidth="50.0" mnemonicParsing="false" onMouseClicked="#sellWater" text="buy" GridPane.columnIndex="2" GridPane.rowIndex="11">
+            <Button fx:id="b9" maxWidth="55.0" mnemonicParsing="false" onAction="#buyItem" prefHeight="23.0" prefWidth="55.0" text="buy: 1" GridPane.columnIndex="2" GridPane.rowIndex="11">
                <font>
                   <Font size="12.0" />
                </font>
@@ -337,61 +317,83 @@
                   <Insets left="120.0" />
                </GridPane.margin>
             </Label>
-            <Label fx:id="sellWaterPrice1" text="no trade" GridPane.columnIndex="2" GridPane.rowIndex="2">
+            <Label fx:id="buyWaterPrice" text="no trade" GridPane.columnIndex="2" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets left="110.0" />
                </GridPane.margin>
             </Label>
-            <Label fx:id="sellWaterPrice11" text="no trade" GridPane.columnIndex="2" GridPane.rowIndex="3">
+            <Label fx:id="buyFurPrice" text="no trade" GridPane.columnIndex="2" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets left="110.0" />
                </GridPane.margin>
             </Label>
-            <Label fx:id="sellWaterPrice12" text="no trade" GridPane.columnIndex="2" GridPane.rowIndex="4">
+            <Label fx:id="buyFoodPrice" text="no trade" GridPane.columnIndex="2" GridPane.rowIndex="4">
                <GridPane.margin>
                   <Insets left="110.0" />
                </GridPane.margin>
             </Label>
-            <Label fx:id="sellWaterPrice13" text="no trade" GridPane.columnIndex="2" GridPane.rowIndex="5">
+            <Label fx:id="buyOrePrice" text="no trade" GridPane.columnIndex="2" GridPane.rowIndex="5">
                <GridPane.margin>
                   <Insets left="110.0" />
                </GridPane.margin>
             </Label>
-            <Label fx:id="sellWaterPrice14" text="no trade" GridPane.columnIndex="2" GridPane.rowIndex="6">
+            <Label fx:id="buyGamesPrice" text="no trade" GridPane.columnIndex="2" GridPane.rowIndex="6">
                <GridPane.margin>
                   <Insets left="110.0" />
                </GridPane.margin>
             </Label>
-            <Label fx:id="sellWaterPrice15" text="no trade" GridPane.columnIndex="2" GridPane.rowIndex="7">
+            <Label fx:id="buyFirearmsPrice" text="no trade" GridPane.columnIndex="2" GridPane.rowIndex="7">
                <GridPane.margin>
                   <Insets left="110.0" />
                </GridPane.margin>
             </Label>
-            <Label fx:id="sellWaterPrice16" text="no trade" GridPane.columnIndex="2" GridPane.rowIndex="8">
+            <Label fx:id="buyMedicinePrice" text="no trade" GridPane.columnIndex="2" GridPane.rowIndex="8">
                <GridPane.margin>
                   <Insets left="110.0" />
                </GridPane.margin>
             </Label>
-            <Label fx:id="sellWaterPrice17" text="no trade" GridPane.columnIndex="2" GridPane.rowIndex="9">
+            <Label fx:id="buyMachinesPrice" text="no trade" GridPane.columnIndex="2" GridPane.rowIndex="9">
                <GridPane.margin>
                   <Insets left="110.0" />
                </GridPane.margin>
             </Label>
-            <Label fx:id="sellWaterPrice18" text="no trade" GridPane.columnIndex="2" GridPane.rowIndex="10">
+            <Label fx:id="buyNarcoticsPrice" text="no trade" GridPane.columnIndex="2" GridPane.rowIndex="10">
                <GridPane.margin>
                   <Insets left="110.0" />
                </GridPane.margin>
             </Label>
-            <Label fx:id="sellWaterPrice19" text="no trade" GridPane.columnIndex="2" GridPane.rowIndex="11">
+            <Label fx:id="buyRobotsPrice" text="no trade" GridPane.columnIndex="2" GridPane.rowIndex="11">
                <GridPane.margin>
                   <Insets left="110.0" />
                </GridPane.margin>
             </Label>
+            <Label text="Available" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label text="Available" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Label fx:id="sellableWater" text="0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label fx:id="sellableFurs" text="0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label fx:id="sellableFood" text="0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Label fx:id="sellableOre" text="0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <Label fx:id="sellableGames" text="0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <Label fx:id="sellableFirearms" text="0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <Label fx:id="buyableWater" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Label fx:id="buyableFur" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <Label fx:id="buyableFood" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+            <Label fx:id="buyableOre" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+            <Label fx:id="buyableGames" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+            <Label fx:id="buyableFirearms" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+            <Label fx:id="buyableMedicine" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="8" />
+            <Label fx:id="sellableMedicine" text="0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+            <Label fx:id="sellableMachines" text="0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+            <Label fx:id="sellableNarcotics" text="0" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+            <Label fx:id="sellableRobots" text="0" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+            <Label fx:id="buyableMachines" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="9" />
+            <Label fx:id="buyableNarcotics" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="10" />
+            <Label fx:id="buyableRobots" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="11" />
          </children>
       </GridPane>
       <Label layoutY="65.0" prefHeight="16.0" prefWidth="46.0" text="Money:" />
       <Label fx:id="money" layoutX="19.0" layoutY="81.0" text="0" />
       <Label layoutX="6.0" layoutY="108.0" text="Cargo Space" />
-      <Label layoutX="21.0" layoutY="124.0" text="0" />
+      <Label fx:id="cargo" layoutX="21.0" layoutY="124.0" text="0" />
    </children>
 </AnchorPane>

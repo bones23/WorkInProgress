@@ -178,5 +178,16 @@ public class Universe{
     public SolarSystem[] getUniverse() {
         return universe;
     }
-
+    
+    /**
+     * getter for a SolarSystem at a specified index.
+     *
+     * @param index
+     * @return SolarSystem at index
+     */
+    public SolarSystem getSolarSystemAt(int index) {
+        return universe[index];
+    }
+    
+    
 }

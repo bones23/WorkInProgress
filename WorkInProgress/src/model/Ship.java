@@ -13,16 +13,15 @@ public class Ship {
     private String pilot;
     private int numOccupied;
     private TradeItem[] cargo;
+    private int bays;
     
-    public Ship(String type, String pilot, int fuel, int baysSize, int x, int y) {
+    public Ship(String type, String pilot, int fuel, int baysSize) {
         this.type = type;
         this.pilot = pilot;
         this.fuel = fuel;
-        this.x = x;
-        this.y = y;
         this.cargo = new TradeItem[baysSize];
-        
         this.numOccupied = 0;
+        this.bays = baysSize;
     }
     
     /**
@@ -90,7 +89,9 @@ public class Ship {
     public int getFuel() {
         return this.fuel;
     }
-
+    public int getBays(){
+        return this.bays;
+    }
     /**
      * @param fuel the new fuel
      */
@@ -138,6 +139,17 @@ public class Ship {
      */
     public TradeItem[] getCargo() {
         return this.cargo;
+    }
+    /**
+     * @return the number of a specific type of cargo in ship
+     */
+    public int searchCargo(TradeItem item){
+        int output = 0;
+        for(TradeItem ti: cargo){
+            if(ti != null && ti.getName().equalsIgnoreCase(item.getName()))
+                output++;
+        }
+        return output;
     }
     
 }
