@@ -20,6 +20,7 @@ import model.Universe;
 import java.util.Random;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 /**
  *
  * @author lukenewman
@@ -72,8 +73,8 @@ public class MainGameController {
     private Label sellRobotsPrice;
     @FXML
     private Label buyRobotsPrice;
-    //@FXML
-    //private TextField sellWaterQuantity;
+    @FXML
+    private TextField sellWaterQuantity;
     @FXML
     private Button s0;
     @FXML
@@ -165,7 +166,7 @@ public class MainGameController {
     @FXML
     private Label currentLocation;
     @FXML
-    private Canvas miniMap;
+    private Canvas universeMap;
     
     @FXML
     private void initialize() {
@@ -206,7 +207,7 @@ public class MainGameController {
        this.buyNarcoticsPrice.setText("" + universe.getSolarSystemAt(i).getMarketPlace().getBuyingPriceAt(8));
        this.sellRobotsPrice.setText("" + universe.getSolarSystemAt(i).getMarketPlace().getSellingPriceAt(9));
        this.buyRobotsPrice.setText("" + universe.getSolarSystemAt(i).getMarketPlace().getBuyingPriceAt(9));
-       drawMap();
+       drawUniverse();
     }
     
     @FXML
@@ -274,10 +275,15 @@ public class MainGameController {
         }
     }
     
-    private void drawMap() {
-        GraphicsContext g2d = miniMap.getGraphicsContext2D();
+    private void drawUniverse() {
+        GraphicsContext g2d = universeMap.getGraphicsContext2D();
         for (int k = 0; k < 120; k++) {
-            g2d.fillOval(universe.getSolarSystemAt(k).getX(),universe.getSolarSystemAt(k).getY(), 1, 1);
+            g2d.fillOval(2 *universe.getSolarSystemAt(k).getX(),2 * universe.getSolarSystemAt(k).getY(), 2, 2);
+            if (universe.getSolarSystemAt(k) == universe.getSolarSystemAt(i)) {
+                g2d.setFill(Color.RED);
+                g2d.fillOval(2 *universe.getSolarSystemAt(k).getX(),2 * universe.getSolarSystemAt(k).getY(), 4, 4);
+            }
+            g2d.setFill(Color.BLACK);
         }
     }
 }

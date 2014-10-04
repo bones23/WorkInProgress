@@ -9,7 +9,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="595.0" prefWidth="757.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainGameController">
+<AnchorPane id="AnchorPane" prefHeight="638.0" prefWidth="762.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainGameController">
    <children>
       <GridPane gridLinesVisible="true" layoutX="97.0" layoutY="73.0" prefHeight="336.0" prefWidth="507.0">
         <columnConstraints>
@@ -396,7 +396,7 @@
       <Label fx:id="money" layoutX="19.0" layoutY="81.0" text="0" />
       <Label layoutX="6.0" layoutY="108.0" text="Cargo Space" />
       <Label fx:id="cargo" layoutX="21.0" layoutY="124.0" text="0" />
-      <Canvas fx:id="miniMap" height="100.0" layoutX="266.0" layoutY="420.0" width="150.0" />
+      <Canvas fx:id="universeMap" height="200.0" layoutX="266.0" layoutY="420.0" width="300.0" />
       <Label fx:id="currentLocation" layoutX="73.0" layoutY="420.0" text="Label" />
    </children>
 </AnchorPane>
