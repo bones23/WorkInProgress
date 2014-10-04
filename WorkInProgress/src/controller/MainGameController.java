@@ -169,10 +169,15 @@ public class MainGameController {
     private Canvas universeMap;
     
     @FXML
+    private Label selectedLocation;
+    @FXML
+    private Canvas miniMap;
+    
+    @FXML
     private void initialize() {
         universe = new Universe();
         s = Person.getShip();
-        currentLocation.setText("Current Location:\n"+universe.getSolarSystemAt(i));
+        currentLocation.setText("Current Location:\n----------------\n"+universe.getSolarSystemAt(i));
         
         buyableWater.setText(""+universe.getSolarSystemAt(i).getMarketPlace().getAmountAt(0));
         buyableFur.setText(""+universe.getSolarSystemAt(i).getMarketPlace().getAmountAt(1));
@@ -208,6 +213,7 @@ public class MainGameController {
        this.sellRobotsPrice.setText("" + universe.getSolarSystemAt(i).getMarketPlace().getSellingPriceAt(9));
        this.buyRobotsPrice.setText("" + universe.getSolarSystemAt(i).getMarketPlace().getBuyingPriceAt(9));
        drawUniverse();
+       drawMini();
     }
     
     @FXML
@@ -275,6 +281,7 @@ public class MainGameController {
         }
     }
     
+    
     private void drawUniverse() {
         GraphicsContext g2d = universeMap.getGraphicsContext2D();
         for (int k = 0; k < 120; k++) {
@@ -286,4 +293,21 @@ public class MainGameController {
             g2d.setFill(Color.BLACK);
         }
     }
+    private void drawMini() {
+        GraphicsContext g2d = miniMap.getGraphicsContext2D();
+        g2d.setFill(Color.RED);
+        g2d.fillOval(150, 200, 10, 10);
+        g2d.setFill(Color.BLACK);
+        /*
+        for (int k = 0; k < 120; k++) {
+            if (Math.abs(universe.getSolarSystemAt(i).getX() - universe.getSolarSystemAt(k).getX()) < 10
+                    && Math.abs(universe.getSolarSystemAt(i).getY() - universe.getSolarSystemAt(k).getY()) < 10) {
+                int x = universe.getSolarSystemAt(i).getX() - universe.getSolarSystemAt(k).getX();
+                int y = universe.getSolarSystemAt(i).getY() - universe.getSolarSystemAt(k).getY();
+                g2d.fillOval(5 * (150 + x),5 *(100 + y),10,10);
+            }
+        }
+                */
+    }
+ 
 }
