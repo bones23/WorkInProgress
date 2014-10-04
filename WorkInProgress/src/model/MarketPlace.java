@@ -36,16 +36,23 @@ public class MarketPlace {
         calculatePrices();
     }
     
+    /**
+     * Calculates the price of a good being sold to the marketplace and bought 
+     * from the market place.
+     */
     public void calculatePrices() {
         for (int i = 0; i < items.length; i++) {
             totalPrice[i] = items[i].getBP() + (items[i].getIPL() * (techLevel - items[i].getMTLP())) + (int)((double)items[i].getBP() * (items[i].getVar())); 
-            sellPrice[i] = (int)((double)totalPrice[i] * .15);
+            sellPrice[i] = (int)((double)totalPrice[i] * .65);
         }   
     }
-    
+    /**
+     * Calculates the amount of items there are on each SolarSystem. Considers
+     * the minimum tech level to produce.
+     */
     public void calculateAmount() {
         for (int i = 0; i < items.length; i++) {
-            if (techLevel > items[i].getMTLP()) {
+            if (techLevel < items[i].getMTLP()) {
                 amount[i] = 0;
             } else {
                 amount[i] = (int)((1.0 - ((double)i / 10)) * (rand.nextInt(30 - 10 + 1) + 10 ));
@@ -56,11 +63,24 @@ public class MarketPlace {
         }
     }
     
+    /**
+     * Buys an item from marketplace
+     * Subtracts the amount of items from market place and the amount being paid
+     * from the players money.
+     * @param item the item that is being bought
+     * @param amountBuying the amount being bought
+     */
     public void buyingItem(int item, int amountBuying) {
         amount[item] = amount[item] - amountBuying;
         Person.setMoney(Person.getMoney() - (amountBuying * totalPrice[item]));
     }
     
+    /**
+     * Sells an item to the marketplace. The market place gains an item and the
+     * player gains money.
+     * @param item item being sold
+     * @param amountSelling the amount of items being sold
+     */
     public void sellingItem(int item, int amountSelling) {
         amount[item] = amount[item] + amountSelling;
         Person.setMoney(Person.getMoney() + (amountSelling * sellPrice[item]));
