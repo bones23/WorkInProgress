@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
 
 /**
  * @author Matthew Taylor
- * @version 6 October 2014
+ * @version 2 October 2014
  */
 public class MarketPlaceTest {
     
@@ -17,7 +17,7 @@ public class MarketPlaceTest {
     
     @Before
     public void setUp() {
-        mkt = new MarketPlace(10);
+        mkt = new MarketPlace();
     }
     
      @Test
