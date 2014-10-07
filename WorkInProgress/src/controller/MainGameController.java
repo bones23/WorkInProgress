@@ -7,20 +7,21 @@ package controller;
 
 
 import java.io.IOException;
+import java.util.Random;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import model.Person;
 import model.Ship;
 import model.TradeItem;
 import model.Universe;
-import java.util.Random;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
 /**
  *
  * @author lukenewman
@@ -163,6 +164,7 @@ public class MainGameController {
     private Ship s;
     private Random rand = new Random();
     int i = rand.nextInt(120);
+    int tempp=0;
     @FXML
     private Label currentLocation;
     @FXML
@@ -172,6 +174,7 @@ public class MainGameController {
     private Label selectedLocation;
     @FXML
     private Canvas miniMap;
+    int qq=0;
     
     @FXML
     private void initialize() {
@@ -214,6 +217,8 @@ public class MainGameController {
        this.buyRobotsPrice.setText("" + universe.getSolarSystemAt(i).getMarketPlace().getBuyingPriceAt(9));
        drawUniverse();
        drawMini();
+       System.out.println("number "+qq);
+      // universeMap.co
     }
     
     @FXML
@@ -284,30 +289,43 @@ public class MainGameController {
     
     private void drawUniverse() {
         GraphicsContext g2d = universeMap.getGraphicsContext2D();
+        Color d = Color.web("#FFFFFF",0.9);
+        g2d.setFill(d);
+        g2d.fillRect(0, 0, universeMap.getWidth(), universeMap.getHeight());
+            Color c = Color.web("#008000",0.5);
+                g2d.setFill(c);
+                g2d.fillOval((2*universe.getSolarSystemAt(i).getX())-50,(2*universe.getSolarSystemAt(i).getY())-50,100,100);//x-range5/8, y-range5/8
+                g2d.setFill(Color.RED);
+                g2d.fillOval(2 *universe.getSolarSystemAt(i).getX(),2 * universe.getSolarSystemAt(i).getY(), 4, 4);
+                g2d.setFill(Color.BLACK);
         for (int k = 0; k < 120; k++) {
             g2d.fillOval(2 *universe.getSolarSystemAt(k).getX(),2 * universe.getSolarSystemAt(k).getY(), 2, 2);
-            if (universe.getSolarSystemAt(k) == universe.getSolarSystemAt(i)) {
-                g2d.setFill(Color.RED);
-                g2d.fillOval(2 *universe.getSolarSystemAt(k).getX(),2 * universe.getSolarSystemAt(k).getY(), 4, 4);
-            }
+            
             g2d.setFill(Color.BLACK);
+        
+       
         }
     }
     private void drawMini() {
+        
         GraphicsContext g2d = miniMap.getGraphicsContext2D();
+        Color d = Color.web("#FFFF00",0.5);
+        g2d.setFill(d);
+        g2d.fillRect(0, 0, miniMap.getWidth(), miniMap.getHeight());
         g2d.setFill(Color.RED);
-        g2d.fillOval(150, 200, 10, 10);
+        g2d.fillOval(140, 90, 10, 10);
         g2d.setFill(Color.BLACK);
-        /*
+        
         for (int k = 0; k < 120; k++) {
-            if (Math.abs(universe.getSolarSystemAt(i).getX() - universe.getSolarSystemAt(k).getX()) < 10
-                    && Math.abs(universe.getSolarSystemAt(i).getY() - universe.getSolarSystemAt(k).getY()) < 10) {
-                int x = universe.getSolarSystemAt(i).getX() - universe.getSolarSystemAt(k).getX();
-                int y = universe.getSolarSystemAt(i).getY() - universe.getSolarSystemAt(k).getY();
-                g2d.fillOval(5 * (150 + x),5 *(100 + y),10,10);
+            if (Math.abs(2*universe.getSolarSystemAt(i).getX() - 2*universe.getSolarSystemAt(k).getX()) < 50
+                    && Math.abs(2*universe.getSolarSystemAt(i).getY() - 2*universe.getSolarSystemAt(k).getY()) < 50) {
+                int x = 2*universe.getSolarSystemAt(i).getX() - 2*universe.getSolarSystemAt(k).getX();
+                int y = 2*universe.getSolarSystemAt(i).getY() - 2*universe.getSolarSystemAt(k).getY();
+                g2d.fillOval((140-x),(90-y),5,5);
+                qq++;
             }
         }
-                */
+                
     }
  
 }
