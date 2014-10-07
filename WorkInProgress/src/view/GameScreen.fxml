@@ -396,7 +396,7 @@
       <Label fx:id="money" layoutX="19.0" layoutY="81.0" text="0" />
       <Label layoutX="6.0" layoutY="108.0" text="Cargo Space" />
       <Label fx:id="cargo" layoutX="21.0" layoutY="124.0" text="0" />
-      <Canvas fx:id="universeMap" height="200.0" layoutX="216.0" layoutY="449.0" width="300.0" />
+      <Canvas fx:id="universeMap" blendMode="DARKEN" height="200.0" layoutX="216.0" layoutY="449.0" width="300.0" />
       <Label fx:id="currentLocation" layoutX="59.0" layoutY="420.0" text="Label" />
       <Label fx:id="map" layoutX="330.0" layoutY="420.0" text="Universe Map" />
       <Label layoutX="32.0" layoutY="24.0" text="Space Trader" textFill="#abb514">

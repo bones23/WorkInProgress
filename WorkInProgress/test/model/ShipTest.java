@@ -22,7 +22,7 @@ public class ShipTest {
     
     @Before
     public void setUp() {
-        small = new Ship("TYPE", "PILOT", 10, 1, 0, 0);
+        small = new Ship("TYPE", "PILOT", 10, 1);
     }
     
      @Test
