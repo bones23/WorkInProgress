@@ -43,7 +43,7 @@ public class MarketPlace {
     public void calculatePrices() {
         for (int i = 0; i < items.length; i++) {
             totalPrice[i] = items[i].getBP() + (items[i].getIPL() * (techLevel - items[i].getMTLP())) + (int)((double)items[i].getBP() * (items[i].getVar())); 
-            sellPrice[i] = (int)((double)totalPrice[i] * .65);
+            sellPrice[i] = (int)((double)totalPrice[i] * .85);
         }   
     }
     /**
