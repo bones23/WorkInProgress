@@ -22,7 +22,21 @@ public class MarketPlaceTest {
     
      @Test
      public void testCalculatePrices() {
+         for(int i=0; i<10; i++) {
+             System.out.print(mkt.getSellingPriceAt(i) + " ");
+             System.out.print(mkt.getBuyingPriceAt(i) + "\n");
+         }
          
+         assertEquals((int)(mkt.getBuyingPriceAt(0)*.85), mkt.getSellingPriceAt(0));
+         assertEquals((int)(mkt.getBuyingPriceAt(1)*.85), mkt.getSellingPriceAt(1));
+         assertEquals((int)(mkt.getBuyingPriceAt(2)*.85), mkt.getSellingPriceAt(2));
+         assertEquals((int)(mkt.getBuyingPriceAt(3)*.85), mkt.getSellingPriceAt(3));
+         assertEquals((int)(mkt.getBuyingPriceAt(4)*.85), mkt.getSellingPriceAt(4));
+         assertEquals((int)(mkt.getBuyingPriceAt(5)*.85), mkt.getSellingPriceAt(5));
+         assertEquals((int)(mkt.getBuyingPriceAt(6)*.85), mkt.getSellingPriceAt(6));
+         assertEquals((int)(mkt.getBuyingPriceAt(7)*.85), mkt.getSellingPriceAt(7));
+         assertEquals((int)(mkt.getBuyingPriceAt(8)*.85), mkt.getSellingPriceAt(8));
+         assertEquals((int)(mkt.getBuyingPriceAt(9)*.85), mkt.getSellingPriceAt(9));
      }
      
      @Test
@@ -35,7 +49,7 @@ public class MarketPlaceTest {
          // Bounds determined by the formula:
          // (int)Math.round((1.0 - ((double)i / 10)) * (rand.nextInt(30 - 10 + 1) + 10 ))
          assertTrue(mkt.getAmount()[0] >= 10 && mkt.getAmount()[0] <= 30);
-         assertTrue(mkt.getAmount()[1] >= 18 && mkt.getAmount()[1] <= 54);    // TTP == 0, so 9*2 and 27*2
+         assertTrue(mkt.getAmount()[1] >= 9 && mkt.getAmount()[1] <= 27);
          assertTrue(mkt.getAmount()[2] >= 8 && mkt.getAmount()[2] <= 24);
          assertTrue(mkt.getAmount()[3] >= 7 && mkt.getAmount()[3] <= 21);
          assertTrue(mkt.getAmount()[4] >= 6 && mkt.getAmount()[4] <= 18);
