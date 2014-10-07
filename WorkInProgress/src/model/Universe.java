@@ -145,7 +145,7 @@ public class Universe{
     public Universe() {
     	universe = new SolarSystem[names.length];
     	rand = new Random();
-    	check = new int[150][100];
+    	check = new int[154][104];
         for (int i = 0; i < names.length; i++) {
             do {
                 x = rand.nextInt(150);
@@ -153,6 +153,11 @@ public class Universe{
             } while(check[x][y] == 1);
             universe[i] = new SolarSystem(names[i], x, y);
             check[x][y] = 1;
+            for (int j = x; j < x + 4; j++) {
+                for (int k = y; k < y + 4; k++) {
+                    check[j][k] = 1;
+                }
+            }
         }
     }
     
