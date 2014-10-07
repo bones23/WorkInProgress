@@ -337,7 +337,7 @@ public class MainGameController {
             if (Math.abs(2*universe.getSolarSystemAt(i).getX() - 2*universe.getSolarSystemAt(k).getX()) < 50
                     && Math.abs(2*universe.getSolarSystemAt(i).getY() - 2*universe.getSolarSystemAt(k).getY()) < 50) {
                 miniSystems.add(universe.getSolarSystemAt(k));
-                System.out.println("planet location "+ universe.getSolarSystemAt(k).getX());
+               // System.out.println("planet location "+ universe.getSolarSystemAt(k).getX());
                 int x = 4*universe.getSolarSystemAt(i).getX() - 4*universe.getSolarSystemAt(k).getX();
                 int y = 4*universe.getSolarSystemAt(i).getY() - 4*universe.getSolarSystemAt(k).getY();
                 g2d.fillOval((140-x),(90-y),5,5);
@@ -350,7 +350,7 @@ public class MainGameController {
     int j=i;
     @FXML
     private void handleMouseClick(MouseEvent event) {
-        System.out.println((140-event.getX()-universe.getSolarSystemAt(i).getX())/4);
+      //  System.out.println((140-event.getX()-universe.getSolarSystemAt(i).getX())/4);
         int x = (int) event.getX();
         int y = (int) event.getY();
         for(SolarSystem name:miniSystems){
@@ -411,7 +411,7 @@ public class MainGameController {
        this.buyNarcoticsPrice.setText("" + universe.getSolarSystemAt(i).getMarketPlace().getBuyingPriceAt(8));
        this.sellRobotsPrice.setText("" + universe.getSolarSystemAt(i).getMarketPlace().getSellingPriceAt(9));
        this.buyRobotsPrice.setText("" + universe.getSolarSystemAt(i).getMarketPlace().getBuyingPriceAt(9));
-       selectedLocation.setText("");
+       selectedLocation.setText("Choose Location");
         drawUniverse();
        drawMini();
         }
