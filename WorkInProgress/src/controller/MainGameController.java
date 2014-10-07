@@ -38,6 +38,8 @@ public class MainGameController {
     @FXML
     private Label money;
     @FXML
+    private Label fuelText;
+    @FXML
     private Label cargo;
     @FXML
     private Label sellWaterPrice;
@@ -187,7 +189,7 @@ public class MainGameController {
         universe = new Universe();
         s = Person.getShip();
         currentLocation.setText("Current Location:\n----------------\n"+universe.getSolarSystemAt(i));
-        
+        //playerText.setText()
         buyableWater.setText(""+universe.getSolarSystemAt(i).getMarketPlace().getAmountAt(0));
         buyableFur.setText(""+universe.getSolarSystemAt(i).getMarketPlace().getAmountAt(1));
         buyableFood.setText(""+universe.getSolarSystemAt(i).getMarketPlace().getAmountAt(2));
@@ -223,6 +225,7 @@ public class MainGameController {
        this.buyRobotsPrice.setText("" + universe.getSolarSystemAt(i).getMarketPlace().getBuyingPriceAt(9));
        drawUniverse();
        drawMini();
+       fuelText.setText("" + Person.getShip().getFuel());   
        System.out.println("number "+qq);
       // universeMap.co
     }
@@ -304,8 +307,9 @@ public class MainGameController {
         g2d.setFill(d);
         g2d.fillRect(0, 0, universeMap.getWidth(), universeMap.getHeight());
             Color c = Color.web("#008000",0.5);
+            int r = (int)((double)(2 * Person.getShip().getFuel()) / 2);
                 g2d.setFill(c);
-                g2d.fillOval((2*universe.getSolarSystemAt(i).getX())-50,(2*universe.getSolarSystemAt(i).getY())-50,100,100);//x-range5/8, y-range5/8
+                g2d.fillOval((2*universe.getSolarSystemAt(i).getX())-r + 1,(2*universe.getSolarSystemAt(i).getY())-r + 1,2 * Person.getShip().getFuel(),2 * Person.getShip().getFuel());//x-range5/8, y-range5/8
                 g2d.setFill(Color.RED);
                 g2d.fillOval(2 *universe.getSolarSystemAt(i).getX(),2 * universe.getSolarSystemAt(i).getY(), 4, 4);
                 g2d.setFill(Color.BLACK);
@@ -325,8 +329,9 @@ public class MainGameController {
         GraphicsContext g2d = miniMap.getGraphicsContext2D();
         g2d.setFill(Color.WHITE);
         g2d.fillRect(0, 0, miniMap.getWidth(), miniMap.getHeight());
-        Color d = Color.web("#FFFF00",0.5);
-        g2d.setFill(d);
+        //Color d = Color.web("#FFFF00",0.5);
+        //g2d.setFill(d);
+        g2d.setFill(Color.WHITE);
         g2d.fillRect(0, 0, miniMap.getWidth(), miniMap.getHeight());
         g2d.setFill(Color.RED);
         g2d.fillOval(140, 90, 10, 10);
@@ -335,8 +340,8 @@ public class MainGameController {
         for (int k = 0; k < 120; k++) {
             if(universe.getSolarSystemAt(i)!=universe.getSolarSystemAt(k)){
                 
-            if (Math.abs(2*universe.getSolarSystemAt(i).getX() - 2*universe.getSolarSystemAt(k).getX()) < 50
-                    && Math.abs(2*universe.getSolarSystemAt(i).getY() - 2*universe.getSolarSystemAt(k).getY()) < 50) {
+            if (Math.abs(2*universe.getSolarSystemAt(i).getX() - 2*universe.getSolarSystemAt(k).getX()) < Person.getShip().getFuel()
+                    && Math.abs(2*universe.getSolarSystemAt(i).getY() - 2*universe.getSolarSystemAt(k).getY()) <  Person.getShip().getFuel()) {
                 miniSystems.add(universe.getSolarSystemAt(k));
                // System.out.println("planet location "+ universe.getSolarSystemAt(k).getX());
                 int x = 4*universe.getSolarSystemAt(i).getX() - 4*universe.getSolarSystemAt(k).getX();
@@ -413,6 +418,7 @@ public class MainGameController {
        this.sellRobotsPrice.setText("" + universe.getSolarSystemAt(i).getMarketPlace().getSellingPriceAt(9));
        this.buyRobotsPrice.setText("" + universe.getSolarSystemAt(i).getMarketPlace().getBuyingPriceAt(9));
        selectedLocation.setText("Choose Location");
+       currentLocation.setText("Current Location:\n----------------\n"+universe.getSolarSystemAt(i));
         drawUniverse();
        drawMini();
         }
