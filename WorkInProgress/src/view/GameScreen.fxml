@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.canvas.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import java.lang.*?>
@@ -8,7 +9,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="482.0" prefWidth="701.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainGameController">
+<AnchorPane id="AnchorPane" prefHeight="674.0" prefWidth="853.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainGameController">
    <children>
       <GridPane gridLinesVisible="true" layoutX="97.0" layoutY="73.0" prefHeight="336.0" prefWidth="507.0">
         <columnConstraints>
@@ -395,5 +396,17 @@
       <Label fx:id="money" layoutX="19.0" layoutY="81.0" text="0" />
       <Label layoutX="6.0" layoutY="108.0" text="Cargo Space" />
       <Label fx:id="cargo" layoutX="21.0" layoutY="124.0" text="0" />
+      <Canvas fx:id="universeMap" blendMode="DARKEN" height="200.0" layoutX="216.0" layoutY="449.0" width="300.0" />
+      <Label fx:id="currentLocation" layoutX="59.0" layoutY="420.0" text="Label" />
+      <Label fx:id="map" layoutX="330.0" layoutY="420.0" text="Universe Map" />
+      <Label layoutX="32.0" layoutY="24.0" text="Space Trader" textFill="#abb514">
+         <font>
+            <Font name="Byington" size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="selectedLocation" layoutX="652.0" layoutY="153.0" text="Choose Location" />
+      <Label layoutX="645.0" layoutY="420.0" text="Mini Map" />
+      <Canvas fx:id="miniMap" height="200.0" layoutX="528.0" layoutY="449.0" onMouseClicked="#handleMouseClick" width="300.0" />
+      <Button fx:id="TravelHere" layoutX="660.0" layoutY="95.0" mnemonicParsing="false" onAction="#Travel" text="Travel here" />
    </children>
 </AnchorPane>

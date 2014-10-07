@@ -10,8 +10,10 @@ public class Person {
     private int traderSkill;
     private int engineerSkill;
     private String playerName;
-    private static int money;
+    private static int money=10000000;
     private static Ship ship;
+    private int x;
+    private int y;
     
     public Person(String name, int pSkill, int fSkill, int tSkill, int eSkill){
         this.pilotSkill = pSkill;
@@ -64,6 +66,25 @@ public class Person {
     }
     public static Ship getShip(){
         return ship;
+    }
+    /**
+     * @return the x
+     */
+    public int getX() {
+        return this.x;
+    }
+    
+    /**
+     * @return the y
+     */
+    public int getY() {
+        return this.y;
+    }
+    public void setX(int newX){
+        this.x = newX;
+    }
+    public void setY(int newY){
+        this.y = newY;
     }
     @Override
     public String toString(){
