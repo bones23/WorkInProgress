@@ -406,6 +406,7 @@
       </Label>
       <Label fx:id="selectedLocation" layoutX="652.0" layoutY="153.0" text="Choose Location" />
       <Label layoutX="645.0" layoutY="420.0" text="Mini Map" />
-      <Canvas fx:id="miniMap" height="200.0" layoutX="528.0" layoutY="449.0" width="300.0" />
+      <Canvas fx:id="miniMap" height="200.0" layoutX="528.0" layoutY="449.0" onMouseClicked="#handleMouseClick" width="300.0" />
+      <Button fx:id="TravelHere" layoutX="660.0" layoutY="95.0" mnemonicParsing="false" onAction="#Travel" text="Travel here" />
    </children>
 </AnchorPane>

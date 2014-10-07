@@ -148,13 +148,13 @@ public class Universe{
     	check = new int[154][104];
         for (int i = 0; i < names.length; i++) {
             do {
-                x = rand.nextInt(150);
-                y = rand.nextInt(100);
+                x = rand.nextInt(146) + 4;
+                y = rand.nextInt(96)+4;
             } while(check[x][y] == 1);
             universe[i] = new SolarSystem(names[i], x, y);
             check[x][y] = 1;
-            for (int j = x; j < x + 4; j++) {
-                for (int k = y; k < y + 4; k++) {
+            for (int j = x - 3; j < x + 3; j++) {
+                for (int k = y-3; k < y + 3; k++) {
                     check[j][k] = 1;
                 }
             }
