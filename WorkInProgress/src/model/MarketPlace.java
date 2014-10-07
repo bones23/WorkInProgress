@@ -43,7 +43,24 @@ public class MarketPlace {
     public void calculatePrices() {
         for (int i = 0; i < items.length; i++) {
             totalPrice[i] = items[i].getBP() + (items[i].getIPL() * (techLevel - items[i].getMTLP())) + (int)((double)items[i].getBP() * (items[i].getVar())); 
-            sellPrice[i] = (int)((double)totalPrice[i] * .65);
+            sellPrice[i] = (int)((double)totalPrice[i] * .80);
+            if (techLevel > 2) {
+                //int random = nextDouble(1.5 - 1.0 + 1.0) + 1.0;
+                totalPrice[i] = (int)(totalPrice[i] * 1.5);
+                sellPrice[i] = (int)(sellPrice[i] * 1.5);
+            } else if (techLevel > 4) {
+                totalPrice[i] = (int)(totalPrice[i] * 1.75);
+                sellPrice[i] = (int)(sellPrice[i] * 1.75);
+            } else if(techLevel > 6) {
+                totalPrice[i] = (int)(totalPrice[i] * 2);
+                sellPrice[i] = (int)(sellPrice[i] * 2);
+            }
+            if (techLevel < items[i].getMTLU()) {
+                sellPrice[i] = 0;
+            }
+            if (techLevel < items[i].getMTLP()) {
+                totalPrice[i] = 0;
+            }
         }   
     }
     /**
@@ -54,6 +71,7 @@ public class MarketPlace {
         for (int i = 0; i < items.length; i++) {
             if (techLevel < items[i].getMTLP()) {
                 amount[i] = 0;
+                
             } else {
                 amount[i] = (int)((1.0 - ((double)i / 10)) * (rand.nextInt(30 - 10 + 1) + 10 ));
                 if (techLevel == items[i].getTTP()) {
@@ -120,4 +138,6 @@ public class MarketPlace {
     public int getBuyingPriceAt(int index) {
         return totalPrice[index];
     }
+    
+
 }
