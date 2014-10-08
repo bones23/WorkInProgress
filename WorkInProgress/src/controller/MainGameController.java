@@ -290,7 +290,7 @@ public class MainGameController {
             else if(ite.equals("s8")){itemNum=8;itemName="Narcotics";temp=sellableNarcotics;temp2=buyableNarcotics;}
             else if(ite.equals("s9")){itemNum=9;itemName="Robots";temp=sellableRobots;temp2=buyableRobots;}
         int cost = 1*universe.getSolarSystemAt(i).getMarketPlace().getSellingPriceAt(itemNum);
-        if(s.removeItem(new TradeItem(itemName))==true && cost > 0 )
+        if(cost > 0 && s.removeItem(new TradeItem(itemName))==true )
         {
             universe.getSolarSystemAt(i).getMarketPlace().sellingItem(itemNum, 1);
             this.money.setText("" + Person.getMoney());
