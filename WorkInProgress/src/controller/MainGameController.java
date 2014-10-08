@@ -30,6 +30,7 @@ import model.Universe;
 /**
  *
  * @author lukenewman
+ * @author pretty much everyone
  */
 public class MainGameController {
     @FXML
@@ -266,6 +267,7 @@ public class MainGameController {
             //subtact 1 from buyable
             //add 1 to sellable
             //need set amount in marketplace
+            
         }
     }
     
@@ -314,7 +316,7 @@ public class MainGameController {
             Color c = Color.web("#008000",0.5);
             int r = 2 * Person.getShip().getFuel();
                 g2d.setFill(c);
-                g2d.fillOval((2*universe.getSolarSystemAt(i).getX())-r + 2,(2*universe.getSolarSystemAt(i).getY())-r + 2,4 * Person.getShip().getFuel(),4 * Person.getShip().getFuel());//x-range5/8, y-range5/8
+                g2d.fillOval((2*universe.getSolarSystemAt(i).getX())-r + 2,(2*universe.getSolarSystemAt(i).getY())-r + 2,4 * Person.getShip().getFuel() + 1,4 * Person.getShip().getFuel() + 1);//x-range5/8, y-range5/8
                 g2d.setFill(Color.RED);
                 g2d.fillOval(2 *universe.getSolarSystemAt(i).getX(),2 * universe.getSolarSystemAt(i).getY(), 4, 4);
                 g2d.setFill(Color.BLACK);
