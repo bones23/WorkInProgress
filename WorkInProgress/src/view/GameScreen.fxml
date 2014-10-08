@@ -404,11 +404,13 @@
             <Font name="Byington" size="24.0" />
          </font>
       </Label>
-      <Label fx:id="selectedLocation" layoutX="652.0" layoutY="153.0" text="Choose Location" />
+      <Label fx:id="selectedLocation" layoutX="828.0" layoutY="420.0" text="Choose Location" />
       <Label layoutX="645.0" layoutY="420.0" text="Mini Map" />
       <Canvas fx:id="miniMap" height="200.0" layoutX="528.0" layoutY="449.0" onMouseClicked="#handleMouseClick" width="300.0" />
-      <Button fx:id="TravelHere" layoutX="660.0" layoutY="95.0" mnemonicParsing="false" onAction="#Travel" text="Travel here" />
+      <Button fx:id="TravelHere" layoutX="865.0" layoutY="637.0" mnemonicParsing="false" onAction="#Travel" text="Travel here" />
       <Label layoutX="8.0" layoutY="153.0" text="Fuel" />
       <Label fx:id="fuelText" layoutX="16.0" layoutY="170.0" text="0" />
+      <Label fx:id="fuelCost" layoutX="830.0" layoutY="584.0" text="Fuel Cost:" />
+      <Button fx:id="buyFuel" layoutX="795.0" layoutY="637.0" mnemonicParsing="false" onAction="#buyFuel" text="Buy Fuel" />
    </children>
 </AnchorPane>

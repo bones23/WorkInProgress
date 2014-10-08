@@ -21,7 +21,7 @@ public class Person {
         this.traderSkill = tSkill;
         this.engineerSkill = eSkill;
         this.playerName = name;
-        this.ship = new Ship("Flea", name, 25, 10);
+        this.ship = new Ship("Flea", name, 15, 10);
     }
     public Person(int pSkill, int fSkill, int tSkill, int eSkill){
         this("Kirk", pSkill, fSkill, tSkill, eSkill);

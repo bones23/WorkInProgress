@@ -176,7 +176,8 @@ public class MainGameController {
     private Label currentLocation;
     @FXML
     private Canvas universeMap;
-    
+    @FXML
+    private Label fuelCost;
     @FXML
     private Label selectedLocation;
     @FXML
@@ -184,10 +185,14 @@ public class MainGameController {
     int qq=0;
     @FXML
     private Button TravelHere;
+    private int fuelMax;
+    @FXML
+    private Button buyFuel;
     @FXML
     private void initialize() {
         universe = new Universe();
         s = Person.getShip();
+        fuelMax = Person.getShip().getFuel();
         currentLocation.setText("Current Location:\n----------------\n"+universe.getSolarSystemAt(i));
         //playerText.setText()
         buyableWater.setText(""+universe.getSolarSystemAt(i).getMarketPlace().getAmountAt(0));
@@ -307,9 +312,9 @@ public class MainGameController {
         g2d.setFill(d);
         g2d.fillRect(0, 0, universeMap.getWidth(), universeMap.getHeight());
             Color c = Color.web("#008000",0.5);
-            int r = (int)((double)(2 * Person.getShip().getFuel()) / 2);
+            int r = 2 * Person.getShip().getFuel();
                 g2d.setFill(c);
-                g2d.fillOval((2*universe.getSolarSystemAt(i).getX())-r + 1,(2*universe.getSolarSystemAt(i).getY())-r + 1,2 * Person.getShip().getFuel(),2 * Person.getShip().getFuel());//x-range5/8, y-range5/8
+                g2d.fillOval((2*universe.getSolarSystemAt(i).getX())-r + 2,(2*universe.getSolarSystemAt(i).getY())-r + 2,4 * Person.getShip().getFuel(),4 * Person.getShip().getFuel());//x-range5/8, y-range5/8
                 g2d.setFill(Color.RED);
                 g2d.fillOval(2 *universe.getSolarSystemAt(i).getX(),2 * universe.getSolarSystemAt(i).getY(), 4, 4);
                 g2d.setFill(Color.BLACK);
@@ -339,9 +344,12 @@ public class MainGameController {
         miniSystems = new LinkedList();
         for (int k = 0; k < 120; k++) {
             if(universe.getSolarSystemAt(i)!=universe.getSolarSystemAt(k)){
-                
-            if (Math.abs(2*universe.getSolarSystemAt(i).getX() - 2*universe.getSolarSystemAt(k).getX()) < Person.getShip().getFuel()
-                    && Math.abs(2*universe.getSolarSystemAt(i).getY() - 2*universe.getSolarSystemAt(k).getY()) <  Person.getShip().getFuel()) {
+            int currentX = universe.getSolarSystemAt(i).getX();
+            int currentY = universe.getSolarSystemAt(i).getY();
+            int selectedX = universe.getSolarSystemAt(k).getX();
+            int selectedY = universe.getSolarSystemAt(k).getY();
+            int distance = (int)Math.sqrt(Math.pow((double)Math.abs(currentX - selectedX), 2) + (double)Math.pow(Math.abs(currentY - selectedY), 2));
+            if (distance <= Person.getShip().getFuel()) {
                 miniSystems.add(universe.getSolarSystemAt(k));
                // System.out.println("planet location "+ universe.getSolarSystemAt(k).getX());
                 int x = 4*universe.getSolarSystemAt(i).getX() - 4*universe.getSolarSystemAt(k).getX();
@@ -366,24 +374,37 @@ public class MainGameController {
             y2 = 4*universe.getSolarSystemAt(i).getY() - 4*y2;
             x2= 140- x2;
             y2= 90-y2;
+            
             if((x>=x2&&x<=x2+5)&&(y>=y2&&y<=y2+5)){
-                selectedLocation.setText(name.toString());
+                selectedLocation.setText("Selected Location:\n----------------\n" + name.toString());
                 for (int i = 0; i < 120; i++) {
                     if (universe.getSolarSystemAt(i).getName().equals(name.getName())) {
                         j = i;
                     }
                 }
             }
+            int currentX = universe.getSolarSystemAt(i).getX();
+            int currentY = universe.getSolarSystemAt(i).getY();
+            int selectedX = universe.getSolarSystemAt(j).getX();
+            int selectedY = universe.getSolarSystemAt(j).getY();
+            int distance = (int)Math.sqrt(Math.pow((double)Math.abs(currentX - selectedX), 2) + (double)Math.pow(Math.abs(currentY - selectedY), 2));
+            if (distance != 0)
+                fuelCost.setText("Fuel Cost:\n" + distance);
         }
         
         
     }
     @FXML
     private void Travel(ActionEvent event) throws IOException {
-        
-        if(Person.getMoney()>=50&&i!=j){
+        int currentX = universe.getSolarSystemAt(i).getX();
+        int currentY = universe.getSolarSystemAt(i).getY();
+        int selectedX = universe.getSolarSystemAt(j).getX();
+        int selectedY = universe.getSolarSystemAt(j).getY();
+        int distance = (int)Math.sqrt(Math.pow((double)Math.abs(currentX - selectedX), 2) + (double)Math.pow(Math.abs(currentY - selectedY), 2));
+        if(i!=j&& distance <= Person.getShip().getFuel()){
             i=j;
-        Person.setMoney(Person.getMoney()-50);
+            Person.getShip().setFuel(Person.getShip().getFuel() - distance);
+        fuelText.setText("" + Person.getShip().getFuel());
         buyableWater.setText(""+universe.getSolarSystemAt(i).getMarketPlace().getAmountAt(0));
         buyableFur.setText(""+universe.getSolarSystemAt(i).getMarketPlace().getAmountAt(1));
         buyableFood.setText(""+universe.getSolarSystemAt(i).getMarketPlace().getAmountAt(2));
@@ -419,9 +440,22 @@ public class MainGameController {
        this.buyRobotsPrice.setText("" + universe.getSolarSystemAt(i).getMarketPlace().getBuyingPriceAt(9));
        selectedLocation.setText("Choose Location");
        currentLocation.setText("Current Location:\n----------------\n"+universe.getSolarSystemAt(i));
-        drawUniverse();
+       fuelCost.setText("Fuel Cost:\n");
+       drawUniverse();
        drawMini();
         }
     }
- 
+    
+    @FXML
+    private void buyFuel(ActionEvent event) throws IOException {
+        int fuelBuying = fuelMax - Person.getShip().getFuel();
+        if ((Person.getMoney() - fuelBuying * 5) > 0) {
+            Person.getShip().setFuel(fuelMax);
+            Person.setMoney(Person.getMoney() - fuelBuying * 5);
+            fuelText.setText("" + Person.getShip().getFuel()); 
+            money.setText("" + Person.getMoney());
+            drawUniverse();
+            drawMini();
+        }
+    }
 }
