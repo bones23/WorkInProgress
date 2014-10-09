@@ -27,6 +27,7 @@ import model.Ship;
 import model.SolarSystem;
 import model.TradeItem;
 import model.Universe;
+import org.controlsfx.dialog.Dialogs;
 /**
  *
  * @author lukenewman
@@ -406,7 +407,13 @@ public class MainGameController {
         if(i!=j&& distance <= Person.getShip().getFuel()){
             i=j;
             Person.getShip().setFuel(Person.getShip().getFuel() - distance);
-        fuelText.setText("" + Person.getShip().getFuel());
+            
+            //-----------------RANDOM EVENT--------------
+            Random rand = new Random();
+            if (rand.nextInt(100) < 90) { //5%
+                fuelLeak();
+            }     
+            //-------------------------------------------
         buyableWater.setText(""+universe.getSolarSystemAt(i).getMarketPlace().getAmountAt(0));
         buyableFur.setText(""+universe.getSolarSystemAt(i).getMarketPlace().getAmountAt(1));
         buyableFood.setText(""+universe.getSolarSystemAt(i).getMarketPlace().getAmountAt(2));
@@ -443,11 +450,32 @@ public class MainGameController {
        selectedLocation.setText("Choose Location");
        currentLocation.setText("Current Location:\n----------------\n"+universe.getSolarSystemAt(i));
        fuelCost.setText("Fuel Cost:\n");
+       fuelText.setText("" + Person.getShip().getFuel());
        drawUniverse();
        drawMini();
         }
     }
     
+    private void fuelLeak() {
+        int engineerSkill = 5; //NEED ACCESS TO PLAYER ATTRIBUTES *****
+        if (engineerSkill == 0)
+            engineerSkill = 1;
+        int cost = (fuelMax * 10) - (engineerSkill * 5);
+        if (Person.getMoney() - cost >= 0) {
+            Person.setMoney(Person.getMoney() - cost);
+        } else {
+            //game OVER
+        }
+        Person.getShip().setFuel(0);
+        Dialogs.create()
+            .owner(this.stage)
+            .title("OH NO!")
+            .masthead(null)
+            .message("There has been a fuel leak!\nBecause of your engineering skill, you don't"
+                + " have to buy a new fuel tank but just some spare parts.\n"
+                + " You save " + (engineerSkill * 5) + " credits.")
+            .showInformation();
+    }
     @FXML
     private void buyFuel(ActionEvent event) throws IOException {
         int fuelBuying = fuelMax - Person.getShip().getFuel();
