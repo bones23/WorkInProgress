@@ -392,10 +392,10 @@
             <Label fx:id="buyableRobots" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="11" />
          </children>
       </GridPane>
-      <Label layoutY="65.0" prefHeight="16.0" prefWidth="46.0" text="Money:" />
-      <Label fx:id="money" layoutX="19.0" layoutY="81.0" text="0" />
-      <Label layoutX="6.0" layoutY="108.0" text="Cargo Space" />
-      <Label fx:id="cargo" layoutX="21.0" layoutY="124.0" text="0" />
+      <Label layoutX="9.0" layoutY="65.0" prefHeight="16.0" prefWidth="46.0" text="Money:" />
+      <Label fx:id="money" layoutX="16.0" layoutY="82.0" text="0" />
+      <Label layoutX="7.0" layoutY="112.0" text="Cargo Space" />
+      <Label fx:id="cargo" layoutX="16.0" layoutY="129.0" text="0" />
       <Canvas fx:id="universeMap" blendMode="DARKEN" height="200.0" layoutX="216.0" layoutY="449.0" width="300.0" />
       <Label fx:id="currentLocation" layoutX="59.0" layoutY="420.0" text="Label" />
       <Label fx:id="map" layoutX="330.0" layoutY="420.0" text="Universe Map" />
@@ -404,9 +404,13 @@
             <Font name="Byington" size="24.0" />
          </font>
       </Label>
-      <Label fx:id="selectedLocation" layoutX="652.0" layoutY="153.0" text="Choose Location" />
+      <Label fx:id="selectedLocation" layoutX="828.0" layoutY="420.0" text="Choose Location" />
       <Label layoutX="645.0" layoutY="420.0" text="Mini Map" />
       <Canvas fx:id="miniMap" height="200.0" layoutX="528.0" layoutY="449.0" onMouseClicked="#handleMouseClick" width="300.0" />
-      <Button fx:id="TravelHere" layoutX="660.0" layoutY="95.0" mnemonicParsing="false" onAction="#Travel" text="Travel here" />
+      <Button fx:id="TravelHere" layoutX="865.0" layoutY="637.0" mnemonicParsing="false" onAction="#Travel" text="Travel here" />
+      <Label layoutX="8.0" layoutY="153.0" text="Fuel" />
+      <Label fx:id="fuelText" layoutX="16.0" layoutY="170.0" text="0" />
+      <Label fx:id="fuelCost" layoutX="830.0" layoutY="584.0" text="Fuel Cost:" />
+      <Button fx:id="buyFuel" layoutX="795.0" layoutY="637.0" mnemonicParsing="false" onAction="#buyFuel" text="Buy Fuel" />
    </children>
 </AnchorPane>
