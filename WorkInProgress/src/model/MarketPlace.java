@@ -43,9 +43,7 @@ public class MarketPlace {
     public void calculatePrices() {
         for (int i = 0; i < items.length; i++) {
             totalPrice[i] = items[i].getBP() + (items[i].getIPL() * (techLevel - items[i].getMTLP())) + (int)((double)items[i].getBP() * (items[i].getVar())); 
-<<<<<<< HEAD
             sellPrice[i] = (int)((double)totalPrice[i] * .85);
-=======
             sellPrice[i] = (int)((double)totalPrice[i] * .80);
             if (techLevel > 2) {
                 //int random = nextDouble(1.5 - 1.0 + 1.0) + 1.0;
@@ -64,7 +62,6 @@ public class MarketPlace {
             if (techLevel < items[i].getMTLP()) {
                 totalPrice[i] = 0;
             }
->>>>>>> origin/gui7
         }   
     }
     /**

@@ -21,27 +21,20 @@ public class MarketPlaceTest {
     
     @Before
     public void setUp() {
-<<<<<<< HEAD
         mkt = new MarketPlace();
-=======
         mkt = new MarketPlace(10);
->>>>>>> origin/gui7
     }
     
      @Test
      public void testCalculatePrices() {
-<<<<<<< HEAD
          for(int i=0; i<10; i++) {
              System.out.print(mkt.getSellingPriceAt(i) + " ");
              System.out.print(mkt.getBuyingPriceAt(i) + "\n");
          }
-=======
 //         for(int i=0; i<10; i++) {
 //             System.out.print(mkt.getSellingPriceAt(i) + " ");
 //             System.out.print(mkt.getBuyingPriceAt(i) + "\n");
 //         }
->>>>>>> origin/gui7
-         
          assertEquals((int)(mkt.getBuyingPriceAt(0)*.85), mkt.getSellingPriceAt(0));
          assertEquals((int)(mkt.getBuyingPriceAt(1)*.85), mkt.getSellingPriceAt(1));
          assertEquals((int)(mkt.getBuyingPriceAt(2)*.85), mkt.getSellingPriceAt(2));
