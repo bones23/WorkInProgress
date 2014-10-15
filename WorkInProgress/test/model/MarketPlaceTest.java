@@ -71,7 +71,7 @@ public class MarketPlaceTest {
      @Test
      public void testBuyingItem() {
          int waterAmt = mkt.getAmount()[0] - 5;
-         mkt.buyingItem(0, 5);
+         //mkt.buyingItem(0, 5);
          
          assertEquals(waterAmt, mkt.getAmount()[0]);
      }
@@ -79,7 +79,7 @@ public class MarketPlaceTest {
      @Test
      public void testSellingItem() {
          int waterAmt = mkt.getAmount()[0] + 5;
-         mkt.sellingItem(0, 5);
+         //mkt.sellingItem(0, 5);
          
          assertEquals(waterAmt, mkt.getAmount()[0]);
      }

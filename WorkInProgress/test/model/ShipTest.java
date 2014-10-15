@@ -23,7 +23,7 @@ public class ShipTest {
      @Test
      public void testTravel() {
      
-         small.travel(18, 30);
+         //small.travel(18, 30);
          
          assertEquals(18, small.getX());
          assertEquals(30, small.getY());
@@ -57,7 +57,7 @@ public class ShipTest {
      
      @Test
      public void testGetType() {
-         assertEquals("TYPE", small.getType());
+         assertEquals("TYPE", small.getShipClass());
      }
      
      @Test
@@ -67,17 +67,17 @@ public class ShipTest {
      
      @Test
      public void testGetNumOccupied() {
-         assertEquals(0, small.getNumOccupied());
+         assertEquals(0, small.getOccupiedSlots());
          
          small.addItem(new TradeItem("Water"));
-         assertEquals(1, small.getNumOccupied());
+         assertEquals(1, small.getOccupiedSlots());
          
          small.removeItem(new TradeItem("Water"));
-         assertEquals(0, small.getNumOccupied());
+         assertEquals(0, small.getOccupiedSlots());
      }
      
      @Test
-     public void testGetCargo() {
-         assertEquals(1, small.getCargo().length);
+     public void testGetCargoManifest() {
+         assertEquals(1, small.getCargoManifest().length);
      }
 }

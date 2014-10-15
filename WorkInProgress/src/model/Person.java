@@ -5,10 +5,10 @@ package model;
  * @author CodyMFFries
  */
 public class Person {
-    private int pilotSkill;
-    private int fighterSkill;
-    private int traderSkill;
-    private int engineerSkill;
+    private static int pilotSkill;
+    private static int fighterSkill;
+    private static int traderSkill;
+    private static int engineerSkill;
     private String playerName;
     private static int money=10000000;
     private static Ship ship;
@@ -26,29 +26,29 @@ public class Person {
     public Person(int pSkill, int fSkill, int tSkill, int eSkill){
         this("Kirk", pSkill, fSkill, tSkill, eSkill);
     }
-    int getPilotSkill(){
+    public static int getPilotSkill(){
         return pilotSkill;
     }
-    void setPilotSkill(int newPilot){
-        this.pilotSkill = newPilot;
+    public static void setPilotSkill(int newPilot){
+        pilotSkill = newPilot;
     }
-    int getFighterSkill(){
+    public static int getFighterSkill(){
         return fighterSkill;
     }
-    void setFighterSkill(int newFighter){
-        this.fighterSkill = newFighter;
+    public static void setFighterSkill(int newFighter){
+        fighterSkill = newFighter;
     }
-    int getTraderSkill(){
+    public static int getTraderSkill(){
         return traderSkill;
     }
-    void setTraderSkill(int newTrader){
-        this.traderSkill = newTrader;
+    public static void setTraderSkill(int newTrader){
+        traderSkill = newTrader;
     }
-    int getEngineerSkill(){
+    public static int getEngineerSkill(){
         return engineerSkill;
     }
-    void setEngineerSkill(int newEngineer){
-        this.engineerSkill = newEngineer;
+    public static void setEngineerSkill(int newEngineer){
+        engineerSkill = newEngineer;
     }
     String getName(){
         return this.playerName;

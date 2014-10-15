@@ -89,9 +89,59 @@ public class MarketPlace {
      * @param item the item that is being bought
      * @param amountBuying the amount being bought
      */
-    public void buyingItem(int item, int amountBuying) {
-        amount[item] = amount[item] - amountBuying;
-        Person.setMoney(Person.getMoney() - (amountBuying * totalPrice[item]));
+    public String buyingItem(String buttonPushed, Universe uni, int i, Ship s) {
+        int itemNum = -1;
+        String itemName = null;
+        switch(buttonPushed){
+            case "b0":
+                itemNum=0;
+                itemName="Water";
+                break;
+            case "b1":
+                itemNum=1;
+                itemName="Furs";
+                break;
+            case "b2":
+                itemNum=2;
+                itemName="Food";
+                break;
+            case "b3":
+                itemNum=3;
+                itemName="Ore";
+                break;
+            case "b4":
+                itemNum=4;
+                itemName="Games";
+                break;
+            case "b5":
+                itemNum=5;
+                itemName="Firearms";
+                break;
+            case "b6":
+                itemNum=6;
+                itemName="Medicine";
+                break;
+            case "b7":
+                itemNum=7;
+                itemName="Machines";
+                break;
+            case "b8":
+                itemNum=8;
+                itemName="Narcotics";
+                break;
+            case "b9":
+                itemNum=9;
+                itemName="Robots";
+                break;
+            }
+        if(Person.getMoney() >= uni.getSolarSystemAt(i).getMarketPlace().getBuyingPriceAt(itemNum)
+                && uni.getSolarSystemAt(i).getMarketPlace().getAmountAt(itemNum) > 0
+                && s.addItem(new TradeItem(itemName)) == true
+                && uni.getSolarSystemAt(i).getMarketPlace().getBuyingPriceAt(itemNum) > 0){
+            amount[itemNum] = amount[itemNum] - 1;
+            Person.setMoney(Person.getMoney() - totalPrice[itemNum]);
+        }
+        return itemName;
     }
     
     /**
@@ -100,9 +150,58 @@ public class MarketPlace {
      * @param item item being sold
      * @param amountSelling the amount of items being sold
      */
-    public void sellingItem(int item, int amountSelling) {
-        amount[item] = amount[item] + amountSelling;
-        Person.setMoney(Person.getMoney() + (amountSelling * sellPrice[item]));
+    public String sellingItem(String buttonPushed, Universe uni, int i, Ship s) {
+        int itemNum = -1;
+        String itemName = null;
+        switch(buttonPushed){
+            case "s0":
+                itemNum=0;
+                itemName="Water";
+                break;
+            case "s1":
+                itemNum=1;
+                itemName="Furs";
+                break;
+            case "s2":
+                itemNum=2;
+                itemName="Food";
+                break;
+            case "s3":
+                itemNum=3;
+                itemName="Ore";
+                break;
+            case "s4":
+                itemNum=4;
+                itemName="Games";
+                break;
+            case "s5":
+                itemNum=5;
+                itemName="Firearms";
+                break;
+            case "s6":
+                itemNum=6;
+                itemName="Medicine";
+                break;
+            case "s7":
+                itemNum=7;
+                itemName="Machines";
+                break;
+            case "s8":
+                itemNum=8;
+                itemName="Narcotics";
+                break;
+            case "s9":
+                itemNum=9;
+                itemName="Robots";
+                break;
+        }
+        System.out.println(itemNum);
+        if(uni.getSolarSystemAt(i).getMarketPlace().getSellingPriceAt(itemNum)> 0
+                && s.removeItem(new TradeItem(itemName)) == true){
+            amount[itemNum] = amount[itemNum] + 1;
+            Person.setMoney(Person.getMoney() + sellPrice[itemNum]);
+        }
+        return itemName;
     }
     
     /**
@@ -125,7 +224,7 @@ public class MarketPlace {
     /**
      * Getter for the selling price
      * @param index
-     * @return sellprice for an item
+     * @return selling price for an item
      */
     public int getSellingPriceAt(int index) {
         return sellPrice[index];
