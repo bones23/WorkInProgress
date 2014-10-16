@@ -190,8 +190,12 @@ public class Ship {
     }
     public void RandomEvent(Stage s){
         Random rand = new Random();
+        
         if(rand.nextInt(100) < 5){
             fuelLeak(s);
+        }
+        if(rand.nextInt(100) < 100) {
+            robbed(s, rand);
         }
     }
     public void fuelLeak(Stage s){
@@ -210,6 +214,42 @@ public class Ship {
                 + " have to buy a new fuel tank but just some spare parts.\n"
                 + " You save " + (Person.getEngineerSkill() * 5) + " credits.")
             .showInformation();
+    }
+
+    /**
+     * Random event: a thief steals from cargo a number of times determined from
+     * the player's trader skill.
+     * @param s the Stage handling random events
+     * @param rand rng
+     */
+    public void robbed(Stage s, Random rand) {
+        
+        // # of attempts a theif tries to steal
+        int attempts = 6 - (Person.getTraderSkill() / 2);
+        String stolen = "";
+
+        // Thief tries to steal "attempts" times from a random bay. The same
+        // bay can be stolen from multiple times but nothing will happen after
+        // stealing from it once. This should add some randomness.
+        for(int i=0; i < attempts; i++) {
+            
+            int bayToStealFrom = rand.nextInt(this.bays);
+            
+            if (this.cargoManifest[bayToStealFrom] != null) {
+                stolen += "\t" + this.cargoManifest[bayToStealFrom].getName()
+                        + " in bay " + bayToStealFrom + "\n";
+                this.cargoManifest[bayToStealFrom] = null;
+                this.occupiedSlots--;
+            }
+        }
+        
+        if (stolen.equals("")) stolen = "Nothing! You sure lucked out.";
+        Dialogs.create()
+                .owner(s)
+                .title("You've been robbed!")
+                .masthead(null)
+                .message("The following have been stolen from cargo:\n" + stolen)
+                .showInformation();
     }
     
 }
