@@ -5,23 +5,21 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Group;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javafx.stage.Window;
+import java.awt.Desktop;
+import java.net.URI;
+import java.net.URISyntaxException;
+import javafx.scene.text.Text;
 
 import model.Person;
 import model.Universe;
@@ -36,33 +34,29 @@ public class WelcomeScreenController extends Application implements Initializabl
     @FXML
     private Stage stage;
     
-    // components
     @FXML
-    private Label label;
+    private Text newGameText;
     @FXML
-    private Button but;
+    private Button okButton;
     @FXML
-    private Button OK;
+    private Button cancelButton;
     @FXML
-    private Button cancel;
+    private TextField nameTextField;
     @FXML
-    private TextField Name;
+    private ComboBox difficultyComboBox;
     @FXML
-    private ComboBox Difficulty;
+    private Slider pilotSlider;
     @FXML
-    private Slider Pilot;
+    private Slider fighterSlider;
     @FXML
-    private Slider Fighter;
+    private Slider traderSlider;
     @FXML
-    private Slider Trader;
-    @FXML
-    private Slider Engineer;
+    private Slider engineerSlider;
     
-    // screens/windows
     @FXML
-    private Window welcomeScreen;
+    private Scene welcomeScreen;
     @FXML
-    private Window characterCreationScreen;
+    private Scene characterCreationScreen;
     
     /**
      * @param args the command line arguments
@@ -78,43 +72,51 @@ public class WelcomeScreenController extends Application implements Initializabl
     
     @Override
     public void start(Stage stage) throws Exception {
-        Image background = new Image(WelcomeScreenController.class.getResource("/supporting/SpaceTrader1.png").toString());
-        ImageView back = new ImageView(background);
-        Group rot = new Group(back);
-        Parent root = FXMLLoader.load(getClass().getResource("/view/WelcomeScreen.fxml"));
-        rot.getChildren().add(root);
-        Scene scene = new Scene(rot);
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("/view/WelcomeScreen.fxml"));
+        this.welcomeScreen = new Scene(pane);
         
-        stage.setScene(scene);
-        stage.setResizable(false);
-        stage.show();
+        this.stage = new Stage();
+        System.out.println("start: " + this.stage);
+        this.stage.setScene(this.welcomeScreen);
+        this.stage.setResizable(false);
+        this.stage.show();
     }
     
     @FXML
-    private void handleButtonAction(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/view/CharacterScreen.fxml"));
-        Scene scene = new Scene(root);
-        stage = new Stage();
-        stage.setScene(scene);
-        stage.show();
-        this.welcomeScreen = ((Node) event.getSource()).getScene().getWindow();
-        this.welcomeScreen.hide();
+    private void newGameClicked(MouseEvent event) throws IOException {
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("/view/CharacterScreen.fxml"));
+        this.characterCreationScreen = new Scene(pane);
+        System.out.println(this.stage);
+        if (this.stage == null) {
+            this.stage = new Stage();
+            this.stage.setScene(this.characterCreationScreen);
+            this.stage.setResizable(false);
+            this.stage.show();
+        } else {
+            this.stage.setScene(this.characterCreationScreen);
+        }
     }
     
     @FXML
-    private void okOnCharacterScreen(ActionEvent event) throws IOException {
-        int pilot = (int) Pilot.getValue();
-        int fighter = (int) Fighter.getValue();
-        int trader = (int) Trader.getValue();
-        int engineer = (int) Engineer.getValue();
-        String difficulty = (String)Difficulty.getValue();
-        String name = Name.getText();
+    private void loadGameClicked(MouseEvent event) throws IOException {
+        System.out.println("Load game");
+        System.out.println("load stage: " + this.stage);
+    }
+    
+    @FXML
+    private void okButtonClicked(MouseEvent event) throws IOException {
+        int pilotSliderValue = (int) pilotSlider.getValue();
+        int fighterSliderValue = (int) fighterSlider.getValue();
+        int traderSliderValue = (int) traderSlider.getValue();
+        int engineerSliderValue = (int) engineerSlider.getValue();
+        String difficulty = (String)difficultyComboBox.getValue();
+        String name = nameTextField.getText();
         if (difficulty == null) {
             difficulty = "Normal";
         }
         
         // check point allocation
-        int totalPoints = pilot + fighter + trader + engineer;
+        int totalPoints = pilotSliderValue + fighterSliderValue + traderSliderValue + engineerSliderValue;
         if (totalPoints > 20) {
             Dialogs.create()
                     .owner(this.stage)
@@ -133,26 +135,32 @@ public class WelcomeScreenController extends Application implements Initializabl
         } else {
             Universe universe = new Universe();
             System.out.println(universe.toString());
-            Person player = new Person(name, pilot, fighter, trader, engineer);
+            Person player = new Person(name, pilotSliderValue, fighterSliderValue, traderSliderValue, engineerSliderValue);
             System.out.println(player);
-            this.characterCreationScreen = ((Node)event.getSource()).getScene().getWindow();
-            this.characterCreationScreen.hide();
-            Parent root = FXMLLoader.load(getClass().getResource("/view/GameScreen.fxml"));
-            Group rot = new Group();
-            rot.getChildren().add(root);
-            Scene scene = new Scene(rot);
-            stage = new Stage();
-            stage.setScene(scene);
-            stage.setResizable(false);
-            stage.setWidth(975);
-            stage.setHeight(800);
-            stage.show();
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("/view/GameScreen.fxml"));
+            Scene scene = new Scene(pane);
+            this.stage = new Stage();
+            this.stage.setScene(scene);
+            this.stage.setResizable(false);
+            this.stage.setWidth(975);
+            this.stage.setHeight(800);
+            this.stage.show();
         }
     }
     
     @FXML
-    private void cancelOnCharacterScreen(ActionEvent event) throws IOException {
-        this.characterCreationScreen.hide();
-        // show welcome screen
+    private void cancelButtonClicked(MouseEvent event) throws IOException {
+        this.stage.setScene(this.welcomeScreen);
+    }
+    
+    @FXML
+    private Text easterEgg;
+    
+    @FXML
+    private void easterEggClicked(MouseEvent event) throws IOException, URISyntaxException {
+        if(Desktop.isDesktopSupported())
+        {
+            Desktop.getDesktop().browse(new URI("http://www.leekspin.com"));
+        }
     }
 }
