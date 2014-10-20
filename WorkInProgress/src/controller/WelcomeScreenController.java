@@ -32,7 +32,7 @@ import org.controlsfx.dialog.Dialogs;
  */
 public class WelcomeScreenController extends Application implements Initializable {
     @FXML
-    private Stage stage;
+    private static Stage stage;
     
     @FXML
     private Text newGameText;
@@ -54,7 +54,7 @@ public class WelcomeScreenController extends Application implements Initializabl
     private Slider engineerSlider;
     
     @FXML
-    private Scene welcomeScreen;
+    private static Scene welcomeScreen;
     @FXML
     private Scene characterCreationScreen;
     
