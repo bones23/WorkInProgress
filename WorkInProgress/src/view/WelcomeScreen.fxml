@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
@@ -7,15 +9,45 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.image.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="380.0" prefWidth="695.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.WelcomeScreenController">
+<AnchorPane id="AnchorPane" prefHeight="540.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.WelcomeScreenController">
     <children>
-            <ImageView fitHeight="47.0" fitWidth="114.0" layoutX="399.0" layoutY="313.0">
-                      <image>
-                          <Image url="@../supporting/SpaceTraderNewGame.png" />
-                      </image>                            
-                  </ImageView>
-        <Button fx:id="but" layoutX="399.0" layoutY="313.0" onAction="#handleButtonAction" prefHeight="47.0" prefWidth="114.0" text="Start new game" textAlignment="CENTER" AnchorPane.topAnchor="313.0">
-            <opacity>0.0</opacity>
-        </Button>
+      <ImageView fitHeight="540.0" fitWidth="960.0" layoutX="29.0" layoutY="-7.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="@../supporting/STARS.jpg" />
+         </image>
+      </ImageView>
+      <Text layoutX="23.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Space Trader">
+         <font>
+            <Font name="Slice Regular" size="90.0" />
+         </font>
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#ff9300" />
+                  <Stop color="#cd00ff" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Text>
+      <Text fx:id="newGameText" fill="WHITE" layoutX="356.0" layoutY="265.0" onMouseClicked="#newGameClicked" strokeType="OUTSIDE" strokeWidth="0.0" text="New Game">
+         <font>
+            <Font name="CF Dots 521 Regular" size="34.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="378.0" layoutY="343.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Options">
+         <font>
+            <Font name="CF Dots 521 Regular" size="34.0" />
+         </font>
+      </Text>
+      <Text fx:id="easterEgg" fill="WHITE" layoutX="5.0" layoutY="533.0" onMouseClicked="#easterEggClicked" opacity="0.31" strokeType="OUTSIDE" strokeWidth="0.0" text="Work In Progress ©2014" wrappingWidth="243.5194854736328">
+         <font>
+            <Font name="Alien Encounters" size="19.0" />
+         </font>
+      </Text>
+      <Text fx:id="loadGameText" fill="WHITE" layoutX="347.0" layoutY="304.0" onMouseClicked="#loadGameClicked" strokeType="OUTSIDE" strokeWidth="0.0" text="LOAD Game">
+         <font>
+            <Font name="CF Dots 521 Regular" size="34.0" />
+         </font>
+      </Text>
     </children>
 </AnchorPane>
