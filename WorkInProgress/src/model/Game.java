@@ -85,4 +85,8 @@ public class Game{
     public void load(String input) throws IOException{
         //loads a game
     }
+    
+    public void setCurrentSystem(int index) {
+        this.currentSystem = uni.getSolarSystemAt(index);
+    }
 }

@@ -21,6 +21,15 @@ public class RandomEvent {
         
         rand = new Random();
 //        this.myShip = WelcomeScreenController.game.getShip();
+    }
+
+    /**
+     * Run through every possible random event and call each with a calculated
+     * probability
+     * 
+     * @param s The Stage to run in
+     */
+    public void runEvents(Stage s) {
         
         if(rand.nextInt(100) < 5){
             fuelLeak(s);
@@ -30,6 +39,12 @@ public class RandomEvent {
         }
     }
     
+    /**
+     * Random event: fuel leaks from the ship
+     * 
+     * @param s The Stage to run in
+     * @return The message to display after running the event
+     */
     public String fuelLeak(Stage s){
         int cost = (this.myShip.getFuel() * 10) - (Person.getEngineerSkill() * 5);
         
@@ -48,9 +63,10 @@ public class RandomEvent {
     /**
      * Random event: a thief steals from cargo a number of times determined from
      * the player's trader skill.
-     * @param s the Stage handling random events
-     * @param rand rng
-     * @return stolen What's been taken from the ship
+     * 
+     * @param s The Stage handling random events
+     * @param rand Rng
+     * @return What's been taken from the ship
      */
     public String robbed(Stage s, Random rand) {
         
@@ -76,7 +92,6 @@ public class RandomEvent {
         if (stolen.equals("")) {
             stolen = "Nothing! You sure lucked out.";
         }
-        
         return stolen;
     }
 }
