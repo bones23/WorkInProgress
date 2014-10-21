@@ -21,8 +21,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import javafx.scene.text.Text;
 
-import model.Person;
-import model.Universe;
+import model.*;
 
 import org.controlsfx.dialog.Dialogs;
 
@@ -57,7 +56,7 @@ public class WelcomeScreenController extends Application implements Initializabl
     private static Scene welcomeScreen;
     @FXML
     private Scene characterCreationScreen;
-    
+    public static Game game;
     /**
      * @param args the command line arguments
      */
@@ -74,7 +73,7 @@ public class WelcomeScreenController extends Application implements Initializabl
     public void start(Stage stage) throws Exception {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("/view/WelcomeScreen.fxml"));
         this.welcomeScreen = new Scene(pane);
-        
+        game = new Game();
         this.stage = new Stage();
         System.out.println("start: " + this.stage);
         this.stage.setScene(this.welcomeScreen);
