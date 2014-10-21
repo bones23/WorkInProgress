@@ -17,8 +17,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import java.awt.Desktop;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 import model.Person;
@@ -35,7 +38,13 @@ public class WelcomeScreenController extends Application implements Initializabl
     private Stage stage;
     
     @FXML
+    private Text title;
+    @FXML
     private Text newGameText;
+    @FXML
+    private Text loadGameText;
+    @FXML
+    private Text optionsText;
     @FXML
     private Button okButton;
     @FXML
@@ -74,6 +83,15 @@ public class WelcomeScreenController extends Application implements Initializabl
     public void start(Stage stage) throws Exception {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("/view/WelcomeScreen.fxml"));
         this.welcomeScreen = new Scene(pane);
+        
+        Font slice = Font.loadFont(new FileInputStream("/supporting/slice.ttf"), 90);
+        this.title.setFont(slice);
+        Font cfDots = Font.loadFont(new FileInputStream("/supporting/CFDots-Regular.ttf"), 34);
+        this.newGameText.setFont(cfDots);
+        this.loadGameText.setFont(cfDots);
+        this.optionsText.setFont(cfDots);
+        Font alienEncounters = Font.loadFont(new FileInputStream("/supporting/Alien-Encounters-Regular.ttf"), 19);
+        this.easterEgg.setFont(alienEncounters);
         
         this.stage = new Stage();
         System.out.println("start: " + this.stage);
