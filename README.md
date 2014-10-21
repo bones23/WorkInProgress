@@ -1,12 +1,14 @@
 WorkInProgress
 ==============
-Cody Fries was here
+Cody Fries
 
 Brandon Jackson
 
 Matthew Taylor
 
 Dustin Bayne
+
+Luke Newman
 
 CS2340 Project Repository
 

@@ -13,8 +13,8 @@
 
 <AnchorPane id="AnchorPane" prefHeight="540.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.WelcomeScreenController">
    <children>
-      <TextField fx:id="Name" layoutX="533.0" layoutY="31.0" prefHeight="26.0" prefWidth="151.0" />
-      <ComboBox fx:id="Difficulty" layoutX="534.0" layoutY="77.0" prefHeight="26.0" prefWidth="150.0" promptText="Normal">
+      <TextField fx:id="nameTextField" layoutX="533.0" layoutY="31.0" prefHeight="26.0" prefWidth="151.0" />
+      <ComboBox fx:id="difficultyComboBox" layoutX="534.0" layoutY="77.0" prefHeight="26.0" prefWidth="150.0" promptText="Normal">
         <items>
             <FXCollections fx:factory="observableArrayList">
                 <String fx:value="Beginner" />
@@ -27,14 +27,14 @@
       </ComboBox>
       <Label layoutX="356.0" layoutY="36.0" text="Name:" />
       <Label layoutX="341.0" layoutY="82.0" text="Difficulty:" />
-      <Slider fx:id="Pilot" layoutX="537.0" layoutY="205.0" majorTickUnit="1.0" max="10.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
+      <Slider fx:id="pilotSlider" layoutX="537.0" layoutY="205.0" majorTickUnit="1.0" max="10.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
       <Label layoutX="365.0" layoutY="216.0" text="Pilot:" />
       <Label layoutX="353.0" layoutY="268.0" text="Fighter:" />
       <Label layoutX="354.0" layoutY="319.0" text="Trader:" />
-      <Slider fx:id="Fighter" layoutX="537.0" layoutY="257.0" majorTickUnit="1.0" max="10.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
-      <Slider fx:id="Trader" layoutX="538.0" layoutY="308.0" majorTickUnit="1.0" max="10.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
+      <Slider fx:id="fighterSlider" layoutX="537.0" layoutY="257.0" majorTickUnit="1.0" max="10.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
+      <Slider fx:id="traderSlider" layoutX="538.0" layoutY="308.0" majorTickUnit="1.0" max="10.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
       <Label layoutX="340.0" layoutY="371.0" text="Engineer:" />
-      <Slider fx:id="Engineer" layoutX="538.0" layoutY="360.0" majorTickUnit="1.0" max="10.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
+      <Slider fx:id="engineerSlider" layoutX="538.0" layoutY="360.0" majorTickUnit="1.0" max="10.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
       <Button fx:id="okButton" layoutX="410.0" layoutY="456.0" mnemonicParsing="false" onMouseClicked="#okButtonClicked" text="OK" textAlignment="CENTER" />
       <Button fx:id="cancelButton" layoutX="549.0" layoutY="456.0" mnemonicParsing="false" onMouseClicked="#cancelButtonClicked" text="Cancel" />
    </children>

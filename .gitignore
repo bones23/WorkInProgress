@@ -7,3 +7,6 @@
 *.html
 *.jnlp
 *.xml
+/WorkInProgress/nbproject/private/
+/WorkInProgress/build/
+/WorkInProgress/dist/

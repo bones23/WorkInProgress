@@ -24,8 +24,7 @@ import java.net.URISyntaxException;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
-import model.Person;
-import model.Universe;
+import model.*;
 
 import org.controlsfx.dialog.Dialogs;
 
@@ -35,7 +34,7 @@ import org.controlsfx.dialog.Dialogs;
  */
 public class WelcomeScreenController extends Application implements Initializable {
     @FXML
-    private Stage stage;
+    private static Stage stage;
     
     @FXML
     private Text title;
@@ -63,10 +62,10 @@ public class WelcomeScreenController extends Application implements Initializabl
     private Slider engineerSlider;
     
     @FXML
-    private Scene welcomeScreen;
+    private static Scene welcomeScreen;
     @FXML
     private Scene characterCreationScreen;
-    
+    public static Game game;
     /**
      * @param args the command line arguments
      */
@@ -83,6 +82,7 @@ public class WelcomeScreenController extends Application implements Initializabl
     public void start(Stage stage) throws Exception {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("/view/WelcomeScreen.fxml"));
         this.welcomeScreen = new Scene(pane);
+<<<<<<< HEAD
         
         Font slice = Font.loadFont(new FileInputStream("/supporting/slice.ttf"), 90);
         this.title.setFont(slice);
@@ -93,6 +93,9 @@ public class WelcomeScreenController extends Application implements Initializabl
         Font alienEncounters = Font.loadFont(new FileInputStream("/supporting/Alien-Encounters-Regular.ttf"), 19);
         this.easterEgg.setFont(alienEncounters);
         
+=======
+        game = new Game();
+>>>>>>> 05f16ac0e26f443730543d0a71ffb7ae55ecdefc
         this.stage = new Stage();
         System.out.println("start: " + this.stage);
         this.stage.setScene(this.welcomeScreen);
