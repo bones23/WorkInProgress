@@ -1,6 +1,6 @@
 WorkInProgress
 ==============
-Cody Fries was here
+Cody Fries
 
 Brandon Jackson
 
