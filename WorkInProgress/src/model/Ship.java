@@ -15,7 +15,7 @@ public class Ship {
     private int y;
     private String shipClass;
     private String pilot;
-    private int occupiedSlots;
+    public int occupiedSlots;
     private TradeItem[] cargoManifest;
     private int bays;
     private int fuelTank;
@@ -200,9 +200,9 @@ public class Ship {
      */
     public int travel(int x, int y, Universe uni, int i, int j, Stage s) {
         int distance = (int)Math.sqrt(Math.pow((double)Math.abs(getX() - x), 2) + (double)Math.pow(Math.abs(getY() - y), 2));
-        if(i != j && distance <= fuel){
+        if(i != j && distance <= getFuel()){
             i=j;
-            this.fuel = fuel - distance;
+            setFuel(getFuel() - distance);
             RandomEvent(s);
         }
         this.x = x;
