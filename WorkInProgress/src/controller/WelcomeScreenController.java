@@ -136,7 +136,7 @@ public class WelcomeScreenController extends Application implements Initializabl
             game.createPlayer(name, pilotSliderValue, fighterSliderValue, traderSliderValue, engineerSliderValue);
             System.out.println(game.getPlayer().toString());
             System.out.println(game.getPlayer().getMoney());
-            AnchorPane pane = FXMLLoader.load(getClass().getResource("/view/GameScreen.fxml"));
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("/view/MapController.fxml"));
             Scene scene = new Scene(pane);
             this.stage = new Stage();
             this.stage.setScene(scene);

@@ -6,21 +6,40 @@
 
 package controller;
 
+import java.io.IOException;
 import java.util.LinkedList;
+import java.util.Random;
+import javafx.event.ActionEvent;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import model.*;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 /**
  *
  * @author frenc_000
  */
-public class MapController {
+public class MapController  {
+    @FXML
     private Canvas universeMap;
+    @FXML
+    public Label spaceLeft,currentLocation;
+    @FXML
     private Canvas miniMap;
     private LinkedList<SolarSystem> miniSystems;
     Game game = WelcomeScreenController.game;
+    @FXML
+    private Label fuelText,carge,money;
+    private Random rand = new Random();
+    int i = rand.nextInt(120);
+    int destinationIndex = i;
+     @FXML
+    private void initialize() {
+        drawUniverse();
+        drawMini();
+    }
     @FXML
     public void drawUniverse() {
         Universe universe = game.getUniverse();
@@ -76,8 +95,64 @@ public class MapController {
         }     
     }
     @FXML
+    private Label selectedLocation,fuelCost;
+    @FXML
+    private void handleMouseClick(MouseEvent event) {
+      //  System.out.println((140-event.getX()-universe.getSolarSystemAt(i).getX())/4);
+        int x = (int) event.getX();
+        int y = (int) event.getY();
+        for(SolarSystem name:miniSystems){
+            int x2 = name.getX();
+            int y2 = name.getY();
+            x2 = 4*game.getCurrentSystem().getX() - 4*x2;
+            y2 = 4*game.getCurrentSystem().getY() - 4*y2;
+            x2= 140- x2;
+            y2= 90-y2;
+            
+            if((x>=x2&&x<=x2+5)&&(y>=y2&&y<=y2+5)){
+                selectedLocation.setText("Selected Location:\n----------------\n" + name.toString());
+                for (int i = 0; i < 120; i++) {
+                    if (game.getCurrentSystem().getName().equals(name.getName())) {
+                        destinationIndex = i;
+                    }
+                }
+            }
+            int currentX = game.getCurrentSystem().getX();
+            int currentY = game.getCurrentSystem().getY();
+            int selectedX = game.uni.getSolarSystemAt(destinationIndex).getX();
+            int selectedY = game.uni.getSolarSystemAt(destinationIndex).getY();
+            int distance = (int)Math.sqrt(Math.pow((double)Math.abs(currentX - selectedX), 2) + (double)Math.pow(Math.abs(currentY - selectedY), 2));
+            if (distance != 0)
+                fuelCost.setText("Fuel Cost:\n" + distance);
+        }
+    }
+    @FXML
     public void refreshMaps(){
         drawMini();
         drawUniverse();
+    }
+    @FXML
+    public void buyFuel(ActionEvent event) throws IOException {
+        game.ship.buyFuel();
+        fuelText.setText("" + game.ship.getFuel()); 
+        //figure out a way to update the maps from this controller
+//      //refreshMaps();
+    }
+    public void refreshShip(){
+        fuelText.setText("" + game.ship.getFuel());
+        spaceLeft.setText("" + game.ship.getSpaceLeft());
+    }
+    @FXML
+    private void Travel(ActionEvent event) throws IOException {
+        if(i!=destinationIndex){
+            i = game.getShip().travel(game.uni.getSolarSystemAt(destinationIndex).getX(), game.uni.getSolarSystemAt(destinationIndex).getY(), game.getUniverse(), game.getCurrentLocationIndex(), destinationIndex);
+        }
+        //refreshMarketplace();
+        selectedLocation.setText("Choose Location");
+        currentLocation.setText("Current Location:\n----------------\n"+game.getCurrentSystem());
+        fuelCost.setText("Fuel Cost:\n");
+        fuelText.setText("" + game.getShip().getFuel());
+        drawUniverse();
+        drawMini();
     }
 }

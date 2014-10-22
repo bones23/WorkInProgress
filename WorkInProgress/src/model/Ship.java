@@ -198,12 +198,12 @@ public class Ship {
      * @param x x-coordinate
      * @param y y-coordinate
      */
-    public int travel(int x, int y, Universe uni, int i, int j, Stage s) {
+    public int travel(int x, int y, Universe uni, int i, int j) {
         int distance = (int)Math.sqrt(Math.pow((double)Math.abs(getX() - x), 2) + (double)Math.pow(Math.abs(getY() - y), 2));
         if(i != j && distance <= getFuel()){
             i=j;
             setFuel(getFuel() - distance);
-            RandomEvent(s);
+            //RandomEvent(s);
         }
         this.x = x;
         this.y = y;
