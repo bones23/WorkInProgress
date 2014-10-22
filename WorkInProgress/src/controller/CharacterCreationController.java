@@ -14,8 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import model.Person;
-import model.Universe;
+import model.*;
 import org.controlsfx.dialog.Dialogs;
 
 
@@ -82,10 +81,10 @@ public class CharacterCreationController {
                     .message("Your total points must equal 20.")
                     .showInformation();
         } else {
-            Universe universe = new Universe();
-            System.out.println(universe.toString());
-            Person player = new Person(name, pilot, fighter, trader, engineer);
-            System.out.println(player);
+            Game game = new Game();
+            game.createPlayer(name,pilot,fighter,trader,engineer);
+            System.out.println(game.getUniverseString());
+            System.out.println(game.getPlayerString());
             ((Node)event.getSource()).getScene().getWindow().hide(); 
             Parent root = FXMLLoader.load(getClass().getResource("/view/GameScreen.fxml"));
             Group rot = new Group();

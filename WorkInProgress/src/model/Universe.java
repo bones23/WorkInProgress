@@ -142,7 +142,7 @@ public class Universe{
      * different, random locations on a 150x100 area.
      * Makes a 1-D array of the SolarSystems.
      */
-    public Universe() {
+    public Universe(){
     	universe = new SolarSystem[names.length];
     	rand = new Random();
     	check = new int[154][104];

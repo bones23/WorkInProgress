@@ -34,11 +34,31 @@ public class Game{
         ship.setX(currentSystem.getX());
         ship.setY(currentSystem.getY());
     }
+    public Game(Game game){
+        this.uni = game.uni;
+        this.rand = game.rand;
+        this.market = game.market;
+        this.currentLocationIndex = game.currentLocationIndex;
+        this.currentSystem = game.currentSystem;
+        this.ship = game.ship;
+    }
     /*
     creates a player object
     */
     public void createPlayer(String name, int pilot, int fighter, int trader, int engineer){
         player = new Person(name, pilot, fighter, trader, engineer);
+    }
+    public int getCurrentLocationIndex(){
+        return currentLocationIndex;
+    }
+    public SolarSystem getCurrentSystem(){
+        return currentSystem;
+    }
+    public void setCurrentSystem(int index){
+        this.currentSystem = uni.getSolarSystemAt(index);
+    }
+    public void setCurrentSystem(SolarSystem system){
+        this.currentSystem = system;
     }
     /*
     * @return a string representation of a Player

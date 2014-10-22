@@ -1,5 +1,6 @@
 package model;
 import java.util.Random;
+import controller.*;
 /**
  * Market place class.
  * @author Brandon Jackson
@@ -134,12 +135,12 @@ public class MarketPlace {
                 itemName="Robots";
                 break;
             }
-        if(Person.getMoney() >= uni.getSolarSystemAt(i).getMarketPlace().getBuyingPriceAt(itemNum)
+        if(WelcomeScreenController.game.getPlayer().getMoney() >= uni.getSolarSystemAt(i).getMarketPlace().getBuyingPriceAt(itemNum)
                 && uni.getSolarSystemAt(i).getMarketPlace().getAmountAt(itemNum) > 0
                 && s.addItem(new TradeItem(itemName)) == true
                 && uni.getSolarSystemAt(i).getMarketPlace().getBuyingPriceAt(itemNum) > 0){
             amount[itemNum] = amount[itemNum] - 1;
-            Person.setMoney(Person.getMoney() - totalPrice[itemNum]);
+            WelcomeScreenController.game.getPlayer().setMoney(WelcomeScreenController.game.getPlayer().getMoney() - totalPrice[itemNum]);
         }
         return itemName;
     }
@@ -199,7 +200,7 @@ public class MarketPlace {
         if(uni.getSolarSystemAt(i).getMarketPlace().getSellingPriceAt(itemNum)> 0
                 && s.removeItem(new TradeItem(itemName)) == true){
             amount[itemNum] = amount[itemNum] + 1;
-            Person.setMoney(Person.getMoney() + sellPrice[itemNum]);
+            WelcomeScreenController.game.getPlayer().setMoney(WelcomeScreenController.game.getPlayer().getMoney() + sellPrice[itemNum]);
         }
         return itemName;
     }

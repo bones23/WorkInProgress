@@ -3,8 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller;
 
+package controller;
 
 import java.io.IOException;
 import java.util.LinkedList;
@@ -24,22 +24,17 @@ import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import model.*;
 import org.controlsfx.dialog.Dialogs;
+
 /**
  *
- * @author lukenewman
- * @author pretty much everyone
+ * @author frenc_000
  */
-public class MainGameController {
-    //Main stage variable
-    @FXML
-    private Stage stage;
-    //Status labels
-    //money should go to personal info
-    //fueltext and cargo should go to ship
-    @FXML
-    private Label money, fuelText, cargo;
-    //instance of the player's ship
-    private Ship s;
+public class MarketplaceController {
+    //I need to call these from the game somehow
+    Game game = WelcomeScreenController.game;
+    MarketPlace market = game.getMarket();
+    int currentLocationIndex = WelcomeScreenController.game.getCurrentLocationIndex();
+    Ship ship = WelcomeScreenController.game.getShip();
     //Sell price labels
     @FXML
     private Label sellWaterPrice,sellFurPrice,sellFoodPrice,sellOrePrice,sellGamesPrice,
@@ -67,49 +62,13 @@ public class MainGameController {
     private Label temp;
     @FXML
     private Label temp2;
-    //universe initialization
-    private Universe universe;
-    private MarketPlace market;
-    private Random rand = new Random();
-    int i = rand.nextInt(120);
-    @FXML
-    private Label currentLocation;
-    @FXML
-    private Canvas universeMap;
-    @FXML
-    private Label fuelCost;
-    @FXML
-    private Label selectedLocation;
-    @FXML
-    private Canvas miniMap;
-    @FXML
-    private Button TravelHere;
-    private int fuelMax;
-    @FXML
-    private Button buyFuel;
-    public Game game;
-    //review this for code that should be elsewhere
-    @FXML
-    private void initialize() {
-        game = WelcomeScreenController.game;
-        universe = game.getUniverse();
-        s = game.getShip();
-        market = game.currentSystem.getMarketPlace();
-        fuelMax = game.getShip().getFuel();
-        currentLocation.setText("Current Location:\n----------------\n"+game.currentSystem.toString());
-        refreshMarketplace();
-        drawUniverse();
-        drawMini();
-        fuelText.setText("" + game.getShip().getFuel());
-    }
-    
     @FXML
     private void buyItem(ActionEvent event) throws IOException {
         String itemName="";
         Object source = event.getSource();
         Button clickedBtn = (Button) source;
         String ite = clickedBtn.getId();
-        itemName = market.buyingItem(ite, universe, i, s);
+        itemName = market.buyingItem(ite, game.getUniverse(), game.getCurrentLocationIndex(), game.getShip());
         if(itemName != null){
             switch(itemName){
                 case "Water":
@@ -155,9 +114,6 @@ public class MainGameController {
             }
             temp.setText(""+game.getShip().searchCargo(new TradeItem(itemName)));
             temp2.setText(""+market.getAmountAt(Integer.parseInt(ite.substring(1))));
-            System.out.println(game.getPlayer());
-            this.money.setText(""+game.getPlayer().getMoney());
-            this.cargo.setText(""+game.getShip().getSpaceLeft());
         }            
             //subtact 1 from buyable
             //add 1 to sellable
@@ -169,7 +125,7 @@ public class MainGameController {
         Object source = event.getSource();
         Button clickedBtn = (Button) source;
         String ite = clickedBtn.getId();
-        itemName = market.sellingItem(ite, universe, i, s);
+        itemName = market.sellingItem(ite, game.getUniverse(), game.getCurrentLocationIndex(), game.getShip());
         if(itemName != null){
             switch(itemName){
                 case "Water":
@@ -213,121 +169,14 @@ public class MainGameController {
                     temp2=buyableRobots;
                     break;
             }
-            temp.setText(""+s.searchCargo(new TradeItem(itemName)));
+            temp.setText(""+game.getShip().searchCargo(new TradeItem(itemName)));
             temp2.setText(""+market.getAmountAt(Integer.parseInt(ite.substring(1))));
-            this.money.setText(""+game.getPlayer().getMoney());
-            this.cargo.setText(""+game.getShip().getSpaceLeft());
             //subtract 1 from sellable
             //add 1 to buyable
         }
     }
-    
-    private void drawUniverse() {
-        GraphicsContext g2d = universeMap.getGraphicsContext2D();
-        g2d.setFill(Color.WHITE);
-        g2d.fillRect(0, 0, universeMap.getWidth(), universeMap.getHeight());
-        Color d = Color.web("#FFFFFF",0.9);
-        g2d.setFill(d);
-        g2d.fillRect(0, 0, universeMap.getWidth(), universeMap.getHeight());
-        Color c = Color.web("#008000",0.5);
-        int r = 2 * s.getFuel();
-        g2d.setFill(c);
-        g2d.fillOval((2*universe.getSolarSystemAt(i).getX())-r + 2,(2*universe.getSolarSystemAt(i).getY()) 
-                - r + 2,4 * s.getFuel() + 1,4 * s.getFuel() + 1);//x-range5/8, y-range5/8
-        g2d.setFill(Color.RED);
-        g2d.fillOval(2 *universe.getSolarSystemAt(i).getX(),2 * universe.getSolarSystemAt(i).getY(), 4, 4);
-        g2d.setFill(Color.BLACK);
-        for (int k = 0; k < 120; k++) {
-            if(universe.getSolarSystemAt(i)!=universe.getSolarSystemAt(k)){
-                g2d.fillOval(2 *universe.getSolarSystemAt(k).getX(),2 * universe.getSolarSystemAt(k).getY(), 2, 2);
-            }
-            g2d.setFill(Color.BLACK);
-        }
-    }
-    private LinkedList<SolarSystem> miniSystems;
-    private void drawMini() {
-        GraphicsContext g2d = miniMap.getGraphicsContext2D();
-        g2d.setFill(Color.WHITE);
-        g2d.fillRect(0, 0, miniMap.getWidth(), miniMap.getHeight());
-        //Color d = Color.web("#FFFF00",0.5);
-        //g2d.setFill(d);
-        g2d.setFill(Color.WHITE);
-        g2d.fillRect(0, 0, miniMap.getWidth(), miniMap.getHeight());
-        g2d.setFill(Color.RED);
-        g2d.fillOval(140, 90, 10, 10);
-        g2d.setFill(Color.BLACK);
-        miniSystems = new LinkedList();
-        for (int k = 0; k < 120; k++) {
-            if(universe.getSolarSystemAt(i)!=universe.getSolarSystemAt(k)){
-            int currentX = universe.getSolarSystemAt(i).getX();
-            int currentY = universe.getSolarSystemAt(i).getY();
-            int selectedX = universe.getSolarSystemAt(k).getX();
-            int selectedY = universe.getSolarSystemAt(k).getY();
-            int distance = (int)Math.sqrt(Math.pow((double)Math.abs(currentX - selectedX), 2) + (double)Math.pow(Math.abs(currentY - selectedY), 2));
-            if (distance <= s.getFuel()) {
-                miniSystems.add(universe.getSolarSystemAt(k));
-               // System.out.println("planet location "+ universe.getSolarSystemAt(k).getX());
-                int x = 4*universe.getSolarSystemAt(i).getX() - 4*universe.getSolarSystemAt(k).getX();
-                int y = 4*universe.getSolarSystemAt(i).getY() - 4*universe.getSolarSystemAt(k).getY();
-                g2d.fillOval((140-x),(90-y),5,5);
-            }
-            }
-        }
-                
-    }
-    int j=i;
-    //mouse click event on minimap for travel
-    @FXML
-    private void handleMouseClick(MouseEvent event) {
-      //  System.out.println((140-event.getX()-universe.getSolarSystemAt(i).getX())/4);
-        int x = (int) event.getX();
-        int y = (int) event.getY();
-        for(SolarSystem name:miniSystems){
-            int x2 = name.getX();
-            int y2 = name.getY();
-            x2 = 4*universe.getSolarSystemAt(i).getX() - 4*x2;
-            y2 = 4*universe.getSolarSystemAt(i).getY() - 4*y2;
-            x2= 140- x2;
-            y2= 90-y2;
-            
-            if((x>=x2&&x<=x2+5)&&(y>=y2&&y<=y2+5)){
-                selectedLocation.setText("Selected Location:\n----------------\n" + name.toString());
-                for (int i = 0; i < 120; i++) {
-                    if (universe.getSolarSystemAt(i).getName().equals(name.getName())) {
-                        j = i;
-                    }
-                }
-            }
-            int currentX = universe.getSolarSystemAt(i).getX();
-            int currentY = universe.getSolarSystemAt(i).getY();
-            int selectedX = universe.getSolarSystemAt(j).getX();
-            int selectedY = universe.getSolarSystemAt(j).getY();
-            int distance = (int)Math.sqrt(Math.pow((double)Math.abs(currentX - selectedX), 2) + (double)Math.pow(Math.abs(currentY - selectedY), 2));
-            if (distance != 0)
-                fuelCost.setText("Fuel Cost:\n" + distance);
-        }
-        
-        
-    }
-    //needs to go to MapController
-    @FXML
-    private void Travel(ActionEvent event) throws IOException {
-        if(i!=j){
-            i = game.getShip().travel(game.uni.getSolarSystemAt(j).getX(), game.uni.getSolarSystemAt(j).getY(), game.getUniverse(), game.getCurrentLocationIndex(), j, stage);
-        }
-        refreshMarketplace();
-        selectedLocation.setText("Choose Location");
-        currentLocation.setText("Current Location:\n----------------\n"+game.getCurrentSystem());
-        fuelCost.setText("Fuel Cost:\n");
-        fuelText.setText("" + game.getShip().getFuel());
-        drawUniverse();
-        drawMini();
-    }
-    //needs to go to marketplacecontroller
-    //refresh marketplace
     @FXML
     private void refreshMarketplace(){
-        market = universe.getSolarSystemAt(i).getMarketPlace();
         buyableWater.setText(""+market.getAmountAt(0));
         buyableFur.setText(""+market.getAmountAt(1));
         buyableFood.setText(""+market.getAmountAt(2));
@@ -338,9 +187,11 @@ public class MainGameController {
         buyableMachines.setText(""+market.getAmountAt(7));
         buyableNarcotics.setText(""+market.getAmountAt(8));
         buyableRobots.setText(""+market.getAmountAt(9));
-        int cargo =s.getBays()-s.getOccupiedSlots();
-        this.cargo.setText(""+s.getSpaceLeft());
-        //this.money.setText("" + Person.getMoney());
+        int cargo =game.getShip().getSpaceLeft();
+        //this should be set in ship controller
+        //setText(""+game.getShip().getSpaceLeft());
+        //should be set in person controller
+        //setText("" + Person.getMoney());
         this.sellWaterPrice.setText("" + market.getSellingPriceAt(0));
         this.buyWaterPrice.setText("" + market.getBuyingPriceAt(0));
         this.sellFurPrice.setText("" + market.getSellingPriceAt(1));
@@ -362,13 +213,4 @@ public class MainGameController {
         this.sellRobotsPrice.setText("" + market.getSellingPriceAt(9));
         this.buyRobotsPrice.setText("" + market.getBuyingPriceAt(9));
     }
-    //should go to ShipController
-    @FXML
-    private void buyFuel(ActionEvent event) throws IOException {
-        game.ship.buyFuel();
-        fuelText.setText("" + s.getFuel()); 
-        money.setText("" + WelcomeScreenController.game.getPlayer().getMoney());
-        drawUniverse();
-        drawMini();
-    }
-}  
+}

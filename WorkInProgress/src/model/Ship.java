@@ -3,6 +3,7 @@ package model;
 import org.controlsfx.dialog.Dialogs;
 import java.util.Random;
 import javafx.stage.Stage;
+import controller.*;
 /**
  * @author Matthew Taylor
  * @version 22 September 2014
@@ -19,6 +20,9 @@ public class Ship {
     private int bays;
     private int fuelTank;
     
+    /*
+    creates a completely customized ship
+    */
     public Ship(String shipClass, String pilot, int fuel, int baysSize) {
         this.shipClass = shipClass;
         this.pilot = pilot;
@@ -27,6 +31,18 @@ public class Ship {
         this.occupiedSlots = 0;
         this.bays = baysSize;
         this.fuelTank = fuel;
+    }
+    /*
+    creates a ship with a custom pilot
+    */
+    public Ship(String pilot){
+        this("Flea", pilot, 14, 10);
+    }
+    /*
+    default ship is a flea model with Captain Kirk
+    */
+    public Ship(){
+        this("Flea", "Kirk", 14, 10);
     }
     /**
      * @return the amount of fuel that the ship currently has
@@ -42,9 +58,14 @@ public class Ship {
     }
     public void buyFuel(){
         int toBuy = fuelTank-fuel;
-        if((Person.getMoney() - toBuy * 5) > 0){
+        System.out.println(WelcomeScreenController.game);
+        System.out.println(WelcomeScreenController.game.player);
+        System.out.println(WelcomeScreenController.game.getPlayer());
+        System.out.println(WelcomeScreenController.game.getPlayer().getMoney());
+        
+        if((WelcomeScreenController.game.getPlayer().getMoney() - toBuy * 5) > 0){
             setFuel(fuelTank);
-            Person.setMoney(Person.getMoney() - toBuy * 5);  
+            WelcomeScreenController.game.getPlayer().setMoney(WelcomeScreenController.game.getPlayer().getMoney() - toBuy * 5);  
         }
     }
     /**
@@ -179,9 +200,9 @@ public class Ship {
      */
     public int travel(int x, int y, Universe uni, int i, int j, Stage s) {
         int distance = (int)Math.sqrt(Math.pow((double)Math.abs(getX() - x), 2) + (double)Math.pow(Math.abs(getY() - y), 2));
-        if(i != j && distance <= getFuel()){
+        if(i != j && distance <= fuel){
             i=j;
-            setFuel(getFuel() - distance);
+            this.fuel = fuel - distance;
             RandomEvent(s);
         }
         this.x = x;
@@ -199,9 +220,9 @@ public class Ship {
         }
     }
     public void fuelLeak(Stage s){
-        int cost = (this.fuelTank * 10) - (Person.getEngineerSkill() * 5);
-        if (Person.getMoney() - cost >= 0) {
-            Person.setMoney(Person.getMoney() - cost);
+        int cost = (this.fuelTank * 10) - (WelcomeScreenController.game.getPlayer().getEngineerSkill() * 5);
+        if (WelcomeScreenController.game.getPlayer().getMoney() - cost >= 0) {
+            WelcomeScreenController.game.getPlayer().setMoney(WelcomeScreenController.game.getPlayer().getMoney() - cost);
         } else {
             //game OVER
         }
@@ -212,7 +233,7 @@ public class Ship {
             .masthead(null)
             .message("There has been a fuel leak!\nBecause of your engineering skill, you don't"
                 + " have to buy a new fuel tank but just some spare parts.\n"
-                + " You save " + (Person.getEngineerSkill() * 5) + " credits.")
+                + " You save " + (WelcomeScreenController.game.getPlayer().getEngineerSkill() * 5) + " credits.")
             .showInformation();
     }
 
@@ -225,7 +246,7 @@ public class Ship {
     public void robbed(Stage s, Random rand) {
         
         // # of attempts a theif tries to steal
-        int attempts = 6 - (Person.getTraderSkill() / 2);
+        int attempts = 6 - (WelcomeScreenController.game.getPlayer().getTraderSkill() / 2);
         String stolen = "";
 
         // Thief tries to steal "attempts" times from a random bay. The same
@@ -251,5 +272,4 @@ public class Ship {
                 .message("The following have been stolen from cargo:\n" + stolen)
                 .showInformation();
     }
-    
 }

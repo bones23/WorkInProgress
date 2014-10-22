@@ -73,7 +73,6 @@ public class WelcomeScreenController extends Application implements Initializabl
     public void start(Stage stage) throws Exception {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("/view/WelcomeScreen.fxml"));
         this.welcomeScreen = new Scene(pane);
-        game = new Game();
         this.stage = new Stage();
         System.out.println("start: " + this.stage);
         this.stage.setScene(this.welcomeScreen);
@@ -132,10 +131,11 @@ public class WelcomeScreenController extends Application implements Initializabl
                     .showInformation();
         // create the model
         } else {
-            Universe universe = new Universe();
-            System.out.println(universe.toString());
-            Person player = new Person(name, pilotSliderValue, fighterSliderValue, traderSliderValue, engineerSliderValue);
-            System.out.println(player);
+            game = new Game();
+            System.out.println(game.getUniverse().toString());
+            game.createPlayer(name, pilotSliderValue, fighterSliderValue, traderSliderValue, engineerSliderValue);
+            System.out.println(game.getPlayer().toString());
+            System.out.println(game.getPlayer().getMoney());
             AnchorPane pane = FXMLLoader.load(getClass().getResource("/view/GameScreen.fxml"));
             Scene scene = new Scene(pane);
             this.stage = new Stage();

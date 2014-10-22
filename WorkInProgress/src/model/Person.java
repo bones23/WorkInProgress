@@ -5,13 +5,13 @@ package model;
  * @author CodyMFFries
  */
 public class Person {
-    private static int pilotSkill;
-    private static int fighterSkill;
-    private static int traderSkill;
-    private static int engineerSkill;
+    private int pilotSkill;
+    private int fighterSkill;
+    private int traderSkill;
+    private int engineerSkill;
     private String playerName;
-    private static int money=10000000;
-    private static Ship ship;
+    private int money=10000000;
+    private Ship ship;
     private int x;
     private int y;
     
@@ -26,28 +26,28 @@ public class Person {
     public Person(int pSkill, int fSkill, int tSkill, int eSkill){
         this("Kirk", pSkill, fSkill, tSkill, eSkill);
     }
-    public static int getPilotSkill(){
+    public int getPilotSkill(){
         return pilotSkill;
     }
-    public static void setPilotSkill(int newPilot){
+    public void setPilotSkill(int newPilot){
         pilotSkill = newPilot;
     }
-    public static int getFighterSkill(){
+    public int getFighterSkill(){
         return fighterSkill;
     }
-    public static void setFighterSkill(int newFighter){
+    public void setFighterSkill(int newFighter){
         fighterSkill = newFighter;
     }
-    public static int getTraderSkill(){
+    public int getTraderSkill(){
         return traderSkill;
     }
-    public static void setTraderSkill(int newTrader){
+    public void setTraderSkill(int newTrader){
         traderSkill = newTrader;
     }
-    public static int getEngineerSkill(){
+    public  int getEngineerSkill(){
         return engineerSkill;
     }
-    public static void setEngineerSkill(int newEngineer){
+    public void setEngineerSkill(int newEngineer){
         engineerSkill = newEngineer;
     }
     String getName(){
@@ -57,14 +57,14 @@ public class Person {
         this.playerName = name;
     }
     
-    public static void setMoney(int cash) {
+    public  void setMoney(int cash) {
         money = cash;
     }
     
-    public static int getMoney() {
+    public  int getMoney() {
         return money;
     }
-    public static Ship getShip(){
+    public  Ship getShip(){
         return ship;
     }
     /**
