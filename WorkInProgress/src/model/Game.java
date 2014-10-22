@@ -30,7 +30,7 @@ public class Game{
         market = new MarketPlace();
         currentLocationIndex = rand.nextInt(120);
         currentSystem = uni.getSolarSystemAt(currentLocationIndex);
-        ship = new Ship();
+        //ship = new Ship();
         ship.setX(currentSystem.getX());
         ship.setY(currentSystem.getY());
     }

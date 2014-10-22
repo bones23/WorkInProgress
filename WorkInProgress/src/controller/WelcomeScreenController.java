@@ -17,8 +17,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import java.awt.Desktop;
-import java.io.FileInputStream;
-import java.io.InputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 import javafx.scene.text.Font;
@@ -34,7 +32,7 @@ import org.controlsfx.dialog.Dialogs;
  */
 public class WelcomeScreenController extends Application implements Initializable {
     @FXML
-    private static Stage stage;
+    private Stage stage;
     
     @FXML
     private Text title;
@@ -62,10 +60,12 @@ public class WelcomeScreenController extends Application implements Initializabl
     private Slider engineerSlider;
     
     @FXML
-    private static Scene welcomeScreen;
+    private Scene welcomeScreen;
     @FXML
     private Scene characterCreationScreen;
-    public static Game game;
+    
+    public Game game;
+    
     /**
      * @param args the command line arguments
      */
@@ -82,20 +82,17 @@ public class WelcomeScreenController extends Application implements Initializabl
     public void start(Stage stage) throws Exception {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("/view/WelcomeScreen.fxml"));
         this.welcomeScreen = new Scene(pane);
-<<<<<<< HEAD
         
-        Font slice = Font.loadFont(new FileInputStream("/supporting/slice.ttf"), 90);
-        this.title.setFont(slice);
-        Font cfDots = Font.loadFont(new FileInputStream("/supporting/CFDots-Regular.ttf"), 34);
-        this.newGameText.setFont(cfDots);
-        this.loadGameText.setFont(cfDots);
-        this.optionsText.setFont(cfDots);
-        Font alienEncounters = Font.loadFont(new FileInputStream("/supporting/Alien-Encounters-Regular.ttf"), 19);
-        this.easterEgg.setFont(alienEncounters);
-        
-=======
-        game = new Game();
->>>>>>> 05f16ac0e26f443730543d0a71ffb7ae55ecdefc
+//        Font slice = Font.loadFont(getClass().getResource("/supporting/slice.ttf").toExternalForm(), 90);
+//        this.title.setFont(slice);
+//        Font cfDots = Font.loadFont(getClass().getResource("/supporting/CFDots-Regular.ttf").toExternalForm(), 34);
+//        this.newGameText.setFont(cfDots);
+//        this.loadGameText.setFont(cfDots);
+//        this.optionsText.setFont(cfDots);
+//        Font alienEncounters = Font.loadFont(getClass().getResource("/supporting/Alien-Encounters-Regular.ttf").toExternalForm(), 19);
+//        this.easterEgg.setFont(alienEncounters);
+      
+        this.game = new Game();
         this.stage = new Stage();
         System.out.println("start: " + this.stage);
         this.stage.setScene(this.welcomeScreen);
