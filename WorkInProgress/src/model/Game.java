@@ -11,6 +11,11 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.Random;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 /**
  *
  * @author frenc_000
@@ -73,16 +78,80 @@ public class Game{
     public MarketPlace getMarket(){
         return market;
     }
-    /*
-    creates a serialized ObjectOutputStream to save the game's current state
-    */
-    public void save(Ship s, Universe u, Person p)throws IOException{
-        //saves a game
+    
+
+    /**
+     * creates a serialized ObjectOutputStream to save the game's current state
+     * @param fileName, the fileName we are trying to save
+     * @param game , the object that we are saving
+     * @throws IOException 
+     */
+    public void save(String fileName, Game game)throws IOException{
+        /** THIS PORTION OF CODE GOES IN THE UI
+         Will probably require you to import shit
+         
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save File");
+        File file = fileChooser.showSaveDialog(stage);
+        if (file != null) {
+            fileName = file.getName();
+        } else {
+            throw new Exception();
+        }
+        WelcomeScreenController.game.save(fileName, game);
+        */
+        
+        try {
+            ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(fileName));
+            output.writeObject(game);
+            output.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
     }
-    /*
-    loads a game state through an ObjectInputStream
-    */
-    public void load(String input) throws IOException{
-        //loads a game
+    
+    /**
+     * loads a game state through an ObjectInputStream
+     * @param fileName, name of the file we are trying to load
+     * @throws IOException
+     * @throws ClassNotFoundException 
+     */
+    public void load(String fileName) throws IOException, ClassNotFoundException{
+        /** INSERT THIS CODE INTO THE UI
+         Will probably require you to import shit
+         
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open Resource File");
+        File file = fileChooser.showOpenDialog(stage);
+        if (file != null) {
+            fileName = file.getName();
+        }
+        WelcomeScreenController.game.load(fileName);
+        */
+        try {
+            ObjectInputStream input = new ObjectInputStream(new FileInputStream(fileName));
+            Game game = (Game)input.readObject();
+            //THIS IS THE NEW GAME INSTANCE. 
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();;
+        }
+
+        /*
+        THE REST OF THIS METHOD SHOULD START A UNIVERSE USING THE "game" OBJECT.
+        game has all the information needed to make a new game.
+        */
+        
+        Game newGame = new Game(game);
+    }
+    
+    public void setCurrentSystem(int index) {
+        this.currentSystem = uni.getSolarSystemAt(index);
     }
 }

@@ -1,5 +1,6 @@
 package model;
 
+import controller.WelcomeScreenController;
 import org.controlsfx.dialog.Dialogs;
 import java.util.Random;
 import javafx.stage.Stage;
@@ -28,18 +29,10 @@ public class Ship {
         this.bays = baysSize;
         this.fuelTank = fuel;
     }
+    
     /**
-     * @return the amount of fuel that the ship currently has
+     * Purchase the maximum amount of fuel that the ship can carry
      */
-    public int getFuel(){
-        return this.fuel;
-    }
-    /**
-     * @param fuel the new amount of fuel
-     */
-    public void setFuel(int fuel){
-        this.fuel = fuel;
-    }
     public void buyFuel(){
         int toBuy = fuelTank-fuel;
         if((Person.getMoney() - toBuy * 5) > 0){
@@ -47,42 +40,12 @@ public class Ship {
             Person.setMoney(Person.getMoney() - toBuy * 5);  
         }
     }
-    /**
-     * @return the x coordinate of the ship's current position
-     */
-    public int getX() {
-        return this.x;
-    }
-    /**
-     * sets the new x coordinate of the ship
-     */
-    public void setX(int newX){
-        this.x = newX;
-    }
-    /**
-     * @return the y coordinate of the ship's current position
-     */
-    public int getY() {
-        return this.y;
-    }
-    /**
-     * sets the new y coordinate of the ship
-     */
-    public void setY(int newY){
-        this.y= newY;
-    }
     
-    public boolean freeSpace(){
-        return (bays - occupiedSlots) > 0;
-    }
-    public int getSpaceLeft(){
-        return bays-occupiedSlots;
-    }
     /**
      * Adds a TradeItem to the cargoManifest of the ship if it is not full
      * 
      * @param item The TradeItem to add to cargo
-     * @return false if cargo is full else true
+     * @return False if cargo is full else true
      */
     public boolean addItem(TradeItem item) {
         
@@ -104,7 +67,7 @@ public class Ship {
      * Removes the first occurring type of the item specified in cargoManifest.
      * 
      * @param item The item to remove
-     * @return true if successfully removed else false
+     * @return True if successfully removed else false
      */
     public boolean removeItem(TradeItem item) {
         
@@ -119,56 +82,8 @@ public class Ship {
         return false;
     }
     
-    
     /**
-     * @return bays: the number of bays that the ship has
-     */
-    public int getBays(){
-        return this.bays;
-    }
-    
-    /**
-     * @return the class of ship that you are flying
-     */
-    public String getShipClass() {
-        return this.shipClass;
-    }
-
-    /**
-     * @return the pilot of the ship 
-     */
-    public String getPilot() {
-        return this.pilot;
-    }
-    /**
-     * 
-     * @param nPilot sets the new pilot of the ship 
-     */
-    public void setPilot(String nPilot){
-        this.pilot = nPilot;
-    }
-    /**
-     * @return the occupiedSlots
-     */
-    public int getOccupiedSlots() {
-        return this.occupiedSlots;
-    }
-    /**
-     * 
-     * @return 
-     */
-    public void setOccupiedSlots(int os) {
-        this.occupiedSlots = os;
-    }
-
-    /**
-     * @return the cargo
-     */
-    public TradeItem[] getCargoManifest() {
-        return this.cargoManifest;
-    }
-    /**
-     * @return the number of a specific type of cargo in ship
+     * @return The number of a specific type of cargo in ship
      */
     public int searchCargo(TradeItem item){
         int output = 0;
@@ -179,20 +94,134 @@ public class Ship {
         return output;
     }
     /**
-     * Navigate the ship from its current position to the input (x, y)
+     * Navigate the ship from its current position to the location of the destination
+     * Solar System index
      * 
-     * @param x x-coordinate
-     * @param y y-coordinate
+     * @param destSSIndex The index in the Universe of the destination SolarSystem
+     * @param myStage The Stage to run in
      */
-    public int travel(int x, int y, Universe uni, int i, int j, Stage s) {
-        int distance = (int)Math.sqrt(Math.pow((double)Math.abs(getX() - x), 2) + (double)Math.pow(Math.abs(getY() - y), 2));
-        if(i != j && distance <= getFuel()){
-            i=j;
+    public void travel(int destSSIndex, Stage myStage) {
+        
+        int distance = (int)Math.sqrt(Math.pow((double)Math.abs(getX() - x), 2)
+                       + (double)Math.pow(Math.abs(getY() - y), 2));
+        
+        if(WelcomeScreenController.game.currentSystem
+                != WelcomeScreenController.game.getUniverse().getSolarSystemAt(destSSIndex)
+                && distance <= getFuel())
+        {
+            WelcomeScreenController.game.setCurrentSystem(destSSIndex);
             setFuel(getFuel() - distance);
-//            RandomEvent(s);
+            
+            RandomEvent events = new RandomEvent();
+            events.runEvents(myStage);
         }
-        this.x = x;
-        this.y = y;
-        return j;
+        
+        this.x = WelcomeScreenController.game.currentSystem.getX();
+        this.y = WelcomeScreenController.game.currentSystem.getY();
+    }
+    
+    /**
+     * @return The amount of fuel that the ship currently has
+     */
+    public int getFuel(){
+        return this.fuel;
+    }
+    
+    /**
+     * @param fuel The new amount of fuel
+     */
+    public void setFuel(int fuel){
+        this.fuel = fuel;
+    }
+    
+    /**
+     * @return The x coordinate of the ship's current position
+     */
+    public int getX() {
+        return this.x;
+    }
+    
+    /**
+     * @param newX The new x coordinate of the ship
+     */
+    public void setX(int newX){
+        this.x = newX;
+    }
+    
+    /**
+     * @return The y coordinate of the ship's current position
+     */
+    public int getY() {
+        return this.y;
+    }
+    
+    /**
+     * @param newY The new y coordinate of the ship
+     */
+    public void setY(int newY){
+        this.y= newY;
+    }
+    
+    /**
+     * @return The number of bays that the ship has
+     */
+    public int getBays(){
+        return this.bays;
+    }
+    
+    /**
+     * @return The class of ship that you are flying
+     */
+    public String getShipClass() {
+        return this.shipClass;
+    }
+
+    /**
+     * @return The pilot of the ship 
+     */
+    public String getPilot() {
+        return this.pilot;
+    }
+    
+    /**
+     * @param nPilot The new pilot of the ship 
+     */
+    public void setPilot(String nPilot){
+        this.pilot = nPilot;
+    }
+    
+    /**
+     * @return The occupied slots
+     */
+    public int getOccupiedSlots() {
+        return this.occupiedSlots;
+    }
+    
+    /**
+     * @param os The new number of occupied slots
+     */
+    public void setOccupiedSlots(int os) {
+        this.occupiedSlots = os;
+    }
+
+    /**
+     * @return The cargo
+     */
+    public TradeItem[] getCargoManifest() {
+        return this.cargoManifest;
+    }
+    
+    /**
+     * @return True if at least 1 bay is open, else false
+     */
+    public boolean freeSpace(){
+        return (bays - occupiedSlots) > 0;
+    }
+    
+    /**
+     * @return The # of cargo bays left 
+     */
+    public int getSpaceLeft(){
+        return bays-occupiedSlots;
     }
 }
