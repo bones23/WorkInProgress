@@ -108,8 +108,7 @@ public class Game{
      */
     public void save(String fileName, Game game)throws IOException{
         /** THIS PORTION OF CODE GOES IN THE UI
-         Will probably require you to import shit
-         
+               
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Save File");
         File file = fileChooser.showSaveDialog(stage);
@@ -141,8 +140,7 @@ public class Game{
      */
     public void load(String fileName) throws IOException, ClassNotFoundException{
         /** INSERT THIS CODE INTO THE UI
-         Will probably require you to import shit
-         
+                  
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Resource File");
         File file = fileChooser.showOpenDialog(stage);
@@ -168,6 +166,10 @@ public class Game{
         game has all the information needed to make a new game.
         */
         
-        //Game newGame = new Game(game);
+        Game newGame = new Game(game);
+
+        /*
+			initialize a new game using this object
+        */
     }
 }
