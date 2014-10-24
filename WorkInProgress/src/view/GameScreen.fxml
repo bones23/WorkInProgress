@@ -9,7 +9,7 @@
 <?import javafx.scene.canvas.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="674.0" prefWidth="853.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainGameController">
+<AnchorPane id="AnchorPane" prefHeight="674.0" prefWidth="853.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MapController">
    <children>
       <GridPane gridLinesVisible="true" layoutX="97.0" layoutY="73.0" prefHeight="336.0" prefWidth="507.0">
         <columnConstraints>
@@ -478,5 +478,6 @@
       <Label fx:id="fuelText" layoutX="16.0" layoutY="170.0" text="0" />
       <Label fx:id="fuelCost" layoutX="830.0" layoutY="584.0" text="Fuel Cost:" />
       <Button fx:id="buyFuel" layoutX="789.0" layoutY="637.0" mnemonicParsing="false" onAction="#buyFuel" text="Buy Fuel" />
+      <Button layoutX="343.0" layoutY="11.0" mnemonicParsing="false" onAction="#save" text="Save" />
    </children>
 </AnchorPane>

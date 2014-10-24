@@ -108,9 +108,8 @@ public class WelcomeScreenController extends Application implements Initializabl
             fileName = file.getName();
         }
         game.load(fileName);
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("/view/MapController.fxml"));
-            AnchorPane pane2 = FXMLLoader.load(getClass().getResource("/view/MarketplaceScreen.fxml"));
-            pane.getChildren().add(pane2);
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("/view/GameScreen.fxml"));
+          
             Scene scene = new Scene(pane);
             this.stage = new Stage();
             this.stage.setScene(scene);
@@ -155,9 +154,7 @@ public class WelcomeScreenController extends Application implements Initializabl
             game.createPlayer(name, pilotSliderValue, fighterSliderValue, traderSliderValue, engineerSliderValue);
             System.out.println(game.getPlayer().toString());
             System.out.println(game.getPlayer().getMoney());
-            AnchorPane pane = FXMLLoader.load(getClass().getResource("/view/MapController.fxml"));
-            AnchorPane pane2 = FXMLLoader.load(getClass().getResource("/view/MarketplaceScreen.fxml"));
-            pane.getChildren().add(pane2);
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("/view/GameScreen.fxml"));
             Scene scene = new Scene(pane);
             this.stage = new Stage();
             this.stage.setScene(scene);
