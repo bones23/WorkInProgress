@@ -5,22 +5,24 @@
  */
 
 package model;
-import java.io.IOException;
+import controller.WelcomeScreenController;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.util.Random;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.util.Random;
 /**
  *
  * @author frenc_000
  */
-public class Game{
+public class Game {
     public Ship ship;
     public Universe uni;
     public Person player;
@@ -58,6 +60,9 @@ public class Game{
     }
     public SolarSystem getCurrentSystem(){
         return currentSystem;
+    }
+    public int getMoney(){
+        return player.getMoney();
     }
     public void setCurrentSystem(int index){
         this.currentSystem = uni.getSolarSystemAt(index);
@@ -139,6 +144,7 @@ public class Game{
      * @throws ClassNotFoundException 
      */
     public void load(String fileName) throws IOException, ClassNotFoundException{
+        //Game newgame=WelcomeScreenController.game;
         /** INSERT THIS CODE INTO THE UI
                   
         FileChooser fileChooser = new FileChooser();
@@ -151,7 +157,8 @@ public class Game{
         */
         try {
             ObjectInputStream input = new ObjectInputStream(new FileInputStream(fileName));
-            Game game = (Game)input.readObject();
+            WelcomeScreenController.game  = (Game) input.readObject();
+            //WelcomeScreenController.game = newgame;
             //THIS IS THE NEW GAME INSTANCE. 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -160,13 +167,15 @@ public class Game{
         } catch (ClassNotFoundException e) {
             e.printStackTrace();;
         }
+        //Game newgame = (Game) input.readObject();
+           // WelcomeScreenController.game = newgame;
 
         /*
         THE REST OF THIS METHOD SHOULD START A UNIVERSE USING THE "game" OBJECT.
         game has all the information needed to make a new game.
         */
         
-        Game newGame = new Game(game);
+       // WelcomeScreenController.game = newgame;
 
         /*
 			initialize a new game using this object

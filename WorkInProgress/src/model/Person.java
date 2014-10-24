@@ -22,6 +22,7 @@ public class Person {
         this.engineerSkill = eSkill;
         this.playerName = name;
         this.ship = new Ship("Flea", name, 14, 10);
+        this.money=1000000;
     }
     public Person(int pSkill, int fSkill, int tSkill, int eSkill){
         this("Kirk", pSkill, fSkill, tSkill, eSkill);

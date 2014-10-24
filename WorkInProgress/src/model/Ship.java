@@ -30,7 +30,7 @@ public class Ship {
         this.cargoManifest = new TradeItem[baysSize];
         this.occupiedSlots = 0;
         this.bays = baysSize;
-        this.fuelTank = fuel;
+        this.fuelTank = 600;
     }
     /*
     creates a ship with a custom pilot

@@ -1,9 +1,12 @@
 package controller;
 
+import java.awt.Desktop;
+import java.io.File;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,11 +18,9 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
-import java.awt.Desktop;
-import java.net.URI;
-import java.net.URISyntaxException;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 import model.*;
 
@@ -31,7 +32,7 @@ import org.controlsfx.dialog.Dialogs;
  */
 public class WelcomeScreenController extends Application implements Initializable {
     @FXML
-    private static Stage stage;
+    public static Stage stage;
     
     @FXML
     private Text newGameText;
@@ -56,7 +57,7 @@ public class WelcomeScreenController extends Application implements Initializabl
     private static Scene welcomeScreen;
     @FXML
     private Scene characterCreationScreen;
-    public static Game game;
+    public static Game game=new Game();
     /**
      * @param args the command line arguments
      */
@@ -96,9 +97,27 @@ public class WelcomeScreenController extends Application implements Initializabl
     }
     
     @FXML
-    private void loadGameClicked(MouseEvent event) throws IOException {
+    private void loadGameClicked(MouseEvent event) throws IOException, ClassNotFoundException {
+        String fileName="";
         System.out.println("Load game");
         System.out.println("load stage: " + this.stage);
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open Resource File");
+        File file = fileChooser.showOpenDialog(stage);
+        if (file != null) {
+            fileName = file.getName();
+        }
+        game.load(fileName);
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("/view/MapController.fxml"));
+            AnchorPane pane2 = FXMLLoader.load(getClass().getResource("/view/MarketplaceScreen.fxml"));
+            pane.getChildren().add(pane2);
+            Scene scene = new Scene(pane);
+            this.stage = new Stage();
+            this.stage.setScene(scene);
+            this.stage.setResizable(false);
+            this.stage.setWidth(975);
+            this.stage.setHeight(800);
+            this.stage.show();
     }
     
     @FXML
@@ -131,7 +150,7 @@ public class WelcomeScreenController extends Application implements Initializabl
                     .showInformation();
         // create the model
         } else {
-            game = new Game();
+            //game = new Game();
             System.out.println(game.getUniverse().toString());
             game.createPlayer(name, pilotSliderValue, fighterSliderValue, traderSliderValue, engineerSliderValue);
             System.out.println(game.getPlayer().toString());

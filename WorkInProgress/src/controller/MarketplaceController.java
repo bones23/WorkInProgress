@@ -6,6 +6,7 @@
 
 package controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Random;
@@ -21,6 +22,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import model.*;
 import org.controlsfx.dialog.Dialogs;
@@ -38,7 +40,7 @@ public class MarketplaceController {
     //Sell price labels
     @FXML
     private Label sellWaterPrice,sellFurPrice,sellFoodPrice,sellOrePrice,sellGamesPrice,
-            sellFirearmsPrice,sellMedicinePrice,sellMachinesPrice,sellNarcoticsPrice,sellRobotsPrice;
+            sellFirearmsPrice,sellMedicinePrice,sellMachinesPrice,sellNarcoticsPrice,sellRobotsPrice,fuelText,cargo,money;
     //Buy price labels
     @FXML
     private Label buyWaterPrice,buyFurPrice,buyFoodPrice,buyOrePrice,buyGamesPrice,buyFirearmsPrice
@@ -48,7 +50,7 @@ public class MarketplaceController {
     private Button s0, s1, s2, s3, s4, s5, s6, s7, s8, s9;
     //Buy buttons
     @FXML
-    private Button b0, b1, b2, b3, b4, b5, b6, b7, b8, b9;
+    private Button b0, b1, b2, b3, b4, b5, b6, b7, b8, b9,save;
     //Labels for sellable items
     @FXML
     private Label sellableWater, sellableFurs, sellableFood, sellableOre, sellableGames, sellableFirearms, sellableMedicine,
@@ -62,6 +64,12 @@ public class MarketplaceController {
     private Label temp;
     @FXML
     private Label temp2;
+    @FXML
+    private void initialize() {
+        game = WelcomeScreenController.game;
+        market = game.currentSystem.getMarketPlace();
+        refreshMarketplace();
+    }
     @FXML
     private void buyItem(ActionEvent event) throws IOException {
         String itemName="";
@@ -114,6 +122,7 @@ public class MarketplaceController {
             }
             temp.setText(""+game.getShip().searchCargo(new TradeItem(itemName)));
             temp2.setText(""+market.getAmountAt(Integer.parseInt(ite.substring(1))));
+            this.cargo.setText(""+game.getShip().getSpaceLeft());
         }            
             //subtact 1 from buyable
             //add 1 to sellable
@@ -171,6 +180,7 @@ public class MarketplaceController {
             }
             temp.setText(""+game.getShip().searchCargo(new TradeItem(itemName)));
             temp2.setText(""+market.getAmountAt(Integer.parseInt(ite.substring(1))));
+            this.cargo.setText(""+game.getShip().getSpaceLeft());
             //subtract 1 from sellable
             //add 1 to buyable
         }
@@ -187,11 +197,24 @@ public class MarketplaceController {
         buyableMachines.setText(""+market.getAmountAt(7));
         buyableNarcotics.setText(""+market.getAmountAt(8));
         buyableRobots.setText(""+market.getAmountAt(9));
+        sellableWater.setText(""+game.getShip().searchCargo(new TradeItem("Water")));
+        sellableFurs.setText(""+game.getShip().searchCargo(new TradeItem("Furs")));
+        sellableFood.setText(""+game.getShip().searchCargo(new TradeItem("Food")));
+        sellableOre.setText(""+game.getShip().searchCargo(new TradeItem("Ore")));
+        sellableGames.setText(""+game.getShip().searchCargo(new TradeItem("Games")));
+        sellableFirearms.setText(""+game.getShip().searchCargo(new TradeItem("Firearms")));
+        sellableMedicine.setText(""+game.getShip().searchCargo(new TradeItem("Medicine")));
+        sellableMachines.setText(""+game.getShip().searchCargo(new TradeItem("Machines")));
+        sellableNarcotics.setText(""+game.getShip().searchCargo(new TradeItem("Narcotics")));
+        sellableRobots.setText(""+game.getShip().searchCargo(new TradeItem("Robots")));
         int cargo =game.getShip().getSpaceLeft();
         //this should be set in ship controller
-        //setText(""+game.getShip().getSpaceLeft());
+        this.cargo.setText(""+game.getShip().getSpaceLeft());
         //should be set in person controller
-        //setText("" + Person.getMoney());
+        Person player = game.getPlayer();
+        
+       // int money = player.getMoney();
+       // this.money.setText(""+money);
         this.sellWaterPrice.setText("" + market.getSellingPriceAt(0));
         this.buyWaterPrice.setText("" + market.getBuyingPriceAt(0));
         this.sellFurPrice.setText("" + market.getSellingPriceAt(1));
@@ -212,5 +235,20 @@ public class MarketplaceController {
         this.buyNarcoticsPrice.setText("" + market.getBuyingPriceAt(8));
         this.sellRobotsPrice.setText("" + market.getSellingPriceAt(9));
         this.buyRobotsPrice.setText("" + market.getBuyingPriceAt(9));
+    }
+    @FXML
+    private void save() throws IOException, Exception{
+        String fileName="";
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save File");
+        File file = fileChooser.showSaveDialog(WelcomeScreenController.stage);
+        if (file != null) {
+           fileName = file.getName();
+        } else {
+            throw new Exception();
+        }
+        WelcomeScreenController.game.save(fileName, WelcomeScreenController.game);
+        //
+        
     }
 }
