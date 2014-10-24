@@ -76,6 +76,7 @@ public class MapController  {
         refreshMarketplace();
         drawUniverse();
         drawMini();
+        fuelText.setText("" + game.ship.getFuel());
     }
     @FXML
     public void drawUniverse() {
@@ -172,6 +173,7 @@ public class MapController  {
     public void buyFuel(ActionEvent event) throws IOException {
         game.ship.buyFuel();
         fuelText.setText("" + game.ship.getFuel()); 
+        this.money.setText(""+game.getMoney());
         //figure out a way to update the maps from this controller
         refreshMaps();
     }
