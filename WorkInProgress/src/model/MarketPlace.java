@@ -1,11 +1,12 @@
 package model;
-import java.util.Random;
 import controller.*;
+import java.io.Serializable;
+import java.util.Random;
 /**
  * Market place class.
  * @author Brandon Jackson
  */
-public class MarketPlace {
+public class MarketPlace implements Serializable {
     private int techLevel;
     private TradeItem[] items;
     private int[] totalPrice;

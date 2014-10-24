@@ -5,14 +5,15 @@
  */
 package model;
 
+import controller.*;
+import java.io.Serializable;
 import java.util.Random;
 import javafx.stage.Stage;
-import controller.*;
 /**
  * @author Matthew Taylor
  * @version 21 October 2014
  */
-public class RandomEvent {
+public class RandomEvent implements Serializable {
     
     Random rand;
     Ship myShip;

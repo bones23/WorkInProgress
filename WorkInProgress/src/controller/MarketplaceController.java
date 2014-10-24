@@ -123,6 +123,7 @@ public class MarketplaceController {
             temp.setText(""+game.getShip().searchCargo(new TradeItem(itemName)));
             temp2.setText(""+market.getAmountAt(Integer.parseInt(ite.substring(1))));
             this.cargo.setText(""+game.getShip().getSpaceLeft());
+            this.money.setText(""+game.getMoney());
         }            
             //subtact 1 from buyable
             //add 1 to sellable
@@ -181,12 +182,17 @@ public class MarketplaceController {
             temp.setText(""+game.getShip().searchCargo(new TradeItem(itemName)));
             temp2.setText(""+market.getAmountAt(Integer.parseInt(ite.substring(1))));
             this.cargo.setText(""+game.getShip().getSpaceLeft());
+            this.money.setText(""+game.getMoney());
             //subtract 1 from sellable
             //add 1 to buyable
         }
     }
-    @FXML
-    private void refreshMarketplace(){
+    public void freshPrince(){
+        refreshMarketplace();
+    }
+    
+    private  void refreshMarketplace(){
+         market = game.currentSystem.getMarketPlace();
         buyableWater.setText(""+market.getAmountAt(0));
         buyableFur.setText(""+market.getAmountAt(1));
         buyableFood.setText(""+market.getAmountAt(2));
@@ -213,8 +219,8 @@ public class MarketplaceController {
         //should be set in person controller
         Person player = game.getPlayer();
         
-       // int money = player.getMoney();
-       // this.money.setText(""+money);
+        int cash = player.getMoney();
+        this.money.setText(""+cash);
         this.sellWaterPrice.setText("" + market.getSellingPriceAt(0));
         this.buyWaterPrice.setText("" + market.getBuyingPriceAt(0));
         this.sellFurPrice.setText("" + market.getSellingPriceAt(1));

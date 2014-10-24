@@ -6,8 +6,9 @@
  * @version 1.0
  */
 package model;
+import java.io.Serializable;
 import java.util.Random;
-public class Universe{
+public class Universe implements Serializable {
 	private String[] names = {
 		    "Acamar",
 		    "Adahn",		// The alternate personality for The Nameless One in "Planescape: Torment"

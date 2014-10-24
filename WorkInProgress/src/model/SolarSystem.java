@@ -6,8 +6,9 @@
 * @version 1.0
 */
 package model;
+import java.io.Serializable;
 import java.util.Random;
-public class SolarSystem {
+public class SolarSystem implements Serializable {
     private Random rand = new Random();
     
     private MarketPlace marketplace;

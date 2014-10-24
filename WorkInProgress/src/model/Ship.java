@@ -4,11 +4,12 @@ import org.controlsfx.dialog.Dialogs;
 import java.util.Random;
 import javafx.stage.Stage;
 import controller.*;
+import java.io.Serializable;
 /**
  * @author Matthew Taylor
  * @version 22 September 2014
  */
-public class Ship {
+public class Ship implements Serializable  {
     
     private int fuel;
     private int x;
@@ -30,7 +31,7 @@ public class Ship {
         this.cargoManifest = new TradeItem[baysSize];
         this.occupiedSlots = 0;
         this.bays = baysSize;
-        this.fuelTank = 600;
+        this.fuelTank = 14;
     }
     /*
     creates a ship with a custom pilot
@@ -198,7 +199,7 @@ public class Ship {
      * @param x x-coordinate
      * @param y y-coordinate
      */
-    public int travel(int x, int y, Universe uni, int i, int j) {
+    public int travel(int x, int y, Universe uni, int i, int j, Stage s) {
         int distance = (int)Math.sqrt(Math.pow((double)Math.abs(getX() - x), 2) + (double)Math.pow(Math.abs(getY() - y), 2));
         if(i != j && distance <= getFuel()){
             i=j;

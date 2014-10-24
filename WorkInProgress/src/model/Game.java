@@ -5,6 +5,7 @@
  */
 
 package model;
+import controller.MarketplaceController;
 import controller.WelcomeScreenController;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -22,7 +23,7 @@ import java.util.Random;
  *
  * @author frenc_000
  */
-public class Game {
+public class Game implements Serializable{
     public Ship ship;
     public Universe uni;
     public Person player;
@@ -53,7 +54,7 @@ public class Game {
     creates a player object
     */
     public void createPlayer(String name, int pilot, int fighter, int trader, int engineer){
-        player = new Person(name, pilot, fighter, trader, engineer);
+        player = new Person(name, pilot, fighter, trader, engineer,100000);
     }
     public int getCurrentLocationIndex(){
         return currentLocationIndex;
@@ -128,6 +129,7 @@ public class Game {
         try {
             ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(fileName));
             output.writeObject(game);
+            output.writeObject(game.player);
             output.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -156,6 +158,10 @@ public class Game {
         WelcomeScreenController.game.load(fileName);
         */
         try {
+           
+
+  
+            //
             ObjectInputStream input = new ObjectInputStream(new FileInputStream(fileName));
             WelcomeScreenController.game  = (Game) input.readObject();
             //WelcomeScreenController.game = newgame;

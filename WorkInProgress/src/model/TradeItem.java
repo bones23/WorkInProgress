@@ -1,11 +1,13 @@
 package model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author frenc_000
  */
 
-public class TradeItem {
+public class TradeItem implements Serializable{
     private int MTLP;   //Minimum Tech Level to Produce this resource (You can't buy on planets below this level)
     private int MTLU;   //Minimum Tech Level to Use this resource (You can't sell on planets below this level)
     private int TTP;    //Tech Level which produces the most of this item
