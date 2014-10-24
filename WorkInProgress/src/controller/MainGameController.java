@@ -313,7 +313,7 @@ public class MainGameController {
     @FXML
     private void Travel(ActionEvent event) throws IOException {
         if(i!=j){
-            i = game.getShip().travel(game.uni.getSolarSystemAt(j).getX(), game.uni.getSolarSystemAt(j).getY(), game.getUniverse(), game.getCurrentLocationIndex(), j);
+            i = game.getShip().travel(game.uni.getSolarSystemAt(j).getX(), game.uni.getSolarSystemAt(j).getY(), game.getUniverse(), game.getCurrentLocationIndex(), j,WelcomeScreenController.stage);
         }
         refreshMarketplace();
         selectedLocation.setText("Choose Location");
