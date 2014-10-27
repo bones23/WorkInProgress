@@ -30,7 +30,7 @@ import org.controlsfx.dialog.Dialogs;
  *
  * @author dblake
  */
-public class WelcomeScreenController extends Application implements Initializable {
+public class WelcomeScreenController extends MainDisplayController{
     @FXML
     public static Stage stage;
     
@@ -54,32 +54,15 @@ public class WelcomeScreenController extends Application implements Initializabl
     private Slider engineerSlider;
     
     @FXML
-    private static Scene welcomeScreen;
+    private WelcomeScreenController welcomeScreen = MainDisplayController.welcomeScreen;
     @FXML
     private Scene characterCreationScreen;
     public static Game game=new Game();
+    public Stage main = MainDisplayController.stage;
+    
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        launch(args);
-    }
-    
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }
-    
-    @Override
-    public void start(Stage stage) throws Exception {
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("/view/WelcomeScreen.fxml"));
-        this.welcomeScreen = new Scene(pane);
-        this.stage = new Stage();
-        System.out.println("start: " + this.stage);
-        this.stage.setScene(this.welcomeScreen);
-        this.stage.setResizable(false);
-        this.stage.show();
-    }
     
     @FXML
     private void newGameClicked(MouseEvent event) throws IOException {
@@ -170,7 +153,7 @@ public class WelcomeScreenController extends Application implements Initializabl
     
     @FXML
     private void cancelButtonClicked(MouseEvent event) throws IOException {
-        this.stage.setScene(this.welcomeScreen);
+        //this.stage.setScene(this.welcomeScreen);
     }
     
     @FXML
