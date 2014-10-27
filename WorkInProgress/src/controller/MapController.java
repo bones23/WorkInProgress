@@ -33,12 +33,13 @@ public class MapController  {
     @FXML
     private Label fuelText,carge,money;
     private Random rand = new Random();
-    int i = rand.nextInt(120);
+    int i = game.getCurrentLocationIndex();
     int destinationIndex = i;
      @FXML
     private void initialize() {
         drawUniverse();
         drawMini();
+        fuelText.setText("" + game.player.getShip().getFuel());
     }
     @FXML
     public void drawUniverse() {
@@ -112,7 +113,7 @@ public class MapController  {
             if((x>=x2&&x<=x2+5)&&(y>=y2&&y<=y2+5)){
                 selectedLocation.setText("Selected Location:\n----------------\n" + name.toString());
                 for (int i = 0; i < 120; i++) {
-                    if (game.getCurrentSystem().getName().equals(name.getName())) {
+                    if (game.uni.getSolarSystemAt(i).getName().equals(name.getName())) {
                         destinationIndex = i;
                     }
                 }
@@ -136,7 +137,7 @@ public class MapController  {
         game.ship.buyFuel();
         fuelText.setText("" + game.ship.getFuel()); 
         //figure out a way to update the maps from this controller
-//      //refreshMaps();
+        refreshMaps();
     }
     public void refreshShip(){
         fuelText.setText("" + game.ship.getFuel());
@@ -146,8 +147,10 @@ public class MapController  {
     private void Travel(ActionEvent event) throws IOException {
         if(i!=destinationIndex){
             i = game.getShip().travel(game.uni.getSolarSystemAt(destinationIndex).getX(), game.uni.getSolarSystemAt(destinationIndex).getY(), game.getUniverse(), game.getCurrentLocationIndex(), destinationIndex);
+            game.setCurrentSystem(i);
         }
         //refreshMarketplace();
+        
         selectedLocation.setText("Choose Location");
         currentLocation.setText("Current Location:\n----------------\n"+game.getCurrentSystem());
         fuelCost.setText("Fuel Cost:\n");
