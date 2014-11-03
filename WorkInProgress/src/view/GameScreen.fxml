@@ -479,5 +479,6 @@
       <Label fx:id="fuelCost" layoutX="830.0" layoutY="584.0" text="Fuel Cost:" />
       <Button fx:id="buyFuel" layoutX="789.0" layoutY="637.0" mnemonicParsing="false" onAction="#buyFuel" text="Buy Fuel" />
       <Button layoutX="343.0" layoutY="11.0" mnemonicParsing="false" onAction="#save" text="Save" />
+      <Button fx:id="Shipyard" layoutX="712.0" layoutY="11.0" mnemonicParsing="false" onAction="#showShipyard" text="Go to ShipYard" />
    </children>
 </AnchorPane>

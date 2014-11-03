@@ -24,7 +24,7 @@ public class Ship implements Serializable  {
     /*
     creates a completely customized ship
     */
-    public Ship(String shipClass, String pilot, int fuel, int baysSize) {
+    public Ship(String shipClass,String pilot,int fuel, int baysSize) {
         this.shipClass = shipClass;
         this.pilot = pilot;
         this.fuel = fuel;
@@ -44,6 +44,9 @@ public class Ship implements Serializable  {
     */
     public Ship(){
         this("Flea", "Kirk", 14, 10);
+    }
+    public Ship(String Name,int cargo,int fuel){
+        this("Upgrade","Kirk",14,14);
     }
     /**
      * @return the amount of fuel that the ship currently has
@@ -175,6 +178,12 @@ public class Ship implements Serializable  {
     public int getOccupiedSlots() {
         return this.occupiedSlots;
     }
+    public void setOccupiedSlots(int temp){
+        occupiedSlots=temp;
+    }
+    public void setCargoManifest(TradeItem[] j){
+        this.cargoManifest = j;
+    }
 
     /**
      * @return the cargo
@@ -204,7 +213,7 @@ public class Ship implements Serializable  {
         if(i != j && distance <= getFuel()){
             i=j;
             setFuel(getFuel() - distance);
-           // RandomEvent(s);
+            RandomEvent(s);
         }
         this.x = x;
         this.y = y;

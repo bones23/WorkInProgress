@@ -55,6 +55,7 @@ public class WelcomeScreenController extends Application implements Initializabl
     
     @FXML
     private static Scene welcomeScreen;
+    public MapController mc = new MapController();
     @FXML
     private Scene characterCreationScreen;
     public static Game game=new Game();
@@ -118,7 +119,13 @@ public class WelcomeScreenController extends Application implements Initializabl
             this.stage.setHeight(800);
             this.stage.show();
     }
-    
+    /**
+     * Sets difficulty to normal if none is selected
+     * Displays error dialogue if skill points are not equal to 20
+     * if skill points = 20, then character is created and GameScreen is displayed.
+     * @param event
+     * @throws IOException 
+     */
     @FXML
     private void okButtonClicked(MouseEvent event) throws IOException {
         int pilotSliderValue = (int) pilotSlider.getValue();

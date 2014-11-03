@@ -70,6 +70,9 @@ public class Person implements Serializable{
     public  Ship getShip(){
         return ship;
     }
+    public void setShip(Ship ship){
+        this.ship=ship;
+    }
     /**
      * @return the x
      */

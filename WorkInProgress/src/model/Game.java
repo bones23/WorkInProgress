@@ -101,6 +101,10 @@ public class Game implements Serializable{
     public Ship getShip(){
         return ship;
     }
+    public void setShipUp(){
+        Ship up = new Ship("upgrade",14,14);
+        this.ship=up;
+    }
     public MarketPlace getMarket(){
         return market;
     }

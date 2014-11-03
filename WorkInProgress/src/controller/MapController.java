@@ -16,10 +16,14 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import model.*;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 /**
  *
  * @author frenc_000
@@ -28,6 +32,7 @@ public class MapController  {
     //MarketplaceController mpc = new MarketplaceController();
     @FXML
     private Canvas universeMap;
+    
     @FXML
     public Label spaceLeft,currentLocation;
     @FXML
@@ -55,7 +60,7 @@ public class MapController  {
     private Button s0, s1, s2, s3, s4, s5, s6, s7, s8, s9;
     //Buy buttons
     @FXML
-    private Button b0, b1, b2, b3, b4, b5, b6, b7, b8, b9,save;
+    private Button b0, b1, b2, b3, b4, b5, b6, b7, b8, b9,save,Shipyard;
     //Labels for sellable items
     @FXML
     private Label sellableWater, sellableFurs, sellableFood, sellableOre, sellableGames, sellableFirearms, sellableMedicine,
@@ -69,6 +74,7 @@ public class MapController  {
     private Label temp;
     @FXML
     private Label temp2;
+    
      @FXML
     private void initialize() {
         game = WelcomeScreenController.game;
@@ -76,8 +82,36 @@ public class MapController  {
         refreshMarketplace();
         drawUniverse();
         drawMini();
+         this.money.setText(""+game.getMoney());
         fuelText.setText("" + game.ship.getFuel());
+         currentLocation.setText("Current Location:\n----------------\n"+game.getCurrentSystem());
+        if (game.getCurrentSystem().getTechLevel()>3) {
+            Shipyard.setVisible(true);
+            
+        }
+        else{
+            Shipyard.setVisible(false);
+        }
     }
+    
+    
+    
+    @FXML
+    private void showShipyard() throws IOException{
+        Stage stage;
+         AnchorPane pane = FXMLLoader.load(getClass().getResource("/view/ShipYard.fxml"));
+          
+            Scene scene = new Scene(pane);
+            stage = WelcomeScreenController.stage;
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.setWidth(975);
+            stage.setHeight(800);
+            stage.show();
+    }
+    /**
+     * Draws the universe map based on the current position
+     */
     @FXML
     public void drawUniverse() {
         Universe universe = game.getUniverse();
@@ -102,6 +136,10 @@ public class MapController  {
             g2d.setFill(Color.BLACK);
         }
     }
+    
+    /**
+     * Draws the mini map, displaying only planets that are in range.
+     */
     @FXML
     public void drawMini() {
         GraphicsContext g2d = miniMap.getGraphicsContext2D();
@@ -134,8 +172,13 @@ public class MapController  {
     }
     @FXML
     private Label selectedLocation,fuelCost;
+    /*
+    calculates whether or not what the user clicked was a planet
+    If it is a planet, then planet data and the fuel cost to get there are displayed.
+    */
     @FXML
     private void handleMouseClick(MouseEvent event) {
+        Ship ship = WelcomeScreenController.game.getShip();
       //  System.out.println((140-event.getX()-universe.getSolarSystemAt(i).getX())/4);
         int x = (int) event.getX();
         int y = (int) event.getY();
@@ -164,11 +207,20 @@ public class MapController  {
                 fuelCost.setText("Fuel Cost:\n" + distance);
         }
     }
+    
+    /**
+     * Helper method which refreshes the maps
+     */
     @FXML
     public void refreshMaps(){
         drawMini();
         drawUniverse();
     }
+    /*
+    buys fuel to fill the player's fueltank if player has enough money.
+    updates the fuel displayed on UI.
+    updates the amount of money displayed on UI.
+    */
     @FXML
     public void buyFuel(ActionEvent event) throws IOException {
         game.ship.buyFuel();
@@ -177,10 +229,20 @@ public class MapController  {
         //figure out a way to update the maps from this controller
         refreshMaps();
     }
+    /**
+     * Updates the ships labels
+     */
     public void refreshShip(){
         fuelText.setText("" + game.ship.getFuel());
         spaceLeft.setText("" + game.ship.getSpaceLeft());
     }
+    /**
+     * Travel method which calls the ship's travel method.
+     * Will only travel if the targeted solarSysten isnt the solarSystem you
+     * currently are on.
+     * @param event
+     * @throws IOException 
+     */
     @FXML
     private void Travel(ActionEvent event) throws IOException {
         if(i!=destinationIndex){
@@ -196,8 +258,20 @@ public class MapController  {
         drawUniverse();
         drawMini();
         refreshMarketplace();
-        //new MarketplaceController().freshPrince();
+        if (game.getCurrentSystem().getTechLevel()>3) {
+            Shipyard.setVisible(true);
+            
+        }
+        else{
+            Shipyard.setVisible(false);
+        }
     }
+    
+    /**
+     * Buys an item from a marketplace and updates the associated labels. 
+     * @param event
+     * @throws IOException 
+     */
      @FXML
     private void buyItem(ActionEvent event) throws IOException {
         String itemName="";
@@ -257,6 +331,11 @@ public class MapController  {
             //add 1 to sellable
             //need set amount in marketplace
     }
+    /**
+     * Sells an item. item is taken out of inventory and player receives money.
+     * @param event
+     * @throws IOException 
+     */
     @FXML
     private void sellItem(ActionEvent event) throws IOException {
         String itemName="";
@@ -316,8 +395,11 @@ public class MapController  {
         }
     }
     
-    
-    private  void refreshMarketplace(){
+    /**
+    Updates the market place UI
+    as well as the player's cargo and money
+    */
+    public  void refreshMarketplace(){
          market = game.currentSystem.getMarketPlace();
         buyableWater.setText(""+market.getAmountAt(0));
         buyableFur.setText(""+market.getAmountAt(1));
@@ -368,6 +450,11 @@ public class MapController  {
         this.sellRobotsPrice.setText("" + market.getSellingPriceAt(9));
         this.buyRobotsPrice.setText("" + market.getBuyingPriceAt(9));
     }
+    /**
+     * Saves the game using serialization.
+     * @throws IOException
+     * @throws Exception 
+     */
     @FXML
     private void save() throws IOException, Exception{
         String fileName="";

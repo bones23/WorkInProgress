@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ShipYardController">
+   <children>
+      <Label layoutX="254.0" layoutY="34.0" text="Ship: tug boat " />
+      <Label layoutX="424.0" layoutY="34.0" text="Ship: Barge" />
+      <Button fx:id="buyShip1" layoutX="278.0" layoutY="195.0" mnemonicParsing="false" onAction="#buyShip" text="Buy Ship 1" />
+      <Button fx:id="buyShip2" layoutX="409.0" layoutY="195.0" mnemonicParsing="false" text="Buy Ship 2" />
+      <Label layoutX="269.0" layoutY="62.0" text="Cargo: 14" />
+      <Label layoutX="266.0" layoutY="98.0" text="Cost: 5000" />
+      <Label layoutX="14.0" layoutY="14.0" text="Current Money:" />
+      <Label fx:id="currentMoney" layoutX="123.0" layoutY="14.0" text="0" />
+      <Button fx:id="leave" layoutX="270.0" layoutY="289.0" mnemonicParsing="false" onAction="#leave" text="Leave ShipYard" />
+      <Label layoutX="14.0" layoutY="62.0" text="Current Cargo Space:" />
+      <Label fx:id="currentCargoSpace" layoutX="149.0" layoutY="70.0" text="0" />
+      <Label layoutX="423.0" layoutY="70.0" text="SOLD OUT!!" />
+   </children>
+</AnchorPane>
