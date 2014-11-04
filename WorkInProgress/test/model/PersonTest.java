@@ -139,7 +139,7 @@ public class PersonTest {
         test.setShip(new Ship("test pilot"));
         noName.setShip(new Ship("noName pilot"));
         assertEquals("test pilot", test.getShip().getPilot());
-        assertEquals("noName pilot", test.getShip().getPilot());
+        assertEquals("noName pilot", noName.getShip().getPilot());
     }
     
     /**
