@@ -26,14 +26,21 @@ import model.TradeItem;
 public class ShipYardController  {
     Game game = WelcomeScreenController.game;
     @FXML
-    private Button buyShip1,buyShip2,leave, fuelUpgrade, cargoUpgrade;
+    private Button buyShip1,buyShip2,leave, fuelUpgrade, cargoUpgrade, weaponUpgrade;
     @FXML
-    private Label currentMoney,currentCargoSpace, fuelTankSize;
+    private Label currentMoney,currentCargoSpace, fuelTankSize, weaponLabel1
+            , weaponLabel2, weaponLabel3;
     @FXML
     private void initialize() {
         currentMoney.setText(""+game.getPlayer().getMoney());
         currentCargoSpace.setText(""+game.getShip().getBays());
         fuelTankSize.setText("" + game.getShip().getFuelTank());
+        if (game.getCurrentSystem().getTechLevel() < 6) {
+            weaponLabel1.setVisible(false);
+            weaponLabel2.setVisible(false);
+            weaponLabel3.setVisible(false);
+            weaponUpgrade.setVisible(false);
+        }
     }
     /**
      * Changes the current scene from the ShipYard to the GameScreen

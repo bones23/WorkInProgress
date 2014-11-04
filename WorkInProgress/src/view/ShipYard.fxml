@@ -10,36 +10,40 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ShipYardController">
    <children>
-      <Label layoutX="32.0" layoutY="168.0" text="Ship: tug boat " />
-      <Label layoutX="133.0" layoutY="168.0" text="Ship: Barge" />
-      <Button fx:id="buyShip1" layoutX="34.0" layoutY="249.0" mnemonicParsing="false" onAction="#buyShip" text="Buy Ship 1" />
-      <Button fx:id="buyShip2" layoutX="127.0" layoutY="249.0" mnemonicParsing="false" onAction="#buyShip2" text="Buy Ship 2" />
-      <Label layoutX="45.0" layoutY="189.0" text="Cargo: 14" />
-      <Label layoutX="42.0" layoutY="223.0" text="Cost: 5000" />
+      <Label layoutX="60.0" layoutY="117.0" text="Ship: tug boat " />
+      <Label layoutX="198.0" layoutY="115.0" text="Ship: Barge" />
+      <Button fx:id="buyShip1" layoutX="62.0" layoutY="198.0" mnemonicParsing="false" onAction="#buyShip" text="Buy Ship 1" />
+      <Button fx:id="buyShip2" layoutX="192.0" layoutY="196.0" mnemonicParsing="false" onAction="#buyShip2" text="Buy Ship 2" />
+      <Label layoutX="73.0" layoutY="138.0" text="Cargo: 14" />
+      <Label layoutX="70.0" layoutY="172.0" text="Cost: 5000" />
       <Label layoutX="244.0" layoutY="47.0" text="Current Money:" />
       <Label fx:id="currentMoney" layoutX="333.0" layoutY="47.0" text="0" />
       <Button fx:id="leave" layoutX="484.0" layoutY="361.0" mnemonicParsing="false" onAction="#leave" text="Leave ShipYard" />
       <Label layoutX="244.0" layoutY="67.0" text="Current Cargo Space:" />
       <Label fx:id="currentCargoSpace" layoutX="366.0" layoutY="67.0" text="0" />
-      <Label layoutX="131.0" layoutY="223.0" text="Cost: 10,000" />
+      <Label layoutX="196.0" layoutY="170.0" text="Cost: 10,000" />
       <Separator layoutX="293.0" layoutY="120.0" orientation="VERTICAL" prefHeight="284.0" prefWidth="15.0" />
       <Label layoutX="249.0" layoutY="9.0" text="Shipyard">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Button fx:id="fuelUpgrade" layoutX="332.0" layoutY="250.0" mnemonicParsing="false" onAction="#buyFuelUpgrade" text="Buy Upgrade" />
-      <Label layoutX="138.0" layoutY="189.0" text="Cargo: 20" />
-      <Label layoutX="339.0" layoutY="168.0" text="Fuel Upgrade" />
-      <Label layoutX="344.0" layoutY="195.0" text="Adds 1 Fuel" />
-      <Label layoutX="350.0" layoutY="223.0" text="Cost: 200" />
-      <Label layoutX="475.0" layoutY="225.0" text="Cost: 1000" />
-      <Label layoutX="469.0" layoutY="197.0" text="Adds 2 Cargo" />
-      <Label layoutX="464.0" layoutY="170.0" text="Cargo Upgrade" />
-      <Button fx:id="cargoUpgrade" layoutX="457.0" layoutY="252.0" mnemonicParsing="false" onAction="#buyCargoUpgrade" text="Buy Upgrade" />
+      <Button fx:id="fuelUpgrade" layoutX="332.0" layoutY="198.0" mnemonicParsing="false" onAction="#buyFuelUpgrade" text="Buy Upgrade" />
+      <Label layoutX="203.0" layoutY="136.0" text="Cargo: 20" />
+      <Label layoutX="338.0" layoutY="117.0" text="Fuel Upgrade" />
+      <Label layoutX="343.0" layoutY="144.0" text="Adds 1 Fuel" />
+      <Label layoutX="349.0" layoutY="172.0" text="Cost: 200" />
+      <Label layoutX="467.0" layoutY="171.0" text="Cost: 1000" />
+      <Label layoutX="461.0" layoutY="143.0" text="Adds 2 Cargo" />
+      <Label layoutX="456.0" layoutY="116.0" text="Cargo Upgrade" />
+      <Button fx:id="cargoUpgrade" layoutX="455.0" layoutY="195.0" mnemonicParsing="false" onAction="#buyCargoUpgrade" text="Buy Upgrade" />
       <Label layoutX="239.0" layoutY="84.0" prefHeight="17.0" prefWidth="122.0" text="Current Fuel Tank Size:" />
       <Label fx:id="fuelTankSize" layoutX="370.0" layoutY="84.0" text="0" />
-      <Label layoutX="50.0" layoutY="206.0" text="Fuel: 25" />
-      <Label layoutX="138.0" layoutY="206.0" text="Fuel: 25" />
+      <Label layoutX="78.0" layoutY="155.0" text="Fuel: 25" />
+      <Label layoutX="203.0" layoutY="153.0" text="Fuel: 25" />
+      <Label fx:id="weaponLabel3" layoutX="352.0" layoutY="294.0" text="Cost: 1000" />
+      <Label fx:id="weaponLabel2" layoutX="317.0" layoutY="268.0" text="Adds 1 Attack Damage" />
+      <Label fx:id="weaponLabel1" layoutX="331.0" layoutY="239.0" text="Weapon Upgrade" />
+      <Button fx:id="weaponUpgrade" layoutX="335.0" layoutY="320.0" mnemonicParsing="false" onAction="#buyWeaponUpgrade" text="Buy Upgrade" />
    </children>
 </AnchorPane>
