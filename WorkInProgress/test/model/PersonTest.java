@@ -18,7 +18,7 @@ public class PersonTest {
     
     @Before
     public void setUp() {
-        test = new Person("Me", 3, 4, 5, 8);
+        test = new Person("Me", 3, 4, 5, 8, 98765);
         noName = new Person(8, 5, 4, 3);
     }
 
@@ -121,6 +121,58 @@ public class PersonTest {
         assertEquals("9dptn", test.getName());
         assertEquals("oxpv87", noName.getName());
     }
+    
+    /**
+     * Test of getShip method, of class Person.
+     */
+    @Test
+    public void testGetShip() {
+        assertEquals("Flea", test.getShip().getShipClass());
+        assertEquals("Flea", noName.getShip().getShipClass());
+    }
+    
+    /**
+     * Test of setShip method, of class Person.
+     */
+    @Test
+    public void testsetShip() {
+        test.setShip(new Ship("test pilot"));
+        noName.setShip(new Ship("noName pilot"));
+        assertEquals("test pilot", test.getShip().getPilot());
+        assertEquals("noName pilot", test.getShip().getPilot());
+    }
+    
+    /**
+     * Test of getX method, of class Person.
+     */
+    @Test
+    public void testGetX() {
+        
+    }
+    
+    /**
+     * Test of setX method, of class Person.
+     */
+    @Test
+    public void testsetX() {
+        
+    }
+    
+    /**
+     * Test of getY method, of class Person.
+     */
+    @Test
+    public void testgetY() {
+        
+    }
+    
+    /**
+     * Test of setY method, of class Person.
+     */
+    @Test
+    public void testsetY() {
+        
+    }
 
     /**
      * Test of toString method, of class Person.
@@ -128,9 +180,9 @@ public class PersonTest {
     @Test
     public void testToString() {
         assertEquals("Name: Me\nPilot Skill: 3\nFighter Skill: 4\nTrader Skill: 5\n"
-            + "Engineering Skill: 8", test.toString());
+            + "Engineering Skill: 8\nMoney: 98765", test.toString());
         assertEquals("Name: Kirk\nPilot Skill: 8\nFighter Skill: 5\nTrader Skill: 4\n"
-            + "Engineering Skill: 3", noName.toString());
+            + "Engineering Skill: 3\nMoney: 100000000", noName.toString());
         System.out.println(test.toString());
     }
     
