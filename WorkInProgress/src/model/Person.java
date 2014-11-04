@@ -1,12 +1,10 @@
 package model;
 
-import java.io.Serializable;
-
 /**
  *
  * @author CodyMFFries
  */
-public class Person implements Serializable{
+public class Person {
     private int pilotSkill;
     private int fighterSkill;
     private int traderSkill;

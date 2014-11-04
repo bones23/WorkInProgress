@@ -80,6 +80,7 @@ public class Ship implements Serializable  {
     }
     /**
      * sets the new x coordinate of the ship
+     * @param newX
      */
     public void setX(int newX){
         this.x = newX;
@@ -92,6 +93,7 @@ public class Ship implements Serializable  {
     }
     /**
      * sets the new y coordinate of the ship
+     * @param newY
      */
     public void setY(int newY){
         this.y= newY;
@@ -192,6 +194,7 @@ public class Ship implements Serializable  {
         return this.cargoManifest;
     }
     /**
+     * @param item
      * @return the number of a specific type of cargo in ship
      */
     public int searchCargo(TradeItem item){
@@ -207,6 +210,11 @@ public class Ship implements Serializable  {
      * 
      * @param x x-coordinate
      * @param y y-coordinate
+     * @param uni
+     * @param i
+     * @param j
+     * @param s
+     * @return 
      */
     public int travel(int x, int y, Universe uni, int i, int j, Stage s) {
         int distance = (int)Math.sqrt(Math.pow((double)Math.abs(getX() - x), 2) + (double)Math.pow(Math.abs(getY() - y), 2));
