@@ -118,6 +118,7 @@ public class WelcomeScreenController extends Application implements Initializabl
             this.stage.setWidth(975);
             this.stage.setHeight(800);
             this.stage.show();
+            
     }
     /**
      * Sets difficulty to normal if none is selected
@@ -169,6 +170,7 @@ public class WelcomeScreenController extends Application implements Initializabl
             this.stage.setWidth(975);
             this.stage.setHeight(800);
             this.stage.show();
+            //this.stage.setFullScreen(true);
         }
     }
     

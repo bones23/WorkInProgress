@@ -105,8 +105,8 @@ public class MapController  {
             stage = WelcomeScreenController.stage;
             stage.setScene(scene);
             stage.setResizable(false);
-            stage.setWidth(975);
-            stage.setHeight(800);
+            stage.setWidth(600);
+            stage.setHeight(425);
             stage.show();
     }
     /**

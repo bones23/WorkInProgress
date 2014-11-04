@@ -9,7 +9,7 @@
 <?import javafx.scene.canvas.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="674.0" prefWidth="853.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MapController">
+<AnchorPane id="AnchorPane" prefHeight="679.0" prefWidth="1027.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MapController">
    <children>
       <GridPane gridLinesVisible="true" layoutX="97.0" layoutY="73.0" prefHeight="336.0" prefWidth="507.0">
         <columnConstraints>
@@ -462,23 +462,26 @@
       <Label fx:id="money" layoutX="16.0" layoutY="82.0" text="0" />
       <Label layoutX="7.0" layoutY="112.0" text="Cargo Space" />
       <Label fx:id="cargo" layoutX="16.0" layoutY="129.0" text="0" />
-      <Canvas fx:id="universeMap" blendMode="DARKEN" height="200.0" layoutX="216.0" layoutY="449.0" width="300.0" />
-      <Label fx:id="currentLocation" layoutX="59.0" layoutY="420.0" text="Label" />
-      <Label fx:id="map" layoutX="330.0" layoutY="420.0" text="Universe Map" />
+      <Canvas fx:id="universeMap" blendMode="DARKEN" height="200.0" layoutX="195.0" layoutY="449.0" width="300.0" />
+      <Label fx:id="currentLocation" layoutX="20.0" layoutY="420.0" text="Label" />
+      <Label fx:id="map" layoutX="309.0" layoutY="420.0" text="Universe Map" />
       <Label layoutX="32.0" layoutY="24.0" text="Space Trader" textFill="#abb514">
          <font>
             <Font name="Byington" size="24.0" />
          </font>
       </Label>
-      <Label fx:id="selectedLocation" layoutX="828.0" layoutY="420.0" text="Choose Location" />
-      <Label layoutX="645.0" layoutY="420.0" text="Mini Map" />
-      <Canvas fx:id="miniMap" height="200.0" layoutX="528.0" layoutY="449.0" onMouseClicked="#handleMouseClick" width="300.0" />
-      <Button fx:id="TravelHere" layoutX="865.0" layoutY="637.0" mnemonicParsing="false" onAction="#Travel" text="Travel here" />
+      <Label fx:id="selectedLocation" layoutX="838.0" layoutY="420.0" text="Choose Location" />
+      <Label layoutX="624.0" layoutY="420.0" text="Mini Map" />
+      <Canvas fx:id="miniMap" height="200.0" layoutX="507.0" layoutY="449.0" onMouseClicked="#handleMouseClick" width="300.0" />
+      <Button fx:id="TravelHere" layoutX="896.0" layoutY="637.0" mnemonicParsing="false" onAction="#Travel" text="Travel here" />
       <Label layoutX="8.0" layoutY="153.0" text="Fuel" />
       <Label fx:id="fuelText" layoutX="16.0" layoutY="170.0" text="0" />
-      <Label fx:id="fuelCost" layoutX="830.0" layoutY="584.0" text="Fuel Cost:" />
-      <Button fx:id="buyFuel" layoutX="789.0" layoutY="637.0" mnemonicParsing="false" onAction="#buyFuel" text="Buy Fuel" />
-      <Button layoutX="343.0" layoutY="11.0" mnemonicParsing="false" onAction="#save" text="Save" />
-      <Button fx:id="Shipyard" layoutX="712.0" layoutY="11.0" mnemonicParsing="false" onAction="#showShipyard" text="Go to ShipYard" />
+      <Label fx:id="fuelCost" layoutX="838.0" layoutY="582.0" text="Fuel Cost:" />
+      <Button fx:id="buyFuel" layoutX="821.0" layoutY="637.0" mnemonicParsing="false" onAction="#buyFuel" text="Buy Fuel" />
+      <Button layoutX="420.0" layoutY="12.0" mnemonicParsing="false" onAction="#save" text="Save" />
+      <Button fx:id="Shipyard" layoutX="855.0" layoutY="369.0" mnemonicParsing="false" onAction="#showShipyard" text="Go to ShipYard" />
+      <Separator layoutX="188.0" layoutY="449.0" orientation="VERTICAL" prefHeight="237.0" prefWidth="7.0" />
+      <Separator layoutX="504.0" layoutY="449.0" orientation="VERTICAL" prefHeight="237.0" prefWidth="7.0" />
+      <Separator layoutX="807.0" layoutY="449.0" orientation="VERTICAL" prefHeight="237.0" prefWidth="7.0" />
    </children>
 </AnchorPane>

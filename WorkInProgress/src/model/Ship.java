@@ -229,6 +229,9 @@ public class Ship implements Serializable  {
             robbed(s, rand);
         }
     }
+    public void setBays(int bays) {
+        this.bays = bays;
+    }
     public void fuelLeak(Stage s){
         int cost = (this.fuelTank * 10) - (WelcomeScreenController.game.getPlayer().getEngineerSkill() * 5);
         if (WelcomeScreenController.game.getPlayer().getMoney() - cost >= 0) {
@@ -281,5 +284,12 @@ public class Ship implements Serializable  {
                 .masthead(null)
                 .message("The following have been stolen from cargo:\n" + stolen)
                 .showInformation();
+    }
+    
+    public void setFuelTank(int fuelTank) {
+        this.fuelTank = fuelTank;
+    }
+    public int getFuelTank() {
+        return fuelTank;
     }
 }
