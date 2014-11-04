@@ -34,6 +34,13 @@ public class MarketPlace implements Serializable {
         amount = new int[10];
         totalPrice = new int[10];
         sellPrice = new int[10];
+        calcAmtAndPrices();
+    }
+    
+    /**
+     * Private helper method for the constructor
+     */
+    private void calcAmtAndPrices() {
         calculateAmount();
         calculatePrices();
     }
@@ -88,8 +95,12 @@ public class MarketPlace implements Serializable {
      * Buys an item from marketplace
      * Subtracts the amount of items from market place and the amount being paid
      * from the players money.
-     * @param item the item that is being bought
-     * @param amountBuying the amount being bought
+     * 
+     * @param buttonPushed the button that was clicked
+     * @param uni the Universe the the game is running on
+     * @param i SolarSystem index in the Universe
+     * @param s the ship to store the bought items on
+     * @return the name of the item purchased
      */
     public String buyingItem(String buttonPushed, Universe uni, int i, Ship s) {
         int itemNum = -1;
@@ -136,7 +147,8 @@ public class MarketPlace implements Serializable {
                 itemName="Robots";
                 break;
             }
-        if(WelcomeScreenController.game.getPlayer().getMoney() >= uni.getSolarSystemAt(i).getMarketPlace().getBuyingPriceAt(itemNum)
+        if(uni != null && s != null && WelcomeScreenController.game.getPlayer().getMoney() >=
+                    uni.getSolarSystemAt(i).getMarketPlace().getBuyingPriceAt(itemNum)
                 && uni.getSolarSystemAt(i).getMarketPlace().getAmountAt(itemNum) > 0
                 && s.addItem(new TradeItem(itemName)) == true
                 && uni.getSolarSystemAt(i).getMarketPlace().getBuyingPriceAt(itemNum) > 0){
@@ -149,8 +161,12 @@ public class MarketPlace implements Serializable {
     /**
      * Sells an item to the marketplace. The market place gains an item and the
      * player gains money.
-     * @param item item being sold
-     * @param amountSelling the amount of items being sold
+     * 
+     * @param buttonPushed the button that was clicked
+     * @param uni the Universe the the game is running on
+     * @param i SolarSystem index in the Universe
+     * @param s the ship to store the bought items on
+     * @return the name of the item sold
      */
     public String sellingItem(String buttonPushed, Universe uni, int i, Ship s) {
         int itemNum = -1;
@@ -197,8 +213,7 @@ public class MarketPlace implements Serializable {
                 itemName="Robots";
                 break;
         }
-        System.out.println(itemNum);
-        if(uni.getSolarSystemAt(i).getMarketPlace().getSellingPriceAt(itemNum)> 0
+        if(uni != null && s != null && uni.getSolarSystemAt(i).getMarketPlace().getSellingPriceAt(itemNum)> 0
                 && s.removeItem(new TradeItem(itemName)) == true){
             amount[itemNum] = amount[itemNum] + 1;
             WelcomeScreenController.game.getPlayer().setMoney(WelcomeScreenController.game.getPlayer().getMoney() + sellPrice[itemNum]);

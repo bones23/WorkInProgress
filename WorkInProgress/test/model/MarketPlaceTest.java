@@ -27,31 +27,32 @@ public class MarketPlaceTest {
     
      @Test
      public void testCalculatePrices() {
-         for(int i=0; i<10; i++) {
-             System.out.print(mkt.getSellingPriceAt(i) + " ");
-             System.out.print(mkt.getBuyingPriceAt(i) + "\n");
-         }
+         
+         //Print selling and buying prices for each item
 //         for(int i=0; i<10; i++) {
 //             System.out.print(mkt.getSellingPriceAt(i) + " ");
 //             System.out.print(mkt.getBuyingPriceAt(i) + "\n");
 //         }
-         assertEquals((int)(mkt.getBuyingPriceAt(0)*.85), mkt.getSellingPriceAt(0));
-         assertEquals((int)(mkt.getBuyingPriceAt(1)*.85), mkt.getSellingPriceAt(1));
-         assertEquals((int)(mkt.getBuyingPriceAt(2)*.85), mkt.getSellingPriceAt(2));
-         assertEquals((int)(mkt.getBuyingPriceAt(3)*.85), mkt.getSellingPriceAt(3));
-         assertEquals((int)(mkt.getBuyingPriceAt(4)*.85), mkt.getSellingPriceAt(4));
-         assertEquals((int)(mkt.getBuyingPriceAt(5)*.85), mkt.getSellingPriceAt(5));
-         assertEquals((int)(mkt.getBuyingPriceAt(6)*.85), mkt.getSellingPriceAt(6));
-         assertEquals((int)(mkt.getBuyingPriceAt(7)*.85), mkt.getSellingPriceAt(7));
-         assertEquals((int)(mkt.getBuyingPriceAt(8)*.85), mkt.getSellingPriceAt(8));
-         assertEquals((int)(mkt.getBuyingPriceAt(9)*.85), mkt.getSellingPriceAt(9));
+         
+         assertEquals(Math.round(mkt.getBuyingPriceAt(0)*.8), mkt.getSellingPriceAt(0));
+         assertEquals(Math.round(mkt.getBuyingPriceAt(1)*.8), mkt.getSellingPriceAt(1));
+         assertEquals(Math.round(mkt.getBuyingPriceAt(2)*.8), mkt.getSellingPriceAt(2));
+         assertEquals(Math.round(mkt.getBuyingPriceAt(3)*.8), mkt.getSellingPriceAt(3));
+         assertEquals(Math.round(mkt.getBuyingPriceAt(4)*.8), mkt.getSellingPriceAt(4));
+         assertEquals(Math.round(mkt.getBuyingPriceAt(5)*.8), mkt.getSellingPriceAt(5));
+         assertEquals(Math.round(mkt.getBuyingPriceAt(6)*.8), mkt.getSellingPriceAt(6));
+         assertEquals(Math.round(mkt.getBuyingPriceAt(7)*.8), mkt.getSellingPriceAt(7));
+         assertEquals(Math.round(mkt.getBuyingPriceAt(8)*.8), mkt.getSellingPriceAt(8));
+         assertEquals(Math.round(mkt.getBuyingPriceAt(9)*.8), mkt.getSellingPriceAt(9));
      }
-     
+
      @Test
      public void testCalculateAmount() {
   
+         //Print amount range for each item (ex. "10 to 30")
 //         for(int i=0; i<10; i++) System.out.print((int)Math.round((1.0 - ((double)i / 10)) * 10)
 //                                    + " to " + (int)Math.round((1.0 - ((double)i/10)) * 30) + "\n");
+         
 //         for(int i=0; i<10; i++) System.out.println(mkt.getAmount()[i]);
          
          // Bounds determined by the formula:
@@ -70,18 +71,30 @@ public class MarketPlaceTest {
      
      @Test
      public void testBuyingItem() {
-         int waterAmt = mkt.getAmount()[0] - 5;
-         //mkt.buyingItem(0, 5);
-         
-         assertEquals(waterAmt, mkt.getAmount()[0]);
+         assertEquals("Water", mkt.buyingItem("b0", null, 0, null));
+         assertEquals("Furs", mkt.buyingItem("b1", null, 0, null));
+         assertEquals("Food", mkt.buyingItem("b2", null, 0, null));
+         assertEquals("Ore", mkt.buyingItem("b3", null, 0, null));
+         assertEquals("Games", mkt.buyingItem("b4", null, 0, null));
+         assertEquals("Firearms", mkt.buyingItem("b5", null, 0, null));
+         assertEquals("Medicine", mkt.buyingItem("b6", null, 0, null));
+         assertEquals("Machines", mkt.buyingItem("b7", null, 0, null));
+         assertEquals("Narcotics", mkt.buyingItem("b8", null, 0, null));
+         assertEquals("Robots", mkt.buyingItem("b9", null, 0, null));
      }
      
      @Test
      public void testSellingItem() {
-         int waterAmt = mkt.getAmount()[0] + 5;
-         //mkt.sellingItem(0, 5);
-         
-         assertEquals(waterAmt, mkt.getAmount()[0]);
+         assertEquals("Water", mkt.sellingItem("s0", null, 0, null));
+         assertEquals("Furs", mkt.sellingItem("s1", null, 0, null));
+         assertEquals("Food", mkt.sellingItem("s2", null, 0, null));
+         assertEquals("Ore", mkt.sellingItem("s3", null, 0, null));
+         assertEquals("Games", mkt.sellingItem("s4", null, 0, null));
+         assertEquals("Firearms", mkt.sellingItem("s5", null, 0, null));
+         assertEquals("Medicine", mkt.sellingItem("s6", null, 0, null));
+         assertEquals("Machines", mkt.sellingItem("s7", null, 0, null));
+         assertEquals("Narcotics", mkt.sellingItem("s8", null, 0, null));
+         assertEquals("Robots", mkt.sellingItem("s9", null, 0, null));
      }
      
      @Test
