@@ -53,6 +53,7 @@ public class RandomEvent implements Serializable {
             WelcomeScreenController.game.getPlayer().setMoney(WelcomeScreenController.game.getPlayer().getMoney() - cost);
         } else {
             //game OVER
+            System.out.println("Game over");
         }
         
         this.myShip.setFuel(0);

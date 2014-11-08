@@ -146,6 +146,8 @@ public class MarketPlace implements Serializable {
                 itemNum=9;
                 itemName="Robots";
                 break;
+            default:
+                
             }
         if(uni != null && s != null && WelcomeScreenController.game.getPlayer().getMoney() >=
                     uni.getSolarSystemAt(i).getMarketPlace().getBuyingPriceAt(itemNum)
@@ -212,6 +214,8 @@ public class MarketPlace implements Serializable {
                 itemNum=9;
                 itemName="Robots";
                 break;
+            default:
+                
         }
         if(uni != null && s != null && uni.getSolarSystemAt(i).getMarketPlace().getSellingPriceAt(itemNum)> 0
                 && s.removeItem(new TradeItem(itemName)) == true){

@@ -127,4 +127,9 @@ public class ShipYardController  {
             game.getShip().setCargoManifest(temp);
         }
     }
+    
+    @FXML
+    private void buyWeaponUpgrade() throws IOException{
+        
+    }
 }

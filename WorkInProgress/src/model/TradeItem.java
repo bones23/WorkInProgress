@@ -167,6 +167,8 @@ public class TradeItem implements Serializable{
                 this.MTH = 5000;
                 this.illegal = false;
                 break;
+            default:
+                
         }
     }
 

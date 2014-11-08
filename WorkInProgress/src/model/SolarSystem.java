@@ -34,8 +34,7 @@ public class SolarSystem implements Serializable {
     private String[] amountNames = {"None", "Minimal", "Moderate", "Abundant"};
     private String[] techNames = {"Pre-Algriculture", "Agriculture", "Medieval",
         "Renaissance", "Early-Industrial", "Industrial", "Post-Industrial", "Hi-Tech"}; 
-    private String[] resourceNames = {"No Special Resources","No Special Resources",
-    "No Special Resources", "No Special Resources", "Mineral Rich", "Mineral Poor",
+    private String[] resourceNames = {"No Special Resources", "Mineral Rich", "Mineral Poor",
     "Desert", "Lots of Water", "Rich Soil", "Poor Soil", "Rich Fauna", "Lifeless",
     "Weird Mushrooms", "Lots of Herbs", "Artistic", "Warlike"};
     private String[] governmentNames = {"Monarchy", "Technocracy", "Democracy", 
@@ -57,7 +56,14 @@ public class SolarSystem implements Serializable {
         
         techLevel = rand.nextInt(techNames.length);
         tech = techNames[techLevel];
-        resource = resourceNames[rand.nextInt(resourceNames.length)];
+        int resourceNum = rand.nextInt(resourceNames.length + 3);
+        int noResource = 3;
+        if (resourceNum <= noResource) {
+            resource = resourceNames[0];
+        } else {
+            resource = resourceNames[resourceNum - 3];
+        }
+        
         government = governmentNames[rand.nextInt(governmentNames.length)];
         if (government.equals("Anarchy")) {
             policeIntensity = 0;
