@@ -1,88 +1,83 @@
+/*
+* Creates Solar System object. Each solar system has a name, x/y location, tech
+* level, resource level, amount of pirates, amount of police, and government type.
+*
+* @author Brandon Jackson 
+* @version 1.0
+*/
 package model;
 import java.io.Serializable;
 import java.util.Random;
-
-/*
-* Creates Solar System object. Each solar system has a name, x/y location, tech
-* level, resource level, amount of pirates, amount of police, and government
-* type.
-*
-* @author Brandon Jackson
-* @version 1.0
-*/
 public class SolarSystem implements Serializable {
-    //CHECKSTYLE: OFF
     private Random rand = new Random();
-
+    
     private MarketPlace marketplace;
-
+    
     private String name = "";
     private int x;
     private int y;
-
+    
     private String tech;
     private int techLevel;
     private String resource;
+    
     private String government;
+
     private String police;
     private int policeIntensity;
+    
     private String pirate;
     private int pirateIntensity;
-    
-    /*List of possible names for the tech, resources, and government types of a
+
+    /*List of possible names for the tech, resources, and government types of a 
     SolarSystem */
     private String[] amountNames = {"None", "Minimal", "Moderate", "Abundant"};
     private String[] techNames = {"Pre-Algriculture", "Agriculture", "Medieval",
-        "Renaissance", "Early-Industrial", "Industrial", "Post-Industrial",
-        "Hi-Tech"}; 
-    private String[] resourceNames = {"No Special Resources", "Mineral Rich",
-        "Mineral Poor", "Desert", "Lots of Water", "Rich Soil", "Poor Soil",
-        "Rich Fauna", "Lifeless", "Weird Mushrooms", "Lots of Herbs",
-        "Artistic", "Warlike"};
+        "Renaissance", "Early-Industrial", "Industrial", "Post-Industrial", "Hi-Tech"}; 
+    private String[] resourceNames = {"No Special Resources", "Mineral Rich", "Mineral Poor",
+    "Desert", "Lots of Water", "Rich Soil", "Poor Soil", "Rich Fauna", "Lifeless",
+    "Weird Mushrooms", "Lots of Herbs", "Artistic", "Warlike"};
     private String[] governmentNames = {"Monarchy", "Technocracy", "Democracy", 
-        "Corporate State", "Theocracy", "Feudal State", "Socialist State",
-        "Anarchy"};
-
-    private final int NUM_RESOURCES = 3;
-    //CHECKSTYLE: ON
-    //------------------------------------------------------------------------\\
-
+    "Corporate State", "Theocracy", "Feudal State", "Socialist State", "Anarchy"};
+    //--------------------------------------------------------------------------------\\
+    
     /**
      * Constructor for SolarSystem Object. The planet's attributes are randomly
      * assigned.
-     * @param newName - name of the SolarSystem
-     * @param newX - the x coordinate of the SolarSystem
-     * @param newY - the y coordinate of the SolarSystem
+     * 
+     * @param name - name of the SolarSystem
+     * @param x - the x coordinate of the SolarSystem
+     * @param y - the y coordinate of the SolarSystem
      */
-    public SolarSystem(final String newName, final int newX, final int newY) {
-        this.name = newName;
-        this.x = newX;
-        this.y = newY;
-
+    public SolarSystem(String name, int x, int y) {
+        this.name = name;
+        this.x = x;
+        this. y = y;
+        
         techLevel = rand.nextInt(techNames.length);
         tech = techNames[techLevel];
-        int resourceNum = rand.nextInt(resourceNames.length + NUM_RESOURCES);
-//        int noResource = 3;
-        if (resourceNum <= NUM_RESOURCES) {
+        int resourceNum = rand.nextInt(resourceNames.length + 3);
+        int noResource = 3;
+        if (resourceNum <= noResource) {
             resource = resourceNames[0];
         } else {
-            resource = resourceNames[resourceNum - NUM_RESOURCES];
+            resource = resourceNames[resourceNum - 3];
         }
-
+        
         government = governmentNames[rand.nextInt(governmentNames.length)];
         if (government.equals("Anarchy")) {
             policeIntensity = 0;
             police = "None";
         } else {
-            policeIntensity = rand.nextInt(NUM_RESOURCES + 1);
+            policeIntensity = rand.nextInt(4);
             police = amountNames[policeIntensity];
         }
-
+        
         if (government.equals("Anarchy")) {
-            pirateIntensity = NUM_RESOURCES;
+            pirateIntensity = 3;
             pirate = "Abundant";
         } else {
-            pirateIntensity = rand.nextInt(NUM_RESOURCES + 1);
+            pirateIntensity = rand.nextInt(4);
             pirate = amountNames[pirateIntensity];
         }
         marketplace = new MarketPlace(techLevel);
@@ -90,96 +85,103 @@ public class SolarSystem implements Serializable {
 
     /**
      * Getter for the name of the solar system.
+     * 
      * @return name - name of solar system
      */
-    public final String getName() {
+    public String getName() {
         return name;
     }
 
     /**
      * Getter for the x location of the solar system.
+     * 
      * @return x - the x coordinate
      */
-    public final int getX() {
+    public int getX() {
         return x;
     }
-
+    
     /**
-     * Getter for the tech level of the solar system.
+     * Getter for the tech level of the solar system
      * @return techLevel - the tech level of the system
      */
-    public final int getTechLevel() {
+    public int getTechLevel() {
         return techLevel;
     }
     /**
      * Getter for the y location of the solar system.
+     * 
      * @return y - the y coordinate
      */
-    public final int getY() {
+    public int getY() {
         return y;
     }
 
     /**
      * Getter for the tech level of the solar system.
+     * 
      * @return tech - the tech level
      */
-    public final String getTech() {
+    public String getTech() {
         return tech;
     }
-
+    
     /**
      * Getter for the government type of the solar system.
+     * 
      * @return government - the government type
      */
-    public final String getGovernment() {
+    public String getGovernment() {
         return government;
     }
 
     /**
      * Getter for the resource type of the solar system.
+     * 
      * @return resource - the resource type
      */
-    public final String getResource() {
+    public String getResource() {
         return resource;
     }
-
+    
     /**
      * Setter for the resource status of the solar system.
-     * @param nResource - the resource status
+     * 
+     * @param resource - the resource status
      */
-    public final void setResource(final String nResource) {
-        this.resource = nResource;
+    public void setResource(String resource) {
+        this.resource = resource;
     }
-
+    
     /**
      * Getter for the pirate status of the solar system.
+     * 
      * @return pirate - the pirate status
      */
-    public final String getPirate() {
+    public String getPirate() {
         return pirate;
     }
-
+    
     /**
      * Getter for the police status of the solar system.
+     * 
      * @return police - the police status
      */
-    public final String getPolice() {
+    public String getPolice() {
         return police;
     }
-
+    
     /**
-     * Getter for marketplace.
-     * @return marketplace
+     * Getter for marketplace
+     * @return marketplace 
      */
-    public final MarketPlace getMarketPlace() {
+    public MarketPlace getMarketPlace() {
         return marketplace;
     }
-
-    @Override
-    public final String toString() {
-        return "Name: " + name + "\nTech Level: " + tech + "\nGovernment: "
-                + government + "\nResource: " + resource + "\nPolice: "
-                + police + "\nPirate: " + pirate + "\nLocation: " + x + ", "
-                + y + "\n";
+    
+    public String toString() {
+    	return "Name: " + name + "\nTech Level: " + tech + "\nGovernment: " + government +
+    			"\nResource: " + resource + "\nPolice: " + police + "\nPirate: " + pirate + "\nLocation: "
+    			+ x + ", " + y + "\n";
     }
 }
