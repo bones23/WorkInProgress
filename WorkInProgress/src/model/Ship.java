@@ -3,15 +3,14 @@ package model;
 import org.controlsfx.dialog.Dialogs;
 import java.util.Random;
 import javafx.stage.Stage;
-import controller.WelcomeScreenController;
+import controller.*;
 import java.io.Serializable;
 /**
  * @author Matthew Taylor
  * @version 22 September 2014
  */
 public class Ship implements Serializable  {
-
-    //CHECKSTYLE: OFF
+    
     private int fuel;
     private int x;
     private int y;
@@ -22,170 +21,106 @@ public class Ship implements Serializable  {
     private int bays;
     private int fuelTank;
     
-    private final int DEFAULT_FUEL = 14;
-    private final int DEFAULT_BAYS = 10;
-    private final int FUEL_PRICE = 5;
-    private final int EVENT_PERCENT = 5;
-    private final int MAX_PERCENT = 100;
-    private final int FUEL_MULT = 10;
-    private final int ESKILL_MULT = 5;
-    private final int MAX_ROB_ATTEMPTS = 6;
-    //CHECKSTYLE: OFF
-
-    /**
-     * Create a Ship.
-     * @param myShipClass class of the Ship
-     * @param myPilot the pilot name
-     * @param myFuel fuel tank size
-     * @param baysSize number of bays
-     */
-    public Ship(final String myShipClass, final String myPilot,
-            final int myFuel, final int baysSize) {
-        this.shipClass = myShipClass;
-        this.pilot = myPilot;
-        this.fuel = myFuel;
+    /*
+    creates a completely customized ship
+    */
+    public Ship(String shipClass,String pilot,int fuel, int baysSize) {
+        this.shipClass = shipClass;
+        this.pilot = pilot;
+        this.fuel = fuel;
         this.cargoManifest = new TradeItem[baysSize];
         this.occupiedSlots = 0;
         this.bays = baysSize;
-        this.fuelTank = DEFAULT_FUEL;
+        this.fuelTank = 14;
     }
-
-    /**
-     * Create a defaulted Ship with a pilot name.
-     * @param myPilot the pilot name
-     */
-    public Ship(final String myPilot) {
-        this.shipClass = "Flea";
-        this.pilot = myPilot;
-        this.fuel = DEFAULT_FUEL;
-        this.cargoManifest = new TradeItem[DEFAULT_BAYS];
-        this.occupiedSlots = 0;
-        this.bays = DEFAULT_BAYS;
-        this.fuelTank = DEFAULT_FUEL;
-    }
-
-   /**
-    * Default ship is a flea model with Captain Kirk.
+    /*
+    creates a ship with a custom pilot
     */
-    public Ship() {
-        this.shipClass = "Flea";
-        this.pilot = "Kirk";
-        this.fuel = DEFAULT_FUEL;
-        this.cargoManifest = new TradeItem[DEFAULT_BAYS];
-        this.occupiedSlots = 0;
-        this.bays = DEFAULT_BAYS;
-        this.fuelTank = DEFAULT_FUEL;
+    public Ship(String pilot){
+        this("Flea", pilot, 14, 10);
     }
-
-    /**
-     * "Upgrade" Ship.
-     * @param name name
-     * @param cargo cargo
-     * @param myFuel fuel
-     */
-    public Ship(final String name, final int cargo, final int myFuel) {
-        this.shipClass = "Upgrade";
-        this.pilot = "Kirk";
-        this.fuel = DEFAULT_FUEL;
-        this.cargoManifest = new TradeItem[DEFAULT_FUEL];
-        this.occupiedSlots = 0;
-        this.bays = DEFAULT_FUEL;
-        this.fuelTank = DEFAULT_FUEL;
-        //NOTE: DEFAULT_FUEL is being used for cargo size
+    /*
+    default ship is a flea model with Captain Kirk
+    */
+    public Ship(){
+        this("Flea", "Kirk", 14, 10);
     }
-
+    public Ship(String Name,int cargo,int fuel){
+        this("Upgrade","Kirk",14,14);
+    }
     /**
      * @return the amount of fuel that the ship currently has
      */
-    public final int getFuel() {
+    public int getFuel(){
         return this.fuel;
     }
-
     /**
-     * @param myFuel the new amount of fuel
+     * @param fuel the new amount of fuel
      */
-    public final void setFuel(final int myFuel) {
-        this.fuel = myFuel;
+    public void setFuel(int fuel){
+        this.fuel = fuel;
     }
-
-    /**
-     * Purchase fuel.
-     */
-    public final void buyFuel() {
-        int toBuy = fuelTank - fuel;
+    public void buyFuel(){
+        int toBuy = fuelTank-fuel;
         System.out.println(WelcomeScreenController.game);
         System.out.println(WelcomeScreenController.game.player);
         System.out.println(WelcomeScreenController.game.getPlayer());
         System.out.println(WelcomeScreenController.game.getPlayer().getMoney());
-
-        if ((WelcomeScreenController.game.getPlayer()
-                .getMoney() - toBuy * FUEL_PRICE) > 0) {
+        
+        if((WelcomeScreenController.game.getPlayer().getMoney() - toBuy * 5) > 0){
             setFuel(fuelTank);
-            WelcomeScreenController.game.getPlayer()
-                    .setMoney(WelcomeScreenController
-                            .game.getPlayer().getMoney() - toBuy * FUEL_PRICE);
+            WelcomeScreenController.game.getPlayer().setMoney(WelcomeScreenController.game.getPlayer().getMoney() - toBuy * 5);  
         }
     }
-
     /**
      * @return the x coordinate of the ship's current position
      */
-    public final int getX() {
+    public int getX() {
         return this.x;
     }
-
     /**
-     * Sets the new x coordinate of the ship.
-     * @param newX new X
+     * sets the new x coordinate of the ship
+     * @param newX
      */
-    public final void setX(final int newX) {
+    public void setX(int newX){
         this.x = newX;
     }
-
     /**
      * @return the y coordinate of the ship's current position
      */
-    public final int getY() {
+    public int getY() {
         return this.y;
     }
-
     /**
-     * Sets the new y coordinate of the ship.
-     * @param newY new Y
+     * sets the new y coordinate of the ship
+     * @param newY
      */
-    public final void setY(final int newY) {
-        this.y = newY;
+    public void setY(int newY){
+        this.y= newY;
     }
-
-    /**
-     * @return true iff bays are available else false
-     */
-    public final boolean freeSpace() {
+    
+    public boolean freeSpace(){
         return (bays - occupiedSlots) > 0;
     }
-
-    /**
-     * @return the # of bays available
-     */
-    public final int getSpaceLeft() {
-        return bays - occupiedSlots;
+    public int getSpaceLeft(){
+        return bays-occupiedSlots;
     }
-
     /**
-     * Adds a TradeItem to the cargoManifest of the ship if it is not full.
+     * Adds a TradeItem to the cargoManifest of the ship if it is not full
+     * 
      * @param item The TradeItem to add to cargo
      * @return false if cargo is full else true
      */
-    public final boolean addItem(final TradeItem item) {
-
-        if (getOccupiedSlots() == getCargoManifest().length) {
+    public boolean addItem(TradeItem item) {
+        
+        if(getOccupiedSlots() == getCargoManifest().length) {
             return false;
         }
-        for (int i = 0; i < getCargoManifest().length; i++) {
-            if (this.getCargoManifest()[i] == null) {
+        for(int i = 0; i < getCargoManifest().length; i++) {
+            if(this.getCargoManifest()[i] == null) {
                 this.cargoManifest[i] = item;
                 this.occupiedSlots++;
-
+                
                 return true;
             }
         }
@@ -194,13 +129,14 @@ public class Ship implements Serializable  {
 
     /**
      * Removes the first occurring type of the item specified in cargoManifest.
+     * 
      * @param item The item to remove
      * @return true if successfully removed else false
      */
-    public final boolean removeItem(final TradeItem item) {
-
-        for (int i = 0; i < getCargoManifest().length; i++) {
-            if (this.getCargoManifest()[i] != null
+    public boolean removeItem(TradeItem item) {
+        
+        for(int i = 0; i < getCargoManifest().length; i++) {
+            if(this.getCargoManifest()[i] != null
                && this.getCargoManifest()[i].getName().equals(item.getName())) {
                 this.cargoManifest[i] = null;
                 this.occupiedSlots--;
@@ -209,151 +145,116 @@ public class Ship implements Serializable  {
         }
         return false;
     }
-
+    
+    
     /**
      * @return bays: the number of bays that the ship has
      */
-    public final int getBays() {
+    public int getBays(){
         return this.bays;
     }
-
+    
     /**
      * @return the class of ship that you are flying
      */
-    public final String getShipClass() {
+    public String getShipClass() {
         return this.shipClass;
     }
 
     /**
-     * @return the pilot of the ship
+     * @return the pilot of the ship 
      */
-    public final String getPilot() {
+    public String getPilot() {
         return this.pilot;
     }
     /**
-     * @param nPilot sets the new pilot of the ship
+     * 
+     * @param nPilot sets the new pilot of the ship 
      */
-    public final void setPilot(final String nPilot) {
+    public void setPilot(String nPilot){
         this.pilot = nPilot;
     }
-
     /**
      * @return the occupiedSlots
      */
-    public final int getOccupiedSlots() {
+    public int getOccupiedSlots() {
         return this.occupiedSlots;
     }
-
-    /**
-     * @param temp new # of occupied slots
-     */
-    public final void setOccupiedSlots(final int temp) {
-        this.occupiedSlots = temp;
+    public void setOccupiedSlots(int temp){
+        occupiedSlots=temp;
     }
-
-    /**
-     * @param j the array of cargo
-     */
-    public final void setCargoManifest(final TradeItem[] j) {
+    public void setCargoManifest(TradeItem[] j){
         this.cargoManifest = j;
     }
 
     /**
      * @return the cargo
      */
-    public final TradeItem[] getCargoManifest() {
+    public TradeItem[] getCargoManifest() {
         return this.cargoManifest;
     }
-
     /**
-     * @param item the TradeItem to search for
+     * @param item
      * @return the number of a specific type of cargo in ship
      */
-    public final int searchCargo(final TradeItem item) {
+    public int searchCargo(TradeItem item){
         int output = 0;
-        for (TradeItem ti: cargoManifest) {
-            if (ti != null && ti.getName().equalsIgnoreCase(item.getName())) {
+        for(TradeItem ti: cargoManifest){
+            if(ti != null && ti.getName().equalsIgnoreCase(item.getName()))
                 output++;
-            }
         }
         return output;
     }
-
     /**
-     * Navigate the ship from its current position to the input (x, y).
-     * @param newX x-coordinate
-     * @param newY y-coordinate
-     * @param uni Universe
-     * @param i i
-     * @param j j
-     * @param s s
-     * @return j
+     * Navigate the ship from its current position to the input (x, y)
+     * 
+     * @param x x-coordinate
+     * @param y y-coordinate
+     * @param uni
+     * @param i
+     * @param j
+     * @param s
+     * @return 
      */
-    public final int travel(final int newX, final int newY, final Universe uni,
-            final int i, final int j, final Stage s) {
-
-        int distance = (int) Math.sqrt(Math
-                .pow((double) Math.abs(getX() - x), 2)
-                + (double) Math.pow(Math.abs(getY() - y), 2));
-
-        if (i != j && distance <= getFuel()) {
-//            i = j;  IF SOMETHING BREAKS THIS IS WHY. I NEEDS TO BE FINAL..
+    public int travel(int x, int y, Universe uni, int i, int j, Stage s) {
+        int distance = (int)Math.sqrt(Math.pow((double)Math.abs(getX() - x), 2) + (double)Math.pow(Math.abs(getY() - y), 2));
+        if(i != j && distance <= getFuel()){
+            i=j;
             setFuel(getFuel() - distance);
-            randomEvent(s);
+            RandomEvent(s);
         }
-
-        this.x = newX;
-        this.y = newY;
+        this.x = x;
+        this.y = y;
         return j;
     }
-
-    /**
-     * @param s the Stage
-     */
-    public final void randomEvent(final Stage s) {
+    public void RandomEvent(Stage s){
         Random rand = new Random();
-
-        if (rand.nextInt(MAX_PERCENT) < EVENT_PERCENT) {
+        
+        if(rand.nextInt(100) < 5){
             fuelLeak(s);
         }
-
-        if (rand.nextInt(MAX_PERCENT) < EVENT_PERCENT) {
+        if(rand.nextInt(100) < 100) {
             robbed(s, rand);
         }
     }
-
-    /**
-     * @param myBays new # bays
-     */
-    public final void setBays(final int myBays) {
-        this.bays = myBays;
+    public void setBays(int bays) {
+        this.bays = bays;
     }
-
-    /**
-     * @param s the Stage
-     */
-    public final void fuelLeak(final Stage s) {
-
-        int cost = (this.fuelTank * FUEL_MULT) - (WelcomeScreenController
-                .game.getPlayer().getEngineerSkill() * ESKILL_MULT);
-
+    public void fuelLeak(Stage s){
+        int cost = (this.fuelTank * 10) - (WelcomeScreenController.game.getPlayer().getEngineerSkill() * 5);
         if (WelcomeScreenController.game.getPlayer().getMoney() - cost >= 0) {
-            WelcomeScreenController.game.getPlayer()
-                    .setMoney(WelcomeScreenController.game.getPlayer()
-                            .getMoney() - cost);
+            WelcomeScreenController.game.getPlayer().setMoney(WelcomeScreenController.game.getPlayer().getMoney() - cost);
         } else {
-            System.exit(1);
+            //game OVER
         }
         setFuel(0);
         Dialogs.create()
             .owner(s)
             .title("OH NO!")
             .masthead(null)
-            .message("There has been a fuel leak!\nBecause of your engineerin"
-                + "g skill, you don't"
+            .message("There has been a fuel leak!\nBecause of your engineering skill, you don't"
                 + " have to buy a new fuel tank but just some spare parts.\n"
-                + " You save " + (WelcomeScreenController.game.getPlayer()
-                        .getEngineerSkill() * ESKILL_MULT) + " credits.")
+                + " You save " + (WelcomeScreenController.game.getPlayer().getEngineerSkill() * 5) + " credits.")
             .showInformation();
     }
 
@@ -363,20 +264,19 @@ public class Ship implements Serializable  {
      * @param s the Stage handling random events
      * @param rand rng
      */
-    public final void robbed(final Stage s, final Random rand) {
-
+    public void robbed(Stage s, Random rand) {
+        
         // # of attempts a theif tries to steal
-        int attempts = MAX_ROB_ATTEMPTS - (WelcomeScreenController
-                .game.getPlayer().getTraderSkill() / 2);
+        int attempts = 6 - (WelcomeScreenController.game.getPlayer().getTraderSkill() / 2);
         String stolen = "";
 
         // Thief tries to steal "attempts" times from a random bay. The same
         // bay can be stolen from multiple times but nothing will happen after
         // stealing from it once. This should add some randomness.
-        for (int i = 0; i < attempts; i++) {
-
+        for(int i=0; i < attempts; i++) {
+            
             int bayToStealFrom = rand.nextInt(this.bays);
-
+            
             if (this.cargoManifest[bayToStealFrom] != null) {
                 stolen += "\t" + this.cargoManifest[bayToStealFrom].getName()
                         + " in bay " + bayToStealFrom + "\n";
@@ -384,30 +284,20 @@ public class Ship implements Serializable  {
                 this.occupiedSlots--;
             }
         }
-
-        if (stolen.equals("")) {
-            stolen = "Nothing! You sure lucked out.";
-        }
+        
+        if (stolen.equals("")) stolen = "Nothing! You sure lucked out.";
         Dialogs.create()
                 .owner(s)
                 .title("You've been robbed!")
                 .masthead(null)
-                .message("The following have been stolen from cargo:\n"
-                        + stolen)
+                .message("The following have been stolen from cargo:\n" + stolen)
                 .showInformation();
     }
-
-    /**
-     * @param nFuelTank new fuel size
-     */
-    public final void setFuelTank(final int nFuelTank) {
-        this.fuelTank = nFuelTank;
+    
+    public void setFuelTank(int fuelTank) {
+        this.fuelTank = fuelTank;
     }
-
-    /**
-     * @return fuel tank
-     */
-    public final int getFuelTank() {
-        return this.fuelTank;
+    public int getFuelTank() {
+        return fuelTank;
     }
 }
