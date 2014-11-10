@@ -16,22 +16,9 @@ public class MarketPlace implements Serializable {
     private Random rand;
 
     private final int NUM_TRADE_ITEMS = 10;
-    private final double PT8 = .8;
-    private final double PT85 = .85;
-    private final double ONEPT25 = 1.25;
-    private final double ONEPT5 = 1.5;
-    private final double ONEPT75 = 1.75;
     private final int LOW_TECH = 2;
     private final int MID_TECH = 4;
     private final int HIGH_TECH = 6;
-    private final int THREE = 3;
-    private final int FOUR = 4;
-    private final int FIVE = 5;
-    private final int SIX = 6;
-    private final int SEVEN = 7;
-    private final int EIGHT = 8;
-    private final int NINE = 9;
-    private final int THIRTY = 30;
     //CHECKSTYLE: ON
 
     /**
@@ -52,13 +39,15 @@ public class MarketPlace implements Serializable {
         items[0] = new TradeItem("Water");
         items[1] = new TradeItem("Furs");
         items[2] = new TradeItem("Food");
-        items[THREE] = new TradeItem("Ore");
-        items[FOUR] = new TradeItem("Games");
-        items[FIVE] = new TradeItem("Firearms");
-        items[SIX] = new TradeItem("Medicine");
-        items[SEVEN] = new TradeItem("Machines");
-        items[EIGHT] = new TradeItem("Narcotics");
-        items[NINE] = new TradeItem("Robots");
+        //CHECKSTYLE: OFF
+        items[3] = new TradeItem("Ore");
+        items[4] = new TradeItem("Games");
+        items[5] = new TradeItem("Firearms");
+        items[6] = new TradeItem("Medicine");
+        items[7] = new TradeItem("Machines");
+        items[8] = new TradeItem("Narcotics");
+        items[9] = new TradeItem("Robots");
+        //CHECKSTYLE: ON
         amount = new int[NUM_TRADE_ITEMS];
         totalPrice = new int[NUM_TRADE_ITEMS];
         sellPrice = new int[NUM_TRADE_ITEMS];
@@ -79,19 +68,17 @@ public class MarketPlace implements Serializable {
      */
     public final void calculatePrices() {
         for (int i = 0; i < items.length; i++) {
-            totalPrice[i] = items[i].getBP() + (items[i].getIPL()
-                    * (techLevel - items[i].getMTLP()))
-                    + (int) ((double) items[i].getBP() * (items[i].getVar()));
-            sellPrice[i] = (int) ((double) totalPrice[i] * PT85);
-            sellPrice[i] = (int) ((double) totalPrice[i] * PT8);
-            if (techLevel > LOW_TECH) {
+            totalPrice[i] = items[i].getBP() + (items[i].getIPL() * (techLevel - items[i].getMTLP())) + (int)((double)items[i].getBP() * (items[i].getVar())); 
+            sellPrice[i] = (int)((double) totalPrice[i] * .85);
+            sellPrice[i] = (int)((double) totalPrice[i] * .80);
+            if (techLevel > 2) {
                 //int random = nextDouble(1.5 - 1.0 + 1.0) + 1.0;
-                totalPrice[i] = (int) (totalPrice[i] * ONEPT5);
-                sellPrice[i] = (int) (sellPrice[i] * ONEPT5);
-            } else if (techLevel > MID_TECH) {
-                totalPrice[i] = (int) (totalPrice[i] * ONEPT75);
-                sellPrice[i] = (int) (sellPrice[i] * ONEPT75);
-            } else if (techLevel > HIGH_TECH) {
+                totalPrice[i] = (int) (totalPrice[i] * 1.5);
+                sellPrice[i] = (int) (sellPrice[i] * 1.5);
+            } else if (techLevel > 4) {
+                totalPrice[i] = (int) (totalPrice[i] * 1.75);
+                sellPrice[i] = (int) (sellPrice[i] * 1.75);
+            } else if(techLevel > 6) {
                 totalPrice[i] = (int) (totalPrice[i] * 2);
                 sellPrice[i] = (int) (sellPrice[i] * 2);
             }
@@ -101,202 +88,194 @@ public class MarketPlace implements Serializable {
             if (techLevel < items[i].getMTLP()) {
                 totalPrice[i] = 0;
             }
-        }
+        }   
     }
     /**
      * Calculates the amount of items there are on each SolarSystem. Considers
      * the minimum tech level to produce.
      */
-    public final void calculateAmount() {
+    public void calculateAmount() {
         for (int i = 0; i < items.length; i++) {
             if (techLevel < items[i].getMTLP()) {
                 amount[i] = 0;
+                
             } else {
-                amount[i] = (int) Math.round((1.0
-                        - ((double) i / NUM_TRADE_ITEMS)) * (rand
-                        .nextInt(THIRTY - NUM_TRADE_ITEMS + 1)
-                                + NUM_TRADE_ITEMS));
+                amount[i] = (int)Math.round((1.0 - ((double)i / 10)) * (rand.nextInt(30 - 10 + 1) + 10 ));
                 if (techLevel == items[i].getTTP()) {
-                    amount[i] = amount[i] * 2;
+                    amount[i] = amount[i] * 2;  
                 }
             }
         }
     }
-
+    
     /**
      * Buys an item from marketplace
      * Subtracts the amount of items from market place and the amount being paid
      * from the players money.
+     * 
      * @param buttonPushed the button that was clicked
      * @param uni the Universe the the game is running on
      * @param i SolarSystem index in the Universe
      * @param s the ship to store the bought items on
      * @return the name of the item purchased
      */
-    public final String buyingItem(final String buttonPushed,
-            final Universe uni, final int i, final Ship s) {
+    public String buyingItem(String buttonPushed, Universe uni, int i, Ship s) {
         int itemNum = -1;
         String itemName = null;
-        switch(buttonPushed) {
+        switch(buttonPushed){
             case "b0":
-                itemNum = 0;
-                itemName = "Water";
+                itemNum=0;
+                itemName="Water";
                 break;
             case "b1":
-                itemNum = 1;
-                itemName = "Furs";
+                itemNum=1;
+                itemName="Furs";
                 break;
             case "b2":
-                itemNum = 2;
-                itemName = "Food";
+                itemNum=2;
+                itemName="Food";
                 break;
             case "b3":
-                itemNum = THREE;
-                itemName = "Ore";
+                itemNum=3;
+                itemName="Ore";
                 break;
             case "b4":
-                itemNum = FOUR;
-                itemName = "Games";
+                itemNum=4;
+                itemName="Games";
                 break;
             case "b5":
-                itemNum = FIVE;
-                itemName = "Firearms";
+                itemNum=5;
+                itemName="Firearms";
                 break;
             case "b6":
-                itemNum = SIX;
-                itemName = "Medicine";
+                itemNum=6;
+                itemName="Medicine";
                 break;
             case "b7":
-                itemNum = SEVEN;
-                itemName = "Machines";
+                itemNum=7;
+                itemName="Machines";
                 break;
             case "b8":
-                itemNum = EIGHT;
-                itemName = "Narcotics";
+                itemNum=8;
+                itemName="Narcotics";
                 break;
             case "b9":
-                itemNum = NINE;
-                itemName = "Robots";
+                itemNum=9;
+                itemName="Robots";
                 break;
             default:
+                
             }
-        if (uni != null && s != null && WelcomeScreenController.game.getPlayer()
-                .getMoney()
-                >= uni.getSolarSystemAt(i).getMarketPlace()
-                            .getBuyingPriceAt(itemNum)
-                && uni.getSolarSystemAt(i).getMarketPlace()
-                        .getAmountAt(itemNum) > 0
-                && s.addItem(new TradeItem(itemName))
-                && uni.getSolarSystemAt(i).getMarketPlace()
-                        .getBuyingPriceAt(itemNum) > 0) {
+        if(uni != null && s != null && WelcomeScreenController.game.getPlayer().getMoney() >=
+                    uni.getSolarSystemAt(i).getMarketPlace().getBuyingPriceAt(itemNum)
+                && uni.getSolarSystemAt(i).getMarketPlace().getAmountAt(itemNum) > 0
+                && s.addItem(new TradeItem(itemName)) == true
+                && uni.getSolarSystemAt(i).getMarketPlace().getBuyingPriceAt(itemNum) > 0){
             amount[itemNum] = amount[itemNum] - 1;
-            WelcomeScreenController.game.getPlayer()
-                    .setMoney(WelcomeScreenController.game.getPlayer()
-                            .getMoney() - totalPrice[itemNum]);
+            WelcomeScreenController.game.getPlayer().setMoney(WelcomeScreenController.game.getPlayer().getMoney() - totalPrice[itemNum]);
         }
         return itemName;
     }
-
+    
     /**
      * Sells an item to the marketplace. The market place gains an item and the
      * player gains money.
+     * 
      * @param buttonPushed the button that was clicked
      * @param uni the Universe the the game is running on
      * @param i SolarSystem index in the Universe
      * @param s the ship to store the bought items on
      * @return the name of the item sold
      */
-    public final String sellingItem(final String buttonPushed,
-            final Universe uni, final int i, final Ship s) {
+    public String sellingItem(String buttonPushed, Universe uni, int i, Ship s) {
         int itemNum = -1;
         String itemName = null;
-        switch(buttonPushed) {
+        switch(buttonPushed){
             case "s0":
-                itemNum = 0;
-                itemName = "Water";
+                itemNum=0;
+                itemName="Water";
                 break;
             case "s1":
-                itemNum = 1;
-                itemName = "Furs";
+                itemNum=1;
+                itemName="Furs";
                 break;
             case "s2":
-                itemNum = 2;
-                itemName = "Food";
+                itemNum=2;
+                itemName="Food";
                 break;
             case "s3":
-                itemNum = THREE;
-                itemName = "Ore";
+                itemNum=3;
+                itemName="Ore";
                 break;
             case "s4":
-                itemNum = FOUR;
-                itemName = "Games";
+                itemNum=4;
+                itemName="Games";
                 break;
             case "s5":
-                itemNum = FIVE;
-                itemName = "Firearms";
+                itemNum=5;
+                itemName="Firearms";
                 break;
             case "s6":
-                itemNum = SIX;
-                itemName = "Medicine";
+                itemNum=6;
+                itemName="Medicine";
                 break;
             case "s7":
-                itemNum = SEVEN;
-                itemName = "Machines";
+                itemNum=7;
+                itemName="Machines";
                 break;
             case "s8":
-                itemNum = EIGHT;
-                itemName = "Narcotics";
+                itemNum=8;
+                itemName="Narcotics";
                 break;
             case "s9":
-                itemNum = NINE;
-                itemName = "Robots";
+                itemNum=9;
+                itemName="Robots";
                 break;
             default:
-
+                
         }
-        if (uni != null && s != null && uni.getSolarSystemAt(i).getMarketPlace()
-                .getSellingPriceAt(itemNum) > 0
-                && s.removeItem(new TradeItem(itemName))) {
+        if(uni != null && s != null && uni.getSolarSystemAt(i).getMarketPlace().getSellingPriceAt(itemNum)> 0
+                && s.removeItem(new TradeItem(itemName)) == true){
             amount[itemNum] = amount[itemNum] + 1;
-            WelcomeScreenController.game.getPlayer()
-                    .setMoney(WelcomeScreenController.game.getPlayer()
-                            .getMoney() + sellPrice[itemNum]);
+            WelcomeScreenController.game.getPlayer().setMoney(WelcomeScreenController.game.getPlayer().getMoney() + sellPrice[itemNum]);
         }
         return itemName;
     }
-
+    
     /**
-     * getter for the amount.
+     * getter for the amount
      * @return amount
      */
-    public final int[] getAmount() {
+    public int[] getAmount() {
         return amount;
     }
-
+    
     /**
-     * getter for the amount at a certain index.
-     * @param index index
+     * getter for the amount at a certain index
+     * @param index
      * @return amount of a good
      */
-    public final int getAmountAt(final int index) {
+    public int getAmountAt(int index) {
         return amount[index];
     }
-
+    
     /**
-     * Getter for the selling price.
-     * @param index index
+     * Getter for the selling price
+     * @param index
      * @return selling price for an item
      */
-    public final int getSellingPriceAt(final int index) {
+    public int getSellingPriceAt(int index) {
         return sellPrice[index];
     }
-
+    
     /**
-     * Getter for the buying price of a good.
-     * @param index index
-     * @return price of a good
+     * getter for the buying price of a good
+     * @param index
+     * @return price of a good 
      */
-    public final int getBuyingPriceAt(final int index) {
+    public int getBuyingPriceAt(int index) {
         return totalPrice[index];
     }
+    
+
 }
