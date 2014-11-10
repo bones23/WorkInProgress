@@ -16,7 +16,7 @@
             <Image url="@../supporting/STARS.jpg" />
          </image>
       </ImageView>
-      <Text layoutX="23.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Space Trader">
+      <Text fx:id="titleText" layoutX="23.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Space Trader">
          <font>
             <Font name="Slice Regular" size="90.0" />
          </font>
@@ -44,7 +44,7 @@
             <Font name="Alien Encounters" size="19.0" />
          </font>
       </Text>
-      <Text fx:id="loadGameText" fill="WHITE" layoutX="347.0" layoutY="304.0" onMouseClicked="#loadGameClicked" strokeType="OUTSIDE" strokeWidth="0.0" text="LOAD Game">
+      <Text fx:id="loadGameText" fill="WHITE" layoutX="347.0" layoutY="304.0" onMouseClicked="#loadGameClicked" strokeType="OUTSIDE" strokeWidth="0.0" text="Load Game">
          <font>
             <Font name="CF Dots 521 Regular" size="34.0" />
          </font>

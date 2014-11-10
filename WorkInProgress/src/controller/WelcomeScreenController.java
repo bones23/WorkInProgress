@@ -27,7 +27,7 @@ import org.controlsfx.dialog.Dialogs;
 
 /**
  *
- * @author dblake
+ * @author dblake, lukenewman
  */
 public class WelcomeScreenController extends MainDisplayController implements Initializable{
     @FXML

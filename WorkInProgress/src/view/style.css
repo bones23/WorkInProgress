@@ -1,0 +1,24 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Nov 10, 2014, 2:14:08 PM
+    Author     : lukenewman
+*/
+
+.title {
+    -fx-font-family: slice;
+    -fx-font-size: 90;
+}
+
+.textButton {
+    -fx-font-family: CFDots-Regular;
+    -fx-font-size: 34;
+}
+
+.easterEgg {
+    -fx-font-family: Alien-Encounters-Regular;
+    -fx-font-size: 19;
+}
