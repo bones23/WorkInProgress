@@ -1,5 +1,6 @@
 package controller;
 
+import model.Game;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
@@ -7,7 +8,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -18,24 +18,27 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Font;
+//import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-
-import model.*;
-
 import org.controlsfx.dialog.Dialogs;
 
 /**
  *
  * @author dblake
  */
-public class WelcomeScreenController extends MainDisplayController{
+public class WelcomeScreenController extends MainDisplayController implements Initializable{
     @FXML
     public static Stage stage;
     
     @FXML
+    private Text titleText;
+    @FXML
     private Text newGameText;
+    @FXML
+    private Text loadGameText;
     @FXML
     private Button okButton;
     @FXML
@@ -60,13 +63,26 @@ public class WelcomeScreenController extends MainDisplayController{
     public static Game game=new Game();
     public Stage main = MainDisplayController.stage;
     
-    /**
-     * @param args the command line arguments
-     */
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        Font.loadFont(WelcomeScreenController.class
+                .getResource("slice.ttf").toExternalForm(), 10);
+        Font.loadFont(WelcomeScreenController.class
+                .getResource("CFDots-Regular.ttf").toExternalForm(), 10);
+        Font.loadFont(WelcomeScreenController.class
+                .getResource("Alien-Encounters-Regular.ttf").toExternalForm(), 10);
+        
+        this.titleText.getStyleClass().add("titleText");
+        this.newGameText.getStyleClass().add("textButton");
+        this.loadGameText.getStyleClass().add("textButton");
+        this.easterEgg.getStyleClass().add("easterEgg");
+    }
     
     @FXML
+    @SuppressWarnings("static-access")
     private void newGameClicked(MouseEvent event) throws IOException {
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("/view/CharacterScreen.fxml"));
+        AnchorPane pane = FXMLLoader.load(getClass()
+                .getResource("/view/CharacterScreen.fxml"));
         this.characterCreationScreen = new Scene(pane);
         System.out.println(this.stage);
         if (this.stage == null) {
@@ -80,7 +96,8 @@ public class WelcomeScreenController extends MainDisplayController{
     }
     
     @FXML
-    private void loadGameClicked(MouseEvent event) throws IOException, ClassNotFoundException {
+    private void loadGameClicked(MouseEvent event) throws IOException, 
+            ClassNotFoundException {
         String fileName="";
         System.out.println("Load game");
         System.out.println("load stage: " + this.stage);
@@ -91,8 +108,10 @@ public class WelcomeScreenController extends MainDisplayController{
             fileName = file.getName();
         }
         game.load(fileName);
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("/view/MapController.fxml"));
-            AnchorPane pane2 = FXMLLoader.load(getClass().getResource("/view/MarketplaceScreen.fxml"));
+        AnchorPane pane = FXMLLoader.load(getClass()
+                .getResource("/view/MapController.fxml"));
+            AnchorPane pane2 = FXMLLoader.load(getClass()
+                .getResource("/view/MarketplaceScreen.fxml"));
             pane.getChildren().add(pane2);
             Scene scene = new Scene(pane);
             this.stage = new Stage();
@@ -109,11 +128,9 @@ public class WelcomeScreenController extends MainDisplayController{
         int fighterSliderValue = (int) fighterSlider.getValue();
         int traderSliderValue = (int) traderSlider.getValue();
         int engineerSliderValue = (int) engineerSlider.getValue();
-        String difficulty = (String)difficultyComboBox.getValue();
+        String difficulty = (String)difficultyComboBox.getValue() == null ? 
+                (String)difficultyComboBox.getValue() : "Normal";
         String name = nameTextField.getText();
-        if (difficulty == null) {
-            difficulty = "Normal";
-        }
         
         // check point allocation
         int totalPoints = pilotSliderValue + fighterSliderValue + traderSliderValue + engineerSliderValue;
