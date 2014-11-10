@@ -1,5 +1,5 @@
 package model;
-import controller.*;
+import controller.WelcomeScreenController;
 import java.io.Serializable;
 import java.util.Random;
 /**
@@ -7,23 +7,39 @@ import java.util.Random;
  * @author Brandon Jackson
  */
 public class MarketPlace implements Serializable {
+    //CHECKSTYLE: OFF
     private int techLevel;
     private TradeItem[] items;
     private int[] totalPrice;
     private int[] amount;
     private int[] sellPrice;
     private Random rand;
-    
+
+    private final int NUM_TRADE_ITEMS = 10;
+    private final int LOW_TECH = 2;
+    private final int MID_TECH = 4;
+    private final int HIGH_TECH = 6;
+    //CHECKSTYLE: ON
+
+    /**
+     * Create a MarketPlace with a tech level of 0.
+     */
     public MarketPlace() {
         this(0);
     }
-    public MarketPlace(int techLevel) {
+
+    /**
+     * Create a MarketPlace.
+     * @param myTechLevel tech level
+     */
+    public MarketPlace(final int myTechLevel) {
         rand = new Random();
-        this.techLevel = techLevel;
-        items = new TradeItem[10];
+        this.techLevel = myTechLevel;
+        items = new TradeItem[NUM_TRADE_ITEMS];
         items[0] = new TradeItem("Water");
         items[1] = new TradeItem("Furs");
         items[2] = new TradeItem("Food");
+        //CHECKSTYLE: OFF
         items[3] = new TradeItem("Ore");
         items[4] = new TradeItem("Games");
         items[5] = new TradeItem("Firearms");
@@ -31,39 +47,40 @@ public class MarketPlace implements Serializable {
         items[7] = new TradeItem("Machines");
         items[8] = new TradeItem("Narcotics");
         items[9] = new TradeItem("Robots");
-        amount = new int[10];
-        totalPrice = new int[10];
-        sellPrice = new int[10];
+        //CHECKSTYLE: ON
+        amount = new int[NUM_TRADE_ITEMS];
+        totalPrice = new int[NUM_TRADE_ITEMS];
+        sellPrice = new int[NUM_TRADE_ITEMS];
         calcAmtAndPrices();
     }
-    
+
     /**
-     * Private helper method for the constructor
+     * Private helper method for the constructor.
      */
     private void calcAmtAndPrices() {
         calculateAmount();
         calculatePrices();
     }
-    
+
     /**
-     * Calculates the price of a good being sold to the marketplace and bought 
-     * from the market place.
+     * Calculates the price of a good being sold to the marketplace and bought
+     * from the MarketPlace.
      */
-    public void calculatePrices() {
+    public final void calculatePrices() {
         for (int i = 0; i < items.length; i++) {
             totalPrice[i] = items[i].getBP() + (items[i].getIPL() * (techLevel - items[i].getMTLP())) + (int)((double)items[i].getBP() * (items[i].getVar())); 
-            sellPrice[i] = (int)((double)totalPrice[i] * .85);
-            sellPrice[i] = (int)((double)totalPrice[i] * .80);
+            sellPrice[i] = (int)((double) totalPrice[i] * .85);
+            sellPrice[i] = (int)((double) totalPrice[i] * .80);
             if (techLevel > 2) {
                 //int random = nextDouble(1.5 - 1.0 + 1.0) + 1.0;
-                totalPrice[i] = (int)(totalPrice[i] * 1.5);
-                sellPrice[i] = (int)(sellPrice[i] * 1.5);
+                totalPrice[i] = (int) (totalPrice[i] * 1.5);
+                sellPrice[i] = (int) (sellPrice[i] * 1.5);
             } else if (techLevel > 4) {
-                totalPrice[i] = (int)(totalPrice[i] * 1.75);
-                sellPrice[i] = (int)(sellPrice[i] * 1.75);
+                totalPrice[i] = (int) (totalPrice[i] * 1.75);
+                sellPrice[i] = (int) (sellPrice[i] * 1.75);
             } else if(techLevel > 6) {
-                totalPrice[i] = (int)(totalPrice[i] * 2);
-                sellPrice[i] = (int)(sellPrice[i] * 2);
+                totalPrice[i] = (int) (totalPrice[i] * 2);
+                sellPrice[i] = (int) (sellPrice[i] * 2);
             }
             if (techLevel < items[i].getMTLU()) {
                 sellPrice[i] = 0;
