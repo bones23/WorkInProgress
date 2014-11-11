@@ -76,7 +76,7 @@ public class TradeItem implements Serializable {
     private final int MACHINES_TTP = 5;
     private final int MACHINES_BP = 900;
     private final int MACHINES_IPL = -30;
-    private final int MACHINES_VAR = 50;
+    private final int MACHINES_VAR = 5;
     private final int MACHINES_MTL = 600;
     private final int MACHINES_MTH = 800;
 
@@ -105,7 +105,7 @@ public class TradeItem implements Serializable {
     public TradeItem(final String item) {
 
         this.name = item;
-        String never = "never";
+        String never = "Never";
         switch(item) {
             case "Water":
                 this.MTLP = 0;
