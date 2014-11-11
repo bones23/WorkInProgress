@@ -76,7 +76,7 @@ implements Initializable {
     }
 
     @Override
-    public final void start(final Stage stage) throws Exception {
+    public final void start(final Stage s) throws Exception {
         AnchorPane pane = FXMLLoader
                 .load(getClass().getResource("/view/WelcomeScreen.fxml"));
         this.welcomeScreen = new Scene(pane);
@@ -188,7 +188,7 @@ implements Initializable {
     /**
      * Cancel a click.
      * @param event e
-     * @throws IOException a 
+     * @throws IOException a
      */
     @FXML
     private void cancelButtonClicked(final MouseEvent event)

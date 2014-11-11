@@ -23,8 +23,7 @@ public class RandomEvent implements Serializable {
 
     /**
      * Create a RandomEvent and run the events.
-     * @param s s
-     * @param ship ship
+     * @param s stage
      */
     public RandomEvent(final Stage s) {
 
