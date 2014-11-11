@@ -13,7 +13,6 @@ public class RandomEvent implements Serializable {
     //CHECKSTYLE: OFF
     private Random rand;
     private Ship myShip;
-    private Stage myStage;
 
     private final int EVENT_PERCENT = 5;
     private final int MAX_PERCENT = 100;
@@ -27,11 +26,10 @@ public class RandomEvent implements Serializable {
      * @param s s
      * @param ship ship
      */
-    public RandomEvent(final Stage s, final Ship ship) {
+    public RandomEvent(final Stage s) {
 
         rand = new Random();
         this.myShip = WelcomeScreenController.game.getShip();
-        this.myStage = s;
 
         runRandomEvents(s);
     }

@@ -18,7 +18,6 @@ public class MarketPlace implements Serializable {
     private final int NUM_TRADE_ITEMS = 10;
     private final double PT8 = .8;
     private final double PT85 = .85;
-    private final double ONEPT25 = 1.25;
     private final double ONEPT5 = 1.5;
     private final double ONEPT75 = 1.75;
     private final int LOW_TECH = 2;
