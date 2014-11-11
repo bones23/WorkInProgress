@@ -31,10 +31,7 @@ public class MarketPlaceTest {
              System.out.print(mkt.getSellingPriceAt(i) + " ");
              System.out.print(mkt.getBuyingPriceAt(i) + "\n");
          }
-//         for(int i=0; i<10; i++) {
-//             System.out.print(mkt.getSellingPriceAt(i) + " ");
-//             System.out.print(mkt.getBuyingPriceAt(i) + "\n");
-//         }
+         // complete branch coverage b/c buying price is always .85x selling price
          assertEquals((int)(mkt.getBuyingPriceAt(0)*.85), mkt.getSellingPriceAt(0));
          assertEquals((int)(mkt.getBuyingPriceAt(1)*.85), mkt.getSellingPriceAt(1));
          assertEquals((int)(mkt.getBuyingPriceAt(2)*.85), mkt.getSellingPriceAt(2));
