@@ -16,21 +16,21 @@ public class MarketPlace implements Serializable {
     private Random rand;
 
     private final int NUM_TRADE_ITEMS = 10;
-    private final double PT8 = .8;
-    private final double PT85 = .85;
-    private final double ONEPT5 = 1.5;
-    private final double ONEPT75 = 1.75;
+    private final double LOW_PRICE_MULT = .8;
+    private final double HIGH_PRICE_MULT = .85;
+    private final double LOW_TECH_PRICE_MULT = 1.5;
+    private final double MID_TECH_PRICE_MULT = 1.75;
     private final int LOW_TECH = 2;
     private final int MID_TECH = 4;
     private final int HIGH_TECH = 6;
-    private final int THREE = 3;
-    private final int FOUR = 4;
-    private final int FIVE = 5;
-    private final int SIX = 6;
-    private final int SEVEN = 7;
-    private final int EIGHT = 8;
-    private final int NINE = 9;
-    private final int THIRTY = 30;
+    private final int ORE_INDEX = 3;
+    private final int GAMES_INDEX = 4;
+    private final int FIREARMS_INDEX = 5;
+    private final int MEDICINE_INDEX = 6;
+    private final int MACHINES_INDEX = 7;
+    private final int NARCOTICS_INDEX = 8;
+    private final int ROBOTS_INDEX = 9;
+    private final int MAX_AMT = 30;
     //CHECKSTYLE: ON
 
     /**
@@ -51,13 +51,13 @@ public class MarketPlace implements Serializable {
         items[0] = new TradeItem("Water");
         items[1] = new TradeItem("Furs");
         items[2] = new TradeItem("Food");
-        items[THREE] = new TradeItem("Ore");
-        items[FOUR] = new TradeItem("Games");
-        items[FIVE] = new TradeItem("Firearms");
-        items[SIX] = new TradeItem("Medicine");
-        items[SEVEN] = new TradeItem("Machines");
-        items[EIGHT] = new TradeItem("Narcotics");
-        items[NINE] = new TradeItem("Robots");
+        items[ORE_INDEX] = new TradeItem("Ore");
+        items[GAMES_INDEX] = new TradeItem("Games");
+        items[FIREARMS_INDEX] = new TradeItem("Firearms");
+        items[MEDICINE_INDEX] = new TradeItem("Medicine");
+        items[MACHINES_INDEX] = new TradeItem("Machines");
+        items[NARCOTICS_INDEX] = new TradeItem("Narcotics");
+        items[ROBOTS_INDEX] = new TradeItem("Robots");
         amount = new int[NUM_TRADE_ITEMS];
         totalPrice = new int[NUM_TRADE_ITEMS];
         sellPrice = new int[NUM_TRADE_ITEMS];
@@ -81,15 +81,15 @@ public class MarketPlace implements Serializable {
             totalPrice[i] = items[i].getBP() + (items[i].getIPL()
                     * (techLevel - items[i].getMTLP()))
                     + (int) ((double) items[i].getBP() * (items[i].getVar()));
-            sellPrice[i] = (int) ((double) totalPrice[i] * PT85);
-            sellPrice[i] = (int) ((double) totalPrice[i] * PT8);
+            sellPrice[i] = (int) ((double) totalPrice[i] * HIGH_PRICE_MULT);
+            sellPrice[i] = (int) ((double) totalPrice[i] * LOW_PRICE_MULT);
             if (techLevel > LOW_TECH) {
                 //int random = nextDouble(1.5 - 1.0 + 1.0) + 1.0;
-                totalPrice[i] = (int) (totalPrice[i] * ONEPT5);
-                sellPrice[i] = (int) (sellPrice[i] * ONEPT5);
+                totalPrice[i] = (int) (totalPrice[i] * LOW_TECH_PRICE_MULT);
+                sellPrice[i] = (int) (sellPrice[i] * LOW_TECH_PRICE_MULT);
             } else if (techLevel > MID_TECH) {
-                totalPrice[i] = (int) (totalPrice[i] * ONEPT75);
-                sellPrice[i] = (int) (sellPrice[i] * ONEPT75);
+                totalPrice[i] = (int) (totalPrice[i] * MID_TECH_PRICE_MULT);
+                sellPrice[i] = (int) (sellPrice[i] * MID_TECH_PRICE_MULT);
             } else if (techLevel > HIGH_TECH) {
                 totalPrice[i] = (int) (totalPrice[i] * 2);
                 sellPrice[i] = (int) (sellPrice[i] * 2);
@@ -113,7 +113,7 @@ public class MarketPlace implements Serializable {
             } else {
                 amount[i] = (int) Math.round((1.0
                         - ((double) i / NUM_TRADE_ITEMS)) * (rand
-                        .nextInt(THIRTY - NUM_TRADE_ITEMS + 1)
+                        .nextInt(MAX_AMT - NUM_TRADE_ITEMS + 1)
                                 + NUM_TRADE_ITEMS));
                 if (techLevel == items[i].getTTP()) {
                     amount[i] = amount[i] * 2;
@@ -150,31 +150,31 @@ public class MarketPlace implements Serializable {
                 itemName = "Food";
                 break;
             case "b3":
-                itemNum = THREE;
+                itemNum = ORE_INDEX;
                 itemName = "Ore";
                 break;
             case "b4":
-                itemNum = FOUR;
+                itemNum = GAMES_INDEX;
                 itemName = "Games";
                 break;
             case "b5":
-                itemNum = FIVE;
+                itemNum = FIREARMS_INDEX;
                 itemName = "Firearms";
                 break;
             case "b6":
-                itemNum = SIX;
+                itemNum = MEDICINE_INDEX;
                 itemName = "Medicine";
                 break;
             case "b7":
-                itemNum = SEVEN;
+                itemNum = MACHINES_INDEX;
                 itemName = "Machines";
                 break;
             case "b8":
-                itemNum = EIGHT;
+                itemNum = NARCOTICS_INDEX;
                 itemName = "Narcotics";
                 break;
             case "b9":
-                itemNum = NINE;
+                itemNum = ROBOTS_INDEX;
                 itemName = "Robots";
                 break;
             default:
@@ -223,31 +223,31 @@ public class MarketPlace implements Serializable {
                 itemName = "Food";
                 break;
             case "s3":
-                itemNum = THREE;
+                itemNum = ORE_INDEX;
                 itemName = "Ore";
                 break;
             case "s4":
-                itemNum = FOUR;
+                itemNum = GAMES_INDEX;
                 itemName = "Games";
                 break;
             case "s5":
-                itemNum = FIVE;
+                itemNum = FIREARMS_INDEX;
                 itemName = "Firearms";
                 break;
             case "s6":
-                itemNum = SIX;
+                itemNum = MEDICINE_INDEX;
                 itemName = "Medicine";
                 break;
             case "s7":
-                itemNum = SEVEN;
+                itemNum = MACHINES_INDEX;
                 itemName = "Machines";
                 break;
             case "s8":
-                itemNum = EIGHT;
+                itemNum = NARCOTICS_INDEX;
                 itemName = "Narcotics";
                 break;
             case "s9":
-                itemNum = NINE;
+                itemNum = ROBOTS_INDEX;
                 itemName = "Robots";
                 break;
             default:
@@ -287,7 +287,11 @@ public class MarketPlace implements Serializable {
      * @return selling price for an item
      */
     public final int getSellingPriceAt(final int index) {
-        return sellPrice[index];
+        int i = 0;
+        if (index >= 0 && index < sellPrice.length) {
+            i = sellPrice[index];
+        }
+        return i;
     }
 
     /**
@@ -296,6 +300,10 @@ public class MarketPlace implements Serializable {
      * @return price of a good
      */
     public final int getBuyingPriceAt(final int index) {
-        return totalPrice[index];
+        int i = 0;
+        if (index >= 0 && index < totalPrice.length) {
+            i = totalPrice[index];
+        }
+        return i;
     }
 }

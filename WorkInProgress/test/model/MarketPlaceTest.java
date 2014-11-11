@@ -34,7 +34,8 @@ public class MarketPlaceTest {
 //             System.out.print(mktT10.getSellingPriceAt(i) + " ");
 //             System.out.print(mktT10.getBuyingPriceAt(i) + "\n");
 //         }
-         
+         assertEquals(0, mktT10.getBuyingPriceAt(-1)*.8, .000001);
+         assertEquals(0, mktT10.getBuyingPriceAt(10)*.8, .000001);
          assertEquals(Math.round(mktT10.getBuyingPriceAt(0)*.8), mktT10.getSellingPriceAt(0));
          assertEquals(Math.round(mktT10.getBuyingPriceAt(1)*.8), mktT10.getSellingPriceAt(1));
          assertEquals(Math.round(mktT10.getBuyingPriceAt(2)*.8), mktT10.getSellingPriceAt(2));
@@ -58,6 +59,7 @@ public class MarketPlaceTest {
          
          // Bounds determined by the formula:
          // (int)Math.round((1.0 - ((double)i / 10)) * (rand.nextInt(30 - 10 + 1) + 10 ))
+         assertEquals(0, mktT10.getAmount()[-1]);
          assertTrue(mktT10.getAmount()[0] >= 10 && mktT10.getAmount()[0] <= 30);
          assertTrue(mktT10.getAmount()[1] >= 9 && mktT10.getAmount()[1] <= 27);
          assertTrue(mktT10.getAmount()[2] >= 8 && mktT10.getAmount()[2] <= 24);
