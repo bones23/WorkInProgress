@@ -1,37 +1,24 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.LinkedList;
-import java.util.Random;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
-import model.*;
-import org.controlsfx.dialog.Dialogs;
+import model.Game;
+import model.Ship;
+import model.MarketPlace;
+import model.TradeItem;
+import model.Person;
 
 /**
  *
  * @author frenc_000
  */
 public class MarketplaceController {
+    //CHECKSTYLE: OFF
     //I need to call these from the game somehow
     Game game = WelcomeScreenController.game;
     MarketPlace market = game.getMarket();
@@ -64,163 +51,197 @@ public class MarketplaceController {
     private Label temp;
     @FXML
     private Label temp2;
+    //CHECKSTYLE: ON
+
     @FXML
     private void initialize() {
         game = WelcomeScreenController.game;
         market = game.currentSystem.getMarketPlace();
         refreshMarketplace();
     }
+    
+    /**
+     * Purchase an item.
+     * @param event event
+     * @throws IOException A 
+     */
     @FXML
-    private void buyItem(ActionEvent event) throws IOException {
-        String itemName="";
+    private void buyItem(final ActionEvent event) throws IOException {
+        String itemName = "";
         Object source = event.getSource();
         Button clickedBtn = (Button) source;
         String ite = clickedBtn.getId();
-        itemName = market.buyingItem(ite, game.getUniverse(), game.getCurrentLocationIndex(), game.getShip());
-        if(itemName != null){
-            switch(itemName){
+        itemName = market.buyingItem(ite, game.getUniverse(),
+                game.getCurrentLocationIndex(), game.getShip());
+        if (itemName != null) {
+            switch(itemName) {
                 case "Water":
-                    temp=sellableWater;
-                    temp2=buyableWater;
+                    temp = sellableWater;
+                    temp2 = buyableWater;
                     break;
                 case "Furs":
-                    temp=sellableFurs;
-                    temp2=buyableFur;
+                    temp = sellableFurs;
+                    temp2 = buyableFur;
                     break;
                 case "Food":
-                    temp=sellableFood;
-                    temp2=buyableFood;
+                    temp = sellableFood;
+                    temp2 = buyableFood;
                     break;
                 case "Ore":
-                    temp=sellableOre;
-                    temp2=buyableOre;
+                    temp = sellableOre;
+                    temp2 = buyableOre;
                     break;
                 case "Games":
-                    temp=sellableGames;
-                    temp2=buyableGames;
+                    temp = sellableGames;
+                    temp2 = buyableGames;
                     break;
                 case "Firearms":
-                    temp=sellableFirearms;
-                    temp2=buyableFirearms;
+                    temp = sellableFirearms;
+                    temp2 = buyableFirearms;
                     break;
                 case "Medicine":
-                    temp=sellableMedicine;
-                    temp2=buyableMedicine;
+                    temp = sellableMedicine;
+                    temp2 = buyableMedicine;
                     break;
                 case "Machines":
-                    temp=sellableMachines;
-                    temp2=buyableMachines;
+                    temp = sellableMachines;
+                    temp2 = buyableMachines;
                     break;
                 case "Narcotics":
-                    temp=sellableNarcotics;
-                    temp2=buyableNarcotics;
+                    temp = sellableNarcotics;
+                    temp2 = buyableNarcotics;
                     break;
                 case "Robots":
-                    temp=sellableRobots;
-                    temp2=buyableRobots;
+                    temp = sellableRobots;
+                    temp2 = buyableRobots;
                     break;
+                default:break;
             }
-            temp.setText(""+game.getShip().searchCargo(new TradeItem(itemName)));
-            temp2.setText(""+market.getAmountAt(Integer.parseInt(ite.substring(1))));
-            this.cargo.setText(""+game.getShip().getSpaceLeft());
-            this.money.setText(""+game.getMoney());
-        }            
+            temp.setText("" + game.getShip()
+                    .searchCargo(new TradeItem(itemName)));
+            temp2.setText("" + market
+                    .getAmountAt(Integer.parseInt(ite.substring(1))));
+            this.cargo.setText("" + game.getShip().getSpaceLeft());
+            this.money.setText("" + game.getMoney());
+        }
             //subtact 1 from buyable
             //add 1 to sellable
             //need set amount in marketplace
     }
+
     @FXML
-    private void sellItem(ActionEvent event) throws IOException {
-        String itemName="";
+    private void sellItem(final ActionEvent event) throws IOException {
+        String itemName = "";
         Object source = event.getSource();
         Button clickedBtn = (Button) source;
         String ite = clickedBtn.getId();
-        itemName = market.sellingItem(ite, game.getUniverse(), game.getCurrentLocationIndex(), game.getShip());
-        if(itemName != null){
-            switch(itemName){
+        itemName = market.sellingItem(ite, game.getUniverse(),
+                game.getCurrentLocationIndex(), game.getShip());
+        if (itemName != null) {
+            switch(itemName) {
                 case "Water":
-                    temp=sellableWater;
-                    temp2=buyableWater;
+                    temp = sellableWater;
+                    temp2 = buyableWater;
                     break;
                 case "Furs":
-                    temp=sellableFurs;
-                    temp2=buyableFur;
+                    temp = sellableFurs;
+                    temp2 = buyableFur;
                     break;
                 case "Food":
-                    temp=sellableFood;
-                    temp2=buyableFood;
+                    temp = sellableFood;
+                    temp2 = buyableFood;
                     break;
                 case "Ore":
-                    temp=sellableOre;
-                    temp2=buyableOre;
+                    temp = sellableOre;
+                    temp2 = buyableOre;
                     break;
                 case "Games":
-                    temp=sellableGames;
-                    temp2=buyableGames;
+                    temp = sellableGames;
+                    temp2 = buyableGames;
                     break;
                 case "Firearms":
-                    temp=sellableFirearms;
-                    temp2=buyableFirearms;
+                    temp = sellableFirearms;
+                    temp2 = buyableFirearms;
                     break;
                 case "Medicine":
-                    temp=sellableMedicine;
-                    temp2=buyableMedicine;
+                    temp = sellableMedicine;
+                    temp2 = buyableMedicine;
                     break;
                 case "Machines":
-                    temp=sellableMachines;
-                    temp2=buyableMachines;
+                    temp = sellableMachines;
+                    temp2 = buyableMachines;
                     break;
                 case "Narcotics":
-                    temp=sellableNarcotics;
-                    temp2=buyableNarcotics;
+                    temp = sellableNarcotics;
+                    temp2 = buyableNarcotics;
                     break;
                 case "Robots":
-                    temp=sellableRobots;
-                    temp2=buyableRobots;
+                    temp = sellableRobots;
+                    temp2 = buyableRobots;
                     break;
+                default:break;
             }
-            temp.setText(""+game.getShip().searchCargo(new TradeItem(itemName)));
-            temp2.setText(""+market.getAmountAt(Integer.parseInt(ite.substring(1))));
-            this.cargo.setText(""+game.getShip().getSpaceLeft());
-            this.money.setText(""+game.getMoney());
+            temp.setText("" + game.getShip()
+                    .searchCargo(new TradeItem(itemName)));
+            temp2.setText("" + market
+                    .getAmountAt(Integer.parseInt(ite.substring(1))));
+            this.cargo.setText("" + game.getShip().getSpaceLeft());
+            this.money.setText("" + game.getMoney());
             //subtract 1 from sellable
             //add 1 to buyable
         }
     }
-    public void freshPrince(){
+
+    /**
+     * lol.
+     */
+    public final void freshPrince() {
         refreshMarketplace();
     }
-    
-    private  void refreshMarketplace(){
-         market = game.currentSystem.getMarketPlace();
-        buyableWater.setText(""+market.getAmountAt(0));
-        buyableFur.setText(""+market.getAmountAt(1));
-        buyableFood.setText(""+market.getAmountAt(2));
-        buyableOre.setText(""+market.getAmountAt(3));
-        buyableGames.setText(""+market.getAmountAt(4));
-        buyableFirearms.setText(""+market.getAmountAt(5));
-        buyableMedicine.setText(""+market.getAmountAt(6));
-        buyableMachines.setText(""+market.getAmountAt(7));
-        buyableNarcotics.setText(""+market.getAmountAt(8));
-        buyableRobots.setText(""+market.getAmountAt(9));
-        sellableWater.setText(""+game.getShip().searchCargo(new TradeItem("Water")));
-        sellableFurs.setText(""+game.getShip().searchCargo(new TradeItem("Furs")));
-        sellableFood.setText(""+game.getShip().searchCargo(new TradeItem("Food")));
-        sellableOre.setText(""+game.getShip().searchCargo(new TradeItem("Ore")));
-        sellableGames.setText(""+game.getShip().searchCargo(new TradeItem("Games")));
-        sellableFirearms.setText(""+game.getShip().searchCargo(new TradeItem("Firearms")));
-        sellableMedicine.setText(""+game.getShip().searchCargo(new TradeItem("Medicine")));
-        sellableMachines.setText(""+game.getShip().searchCargo(new TradeItem("Machines")));
-        sellableNarcotics.setText(""+game.getShip().searchCargo(new TradeItem("Narcotics")));
-        sellableRobots.setText(""+game.getShip().searchCargo(new TradeItem("Robots")));
-        int cargo =game.getShip().getSpaceLeft();
+
+    /**
+     * Refresh the MarketPlace.
+     */
+    private void refreshMarketplace() {
+        market = game.currentSystem.getMarketPlace();
+        buyableWater.setText("" + market.getAmountAt(0));
+        buyableFur.setText("" + market.getAmountAt(1));
+        buyableFood.setText("" + market.getAmountAt(2));
+        buyableOre.setText("" + market.getAmountAt(3));
+        buyableGames.setText("" + market.getAmountAt(4));
+        buyableFirearms.setText("" + market.getAmountAt(5));
+        buyableMedicine.setText("" + market.getAmountAt(6));
+        buyableMachines.setText("" + market.getAmountAt(7));
+        buyableNarcotics.setText("" + market.getAmountAt(8));
+        buyableRobots.setText("" + market.getAmountAt(9));
+        sellableWater.setText("" + game.getShip()
+                .searchCargo(new TradeItem("Water")));
+        sellableFurs.setText("" + game.getShip()
+                .searchCargo(new TradeItem("Furs")));
+        sellableFood.setText("" + game.getShip()
+                .searchCargo(new TradeItem("Food")));
+        sellableOre.setText("" + game.getShip()
+                .searchCargo(new TradeItem("Ore")));
+        sellableGames.setText("" + game.getShip()
+                .searchCargo(new TradeItem("Games")));
+        sellableFirearms.setText("" + game.getShip()
+                .searchCargo(new TradeItem("Firearms")));
+        sellableMedicine.setText("" + game.getShip()
+                .searchCargo(new TradeItem("Medicine")));
+        sellableMachines.setText("" + game.getShip()
+                .searchCargo(new TradeItem("Machines")));
+        sellableNarcotics.setText("" + game.getShip()
+                .searchCargo(new TradeItem("Narcotics")));
+        sellableRobots.setText("" + game.getShip()
+                .searchCargo(new TradeItem("Robots")));
+        int cargo = game.getShip().getSpaceLeft();
         //this should be set in ship controller
-        this.cargo.setText(""+game.getShip().getSpaceLeft());
+        this.cargo.setText("" + game.getShip().getSpaceLeft());
         //should be set in person controller
         Person player = game.getPlayer();
-        
+
         int cash = player.getMoney();
-        this.money.setText(""+cash);
+        this.money.setText("" + cash);
         this.sellWaterPrice.setText("" + market.getSellingPriceAt(0));
         this.buyWaterPrice.setText("" + market.getBuyingPriceAt(0));
         this.sellFurPrice.setText("" + market.getSellingPriceAt(1));
@@ -243,8 +264,8 @@ public class MarketplaceController {
         this.buyRobotsPrice.setText("" + market.getBuyingPriceAt(9));
     }
     @FXML
-    private void save() throws IOException, Exception{
-        String fileName="";
+    private void save() throws Exception {
+        String fileName = "";
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Save File");
         File file = fileChooser.showSaveDialog(WelcomeScreenController.stage);
@@ -253,8 +274,7 @@ public class MarketplaceController {
         } else {
             throw new Exception();
         }
-        WelcomeScreenController.game.save(fileName, WelcomeScreenController.game);
-        //
-        
+        WelcomeScreenController.game.save(fileName,
+                WelcomeScreenController.game);
     }
 }

@@ -11,5 +11,4 @@ package controller;
  * @author Bones
  */
 public class MainDisplayController {
-    
 }

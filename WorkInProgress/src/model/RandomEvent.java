@@ -1,99 +1,125 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package model;
-
-import controller.*;
+import controller.WelcomeScreenController;
 import java.io.Serializable;
 import java.util.Random;
 import javafx.stage.Stage;
+import org.controlsfx.dialog.Dialogs;
+
 /**
  * @author Matthew Taylor
  * @version 21 October 2014
  */
 public class RandomEvent implements Serializable {
-    
-    Random rand;
-    Ship myShip;
-    
-    public void RandomEvent(Stage s, Ship ship){
-        
+    //CHECKSTYLE: OFF
+    private Random rand;
+    private Ship myShip;
+    private Stage myStage;
+
+    private final int EVENT_PERCENT = 5;
+    private final int MAX_PERCENT = 100;
+    private final int FUEL_MULT = 10;
+    private final int ESKILL_MULT = 5;
+    private final int MAX_ROB_ATTEMPTS = 6;
+    //CHECKSTYLE: ON
+
+    /**
+     * Create a RandomEvent and run the events.
+     * @param s s
+     * @param ship ship
+     */
+    public RandomEvent(final Stage s, final Ship ship) {
+
         rand = new Random();
-//        this.myShip = WelcomeScreenController.game.getShip();
+        this.myShip = WelcomeScreenController.game.getShip();
+        this.myStage = s;
+
+        runRandomEvents(s);
     }
 
     /**
      * Run through every possible random event and call each with a calculated
-     * probability
-     * 
+     * probability.
      * @param s The Stage to run in
      */
-    public void runEvents(Stage s) {
-        
-        if(rand.nextInt(100) < 5){
+    public final void runRandomEvents(final Stage s) {
+
+        if (rand.nextInt(MAX_PERCENT) < EVENT_PERCENT) {
             fuelLeak(s);
         }
-        if(rand.nextInt(100) < 5) {
-            robbed(s, rand);
+        if (rand.nextInt(MAX_PERCENT) < EVENT_PERCENT) {
+            robbed(s);
         }
     }
-    
+
     /**
-     * Random event: fuel leaks from the ship
-     * 
-     * @param s The Stage to run in
-     * @return The message to display after running the event
+     * @param s the Stage
      */
-    public String fuelLeak(Stage s){
-        int cost = (this.myShip.getFuel() * 10) - (WelcomeScreenController.game.getPlayer().getEngineerSkill() * 5);
-        
+    public final void fuelLeak(final Stage s) {
+
+        int cost = (this.myShip.getFuelTank()
+                * FUEL_MULT) - (WelcomeScreenController
+                .game.getPlayer().getEngineerSkill() * ESKILL_MULT);
+
         if (WelcomeScreenController.game.getPlayer().getMoney() - cost >= 0) {
-            WelcomeScreenController.game.getPlayer().setMoney(WelcomeScreenController.game.getPlayer().getMoney() - cost);
+            WelcomeScreenController.game.getPlayer()
+                    .setMoney(WelcomeScreenController.game.getPlayer()
+                            .getMoney() - cost);
         } else {
-            //game OVER
-            System.out.println("Game over");
+            System.exit(1);
         }
-        
         this.myShip.setFuel(0);
-        return "There has been a fuel leak!\nBecause of your engineering skill, you don't"
+        Dialogs.create()
+            .owner(s)
+            .title("OH NO!")
+            .masthead(null)
+            .message("There has been a fuel leak!\nBecause of your engineerin"
+                + "g skill, you don't"
                 + " have to buy a new fuel tank but just some spare parts.\n"
-                + " You save " + (WelcomeScreenController.game.getPlayer().getEngineerSkill() * 5) + " credits.";
+                + " You save " + (WelcomeScreenController.game.getPlayer()
+                        .getEngineerSkill() * ESKILL_MULT) + " credits.")
+            .showInformation();
     }
 
     /**
      * Random event: a thief steals from cargo a number of times determined from
      * the player's trader skill.
-     * 
-     * @param s The Stage handling random events
-     * @param rand Rng
-     * @return What's been taken from the ship
+     * @param s the Stage handling random events
      */
-    public String robbed(Stage s, Random rand) {
-        
+    public final void robbed(final Stage s) {
+
         // # of attempts a theif tries to steal
-        int attempts = 6 - (WelcomeScreenController.game.getPlayer().getTraderSkill() / 2);
-        String stolen = "The following have been stolen from cargo:\n";
+        int attempts = MAX_ROB_ATTEMPTS - (WelcomeScreenController
+                .game.getPlayer().getTraderSkill() / 2);
+        String stolen = "";
 
         // Thief tries to steal "attempts" times from a random bay. The same
         // bay can be stolen from multiple times but nothing will happen after
         // stealing from it once. This should add some randomness.
-        for(int i=0; i < attempts; i++) {
-            
+        for (int i = 0; i < attempts; i++) {
+
             int bayToStealFrom = rand.nextInt(this.myShip.getBays());
-            
+
             if (this.myShip.getCargoManifest()[bayToStealFrom] != null) {
-                stolen += "\t" + this.myShip.getCargoManifest()[bayToStealFrom].getName()
+                stolen += "\t" + this.myShip
+                        .getCargoManifest()[bayToStealFrom].getName()
                         + " in bay " + bayToStealFrom + "\n";
-                this.myShip.getCargoManifest()[bayToStealFrom] = null;
-                this.myShip.occupiedSlots = this.myShip.occupiedSlots - 1;
+                TradeItem[] cargo = this.myShip.getCargoManifest();
+                cargo[bayToStealFrom] = null;
+                this.myShip.setCargoManifest(cargo);
+                this.myShip.setOccupiedSlots(this.myShip
+                        .getOccupiedSlots() - 1);
             }
         }
-        
+
         if (stolen.equals("")) {
             stolen = "Nothing! You sure lucked out.";
         }
-        return stolen;
+        Dialogs.create()
+                .owner(s)
+                .title("You've been robbed!")
+                .masthead(null)
+                .message("The following have been stolen from cargo:\n"
+                        + stolen)
+                .showInformation();
     }
 }

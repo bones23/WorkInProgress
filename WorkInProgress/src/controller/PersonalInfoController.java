@@ -11,5 +11,4 @@ package controller;
  * @author frenc_000
  */
 public class PersonalInfoController {
-    
 }
