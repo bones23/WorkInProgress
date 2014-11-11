@@ -38,10 +38,62 @@ public class ShipTest {
      
      @Test
      public void testRemoveItem() {
+         //Tests to see if you can remove an item when nothing is in the ship.
+         assertEquals(0, small.getOccupiedSlots());
          assertFalse(small.removeItem(new TradeItem("Water")));
+         assertEquals(0, small.getOccupiedSlots());
          
+         //Changes bays to 10 to test if multiple items can be removed
+         small.setBays(10);
+         TradeItem[] current = small.getCargoManifest();
+         TradeItem[] temp = new TradeItem[small.getBays()];
+         for (int i = 0; i < current.length; i++) {
+               if (current[i] != null)
+                temp[i] = current[i];
+         }
+         small.setCargoManifest(temp);
+         //-----------------------------------------------------------
+         
+         //Tests to see if one item is removed successfully from the cargo
          small.addItem(new TradeItem("Water"));
+         assertEquals(1, small.getOccupiedSlots());
+         assertEquals(small.getCargoManifest()[0].getName(), "Water");
          assertTrue(small.removeItem(new TradeItem("Water")));
+         assertEquals(0, small.getOccupiedSlots());
+         assertNull(small.getCargoManifest()[0]);
+         
+         //Tests to see if items are removed successfully after the Cargo size
+        // has been increased.
+         small.addItem(new TradeItem("Water"));
+         assertEquals(1, small.getOccupiedSlots());
+         assertEquals(small.getCargoManifest()[0].getName(), "Water");
+         small.addItem(new TradeItem("Ore"));
+         assertEquals(2, small.getOccupiedSlots());
+         assertEquals(small.getCargoManifest()[1].getName(), "Ore");
+         
+         current = small.getCargoManifest();
+         assertEquals(small.getCargoManifest()[0], current[0]);
+         assertEquals(small.getCargoManifest()[1], current[1]);
+         small.setBays(20);
+         temp = new TradeItem[small.getBays()];
+         for (int i = 0; i < current.length; i++) {
+               if (current[i] != null)
+                temp[i] = current[i];
+         }
+         small.setCargoManifest(temp);
+         assertEquals(20, small.getBays());
+         assertEquals(2, small.getOccupiedSlots());
+         assertEquals(small.getCargoManifest()[0], current[0]);
+         assertEquals(small.getCargoManifest()[1], current[1]);
+         
+         assertTrue(small.removeItem(new TradeItem("Water")));
+         assertEquals(1, small.getOccupiedSlots());
+         assertNull(small.getCargoManifest()[0]);
+         
+         assertTrue(small.removeItem(new TradeItem("Ore")));
+         assertEquals(0, small.getOccupiedSlots());
+         assertNull(small.getCargoManifest()[1]);
+
      }
      
      @Test
