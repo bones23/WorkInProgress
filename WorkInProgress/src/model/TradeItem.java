@@ -105,7 +105,7 @@ public class TradeItem implements Serializable {
     public TradeItem(final String item) {
 
         this.name = item;
-        String never = "Never";
+        final String never = "Never";
         switch(item) {
             case "Water":
                 this.MTLP = 0;
@@ -228,7 +228,7 @@ public class TradeItem implements Serializable {
                 this.Var = NARCOTICS_VAR;
                 this.IE = "BOREDOM";
                 this.CR = "WEIRDMUSHROOMS";
-                this.ER = "Never";
+                this.ER = never;
                 this.MTL = NARCOTICS_MTL;
                 this.MTH = NARCOTICS_MTH;
                 this.illegal = true;
