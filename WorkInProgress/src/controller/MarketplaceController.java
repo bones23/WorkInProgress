@@ -1,12 +1,14 @@
 package controller;
 
-import java.io.File;
 import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.stage.FileChooser;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import model.Game;
 import model.Ship;
 import model.MarketPlace;
@@ -37,7 +39,7 @@ public class MarketplaceController {
     private Button s0, s1, s2, s3, s4, s5, s6, s7, s8, s9;
     //Buy buttons
     @FXML
-    private Button b0, b1, b2, b3, b4, b5, b6, b7, b8, b9,save;
+    private Button b0, b1, b2, b3, b4, b5, b6, b7, b8, b9,save, goBackFromMarket;
     //Labels for sellable items
     @FXML
     private Label sellableWater, sellableFurs, sellableFood, sellableOre, sellableGames, sellableFirearms, sellableMedicine,
@@ -52,7 +54,8 @@ public class MarketplaceController {
     @FXML
     private Label temp2;
     //CHECKSTYLE: ON
-
+    private final int STAGE_WIDTH = 975;
+    private final int STAGE_HEIGHT = 800;
     @FXML
     private void initialize() {
         game = WelcomeScreenController.game;
@@ -263,18 +266,19 @@ public class MarketplaceController {
         this.sellRobotsPrice.setText("" + market.getSellingPriceAt(9));
         this.buyRobotsPrice.setText("" + market.getBuyingPriceAt(9));
     }
+    
     @FXML
-    private void save() throws Exception {
-        String fileName = "";
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Save File");
-        File file = fileChooser.showSaveDialog(WelcomeScreenController.stage);
-        if (file != null) {
-           fileName = file.getName();
-        } else {
-            throw new Exception();
-        }
-        WelcomeScreenController.game.save(fileName,
-                WelcomeScreenController.game);
+    private void goBack() throws Exception {
+        AnchorPane pane = FXMLLoader
+                 .load(getClass().getResource("/view/Ship.fxml"));
+           Scene scene = new Scene(pane);
+           Stage stage;
+            stage = WelcomeScreenController.stage;
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.setWidth(STAGE_WIDTH);
+            stage.setHeight(STAGE_HEIGHT);
+            stage.show();
     }
+    
 }

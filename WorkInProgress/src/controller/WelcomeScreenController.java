@@ -83,6 +83,8 @@ implements Initializable {
         this.stage = new Stage();
         System.out.println("start: " + this.stage);
         this.stage.setScene(this.welcomeScreen);
+        this.stage.setWidth(960);
+        this.stage.setHeight(565);
         this.stage.setResizable(false);
         this.stage.show();
     }
@@ -100,6 +102,7 @@ implements Initializable {
             this.stage.show();
         } else {
             this.stage.setScene(this.characterCreationScreen);
+            
         }
     }
 
@@ -164,7 +167,14 @@ implements Initializable {
                     .masthead(null)
                     .message("Your total points must equal 20.")
                     .showInformation();
-        // create the model
+        } else if (name.equals("") || name == null) {
+            Dialogs.create()
+                    .owner(this.stage)
+                    .title("No name given")
+                    .masthead(null)
+                    .message("Must have a name.")
+                    .showInformation();
+            // create the model
         } else {
             //game = new Game();
             System.out.println(game.getUniverse().toString());
@@ -172,8 +182,9 @@ implements Initializable {
                     traderSliderValue, engineerSliderValue);
             System.out.println(game.getPlayer().toString());
             System.out.println(game.getPlayer().getMoney());
+            stage.close();
             AnchorPane pane = FXMLLoader.load(getClass()
-                    .getResource("/view/GameScreen.fxml"));
+                    .getResource("/view/Ship.fxml"));
             Scene scene = new Scene(pane);
             this.stage = new Stage();
             this.stage.setScene(scene);

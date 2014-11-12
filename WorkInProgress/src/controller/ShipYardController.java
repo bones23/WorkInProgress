@@ -55,7 +55,7 @@ public class ShipYardController  {
     @FXML
     private void leave() throws IOException {
          AnchorPane pane = FXMLLoader
-                 .load(getClass().getResource("/view/GameScreen.fxml"));
+                 .load(getClass().getResource("/view/Ship.fxml"));
            Scene scene = new Scene(pane);
            Stage stage;
             stage = WelcomeScreenController.stage;

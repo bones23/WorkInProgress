@@ -192,7 +192,7 @@ public class Person {
     public final String toString() {
         return "Name: " + playerName + "\nPilot Skill: " + pilotSkill
                 + "\nFighter Skill: " + fighterSkill + "\nTrader Skill: "
-                + traderSkill + "\nEngineering Skill: " + engineerSkill
-                + "\nMoney: " + money;
+                + traderSkill + "\nEngineering Skill: " + engineerSkill;
+                
     }
 }

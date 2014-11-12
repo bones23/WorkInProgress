@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="975.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ShipController">
+   <children>
+      <Label fx:id="fuelText" layoutX="227.0" layoutY="181.0" text="0" />
+      <Label layoutX="219.0" layoutY="164.0" text="Fuel" />
+      <Label fx:id="cargo" layoutX="227.0" layoutY="140.0" text="0" />
+      <Label layoutX="218.0" layoutY="123.0" text="Cargo Space" />
+      <Label fx:id="money" layoutX="227.0" layoutY="93.0" text="0" />
+      <Label layoutX="220.0" layoutY="76.0" prefHeight="16.0" prefWidth="46.0" text="Money:" />
+      <Button fx:id="marketPlaceButton" layoutX="252.0" layoutY="560.0" mnemonicParsing="false" onAction="#goToMarket" text="MarketPlace" />
+      <Button fx:id="mapScreenButton" layoutX="476.0" layoutY="560.0" mnemonicParsing="false" onAction="#goToMap" text="Travel" />
+      <Button fx:id="Shipyard" layoutX="694.0" layoutY="560.0" mnemonicParsing="false" onAction="#goToShipyard" text="Shipyard" />
+      <Label fx:id="playerInfo" layoutX="421.0" layoutY="76.0" text="Player Info:" />
+      <Button fx:id="save" layoutX="50.0" layoutY="14.0" mnemonicParsing="false" onAction="#save" text="save" />
+   </children>
+</AnchorPane>

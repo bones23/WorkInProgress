@@ -12,8 +12,7 @@ import model.MarketPlace;
 import model.SolarSystem;
 import model.Ship;
 import model.Universe;
-import model.TradeItem;
-import model.Person;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -40,7 +39,7 @@ public class MapController  {
     private LinkedList<SolarSystem> miniSystems;
     Game game = WelcomeScreenController.game;
     @FXML
-    private Label fuelText,carge,money;
+    private Label fuelText,cargo,money;
     private Random rand = new Random();
     int i = game.getCurrentLocationIndex();
     int destinationIndex = i;
@@ -48,23 +47,14 @@ public class MapController  {
     MarketPlace market = game.getMarket();
     int currentLocationIndex = WelcomeScreenController.game.getCurrentLocationIndex();
     Ship ship = WelcomeScreenController.game.getShip();
-    //Sell price labels
-    @FXML
-    private Label sellWaterPrice,sellFurPrice,sellFoodPrice,sellOrePrice,sellGamesPrice,sellFirearmsPrice,sellMedicinePrice,sellMachinesPrice,sellNarcoticsPrice,sellRobotsPrice,cargo;
-    //Buy price labels
-    @FXML
-    private Label buyWaterPrice,buyFurPrice,buyFoodPrice,buyOrePrice,buyGamesPrice,buyFirearmsPrice
-            ,buyMedicinePrice,buyMachinesPrice,buyNarcoticsPrice,buyRobotsPrice;
-    //Sell buttons
-    @FXML
-    private Button s0, s1, s2, s3, s4, s5, s6, s7, s8, s9;
+    private final int STAGE_WIDTH = 975;
+    private final int STAGE_HEIGHT = 800;
+
     //Buy buttons
     @FXML
-    private Button b0, b1, b2, b3, b4, b5, b6, b7, b8, b9,save,Shipyard;
+    private Button save,Shipyard, goBackFromMap;
     //Labels for sellable items
-    @FXML
-    private Label sellableWater, sellableFurs, sellableFood, sellableOre, sellableGames, sellableFirearms, sellableMedicine,
-            sellableMachines, sellableNarcotics, sellableRobots;
+   
     //Labels for buyable items
     @FXML
     private Label buyableWater, buyableFur, buyableFood, buyableOre, buyableGames, buyableFirearms, buyableMedicine,
@@ -80,34 +70,15 @@ public class MapController  {
     private void initialize() {
         game = WelcomeScreenController.game;
         market = game.currentSystem.getMarketPlace();
-        refreshMarketplace();
         drawUniverse();
         drawMini();
         this.money.setText("" + game.getMoney());
         fuelText.setText("" + game.ship.getFuel());
         currentLocation.setText("Current Location:\n----------------\n"
                 + game.getCurrentSystem());
-        if (game.getCurrentSystem().getTechLevel() > 3) {
-            Shipyard.setVisible(true);
-        } //WHAT IS THIS CHECKSTYLE?!?
-        else {
-            Shipyard.setVisible(false);
-        }
+        
     }
 
-    @FXML
-    private void showShipyard() throws IOException {
-        Stage stage;
-         AnchorPane pane = FXMLLoader.load(getClass()
-                 .getResource("/view/ShipYard.fxml"));
-            Scene scene = new Scene(pane);
-            stage = WelcomeScreenController.stage;
-            stage.setScene(scene);
-            stage.setResizable(false);
-            stage.setWidth(600);
-            stage.setHeight(425);
-            stage.show();
-    }
     /**
      * Draws the universe map based on the current position.
      */
@@ -278,221 +249,9 @@ public class MapController  {
         fuelText.setText("" + game.getShip().getFuel());
         drawUniverse();
         drawMini();
-        refreshMarketplace();
-        if (game.getCurrentSystem().getTechLevel() > 3) {
-            Shipyard.setVisible(true);
-        }  //Checkstyle makes no sense
-        else {
-            Shipyard.setVisible(false);
-        }
+       
     }
 
-    /**
-     * Buys an item from a marketplace and updates the associated labels.
-     * @param event a
-     * @throws IOException a
-     */
-     @FXML
-    private void buyItem(final ActionEvent event) throws IOException {
-        String itemName = "";
-        Object source = event.getSource();
-        Button clickedBtn = (Button) source;
-        String ite = clickedBtn.getId();
-        itemName = market.buyingItem(ite, game.getUniverse(),
-                game.getCurrentLocationIndex(), game.getShip());
-        if (itemName != null) {
-            switch(itemName) {
-                case "Water":
-                    temp = sellableWater;
-                    temp2 = buyableWater;
-                    break;
-                case "Furs":
-                    temp = sellableFurs;
-                    temp2 = buyableFur;
-                    break;
-                case "Food":
-                    temp = sellableFood;
-                    temp2 = buyableFood;
-                    break;
-                case "Ore":
-                    temp = sellableOre;
-                    temp2 = buyableOre;
-                    break;
-                case "Games":
-                    temp = sellableGames;
-                    temp2 = buyableGames;
-                    break;
-                case "Firearms":
-                    temp = sellableFirearms;
-                    temp2 = buyableFirearms;
-                    break;
-                case "Medicine":
-                    temp = sellableMedicine;
-                    temp2 = buyableMedicine;
-                    break;
-                case "Machines":
-                    temp = sellableMachines;
-                    temp2 = buyableMachines;
-                    break;
-                case "Narcotics":
-                    temp = sellableNarcotics;
-                    temp2 = buyableNarcotics;
-                    break;
-                case "Robots":
-                    temp = sellableRobots;
-                    temp2 = buyableRobots;
-                    break;
-                default:break;
-            }
-            temp.setText("" + game.getShip()
-                    .searchCargo(new TradeItem(itemName)));
-            temp2.setText("" + market
-                    .getAmountAt(Integer.parseInt(ite.substring(1))));
-            this.cargo.setText("" + game
-                    .getShip().getSpaceLeft());
-            this.money.setText("" + game.getMoney());
-        }
-            //subtact 1 from buyable
-            //add 1 to sellable
-            //need set amount in marketplace
-    }
-    /**
-     * Sells an item. item is taken out of inventory and player receives money.
-     * @param event a
-     * @throws IOException a
-     */
-    @FXML
-    private void sellItem(final ActionEvent event) throws IOException {
-        String itemName = "";
-        Object source = event.getSource();
-        Button clickedBtn = (Button) source;
-        String ite = clickedBtn.getId();
-        itemName = market.sellingItem(ite, game.getUniverse(),
-                game.getCurrentLocationIndex(), game.getShip());
-        if (itemName != null) {
-            switch(itemName) {
-                case "Water":
-                    temp = sellableWater;
-                    temp2 = buyableWater;
-                    break;
-                case "Furs":
-                    temp = sellableFurs;
-                    temp2 = buyableFur;
-                    break;
-                case "Food":
-                    temp = sellableFood;
-                    temp2 = buyableFood;
-                    break;
-                case "Ore":
-                    temp = sellableOre;
-                    temp2 = buyableOre;
-                    break;
-                case "Games":
-                    temp = sellableGames;
-                    temp2 = buyableGames;
-                    break;
-                case "Firearms":
-                    temp = sellableFirearms;
-                    temp2 = buyableFirearms;
-                    break;
-                case "Medicine":
-                    temp = sellableMedicine;
-                    temp2 = buyableMedicine;
-                    break;
-                case "Machines":
-                    temp = sellableMachines;
-                    temp2 = buyableMachines;
-                    break;
-                case "Narcotics":
-                    temp = sellableNarcotics;
-                    temp2 = buyableNarcotics;
-                    break;
-                case "Robots":
-                    temp = sellableRobots;
-                    temp2 = buyableRobots;
-                    break;
-                default:break;
-            }
-            temp.setText("" + game.getShip()
-                    .searchCargo(new TradeItem(itemName)));
-            temp2.setText("" + market
-                    .getAmountAt(Integer.parseInt(ite.substring(1))));
-            this.cargo.setText("" + game.getShip().getSpaceLeft());
-            this.money.setText("" + game.getMoney());
-            //subtract 1 from sellable
-            //add 1 to buyable
-        }
-    }
-
-    /**
-    Updates the market place UI
-    as well as the player's cargo and money.
-    */
-    public final void refreshMarketplace() {
-         market = game.currentSystem.getMarketPlace();
-        buyableWater.setText("" + market.getAmountAt(0));
-        buyableFur.setText("" + market.getAmountAt(1));
-        buyableFood.setText("" + market.getAmountAt(2));
-        buyableOre.setText("" + market.getAmountAt(3));
-        buyableGames.setText("" + market.getAmountAt(4));
-        buyableFirearms.setText("" + market.getAmountAt(5));
-        buyableMedicine.setText("" + market.getAmountAt(6));
-        buyableMachines.setText("" + market.getAmountAt(7));
-        buyableNarcotics.setText("" + market.getAmountAt(8));
-        buyableRobots.setText("" + market.getAmountAt(9));
-        sellableWater.setText("" + game.getShip()
-                .searchCargo(new TradeItem("Water")));
-        sellableFurs.setText("" + game.getShip()
-                .searchCargo(new TradeItem("Furs")));
-        sellableFood.setText("" + game.getShip()
-                .searchCargo(new TradeItem("Food")));
-        sellableOre.setText("" + game.getShip()
-                .searchCargo(new TradeItem("Ore")));
-        sellableGames.setText("" + game.getShip()
-                .searchCargo(new TradeItem("Games")));
-        sellableFirearms.setText("" + game.getShip()
-                .searchCargo(new TradeItem("Firearms")));
-        sellableMedicine.setText("" + game.getShip()
-                .searchCargo(new TradeItem("Medicine")));
-        sellableMachines.setText("" + game.getShip()
-                .searchCargo(new TradeItem("Machines")));
-        sellableNarcotics.setText("" + game.getShip()
-                .searchCargo(new TradeItem("Narcotics")));
-        sellableRobots.setText("" + game.getShip()
-                .searchCargo(new TradeItem("Robots")));
-        int cargo = game.getShip().getSpaceLeft();
-        //this should be set in ship controller
-        this.cargo.setText("" + game.getShip().getSpaceLeft());
-        //should be set in person controller
-        Person player = game.getPlayer();
-
-        int cash = player.getMoney();
-        this.money.setText("" + cash);
-        this.sellWaterPrice.setText("" + market.getSellingPriceAt(0));
-        this.buyWaterPrice.setText("" + market.getBuyingPriceAt(0));
-        this.sellFurPrice.setText("" + market.getSellingPriceAt(1));
-        this.buyFurPrice.setText("" + market.getBuyingPriceAt(1));
-        this.sellFoodPrice.setText("" + market.getSellingPriceAt(2));
-        this.buyFoodPrice.setText("" + market.getBuyingPriceAt(2));
-        this.sellOrePrice.setText("" + market.getSellingPriceAt(3));
-        this.buyOrePrice.setText("" + market.getBuyingPriceAt(3));
-        this.sellGamesPrice.setText("" + market.getSellingPriceAt(4));
-        this.buyGamesPrice.setText("" + market.getBuyingPriceAt(4));
-        this.sellFirearmsPrice.setText("" + market.getSellingPriceAt(5));
-        this.buyFirearmsPrice.setText("" + market.getBuyingPriceAt(5));
-        this.sellMedicinePrice.setText("" + market.getSellingPriceAt(6));
-        this.buyMedicinePrice.setText("" + market.getBuyingPriceAt(6));
-        this.sellMachinesPrice.setText("" + market.getSellingPriceAt(7));
-        this.buyMachinesPrice.setText("" + market.getBuyingPriceAt(7));
-        this.sellNarcoticsPrice.setText("" + market.getSellingPriceAt(8));
-        this.buyNarcoticsPrice.setText("" + market.getBuyingPriceAt(8));
-        this.sellRobotsPrice.setText("" + market.getSellingPriceAt(9));
-        this.buyRobotsPrice.setText("" + market.getBuyingPriceAt(9));
-    }
-    /**
-     * Saves the game using serialization.
-     * @throws Exception a
-     */
     @FXML
     private void save() throws Exception {
         String fileName = "";
@@ -508,4 +267,17 @@ public class MapController  {
                 WelcomeScreenController.game);
     }
 
+    @FXML
+    private void leave() throws IOException {
+         AnchorPane pane = FXMLLoader
+                 .load(getClass().getResource("/view/Ship.fxml"));
+           Scene scene = new Scene(pane);
+           Stage stage;
+            stage = WelcomeScreenController.stage;
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.setWidth(STAGE_WIDTH);
+            stage.setHeight(STAGE_HEIGHT);
+            stage.show();
+    }
 }
