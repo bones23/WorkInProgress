@@ -18,8 +18,8 @@ public class MarketPlace implements Serializable {
     private final int NUM_TRADE_ITEMS = 10;
     private final double LOW_PRICE_MULT = .8;
     private final double HIGH_PRICE_MULT = .85;
-    private final double LOW_TECH_PRICE_MULT = 1.5;
-    private final double MID_TECH_PRICE_MULT = 1.75;
+    private final double LOW_TECH_PRICE_MULT = .25;
+    private final double MID_TECH_PRICE_MULT = .5;
     private final int LOW_TECH = 2;
     private final int MID_TECH = 4;
     private final int HIGH_TECH = 6;
@@ -91,8 +91,8 @@ public class MarketPlace implements Serializable {
                 totalPrice[i] = (int) (totalPrice[i] * MID_TECH_PRICE_MULT);
                 sellPrice[i] = (int) (sellPrice[i] * MID_TECH_PRICE_MULT);
             } else if (techLevel > HIGH_TECH) {
-                totalPrice[i] = (int) (totalPrice[i] * 2);
-                sellPrice[i] = (int) (sellPrice[i] * 2);
+                totalPrice[i] = (int) (totalPrice[i] * .75);
+                sellPrice[i] = (int) (sellPrice[i] * .75);
             }
             if (techLevel < items[i].getMTLU()) {
                 sellPrice[i] = 0;

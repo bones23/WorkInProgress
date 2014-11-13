@@ -22,8 +22,8 @@ public class ShipController {
     private Button marketPlaceButton, mapScreenButton, Shipyard, save;
     @FXML
     private Label fuelText, cargo, money, playerInfo;
-    private final int STAGE_WIDTH = 975;
-    private final int STAGE_HEIGHT = 800;
+    private final int STAGE_WIDTH = 960;
+    private final int STAGE_HEIGHT = 565;
     
     @FXML
     private void initialize() {

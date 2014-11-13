@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
@@ -9,8 +10,13 @@
 <?import javafx.scene.canvas.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="506.0" prefWidth="740.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MarketplaceController">
+<AnchorPane id="AnchorPane" prefHeight="565.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MarketplaceController">
    <children>
+      <ImageView fitHeight="572.0" fitWidth="966.0" layoutX="-3.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../supporting/stars2.jpg" />
+         </image>
+      </ImageView>
        <GridPane gridLinesVisible="true" layoutX="97.0" layoutY="73.0" prefHeight="336.0" prefWidth="507.0">
            <columnConstraints>
                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -32,7 +38,7 @@
                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
            </rowConstraints>
             <children>
-               <Label text="Sell" GridPane.columnIndex="1">
+               <Label text="Sell" textFill="WHITE" GridPane.columnIndex="1">
                   <padding>
                      <Insets left="10.0" />
                   </padding>
@@ -40,57 +46,57 @@
                      <Insets left="60.0" />
                   </GridPane.margin>
                </Label>
-               <Label prefHeight="16.0" text="Water" GridPane.rowIndex="2">
+               <Label prefHeight="16.0" text="Water" textFill="WHITE" GridPane.rowIndex="2">
                   <padding>
                      <Insets left="10.0" />
                   </padding>
                </Label>
-               <Label prefHeight="16.0" text="Furs" GridPane.rowIndex="3">
+               <Label prefHeight="16.0" text="Furs" textFill="WHITE" GridPane.rowIndex="3">
                   <padding>
                      <Insets left="10.0" />
                   </padding>
                </Label>
-               <Label text="Food" GridPane.rowIndex="4">
+               <Label text="Food" textFill="WHITE" GridPane.rowIndex="4">
                   <padding>
                      <Insets left="10.0" />
                   </padding>
                </Label>
-               <Label text="Ore" GridPane.rowIndex="5">
+               <Label text="Ore" textFill="WHITE" GridPane.rowIndex="5">
                   <padding>
                      <Insets left="10.0" />
                   </padding>
                </Label>
-               <Label text="Games" GridPane.rowIndex="6">
+               <Label text="Games" textFill="WHITE" GridPane.rowIndex="6">
                   <padding>
                      <Insets left="10.0" />
                   </padding>
                </Label>
-               <Label text="Firearms" GridPane.rowIndex="7">
+               <Label text="Firearms" textFill="WHITE" GridPane.rowIndex="7">
                   <padding>
                      <Insets left="10.0" />
                   </padding>
                </Label>
-               <Label text="Medicine" GridPane.rowIndex="8">
+               <Label text="Medicine" textFill="WHITE" GridPane.rowIndex="8">
                   <padding>
                      <Insets left="10.0" />
                   </padding>
                </Label>
-               <Label text="Machines" GridPane.rowIndex="9">
+               <Label text="Machines" textFill="WHITE" GridPane.rowIndex="9">
                   <padding>
                      <Insets left="10.0" />
                   </padding>
                </Label>
-               <Label text="Narcotics" GridPane.rowIndex="10">
+               <Label text="Narcotics" textFill="WHITE" GridPane.rowIndex="10">
                   <padding>
                      <Insets left="10.0" />
                   </padding>
                </Label>
-               <Label text="Robots" GridPane.rowIndex="11">
+               <Label text="Robots" textFill="WHITE" GridPane.rowIndex="11">
                   <padding>
                      <Insets left="10.0" />
                   </padding>
                </Label>
-               <Label text="Buy" GridPane.columnIndex="2">
+               <Label text="Buy" textFill="WHITE" GridPane.columnIndex="2">
                   <padding>
                      <Insets left="10.0" />
                   </padding>
@@ -178,52 +184,52 @@
                      <Insets left="50.0" />
                   </GridPane.margin>
                </Button>
-               <Label fx:id="sellWaterPrice" text="no trade" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <Label fx:id="sellWaterPrice" text="no trade" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2">
                   <GridPane.margin>
                      <Insets left="115.0" />
                   </GridPane.margin>
                </Label>
-               <Label fx:id="sellFurPrice" text="no trade" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <Label fx:id="sellFurPrice" text="no trade" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3">
                   <GridPane.margin>
                      <Insets left="115.0" />
                   </GridPane.margin>
                </Label>
-               <Label fx:id="sellFoodPrice" text="no trade" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <Label fx:id="sellFoodPrice" text="no trade" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="4">
                   <GridPane.margin>
                      <Insets left="115.0" />
                   </GridPane.margin>
                </Label>
-               <Label fx:id="sellOrePrice" text="no trade" GridPane.columnIndex="1" GridPane.rowIndex="5">
+               <Label fx:id="sellOrePrice" text="no trade" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="5">
                   <GridPane.margin>
                      <Insets left="115.0" />
                   </GridPane.margin>
                </Label>
-               <Label fx:id="sellGamesPrice" text="no trade" GridPane.columnIndex="1" GridPane.rowIndex="6">
+               <Label fx:id="sellGamesPrice" text="no trade" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="6">
                   <GridPane.margin>
                      <Insets left="115.0" />
                   </GridPane.margin>
                </Label>
-               <Label fx:id="sellFirearmsPrice" text="no trade" GridPane.columnIndex="1" GridPane.rowIndex="7">
+               <Label fx:id="sellFirearmsPrice" text="no trade" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="7">
                   <GridPane.margin>
                      <Insets left="115.0" />
                   </GridPane.margin>
                </Label>
-               <Label fx:id="sellMedicinePrice" text="no trade" GridPane.columnIndex="1" GridPane.rowIndex="8">
+               <Label fx:id="sellMedicinePrice" text="no trade" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="8">
                   <GridPane.margin>
                      <Insets left="115.0" />
                   </GridPane.margin>
                </Label>
-               <Label fx:id="sellMachinesPrice" text="no trade" GridPane.columnIndex="1" GridPane.rowIndex="9">
+               <Label fx:id="sellMachinesPrice" text="no trade" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="9">
                   <GridPane.margin>
                      <Insets left="115.0" />
                   </GridPane.margin>
                </Label>
-               <Label fx:id="sellNarcoticsPrice" text="no trade" GridPane.columnIndex="1" GridPane.rowIndex="10">
+               <Label fx:id="sellNarcoticsPrice" text="no trade" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="10">
                   <GridPane.margin>
                      <Insets left="115.0" />
                   </GridPane.margin>
                </Label>
-               <Label fx:id="sellRobotsPrice" text="no trade" GridPane.columnIndex="1" GridPane.rowIndex="11">
+               <Label fx:id="sellRobotsPrice" text="no trade" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="11">
                   <GridPane.margin>
                      <Insets left="115.0" />
                   </GridPane.margin>
@@ -308,182 +314,182 @@
                      <Insets left="50.0" />
                   </GridPane.margin>
                </Button>
-               <Label text="Price" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <Label text="Price" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
                   <GridPane.margin>
                      <Insets left="120.0" />
                   </GridPane.margin>
                </Label>
-               <Label text="Price" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <Label text="Price" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1">
                   <GridPane.margin>
                      <Insets left="120.0" />
                   </GridPane.margin>
                </Label>
-               <Label fx:id="buyWaterPrice" text="no trade" GridPane.columnIndex="2" GridPane.rowIndex="2">
+               <Label fx:id="buyWaterPrice" text="no trade" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="2">
                   <GridPane.margin>
                      <Insets left="110.0" />
                   </GridPane.margin>
                </Label>
-               <Label fx:id="buyFurPrice" text="no trade" GridPane.columnIndex="2" GridPane.rowIndex="3">
+               <Label fx:id="buyFurPrice" text="no trade" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="3">
                   <GridPane.margin>
                      <Insets left="110.0" />
                   </GridPane.margin>
                </Label>
-               <Label fx:id="buyFoodPrice" text="no trade" GridPane.columnIndex="2" GridPane.rowIndex="4">
+               <Label fx:id="buyFoodPrice" text="no trade" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="4">
                   <GridPane.margin>
                      <Insets left="110.0" />
                   </GridPane.margin>
                </Label>
-               <Label fx:id="buyOrePrice" text="no trade" GridPane.columnIndex="2" GridPane.rowIndex="5">
+               <Label fx:id="buyOrePrice" text="no trade" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="5">
                   <GridPane.margin>
                      <Insets left="110.0" />
                   </GridPane.margin>
                </Label>
-               <Label fx:id="buyGamesPrice" text="no trade" GridPane.columnIndex="2" GridPane.rowIndex="6">
+               <Label fx:id="buyGamesPrice" text="no trade" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="6">
                   <GridPane.margin>
                      <Insets left="110.0" />
                   </GridPane.margin>
                </Label>
-               <Label fx:id="buyFirearmsPrice" text="no trade" GridPane.columnIndex="2" GridPane.rowIndex="7">
+               <Label fx:id="buyFirearmsPrice" text="no trade" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="7">
                   <GridPane.margin>
                      <Insets left="110.0" />
                   </GridPane.margin>
                </Label>
-               <Label fx:id="buyMedicinePrice" text="no trade" GridPane.columnIndex="2" GridPane.rowIndex="8">
+               <Label fx:id="buyMedicinePrice" text="no trade" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="8">
                   <GridPane.margin>
                      <Insets left="110.0" />
                   </GridPane.margin>
                </Label>
-               <Label fx:id="buyMachinesPrice" text="no trade" GridPane.columnIndex="2" GridPane.rowIndex="9">
+               <Label fx:id="buyMachinesPrice" text="no trade" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="9">
                   <GridPane.margin>
                      <Insets left="110.0" />
                   </GridPane.margin>
                </Label>
-               <Label fx:id="buyNarcoticsPrice" text="no trade" GridPane.columnIndex="2" GridPane.rowIndex="10">
+               <Label fx:id="buyNarcoticsPrice" text="no trade" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="10">
                   <GridPane.margin>
                      <Insets left="110.0" />
                   </GridPane.margin>
                </Label>
-               <Label fx:id="buyRobotsPrice" text="no trade" GridPane.columnIndex="2" GridPane.rowIndex="11">
+               <Label fx:id="buyRobotsPrice" text="no trade" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="11">
                   <GridPane.margin>
                      <Insets left="110.0" />
                   </GridPane.margin>
                </Label>
-               <Label text="Available" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <Label text="Available" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
                   <padding>
                      <Insets left="5.0" />
                   </padding>
             </Label>
-               <Label text="Available" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <Label text="Available" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1">
                   <GridPane.margin>
                      <Insets left="5.0" />
                   </GridPane.margin>
             </Label>
-               <Label fx:id="sellableWater" text="0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <Label fx:id="sellableWater" text="0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2">
                   <GridPane.margin>
                      <Insets left="5.0" />
                   </GridPane.margin>
             </Label>
-               <Label fx:id="sellableFurs" text="0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <Label fx:id="sellableFurs" text="0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3">
                   <GridPane.margin>
                      <Insets left="5.0" />
                   </GridPane.margin>
             </Label>
-               <Label fx:id="sellableFood" text="0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <Label fx:id="sellableFood" text="0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="4">
                   <GridPane.margin>
                      <Insets left="5.0" />
                   </GridPane.margin>
             </Label>
-               <Label fx:id="sellableOre" text="0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+               <Label fx:id="sellableOre" text="0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="5">
                   <GridPane.margin>
                      <Insets left="5.0" />
                   </GridPane.margin>
             </Label>
-               <Label fx:id="sellableGames" text="0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+               <Label fx:id="sellableGames" text="0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="6">
                   <GridPane.margin>
                      <Insets left="5.0" />
                   </GridPane.margin>
             </Label>
-               <Label fx:id="sellableFirearms" text="0" GridPane.columnIndex="1" GridPane.rowIndex="7">
+               <Label fx:id="sellableFirearms" text="0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="7">
                   <GridPane.margin>
                      <Insets left="5.0" />
                   </GridPane.margin>
             </Label>
-               <Label fx:id="buyableWater" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="2">
+               <Label fx:id="buyableWater" text="Label" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="2">
                   <GridPane.margin>
                      <Insets left="5.0" />
                   </GridPane.margin>
             </Label>
-               <Label fx:id="buyableFur" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="3">
+               <Label fx:id="buyableFur" text="Label" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="3">
                   <GridPane.margin>
                      <Insets left="5.0" />
                   </GridPane.margin>
             </Label>
-               <Label fx:id="buyableFood" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="4">
+               <Label fx:id="buyableFood" text="Label" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="4">
                   <GridPane.margin>
                      <Insets left="5.0" />
                   </GridPane.margin>
             </Label>
-               <Label fx:id="buyableOre" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="5">
+               <Label fx:id="buyableOre" text="Label" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="5">
                   <GridPane.margin>
                      <Insets left="5.0" />
                   </GridPane.margin>
             </Label>
-               <Label fx:id="buyableGames" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="6">
+               <Label fx:id="buyableGames" text="Label" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="6">
                   <GridPane.margin>
                      <Insets left="5.0" />
                   </GridPane.margin>
             </Label>
-               <Label fx:id="buyableFirearms" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="7">
+               <Label fx:id="buyableFirearms" text="Label" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="7">
                   <GridPane.margin>
                      <Insets left="5.0" />
                   </GridPane.margin>
             </Label>
-               <Label fx:id="buyableMedicine" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="8">
+               <Label fx:id="buyableMedicine" text="Label" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="8">
                   <GridPane.margin>
                      <Insets left="5.0" />
                   </GridPane.margin>
             </Label>
-               <Label fx:id="sellableMedicine" text="0" GridPane.columnIndex="1" GridPane.rowIndex="8">
+               <Label fx:id="sellableMedicine" text="0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="8">
                   <GridPane.margin>
                      <Insets left="5.0" />
                   </GridPane.margin>
             </Label>
-               <Label fx:id="sellableMachines" text="0" GridPane.columnIndex="1" GridPane.rowIndex="9">
+               <Label fx:id="sellableMachines" text="0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="9">
                   <GridPane.margin>
                      <Insets left="5.0" />
                   </GridPane.margin>
             </Label>
-               <Label fx:id="sellableNarcotics" text="0" GridPane.columnIndex="1" GridPane.rowIndex="10">
+               <Label fx:id="sellableNarcotics" text="0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="10">
                   <GridPane.margin>
                      <Insets left="5.0" />
                   </GridPane.margin>
             </Label>
-               <Label fx:id="sellableRobots" text="0" GridPane.columnIndex="1" GridPane.rowIndex="11">
+               <Label fx:id="sellableRobots" text="0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="11">
                   <GridPane.margin>
                      <Insets left="5.0" />
                   </GridPane.margin>
             </Label>
-               <Label fx:id="buyableMachines" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="9">
+               <Label fx:id="buyableMachines" text="Label" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="9">
                   <GridPane.margin>
                      <Insets left="5.0" />
                   </GridPane.margin>
             </Label>
-               <Label fx:id="buyableNarcotics" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="10">
+               <Label fx:id="buyableNarcotics" text="Label" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="10">
                   <GridPane.margin>
                      <Insets left="5.0" />
                   </GridPane.margin>
             </Label>
-               <Label fx:id="buyableRobots" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="11">
+               <Label fx:id="buyableRobots" text="Label" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="11">
                   <GridPane.margin>
                      <Insets left="5.0" />
                   </GridPane.margin>
             </Label>
             </children>
          </GridPane>
-      <Label layoutX="19.0" layoutY="75.0" prefHeight="16.0" prefWidth="46.0" text="Money:" />
-      <Label fx:id="money" layoutX="27.0" layoutY="91.0" text="0" />
-      <Label layoutX="14.0" layoutY="107.0" text="Cargo Space" />
-      <Label fx:id="cargo" layoutX="23.0" layoutY="123.0" text="0" />
+      <Label layoutX="19.0" layoutY="75.0" prefHeight="16.0" prefWidth="46.0" text="Money:" textFill="WHITE" />
+      <Label fx:id="money" layoutX="27.0" layoutY="91.0" text="0" textFill="WHITE" />
+      <Label layoutX="14.0" layoutY="107.0" text="Cargo Space" textFill="WHITE" />
+      <Label fx:id="cargo" layoutX="23.0" layoutY="123.0" text="0" textFill="WHITE" />
       <Button fx:id="goBackFromMarket" layoutX="39.0" layoutY="447.0" mnemonicParsing="false" onAction="#goBack" text="Back" />
    </children>
       

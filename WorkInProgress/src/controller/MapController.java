@@ -40,30 +40,21 @@ public class MapController  {
     Game game = WelcomeScreenController.game;
     @FXML
     private Label fuelText,cargo,money;
-    private Random rand = new Random();
     int i = game.getCurrentLocationIndex();
     int destinationIndex = i;
    // Game game = WelcomeScreenController.game;
     MarketPlace market = game.getMarket();
     int currentLocationIndex = WelcomeScreenController.game.getCurrentLocationIndex();
     Ship ship = WelcomeScreenController.game.getShip();
-    private final int STAGE_WIDTH = 975;
-    private final int STAGE_HEIGHT = 800;
+    private final int STAGE_WIDTH = 960;
+    private final int STAGE_HEIGHT = 565;
 
     //Buy buttons
     @FXML
     private Button save,Shipyard, goBackFromMap;
     //Labels for sellable items
    
-    //Labels for buyable items
-    @FXML
-    private Label buyableWater, buyableFur, buyableFood, buyableOre, buyableGames, buyableFirearms, buyableMedicine,
-            buyableMachines, buyableNarcotics, buyableRobots;
-    //what the fuck do these even do?
-    @FXML
-    private Label temp;
-    @FXML
-    private Label temp2;
+
     //CHECKSTYLE: ON
     
      @FXML
@@ -88,8 +79,8 @@ public class MapController  {
         GraphicsContext g2d = universeMap.getGraphicsContext2D();
         g2d.setFill(Color.WHITE);
         g2d.fillRect(0, 0, universeMap.getWidth(), universeMap.getHeight());
-        Color d = Color.web("#FFFFFF", 0.9);
-        g2d.setFill(d);
+        //Color d = Color.web("#FFFFFF", 0.9);
+        //g2d.setFill(d);
         g2d.fillRect(0, 0, universeMap.getWidth(), universeMap.getHeight());
         Color c = Color.web("#008000", 0.5);
         int r = 2 * game.getShip().getFuel();
@@ -213,7 +204,6 @@ public class MapController  {
         game.ship.buyFuel();
         fuelText.setText("" + game.ship.getFuel());
         this.money.setText("" + game.getMoney());
-        //figure out a way to update the maps from this controller
         refreshMaps();
     }
     /**

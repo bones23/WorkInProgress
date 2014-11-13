@@ -13,7 +13,7 @@
     <children>
       <ImageView fitHeight="540.0" fitWidth="960.0" layoutX="29.0" layoutY="-7.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
-            <Image url="@../supporting/stars2.jpg" />
+            <Image url="@../supporting/STARS.jpg" />
          </image>
       </ImageView>
       <Text layoutX="23.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Space Trader">

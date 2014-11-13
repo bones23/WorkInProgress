@@ -11,25 +11,33 @@ import org.controlsfx.dialog.Dialogs;
  */
 public class RandomEvent implements Serializable {
     //CHECKSTYLE: OFF
-    private Random rand;
-    private Ship myShip;
-
+    private final Random rand;
+    private final Ship myShip;
+    private final Game game;
+    private final SolarSystem targetSolarSystem;
     private final int EVENT_PERCENT = 5;
     private final int MAX_PERCENT = 100;
     private final int FUEL_MULT = 10;
     private final int ESKILL_MULT = 5;
     private final int MAX_ROB_ATTEMPTS = 6;
+    private final int targetLocation;
+    private final int ENCOUNTER_PERCENT = 8;
+    private final int POLICE_INTENSITY;
+    private final int PIRATE_INTENSITY;
     //CHECKSTYLE: ON
 
     /**
      * Create a RandomEvent and run the events.
      * @param s stage
      */
-    public RandomEvent(final Stage s) {
-
+    public RandomEvent(final Stage s, final int targetLocation) {
+        this.targetLocation = targetLocation;
         rand = new Random();
         this.myShip = WelcomeScreenController.game.getShip();
-
+        game = WelcomeScreenController.game;
+        targetSolarSystem = game.getUniverse().getSolarSystemAt(targetLocation);
+        POLICE_INTENSITY = targetSolarSystem.getPoliceIntensity();
+        PIRATE_INTENSITY = targetSolarSystem.getPirateIntensity();
         runRandomEvents(s);
     }
 
@@ -39,13 +47,20 @@ public class RandomEvent implements Serializable {
      * @param s The Stage to run in
      */
     public final void runRandomEvents(final Stage s) {
-
+        if (rand.nextInt(ENCOUNTER_PERCENT) <
+                targetSolarSystem.getPoliceIntensity()) {
+            //do police encounter
+        } else if (rand.nextInt(ENCOUNTER_PERCENT) <
+                targetSolarSystem.getPirateIntensity()) {
+            //do pirate encounter
+        }
         if (rand.nextInt(MAX_PERCENT) < EVENT_PERCENT) {
             fuelLeak(s);
         }
         if (rand.nextInt(MAX_PERCENT) < EVENT_PERCENT) {
             robbed(s);
         }
+        
     }
 
     /**

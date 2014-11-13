@@ -29,8 +29,8 @@ public class ShipYardController  {
     @FXML
     private Label currentMoney,currentCargoSpace, fuelTankSize, weaponLabel1
             , weaponLabel2, weaponLabel3;
-    private final int STAGE_WIDTH = 975;
-    private final int STAGE_HEIGHT = 800;
+    private final int STAGE_WIDTH = 960;
+    private final int STAGE_HEIGHT = 565;
     //CHECKSTYLE: ON
 
     /**

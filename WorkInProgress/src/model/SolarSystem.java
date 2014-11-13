@@ -168,6 +168,21 @@ public class SolarSystem implements Serializable {
     }
 
     /**
+     * Getter for the police intensity of the solar system.
+     * @return police - the police status
+     */
+    public final int getPoliceIntensity() {
+        return policeIntensity;
+    }
+    
+     /**
+     * Getter for the pirate intensity of the solar system.
+     * @return police - the police status
+     */
+    public final int getPirateIntensity() {
+        return pirateIntensity;
+    }
+    /**
      * Getter for marketplace.
      * @return marketplace
      */

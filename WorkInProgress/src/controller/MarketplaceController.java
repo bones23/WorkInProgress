@@ -54,8 +54,8 @@ public class MarketplaceController {
     @FXML
     private Label temp2;
     //CHECKSTYLE: ON
-    private final int STAGE_WIDTH = 975;
-    private final int STAGE_HEIGHT = 800;
+    private final int STAGE_WIDTH = 960;
+    private final int STAGE_HEIGHT = 565;
     @FXML
     private void initialize() {
         game = WelcomeScreenController.game;

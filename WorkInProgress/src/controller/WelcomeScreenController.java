@@ -126,8 +126,8 @@ implements Initializable {
             this.stage = new Stage();
             this.stage.setScene(scene);
             this.stage.setResizable(false);
-            this.stage.setWidth(975);
-            this.stage.setHeight(800);
+            this.stage.setWidth(960);
+            this.stage.setHeight(565);
             this.stage.show();
     }
     /**
@@ -189,8 +189,8 @@ implements Initializable {
             this.stage = new Stage();
             this.stage.setScene(scene);
             this.stage.setResizable(false);
-            this.stage.setWidth(975);
-            this.stage.setHeight(800);
+            this.stage.setWidth(960);
+            this.stage.setHeight(565);
             this.stage.show();
             //this.stage.setFullScreen(true);
         }

@@ -20,6 +20,7 @@ public class Ship implements Serializable  {
     private TradeItem[] cargoManifest;
     private int bays;
     private int fuelTank;
+    private int health = 100;
     
     private final int DEFAULT_FUEL = 14;
     private final int DEFAULT_BAYS = 10;
@@ -299,7 +300,7 @@ public class Ship implements Serializable  {
 //            i = j;
             System.out.println(distance);
             setFuel(getFuel() - distance);
-            randomEvent(s);
+            RandomEvent randomEvent = new RandomEvent(s, j);
         }
 
         this.x = newX;
@@ -308,93 +309,10 @@ public class Ship implements Serializable  {
     }
 
     /**
-     * @param s the Stage
-     */
-    public final void randomEvent(final Stage s) {
-        Random rand = new Random();
-
-        if (rand.nextInt(MAX_PERCENT) < EVENT_PERCENT) {
-            fuelLeak(s);
-        }
-
-        if (rand.nextInt(MAX_PERCENT) < EVENT_PERCENT) {
-            robbed(s, rand);
-        }
-    }
-
-    /**
      * @param myBays new # bays
      */
     public final void setBays(final int myBays) {
         this.bays = myBays;
-    }
-
-    /**
-     * @param s the Stage
-     */
-    public final void fuelLeak(final Stage s) {
-
-        int cost = (this.fuelTank * FUEL_MULT) - (WelcomeScreenController
-                .game.getPlayer().getEngineerSkill() * ESKILL_MULT);
-
-        if (WelcomeScreenController.game.getPlayer().getMoney() - cost >= 0) {
-            WelcomeScreenController.game.getPlayer()
-                    .setMoney(WelcomeScreenController.game.getPlayer()
-                            .getMoney() - cost);
-        } else {
-            System.exit(1);
-        }
-        setFuel(0);
-        Dialogs.create()
-            .owner(s)
-            .title("OH NO!")
-            .masthead(null)
-            .message("There has been a fuel leak!\nBecause of your engineerin"
-                + "g skill, you don't"
-                + " have to buy a new fuel tank but just some spare parts.\n"
-                + " You save " + (WelcomeScreenController.game.getPlayer()
-                        .getEngineerSkill() * ESKILL_MULT) + " credits.")
-            .showInformation();
-    }
-
-    /**
-     * Random event: a thief steals from cargo a number of times determined from
-     * the player's trader skill.
-     * @param s the Stage handling random events
-     * @param rand rng
-     */
-    public final void robbed(final Stage s, final Random rand) {
-
-        // # of attempts a theif tries to steal
-        int attempts = MAX_ROB_ATTEMPTS - (WelcomeScreenController
-                .game.getPlayer().getTraderSkill() / 2);
-        String stolen = "";
-
-        // Thief tries to steal "attempts" times from a random bay. The same
-        // bay can be stolen from multiple times but nothing will happen after
-        // stealing from it once. This should add some randomness.
-        for (int i = 0; i < attempts; i++) {
-
-            int bayToStealFrom = rand.nextInt(this.bays);
-
-            if (this.cargoManifest[bayToStealFrom] != null) {
-                stolen += "\t" + this.cargoManifest[bayToStealFrom].getName()
-                        + " in bay " + bayToStealFrom + "\n";
-                this.cargoManifest[bayToStealFrom] = null;
-                this.occupiedSlots--;
-            }
-        }
-
-        if (stolen.equals("")) {
-            stolen = "Nothing! You sure lucked out.";
-        }
-        Dialogs.create()
-                .owner(s)
-                .title("You've been robbed!")
-                .masthead(null)
-                .message("The following have been stolen from cargo:\n"
-                        + stolen)
-                .showInformation();
     }
 
     /**
@@ -409,5 +327,21 @@ public class Ship implements Serializable  {
      */
     public final int getFuelTank() {
         return this.fuelTank;
+    }
+    
+    /**
+     * 
+     * @return health - health of the ship
+     */
+    public final int getHealth() {
+        return health;
+    }
+    
+    /**
+     * 
+     * @param health - health of the ship
+     */
+    public final void setHealth(int health) {
+        this.health = health;
     }
 }
