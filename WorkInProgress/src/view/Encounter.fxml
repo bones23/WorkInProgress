@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="565.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EncounterController">
+   <children>
+      <ImageView fitHeight="565.0" fitWidth="960.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../supporting/stars2.jpg" />
+         </image>
+      </ImageView>
+      <Button fx:id="attack" layoutX="287.0" layoutY="321.0" mnemonicParsing="false" onAction="#attack" text="Attack" />
+      <Button fx:id="surrender" layoutX="497.0" layoutY="321.0" mnemonicParsing="false" onAction="#surrender" text="Surrender" />
+      <Button fx:id="flee" layoutX="604.0" layoutY="321.0" mnemonicParsing="false" onAction="#flee" text="Flee" />
+      <Canvas fx:id="canvas" height="200.0" layoutX="217.0" layoutY="83.0" width="510.0" />
+      <Button fx:id="dodge" layoutX="392.0" layoutY="321.0" mnemonicParsing="false" onAction="#dodge" text="Dodge" />
+   </children>
+</AnchorPane>
