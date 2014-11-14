@@ -77,17 +77,17 @@ implements Initializable {
 
     @Override
     public void initialize(final URL url, final ResourceBundle rb) {
-        Font.loadFont(getClass()
-                .getResource("/supporting/slice.ttf").toExternalForm(), 10);
-        Font.loadFont(getClass()
-                .getResource("/supporting/CFDots-Regular.ttf").toExternalForm(), 10);
-        Font.loadFont(getClass()
-                .getResource("/supporting/Alien-Encounters-Regular.ttf").toExternalForm(), 10);
+        Font titleTextFont = Font.loadFont(getClass()
+                .getResource("/supporting/slice.ttf").toExternalForm(), 90);
+        Font textButtonFont = Font.loadFont(getClass()
+                .getResource("/supporting/CFDots-Regular.ttf").toExternalForm(), 34);
+        Font easterEggFont = Font.loadFont(getClass()
+                .getResource("/supporting/Alien-Encounters-Regular.ttf").toExternalForm(), 19);
         
-        this.titleText.getStyleClass().add("titleText");
-        this.newGameText.getStyleClass().add("textButton");
-        this.loadGameText.getStyleClass().add("textButton");
-        this.easterEgg.getStyleClass().add("easterEgg");
+        this.titleText.setFont(titleTextFont);
+        this.newGameText.setFont(textButtonFont);
+        this.loadGameText.setFont(textButtonFont);
+        this.easterEgg.setFont(easterEggFont);
     }
 
     @Override
