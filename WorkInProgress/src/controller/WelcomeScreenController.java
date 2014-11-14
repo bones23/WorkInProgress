@@ -77,12 +77,12 @@ implements Initializable {
 
     @Override
     public void initialize(final URL url, final ResourceBundle rb) {
-        Font.loadFont(WelcomeScreenController.class
-                .getResource("slice.ttf").toExternalForm(), 10);
-        Font.loadFont(WelcomeScreenController.class
-                .getResource("CFDots-Regular.ttf").toExternalForm(), 10);
-        Font.loadFont(WelcomeScreenController.class
-                .getResource("Alien-Encounters-Regular.ttf").toExternalForm(), 10);
+        Font.loadFont(getClass()
+                .getResource("/supporting/slice.ttf").toExternalForm(), 10);
+        Font.loadFont(getClass()
+                .getResource("/supporting/CFDots-Regular.ttf").toExternalForm(), 10);
+        Font.loadFont(getClass()
+                .getResource("/supporting/Alien-Encounters-Regular.ttf").toExternalForm(), 10);
         
         this.titleText.getStyleClass().add("titleText");
         this.newGameText.getStyleClass().add("textButton");
