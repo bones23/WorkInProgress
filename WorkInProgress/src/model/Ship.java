@@ -21,7 +21,9 @@ public class Ship implements Serializable  {
     private int bays;
     private int fuelTank;
     private int health = 100;
-    
+    private int attackDamage = 18;
+    private Random rand = new Random();
+    private int shields = 3;
     private final int DEFAULT_FUEL = 14;
     private final int DEFAULT_BAYS = 10;
     private final int FUEL_PRICE = 5;
@@ -344,4 +346,36 @@ public class Ship implements Serializable  {
     public final void setHealth(int health) {
         this.health = health;
     }
+    
+    public final int takeDamage(int damage) {
+        health = health - damage;
+        if (health <= 0) {
+            health = 0;
+        }
+        return health;
+    }
+    
+    public final int getAttackDamage() {
+        return attackDamage;
+    }
+    public final int getShields() {
+        return shields;
+    }
+    public final void setAttackDamage(int attackDamage) {
+        this.attackDamage = attackDamage;
+    }
+    public final void setShields(int shields) {
+        this.shields = shields;
+    }
+    
+    public final int doDamage() {
+        return rand.nextInt(attackDamage + 2 - (attackDamage - 2))
+                + (attackDamage - 2);
+    }
+    
+    public final int deductShield() {
+        shields -= 1;
+        return shields;
+    }
+
 }

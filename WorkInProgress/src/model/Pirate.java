@@ -18,7 +18,7 @@ public class Pirate {
     Game game = WelcomeScreenController.game;
     public Pirate() {
         rand = new Random();
-        health = rand.nextInt(50 - 30 + 1) + 30;
+        health = 100;
         damageLow = 9;
         damageHigh = 18;
     }
@@ -37,5 +37,19 @@ public class Pirate {
     
     public void setHealth(int health) {
         this.health = health;
+    }
+    
+    public int takeDamage(int damage) {
+        if (health > 0) {
+            health = health - damage;
+            if (health < 0) {
+                health = 0;
+            }
+        }
+        return health;
+    }
+    
+    public int doDamage() {
+        return rand.nextInt(damageHigh - damageLow) + damageLow;
     }
 }

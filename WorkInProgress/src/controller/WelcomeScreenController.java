@@ -18,7 +18,6 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -38,11 +37,7 @@ implements Initializable {
     public static Stage stage;
     
     @FXML
-    private Text titleText;
-    @FXML
     private Text newGameText;
-    @FXML
-    private Text loadGameText;
     @FXML
     private Button okButton;
     @FXML
@@ -77,17 +72,7 @@ implements Initializable {
 
     @Override
     public void initialize(final URL url, final ResourceBundle rb) {
-        Font titleTextFont = Font.loadFont(getClass()
-                .getResource("/supporting/slice.ttf").toExternalForm(), 90);
-        Font textButtonFont = Font.loadFont(getClass()
-                .getResource("/supporting/CFDots-Regular.ttf").toExternalForm(), 34);
-        Font easterEggFont = Font.loadFont(getClass()
-                .getResource("/supporting/Alien-Encounters-Regular.ttf").toExternalForm(), 19);
-        
-        this.titleText.setFont(titleTextFont);
-        this.newGameText.setFont(textButtonFont);
-        this.loadGameText.setFont(textButtonFont);
-        this.easterEgg.setFont(easterEggFont);
+        // TODO
     }
 
     @Override
@@ -207,6 +192,7 @@ implements Initializable {
             this.stage.setWidth(960);
             this.stage.setHeight(565);
             this.stage.show();
+            //this.stage.setFullScreen(true);
         }
     }
 

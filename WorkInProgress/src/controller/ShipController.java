@@ -99,7 +99,9 @@ public class ShipController {
     
     @FXML
     private void encounter(final ActionEvent event) throws IOException {
-        Stage stage;
+        
+        Stage stage = WelcomeScreenController.stage;;
+        /*
          AnchorPane pane = FXMLLoader.load(getClass()
                  .getResource("/view/Encounter.fxml"));
             Scene scene = new Scene(pane);
@@ -109,6 +111,10 @@ public class ShipController {
             stage.setWidth(STAGE_WIDTH);
             stage.setHeight(STAGE_HEIGHT);
             stage.show();
+                */
+        Encounters start = new Encounters();
+        start.start(stage);
+        
     }
 }
     

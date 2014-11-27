@@ -16,7 +16,7 @@
             <Image url="@../supporting/STARS.jpg" />
          </image>
       </ImageView>
-      <Text fx:id="titleText" layoutX="23.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Space Trader">
+      <Text layoutX="23.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Space Trader">
          <font>
             <Font name="Slice Regular" size="90.0" />
          </font>
