@@ -28,7 +28,8 @@ public class ShipYardController  {
     private Button buyShip1,buyShip2,leave, fuelUpgrade, cargoUpgrade, weaponUpgrade;
     @FXML
     private Label currentMoney,currentCargoSpace, fuelTankSize, weaponLabel1
-            , weaponLabel2, weaponLabel3;
+            , weaponLabel2, weaponLabel3, healthLabel, damageLabel, shieldLabel,
+            repairCost, shieldRefillCost;
     private final int STAGE_WIDTH = 960;
     private final int STAGE_HEIGHT = 565;
     //CHECKSTYLE: ON
@@ -38,9 +39,14 @@ public class ShipYardController  {
      */
     @FXML
     private void initialize() {
+        healthLabel.setText("" + game.getShip().getHealth());
+        damageLabel.setText("" + game.getShip().getAttackDamage());
+        shieldLabel.setText("" + game.getShip().getShields());
         currentMoney.setText("" + game.getPlayer().getMoney());
+        repairCost.setText("" + game.getShip().repairCost());
         currentCargoSpace.setText("" + game.getShip().getBays());
         fuelTankSize.setText("" + game.getShip().getFuelTank());
+        shieldRefillCost.setText("" + game.getShip().refillShieldCost());
         if (game.getCurrentSystem().getTechLevel() < 6) {
             weaponLabel1.setVisible(false);
             weaponLabel2.setVisible(false);
@@ -154,5 +160,35 @@ public class ShipYardController  {
 
     @FXML
     private void buyWeaponUpgrade() throws IOException {
+        if (game.getPlayer().getMoney() > 1000) {
+            game.getPlayer().setMoney(game.getPlayer().getMoney() - 1000);
+            damageLabel.setText("" + game.getShip().addDamage());
+            currentMoney.setText("" + game.getPlayer().getMoney());
+        }
+    }
+    
+    @FXML
+    private void repairShip() throws IOException {
+        if (game.getShip().getHealth() < 100
+                && game.getPlayer().getMoney() > game.getShip().repairCost()) {
+            game.getPlayer().setMoney(game.getPlayer().getMoney()
+                    - game.getShip().repairCost());
+            game.getShip().setHealth(100);
+            currentMoney.setText("" + game.getPlayer().getMoney());
+            repairCost.setText("" + game.getShip().repairCost());
+            healthLabel.setText("" + game.getShip().getHealth());
+        }
+    }
+    
+    @FXML
+    private void refillShields() throws IOException {
+        if (game.getPlayer().getMoney() > game.getShip().refillShieldCost()) {
+            game.getPlayer().setMoney(game.getPlayer().getMoney()
+                    - game.getShip().refillShieldCost());
+            shieldLabel.setText("" + game.getShip().getMaxShields());
+            game.getShip().refillShield();
+            currentMoney.setText("" + game.getPlayer().getMoney());
+            shieldRefillCost.setText("" + game.getShip().refillShieldCost());
+        }
     }
 }

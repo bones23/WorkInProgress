@@ -23,7 +23,7 @@ public class Ship implements Serializable  {
     private int health = 100;
     private int attackDamage = 18;
     private Random rand = new Random();
-    private int shields = 3;
+    private int shields = 3, maxShields = 3;
     private final int DEFAULT_FUEL = 14;
     private final int DEFAULT_BAYS = 10;
     private final int FUEL_PRICE = 5;
@@ -361,6 +361,12 @@ public class Ship implements Serializable  {
     public final int getShields() {
         return shields;
     }
+    public final int getMaxShields() {
+        return maxShields;
+    }
+    public final void setMaxShields(int maxShields) {
+        this.maxShields = maxShields;
+    }
     public final void setAttackDamage(int attackDamage) {
         this.attackDamage = attackDamage;
     }
@@ -378,4 +384,20 @@ public class Ship implements Serializable  {
         return shields;
     }
 
+    public final int addDamage() {
+        attackDamage += 1;
+        return attackDamage;
+    }
+    
+    public final int repairCost() {
+        return (100 - health) * 5;
+    }
+    
+    public final int refillShieldCost() {
+        return (maxShields - shields) * 500;
+    }
+    
+    public final void refillShield() {
+        shields = maxShields;
+    }
 }

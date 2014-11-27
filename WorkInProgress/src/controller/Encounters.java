@@ -62,6 +62,7 @@ public class Encounters extends Application {
         ship = new Image("/supporting/Ship.PNG");
         layout = new Image("/supporting/layout.png");
         explosion = new Image("/supporting/explosion.png");
+        playerShield = new Image("/supporting/ShipShield.png");
         
         healthLabel1 = new Label();
         healthLabel1.setText("Health: " + player.getHealth() + "/100");
@@ -232,6 +233,9 @@ public class Encounters extends Application {
     public void pirateMove(final Scene scene, int cycle, boolean reverse) {
         myTurn = false;
         Rectangle rectangle = new Rectangle(665, 208, 15, 3);
+        if (reverse) {
+            ship_1.setImage(playerShield);
+        }
         rectangle.setVisible(true);
         rectangle.setFill(Color.GREEN);
         final Group root = (Group) scene.getRoot();
@@ -247,6 +251,7 @@ public class Encounters extends Application {
                 if (reverse) {
                     health4.setWidth(pirate.takeDamage(player.doDamage()));
                     healthLabel2.setText("Health: " + pirate.getHealth() + "/100");
+                    ship_1.setImage(ship);
                     if (pirate.getHealth() == 0) {    
                         leave.setVisible(true);
                         attack.setVisible(false);
