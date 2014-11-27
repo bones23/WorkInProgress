@@ -4,6 +4,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
+import javafx.animation.RotateTransition;
 import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -16,6 +17,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 
@@ -39,12 +41,13 @@ public class Encounters extends Application {
     private final int rec_height = 12;
     private Pirate pirate;
     private Label healthLabel1, healthLabel2, playerName, shipName,
-            attackDamage, shields;
+            attackDamage, shields, pirateLabel;
     private final int STAGE_WIDTH = 960;
     private final int STAGE_HEIGHT = 565;
     private Person person = game.getPlayer();
-    private Image ship, background, layout, pirateShip, explosion;
+    private Image ship, background, layout, pirateShip, explosion, playerShield;
     private GraphicsContext graphicsContext;
+    private ImageView ship_1, pirate_Ship;
     public static void main(String[] args) {
         Application.launch(args);
     }
@@ -59,7 +62,9 @@ public class Encounters extends Application {
         ship = new Image("/supporting/Ship.PNG");
         layout = new Image("/supporting/layout.png");
         explosion = new Image("/supporting/explosion.png");
-        healthLabel1 = new Label("Health: 100/100");
+        
+        healthLabel1 = new Label();
+        healthLabel1.setText("Health: " + player.getHealth() + "/100");
         healthLabel1.setLayoutX(280);
         healthLabel1.setLayoutY(73);
         healthLabel1.setTextFill(Color.WHITE);
@@ -96,7 +101,10 @@ public class Encounters extends Application {
         shields.setText("Shields:\n" + player.getShields());
         shields.setTextFill(Color.WHITE);
         shields.setFont(Font.font(9));
-        
+        pirateLabel = new Label("Unknown Pirate");
+        pirateLabel.setLayoutX(520);
+        pirateLabel.setLayoutY(43);
+        pirateLabel.setTextFill(Color.WHITE);
         health1 = new Rectangle(320, 75, rec_width, rec_height);
         health1.setFill(Color.RED);
         health2 = new Rectangle(320, 75, player.getHealth(), rec_height);
@@ -134,8 +142,8 @@ public class Encounters extends Application {
         pirateShip = new Image("/supporting/pirateship.png");
         graphicsContext.drawImage(background, 0, 0);
         graphicsContext.drawImage(layout, 235, 25);
-        graphicsContext.drawImage(ship, 222, 158);
-        graphicsContext.drawImage(pirateShip, 701, 158);
+        //graphicsContext.drawImage(ship, 222, 158);
+        //graphicsContext.drawImage(pirateShip, 701, 158);
         attack = new Button();
         attack.setLayoutX(287);
         attack.setLayoutY(321);
@@ -175,8 +183,9 @@ public class Encounters extends Application {
         root.getChildren().add(playerName);
         root.getChildren().add(shipName);
         root.getChildren().add(attackDamage);
+        root.getChildren().add(pirateLabel);
         root.getChildren().add(shields);
-        
+        startingAnimation(scene);
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
         primaryStage.show();
@@ -205,6 +214,7 @@ public class Encounters extends Application {
                     attack.setVisible(false);
                     shield.setVisible(false);
                     explosion("Pirate");
+                    rotate("Ship");
                 }
             }
         });
@@ -242,6 +252,7 @@ public class Encounters extends Application {
                         attack.setVisible(false);
                         shield.setVisible(false);
                         explosion("Pirate");
+                        rotate("Ship");
                     }
                     shields.setText("Shields:\n" + player.deductShield());
                 } else {
@@ -265,18 +276,131 @@ public class Encounters extends Application {
     
     public void explosion(String death) {
         if (death.equals("Player")) {
-            graphicsContext.drawImage(background, 0, 0);
-            graphicsContext.drawImage(layout, 235, 25);
-            graphicsContext.drawImage(explosion, 222, 158);
-            graphicsContext.drawImage(pirateShip, 701, 158);
+            ship_1.setImage(explosion);
             canvas.toBack();
         } else if (death.equals("Pirate")) {
-            graphicsContext.drawImage(background, 0, 0);
-            graphicsContext.drawImage(layout, 235, 25);
-            graphicsContext.drawImage(ship, 222, 158);
-            graphicsContext.drawImage(explosion, 701, 158);
+            pirate_Ship.setImage(explosion);
             canvas.toBack();
         }
         
+    }
+    
+    public void startingAnimation(final Scene scene) {
+        ship_1 = new ImageView(ship);
+        ship_1.setLayoutX(0);
+        ship_1.setLayoutY(158);
+        final Group root = (Group) scene.getRoot();
+        root.getChildren().add(ship_1);
+        Timeline tl = new Timeline();
+        tl.setCycleCount(1);
+        KeyValue kv = new KeyValue(ship_1.xProperty(), 222);
+        KeyFrame kf = new KeyFrame(Duration.millis(1000), kv);
+        tl.getKeyFrames().add(kf);
+        tl.play();
+        
+        pirate_Ship = new ImageView(pirateShip);
+        pirate_Ship.setLayoutX(960);
+        pirate_Ship.setLayoutY(158);
+        root.getChildren().add(pirate_Ship);
+        Timeline tl1 = new Timeline();
+        tl1.setCycleCount(1);
+        KeyValue kv2 = new KeyValue(pirate_Ship.xProperty(), -260);
+        KeyFrame kf2 = new KeyFrame(Duration.millis(1000), kv2);
+        tl1.getKeyFrames().add(kf2);
+        tl1.play();
+        
+        tl.setOnFinished(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                startSwayShip();
+            }
+        });
+        tl1.setOnFinished(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                startSwayPirate();
+            }
+        });
+    }
+    
+    public void startSwayShip() {
+        Timeline tl = new Timeline();
+        tl.setCycleCount(Timeline.INDEFINITE);
+        tl.setAutoReverse(true);
+        KeyValue kv = new KeyValue(ship_1.xProperty(), 220);
+        KeyValue kv1 = new KeyValue(ship_1.yProperty(), 2);
+        KeyFrame kf = new KeyFrame(Duration.millis(1500), kv, kv1);
+        tl.getKeyFrames().add(kf);
+        tl.play();
+        
+    }
+    public void startSwayPirate() {
+        Timeline tl = new Timeline();
+        tl.setCycleCount(Timeline.INDEFINITE);
+        tl.setAutoReverse(true);
+        KeyValue kv = new KeyValue(pirate_Ship.xProperty(), -262);
+        KeyValue kv1 = new KeyValue(pirate_Ship.yProperty(), 2);
+        KeyFrame kf = new KeyFrame(Duration.millis(1500), kv, kv1);
+        tl.getKeyFrames().add(kf);
+        tl.play();
+    }
+    
+    public void flyAway(String string) {
+        if (string.equals("Ship")) {
+            Timeline tl = new Timeline();
+            tl.setCycleCount(1);
+            KeyValue kv = new KeyValue(ship_1.xProperty(), -150);
+            KeyFrame kf = new KeyFrame(Duration.millis(1000), kv);
+            tl.getKeyFrames().add(kf);
+            tl.play();
+            tl.setOnFinished(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                ship_1.setVisible(false);
+            }
+        });
+        } else if (string.equals("Pirate")) {
+            Timeline tl = new Timeline();
+            tl.setCycleCount(1);
+            KeyValue kv = new KeyValue(pirate_Ship.xProperty(), 960);
+            KeyFrame kf = new KeyFrame(Duration.millis(1000), kv);
+            tl.getKeyFrames().add(kf);
+            tl.play();
+            tl.setOnFinished(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                pirate_Ship.setVisible(false);
+            }
+        });
+        }
+    }
+    
+    public void rotate(String string) {
+        if (string.equals("Ship")) {
+            RotateTransition rotateTransition = 
+            new RotateTransition(Duration.millis(1000), ship_1);
+            rotateTransition.setByAngle(180f);
+            rotateTransition.setCycleCount(1);
+            rotateTransition.play();
+            rotateTransition.setOnFinished(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    flyAway("Ship");
+                }
+            });
+            
+        } else if (string.equals("Pirate")) {
+            RotateTransition rotateTransition = 
+            new RotateTransition(Duration.millis(1000), pirate_Ship);
+            rotateTransition.setByAngle(180f);
+            rotateTransition.setCycleCount(1);
+            rotateTransition.play();
+            rotateTransition.setOnFinished(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    flyAway("Pirate");
+                }
+            });
+        }
     }
 }
