@@ -25,13 +25,16 @@ public class ShipYardController  {
     //CHECKSTYLE: OFF
     Game game = WelcomeScreenController.game;
     @FXML
-    private Button buyShip1,buyShip2,leave, fuelUpgrade, cargoUpgrade, weaponUpgrade;
+    private Button buyShip1,buyShip2,leave, fuelUpgrade, cargoUpgrade,
+            weaponUpgrade, buyBlackHole;
     @FXML
     private Label currentMoney,currentCargoSpace, fuelTankSize, weaponLabel1
             , weaponLabel2, weaponLabel3, healthLabel, damageLabel, shieldLabel,
-            repairCost, shieldRefillCost;
+            repairCost, shieldRefillCost, holeLabel1, holeLabel2, holeLabel3,
+            specialPower;
     private final int STAGE_WIDTH = 960;
     private final int STAGE_HEIGHT = 565;
+    private final int blackHoleCost = 10000;
     //CHECKSTYLE: ON
 
     /**
@@ -47,11 +50,17 @@ public class ShipYardController  {
         currentCargoSpace.setText("" + game.getShip().getBays());
         fuelTankSize.setText("" + game.getShip().getFuelTank());
         shieldRefillCost.setText("" + game.getShip().refillShieldCost());
+        specialPower.setText("Nothing");
         if (game.getCurrentSystem().getTechLevel() < 6) {
             weaponLabel1.setVisible(false);
             weaponLabel2.setVisible(false);
             weaponLabel3.setVisible(false);
             weaponUpgrade.setVisible(false);
+            holeLabel3.setVisible(false);
+            holeLabel2.setVisible(false);
+            holeLabel1.setVisible(false);
+            buyBlackHole.setVisible(false);
+                  
         }
     }
     /**
@@ -164,6 +173,7 @@ public class ShipYardController  {
             game.getPlayer().setMoney(game.getPlayer().getMoney() - 1000);
             damageLabel.setText("" + game.getShip().addDamage());
             currentMoney.setText("" + game.getPlayer().getMoney());
+            damageLabel.setText("" + game.getShip().getAttackDamage());
         }
     }
     
@@ -189,6 +199,18 @@ public class ShipYardController  {
             game.getShip().refillShield();
             currentMoney.setText("" + game.getPlayer().getMoney());
             shieldRefillCost.setText("" + game.getShip().refillShieldCost());
+        }
+    }
+    
+    @FXML
+    private void buyBlackHole() throws IOException {
+        if (game.getPlayer().getMoney() > blackHoleCost
+                && !game.getShip().getSpecial().equals("Black Hole")) {
+            game.getPlayer().setMoney(game.getPlayer().getMoney()
+                    - blackHoleCost);
+            currentMoney.setText("" + game.getPlayer().getMoney());
+            game.getShip().setSpecial("Black Hole");
+            specialPower.setText("Black Hole");
         }
     }
 }

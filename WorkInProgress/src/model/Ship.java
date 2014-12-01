@@ -26,6 +26,7 @@ public class Ship implements Serializable  {
     private int shields = 3, maxShields = 3;
     private final int DEFAULT_FUEL = 14;
     private final int DEFAULT_BAYS = 10;
+    private String special = "";
     private final int FUEL_PRICE = 5;
     private final int EVENT_PERCENT = 5;
     private final int MAX_PERCENT = 100;
@@ -399,5 +400,12 @@ public class Ship implements Serializable  {
     
     public final void refillShield() {
         shields = maxShields;
+    }
+    
+    public final String getSpecial() {
+        return special;
+    }
+    public final void setSpecial(String special) {
+        this.special = special;
     }
 }

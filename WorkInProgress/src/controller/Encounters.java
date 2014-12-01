@@ -1,11 +1,15 @@
 package controller;
 import java.io.IOException;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
+import javafx.animation.ParallelTransition;
 import javafx.animation.RotateTransition;
+import javafx.animation.ScaleTransition;
 import javafx.animation.Timeline;
+import javafx.animation.TranslateTransition;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -34,7 +38,7 @@ public class Encounters extends Application {
     private Rectangle health1, health2, health3, health4;
     private Canvas canvas;
     private boolean myTurn = true;
-    private Button attack, shield, leave;
+    private Button attack, shield, leave, special, flee;
     private Game game = WelcomeScreenController.game;
     private Ship player = game.getShip();
     private final int rec_width = 100;
@@ -45,9 +49,11 @@ public class Encounters extends Application {
     private final int STAGE_WIDTH = 960;
     private final int STAGE_HEIGHT = 565;
     private Person person = game.getPlayer();
-    private Image ship, background, layout, pirateShip, explosion, playerShield;
+    private Image ship, background, layout, pirateShip, explosion, playerShield,
+            black;
     private GraphicsContext graphicsContext;
-    private ImageView ship_1, pirate_Ship;
+    private ImageView ship_1, pirate_Ship, blackHole;
+    private Random rand = new Random();
     public static void main(String[] args) {
         Application.launch(args);
     }
@@ -63,7 +69,11 @@ public class Encounters extends Application {
         layout = new Image("/supporting/layout.png");
         explosion = new Image("/supporting/explosion.png");
         playerShield = new Image("/supporting/ShipShield.png");
-        
+        black = new Image("/supporting/Blackhole.png");
+        blackHole = new ImageView(black);
+        blackHole.setLayoutX(600);
+        blackHole.setLayoutY(120);
+        blackHole.setVisible(false);
         healthLabel1 = new Label();
         healthLabel1.setText("Health: " + player.getHealth() + "/100");
         healthLabel1.setLayoutX(280);
@@ -125,18 +135,30 @@ public class Encounters extends Application {
             @Override
             public void handle(ActionEvent event) {
                 try {
-                    AnchorPane pane = FXMLLoader
-                            .load(getClass().getResource("/view/Ship.fxml"));
-                    Scene scene = new Scene(pane);
-                    Stage stage;
-                    stage = WelcomeScreenController.stage;
-                    stage.setScene(scene);
-                    stage.setResizable(false);
-                    stage.setWidth(STAGE_WIDTH);
-                    stage.setHeight(STAGE_HEIGHT);
-                    stage.show();
+                    leave();
                 } catch (IOException ex) {
                     Logger.getLogger(Encounters.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+        
+        flee = new Button("Flee");
+        flee.setLayoutX(527);
+        flee.setLayoutY(321);
+        flee.setOnAction(new EventHandler<ActionEvent>() {
+            
+            @Override
+            public void handle(ActionEvent event) {
+                myTurn = false;
+                int chance = game.getPlayer().getPilotSkill() * 10;
+                if (rand.nextInt(100) <= chance) {
+                    try {
+                        leave();
+                    } catch (IOException ex) {
+                        Logger.getLogger(Encounters.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                } else {
+                    pirateMove(scene, 1, false);
                 }
             }
         });
@@ -171,13 +193,35 @@ public class Encounters extends Application {
                 }
             }
         });
+        special = new Button();
+        special.setLayoutX(287);
+        special.setLayoutY(401);
+        if (player.getSpecial().equals("")) {
+            special.setVisible(false);
+        }
+        special.setText("Special Attack");
+        special.setOnAction(new EventHandler<ActionEvent>() {
+            
+            @Override
+            public void handle(ActionEvent event) {
+                if (myTurn) {    
+                    if (player.getSpecial().equals("Black Hole")) {
+                        blackHole();
+                    } else if (player.getSpecial().equals("Rockets")) {
+                        rockets();
+                    }
+                }
+            }
+        });
         root.getChildren().add(canvas);
         root.getChildren().add(attack);
         root.getChildren().add(shield);
         root.getChildren().add(health1);
         root.getChildren().add(leave);
+        root.getChildren().add(special);
         root.getChildren().add(health2);
         root.getChildren().add(health3);
+        root.getChildren().add(blackHole);
         root.getChildren().add(health4);
         root.getChildren().add(healthLabel1);
         root.getChildren().add(healthLabel2);
@@ -186,6 +230,7 @@ public class Encounters extends Application {
         root.getChildren().add(attackDamage);
         root.getChildren().add(pirateLabel);
         root.getChildren().add(shields);
+        root.getChildren().add(flee);
         startingAnimation(scene);
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
@@ -213,7 +258,9 @@ public class Encounters extends Application {
                 if (pirate.getHealth() == 0) {    
                     leave.setVisible(true);
                     attack.setVisible(false);
+                    special.setVisible(false);
                     shield.setVisible(false);
+                    flee.setVisible(false);
                     explosion("Pirate");
                     rotate("Ship");
                 }
@@ -252,10 +299,12 @@ public class Encounters extends Application {
                     health4.setWidth(pirate.takeDamage(player.doDamage()));
                     healthLabel2.setText("Health: " + pirate.getHealth() + "/100");
                     ship_1.setImage(ship);
-                    if (pirate.getHealth() == 0) {    
+                    if (pirate.getHealth() == 0 && player.getHealth() > 0) {    
                         leave.setVisible(true);
                         attack.setVisible(false);
                         shield.setVisible(false);
+                        flee.setVisible(false);
+                        special.setVisible(false);
                         explosion("Pirate");
                         rotate("Ship");
                     }
@@ -267,6 +316,8 @@ public class Encounters extends Application {
                         leave.setVisible(true);
                         attack.setVisible(false);
                         shield.setVisible(false);
+                        special.setVisible(false);
+                        flee.setVisible(false);
                         explosion("Player");
                     }
                 }
@@ -407,5 +458,61 @@ public class Encounters extends Application {
                 }
             });
         }
+    }
+    
+    private void blackHole() {
+        blackHole.setVisible(true);
+        TranslateTransition translateTransition =
+            new TranslateTransition(Duration.millis(2000), pirate_Ship);
+        translateTransition.setToX(-95);
+        translateTransition.setToY(-40);
+        RotateTransition rotateTransition = 
+            new RotateTransition(Duration.millis(2000), pirate_Ship);
+        rotateTransition.setByAngle(180f);
+        rotateTransition.setCycleCount(1);
+        ScaleTransition scaleTransition = 
+            new ScaleTransition(Duration.millis(2000), pirate_Ship);
+        scaleTransition.setToX(0);
+        scaleTransition.setToY(0);
+        scaleTransition.setCycleCount(1);
+        ParallelTransition parallelTransition = new ParallelTransition();
+        parallelTransition.getChildren().addAll(
+                translateTransition,
+                rotateTransition,
+                scaleTransition
+        );
+        parallelTransition.setCycleCount(1);
+        parallelTransition.setOnFinished(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                leave.setVisible(true);
+                attack.setVisible(false);
+                shield.setVisible(false);
+                special.setVisible(false);
+                blackHole.setVisible(false);
+                flee.setVisible(false);
+                pirate_Ship.setVisible(false);
+                health4 = new Rectangle(585, 75, 0, rec_height);
+                rotate("Ship");
+            }
+        });
+        parallelTransition.play();
+    }
+    
+    public void rockets() {
+        
+    }
+    
+    public void leave() throws IOException {
+         AnchorPane pane = FXMLLoader
+                            .load(getClass().getResource("/view/Ship.fxml"));
+                    Scene scene = new Scene(pane);
+                    Stage stage;
+                    stage = WelcomeScreenController.stage;
+                    stage.setScene(scene);
+                    stage.setResizable(false);
+                    stage.setWidth(STAGE_WIDTH);
+                    stage.setHeight(STAGE_HEIGHT);
+                    stage.show();
     }
 }
