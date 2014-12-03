@@ -61,8 +61,8 @@ public class MapController  {
     private void initialize() {
         game = WelcomeScreenController.game;
         market = game.currentSystem.getMarketPlace();
-        drawUniverse();
         drawMini();
+        drawUniverse();
         this.money.setText("" + game.getMoney());
         fuelText.setText("" + game.ship.getFuel());
         currentLocation.setText("Current Location:\n----------------\n"
@@ -75,12 +75,12 @@ public class MapController  {
      */
     @FXML
     public void drawUniverse() {
+        universeMap.toFront();
         Universe universe = game.getUniverse();
         GraphicsContext g2d = universeMap.getGraphicsContext2D();
         g2d.setFill(Color.WHITE);
         g2d.fillRect(0, 0, universeMap.getWidth(), universeMap.getHeight());
-        //Color d = Color.web("#FFFFFF", 0.9);
-        //g2d.setFill(d);
+        g2d.setFill(Color.WHITE);
         g2d.fillRect(0, 0, universeMap.getWidth(), universeMap.getHeight());
         Color c = Color.web("#008000", 0.5);
         int r = 2 * game.getShip().getFuel();
