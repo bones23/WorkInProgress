@@ -1,4 +1,6 @@
 package model;
+import controller.PirateEncounters;
+import controller.PoliceEncounters;
 import controller.WelcomeScreenController;
 import java.io.Serializable;
 import java.util.Random;
@@ -49,10 +51,12 @@ public class RandomEvent implements Serializable {
     public final void runRandomEvents(final Stage s) {
         if (rand.nextInt(ENCOUNTER_PERCENT) <
                 targetSolarSystem.getPoliceIntensity()) {
-            //do police encounter
+            PoliceEncounters encounter = new PoliceEncounters();
+            encounter.start(s);
         } else if (rand.nextInt(ENCOUNTER_PERCENT) <
                 targetSolarSystem.getPirateIntensity()) {
-            //do pirate encounter
+            PirateEncounters encounter = new PirateEncounters();
+            encounter.start(s);
         }
         if (rand.nextInt(MAX_PERCENT) < EVENT_PERCENT) {
             fuelLeak(s);

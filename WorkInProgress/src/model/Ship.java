@@ -299,8 +299,7 @@ public class Ship implements Serializable  {
                 .pow((double) Math.abs(getX() - newX), 2)
                 + (double) Math.pow(Math.abs(getY() - newY), 2));
 
-        if (i != j && distance <= getFuel()) {
-//            i = j;
+        if (i != j && distance <= getFuel() && health > 0) {
             System.out.println(distance);
             setFuel(getFuel() - distance);
             RandomEvent randomEvent = new RandomEvent(s, j);
