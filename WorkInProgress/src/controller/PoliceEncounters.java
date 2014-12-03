@@ -148,7 +148,21 @@ public class PoliceEncounters extends Application {
         bribe.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                
+                if (game.getPlayer().getMoney() > 499) {
+                    int chance = game.getPlayer().getTraderSkill() * 10;
+                    if (rand.nextInt(100) <= chance) {
+                        game.getPlayer().setMoney(game.getPlayer().getMoney() - 500);
+                        try {
+                            leave();
+                        } catch (IOException ex) {
+                            Logger.getLogger(PirateEncounters.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    } else {
+                        policeMove(scene, 1, false);
+                    }
+                } else {
+                    policeMove(scene, 1, false);
+                }
             }
         });
         policeShip = new Image("/supporting/police.png");
@@ -252,7 +266,10 @@ public class PoliceEncounters extends Application {
                     bribe.setVisible(false);
                     explosion("Police");
                     rotate("Ship");
+                } else {
+                    policeMove(scene, 1, false);
                 }
+                
             }
         });
         KeyValue kv = new KeyValue(rectangle.xProperty(), 694);
@@ -263,7 +280,7 @@ public class PoliceEncounters extends Application {
         tl.getKeyFrames().add(kf2);
         tl.play();
         myTurn = false;
-        policeMove(scene, 1, false);
+        
     }
     
     public void policeMove(final Scene scene, int cycle, boolean reverse) {
