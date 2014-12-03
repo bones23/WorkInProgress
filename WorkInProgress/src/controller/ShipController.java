@@ -112,7 +112,7 @@ public class ShipController {
             stage.setHeight(STAGE_HEIGHT);
             stage.show();
                 */
-        Encounters start = new Encounters();
+        PoliceEncounters start = new PoliceEncounters();
         start.start(stage);
         
     }
