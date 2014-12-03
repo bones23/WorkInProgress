@@ -96,25 +96,5 @@ public class ShipController {
         WelcomeScreenController.game.save(fileName,
                 WelcomeScreenController.game);
     }
-    
-    @FXML
-    private void encounter(final ActionEvent event) throws IOException {
-        
-        Stage stage = WelcomeScreenController.stage;;
-        /*
-         AnchorPane pane = FXMLLoader.load(getClass()
-                 .getResource("/view/Encounter.fxml"));
-            Scene scene = new Scene(pane);
-            stage = WelcomeScreenController.stage;
-            stage.setScene(scene);
-            stage.setResizable(false);
-            stage.setWidth(STAGE_WIDTH);
-            stage.setHeight(STAGE_HEIGHT);
-            stage.show();
-                */
-        PoliceEncounters start = new PoliceEncounters();
-        start.start(stage);
-        
-    }
 }
     
