@@ -67,7 +67,6 @@ public class MapController  {
         fuelText.setText("" + game.ship.getFuel());
         currentLocation.setText("Current Location:\n----------------\n"
                 + game.getCurrentSystem());
-        
     }
 
     /**

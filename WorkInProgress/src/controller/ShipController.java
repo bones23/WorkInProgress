@@ -21,7 +21,7 @@ public class ShipController {
     @FXML
     private Button marketPlaceButton, mapScreenButton, Shipyard, save;
     @FXML
-    private Label fuelText, cargo, money, playerInfo;
+    private Label fuelText, cargo, money, playerInfo, currentLocation;
     private final int STAGE_WIDTH = 960;
     private final int STAGE_HEIGHT = 565;
     
@@ -32,10 +32,11 @@ public class ShipController {
         this.cargo.setText("" + game
                     .getShip().getSpaceLeft());
         playerInfo.setText("" + game.getPlayerString());
+        currentLocation.setText("Current Location:\n----------------\n"
+                + game.getCurrentSystem());
         if (game.getCurrentSystem().getTechLevel() > 3) {
             Shipyard.setVisible(true);
-        } //WHAT IS THIS CHECKSTYLE?!?
-        else {
+        } else {
             Shipyard.setVisible(false);
         }
     }

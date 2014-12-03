@@ -27,7 +27,7 @@ import model.Game;
 import org.controlsfx.dialog.Dialogs;
 
 /**
- *
+ * Controller for the main menu and character creation screen.
  * @author dblake, lukenewman
  */
 public class WelcomeScreenController implements Initializable {
@@ -107,15 +107,30 @@ public class WelcomeScreenController implements Initializable {
 //        this.stage = mainGame.stage;
 //    }
     
+    /**
+     * Apparently all the view fields should be initialized
+     * by now, but that is not the case.
+     * @param location
+     * @param resources 
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // nothin
     }
     
-    public void setMainApp(MainGame mainGame) {
+    /**
+     * Sets a reference back to MainGame.
+     * @param mainGame 
+     */
+    public void setMainGame(MainGame mainGame) {
         this.mainGame = mainGame;
     }
 
+    /**
+     * Switches to character creation screen.
+     * @param event
+     * @throws IOException 
+     */
     @FXML
     private void newGameClicked(final MouseEvent event) throws IOException {
         AnchorPane pane = FXMLLoader.load(getClass()
@@ -132,6 +147,12 @@ public class WelcomeScreenController implements Initializable {
         }
     }
 
+    /**
+     * Loads in a game from a file chooser.
+     * @param event
+     * @throws IOException
+     * @throws ClassNotFoundException 
+     */
     @FXML
     private void loadGameClicked(final MouseEvent event) throws IOException,
             ClassNotFoundException {
@@ -165,9 +186,9 @@ public class WelcomeScreenController implements Initializable {
 //    }
     
     /**
-     * Sets difficulty to normal if none is selected
-     * Displays error dialogue if skill points are not equal to 20
-     * if skill points = 20, then character is created and GameScreen
+     * Sets difficulty to normal if none is selected.
+     * Displays error dialogue if skill points are not equal to 20.
+     * If skill points = 20, then character is created and game
      * is displayed.
      * @param event event
      * @throws IOException A
@@ -229,7 +250,7 @@ public class WelcomeScreenController implements Initializable {
     }
 
     /**
-     * Cancel a click.
+     * Cancel the character creation.
      * @param event e
      * @throws IOException a
      */
@@ -242,6 +263,12 @@ public class WelcomeScreenController implements Initializable {
     @FXML
     private Text easterEgg;
 
+    /**
+     * Shhhh just ignore this.
+     * @param event
+     * @throws IOException
+     * @throws URISyntaxException 
+     */
     @FXML
     private void easterEggClicked(final MouseEvent event) throws IOException,
             URISyntaxException {

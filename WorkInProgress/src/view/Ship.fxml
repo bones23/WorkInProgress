@@ -1,27 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import java.net.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="565.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ShipController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="547.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ShipController">
    <children>
       <ImageView fitHeight="565.0" fitWidth="975.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../supporting/stars2.jpg" />
          </image>
       </ImageView>
-      <Label fx:id="fuelText" layoutX="227.0" layoutY="181.0" text="0" textFill="WHITE" />
-      <Label layoutX="219.0" layoutY="164.0" text="Fuel" textFill="WHITE" />
-      <Label fx:id="cargo" layoutX="227.0" layoutY="140.0" text="0" textFill="WHITE" />
-      <Label layoutX="218.0" layoutY="123.0" text="Cargo Space" textFill="WHITE" />
-      <Label fx:id="money" layoutX="227.0" layoutY="93.0" text="0" textFill="WHITE" />
-      <Label layoutX="220.0" layoutY="76.0" prefHeight="16.0" prefWidth="46.0" text="Money:" textFill="WHITE" />
-      <Button fx:id="marketPlaceButton" layoutX="120.0" layoutY="302.0" mnemonicParsing="false" onAction="#goToMarket" text="MarketPlace" />
-      <Button fx:id="mapScreenButton" layoutX="276.0" layoutY="302.0" mnemonicParsing="false" onAction="#goToMap" text="Travel" />
-      <Button fx:id="Shipyard" layoutX="388.0" layoutY="302.0" mnemonicParsing="false" onAction="#goToShipyard" text="Shipyard" />
-      <Label fx:id="playerInfo" layoutX="421.0" layoutY="76.0" text="Player Info:" textFill="WHITE" />
-      <Button fx:id="save" layoutX="50.0" layoutY="14.0" mnemonicParsing="false" onAction="#save" text="save" />
+      <Label fx:id="fuelText" layoutX="135.0" layoutY="453.0" text="0" textFill="WHITE">
+         <font>
+            <Font name="Abduction2002" size="35.0" />
+         </font></Label>
+      <Label layoutX="18.0" layoutY="453.0" text="Fuel:" textFill="WHITE">
+         <font>
+            <Font name="Abduction2002" size="35.0" />
+         </font></Label>
+      <Label fx:id="cargo" layoutX="289.0" layoutY="412.0" text="0" textFill="WHITE">
+         <font>
+            <Font name="Abduction2002" size="35.0" />
+         </font></Label>
+      <Label layoutX="18.0" layoutY="412.0" text="Cargo Space:" textFill="WHITE">
+         <font>
+            <Font name="Abduction2002" size="35.0" />
+         </font></Label>
+      <Label fx:id="money" layoutX="168.0" layoutY="372.0" text="0" textFill="WHITE">
+         <font>
+            <Font name="Abduction2002" size="35.0" />
+         </font></Label>
+      <Label layoutX="19.0" layoutY="366.0" prefHeight="53.0" prefWidth="137.0" text="Money:" textFill="WHITE">
+         <font>
+            <Font name="Abduction2002" size="35.0" />
+         </font></Label>
+      <Button fx:id="marketPlaceButton" layoutX="528.0" layoutY="14.0" mnemonicParsing="false" onAction="#goToMarket" styleClass="dark-blue" stylesheets="@../supporting/style.css" text="MarketPlace" />
+      <Button fx:id="mapScreenButton" layoutX="723.0" layoutY="14.0" mnemonicParsing="false" onAction="#goToMap" styleClass="dark-blue" stylesheets="@../supporting/style.css" text="Travel" />
+      <Button fx:id="Shipyard" layoutX="378.0" layoutY="14.0" mnemonicParsing="false" onAction="#goToShipyard" styleClass="dark-blue" stylesheets="@../supporting/style.css" text="Shipyard" />
+      <Label fx:id="playerInfo" layoutX="18.0" layoutY="110.0" text="Player Info:" textFill="WHITE">
+         <font>
+            <Font name="Abduction2002" size="30.0" />
+         </font></Label>
+      <Button fx:id="save" layoutX="849.0" layoutY="14.0" mnemonicParsing="false" onAction="#save" styleClass="dark-blue" text="save">
+         <stylesheets>
+            <URL value="@../supporting/style.css" />
+            <URL value="@../supporting/style.css" />
+         </stylesheets></Button>
+      <Text layoutX="22.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SHIP">
+         <font>
+            <Font name="Slice Regular" size="90.0" />
+         </font>
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#ff9300" />
+                  <Stop color="#cd00ff" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Text>
+      <Label fx:id="currentLocation" layoutX="419.0" layoutY="120.0" text="Current location:" textFill="WHITE">
+         <font>
+            <Font name="Clubland" size="30.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
