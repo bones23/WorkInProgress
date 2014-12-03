@@ -112,7 +112,7 @@ public class WelcomeScreenController implements Initializable {
         // nothin
     }
     
-    public void setMainApp(MainGame mainGame) {
+    public void setMainGame(MainGame mainGame) {
         this.mainGame = mainGame;
     }
 
@@ -127,6 +127,7 @@ public class WelcomeScreenController implements Initializable {
             this.stage.setScene(this.characterCreationScreen);
             this.stage.setResizable(false);
             this.stage.show();
+            mainGame.stage.close();
         } else {
             this.stage.setScene(this.characterCreationScreen);
         }
@@ -146,8 +147,8 @@ public class WelcomeScreenController implements Initializable {
         }
         game.load(fileName);
         AnchorPane pane = FXMLLoader.load(getClass()
-                .getResource("/view/GameScreen.fxml"));
-
+                .getResource("/view/Ship.fxml"));
+        mainGame.stage.close();
             Scene scene = new Scene(pane);
             this.stage = new Stage();
             this.stage.setScene(scene);
@@ -236,7 +237,14 @@ public class WelcomeScreenController implements Initializable {
     @FXML
     private void cancelButtonClicked(final MouseEvent event)
             throws IOException {
-        this.stage.setScene(this.welcomeScreen);
+        Stage stage;
+         AnchorPane pane = FXMLLoader.load(getClass()
+                 .getResource("/view/WelcomeScreen.fxml"));
+            Scene scene = new Scene(pane);
+            stage = WelcomeScreenController.stage;
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.show();
     }
 
     @FXML

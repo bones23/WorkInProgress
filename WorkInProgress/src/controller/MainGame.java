@@ -38,7 +38,7 @@ public class MainGame extends Application {
             stage.show();
             
             WelcomeScreenController controller = loader.getController();
-            controller.setMainApp(this);
+            controller.setMainGame(this);
         } catch (IOException e) {
             System.out.println("WelcomeScreen.fxml could not be loaded and/or displayed");
             e.printStackTrace();
