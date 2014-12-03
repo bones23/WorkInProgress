@@ -13,7 +13,7 @@ import javafx.stage.Stage;
  * @author lukenewman
  */
 public class MainGame extends Application {
-    private Stage stage;
+    public Stage stage;
 
     @Override
     public void start(Stage primaryStage) {
@@ -30,7 +30,6 @@ public class MainGame extends Application {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/view/WelcomeScreen.fxml"));
-            System.out.println("loader location: " + loader.getLocation());
             AnchorPane welcomeScreen = (AnchorPane) loader.load();
             
             Scene scene = new Scene(welcomeScreen);
@@ -42,6 +41,7 @@ public class MainGame extends Application {
             controller.setMainApp(this);
         } catch (IOException e) {
             System.out.println("WelcomeScreen.fxml could not be loaded and/or displayed");
+            e.printStackTrace();
         }
     }
 

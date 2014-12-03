@@ -7,7 +7,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -19,7 +18,6 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -32,7 +30,7 @@ import org.controlsfx.dialog.Dialogs;
  *
  * @author dblake, lukenewman
  */
-public class WelcomeScreenController {
+public class WelcomeScreenController implements Initializable {
     //CHECKSTYLE: OFF
     @FXML
     public static Stage stage;
@@ -69,43 +67,49 @@ public class WelcomeScreenController {
     
     private MainGame mainGame;
     public MapController mc = new MapController();
-    private int pointsRemaining = 20;
+//    private int pointsRemaining = 20;
     public static Game game = new Game();
     //CHECKSTYLE: ON
 
 
-    @FXML
-    private void initialize() {
-        Platform.runLater(() -> {
-            System.out.println("this: " + this);
-            System.out.println("pilotSlider: " + this.pilotSlider);
-            this.pilotSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
-                pointAllocationChanged((int)oldValue, (int)newValue);
-            });
-            this.fighterSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
-                pointAllocationChanged((int)oldValue, (int)newValue);
-            });
-            this.traderSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
-                pointAllocationChanged((int)oldValue, (int)newValue);
-            });
-            this.engineerSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
-                pointAllocationChanged((int)oldValue, (int)newValue);
-            });
-
-
-            Font titleTextFont = Font.loadFont(getClass()
-                    .getResource("/supporting/slice.ttf").toExternalForm(), 90);
-            Font textButtonFont = Font.loadFont(getClass()
-                    .getResource("/supporting/CFDots-Regular.ttf").toExternalForm(), 34);
-            Font easterEggFont = Font.loadFont(getClass()
-                    .getResource("/supporting/Alien-Encounters-Regular.ttf").toExternalForm(), 19);
-
-            this.titleText.setFont(titleTextFont);
-            this.newGameText.setFont(textButtonFont);
-            this.loadGameText.setFont(textButtonFont);
-            this.optionsText.setFont(textButtonFont);
-            this.easterEgg.setFont(easterEggFont);
-        });
+//    @FXML
+//    private void initialize() {
+//        Platform.runLater(() -> {
+//            System.out.println("this: " + this);
+//            System.out.println("pilotSlider: " + this.pilotSlider);
+//            this.pilotSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
+//                pointAllocationChanged((int)oldValue, (int)newValue);
+//            });
+//            this.fighterSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
+//                pointAllocationChanged((int)oldValue, (int)newValue);
+//            });
+//            this.traderSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
+//                pointAllocationChanged((int)oldValue, (int)newValue);
+//            });
+//            this.engineerSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
+//                pointAllocationChanged((int)oldValue, (int)newValue);
+//            });
+//
+//
+//            Font titleTextFont = Font.loadFont(getClass()
+//                    .getResource("/supporting/slice.ttf").toExternalForm(), 90);
+//            Font textButtonFont = Font.loadFont(getClass()
+//                    .getResource("/supporting/CFDots-Regular.ttf").toExternalForm(), 34);
+//            Font easterEggFont = Font.loadFont(getClass()
+//                    .getResource("/supporting/Alien-Encounters-Regular.ttf").toExternalForm(), 19);
+//
+//            this.titleText.setFont(titleTextFont);
+//            this.newGameText.setFont(textButtonFont);
+//            this.loadGameText.setFont(textButtonFont);
+//            this.optionsText.setFont(textButtonFont);
+//            this.easterEgg.setFont(easterEggFont);
+//        });
+//        this.stage = mainGame.stage;
+//    }
+    
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        // nothin
     }
     
     public void setMainApp(MainGame mainGame) {
@@ -152,11 +156,13 @@ public class WelcomeScreenController {
             this.stage.setHeight(565);
             this.stage.show();
     }
-    
-    private void pointAllocationChanged(int oldValue, int newValue) {
-        this.pointsRemaining -= oldValue - newValue;
-        this.pointsRemainingLabel.setText(pointsRemaining + " skill points remaining");
-    }
+
+//    private void pointAllocationChanged(int oldValue, int newValue) {
+//        this.pointsRemaining -= oldValue - newValue;
+//        Platform.runLater(() -> {
+//            this.pointsRemainingLabel.setText(pointsRemaining + " skill points remaining");
+//        });
+//    }
     
     /**
      * Sets difficulty to normal if none is selected
@@ -205,15 +211,14 @@ public class WelcomeScreenController {
             // create the model
         } else {
             //game = new Game();
-            System.out.println(game.getUniverse().toString());
             game.createPlayer(name, pilotSliderValue, fighterSliderValue,
                     traderSliderValue, engineerSliderValue);
-            System.out.println(game.getPlayer().toString());
-            System.out.println(game.getPlayer().getMoney());
             stage.close();
             AnchorPane pane = FXMLLoader.load(getClass()
                     .getResource("/view/Ship.fxml"));
             Scene scene = new Scene(pane);
+//            System.out.println("this.mainGame.stage: " + this.mainGame.stage);
+//            this.mainGame.stage.close();
             this.stage = new Stage();
             this.stage.setScene(scene);
             this.stage.setResizable(false);
