@@ -44,7 +44,7 @@
             <Font name="Alien Encounters" size="19.0" />
          </font>
       </Text>
-      <Text fx:id="loadGameText" fill="WHITE" layoutX="347.0" layoutY="304.0" onMouseClicked="#loadGameClicked" strokeType="OUTSIDE" strokeWidth="0.0" text="LOAD Game">
+      <Text fx:id="loadGameText" fill="WHITE" layoutX="347.0" layoutY="304.0" onMouseClicked="#loadGameClicked" strokeType="OUTSIDE" strokeWidth="0.0" text="Load Game">
          <font>
             <Font name="CF Dots 521 Regular" size="34.0" />
          </font>

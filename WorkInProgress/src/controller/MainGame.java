@@ -3,17 +3,11 @@ package controller;
 import java.io.IOException;
 
 import javafx.application.Application;
-import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
  *
  * @author lukenewman
@@ -35,15 +29,19 @@ public class MainGame extends Application {
     public void showMainMenu() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainGame.class.getResource("/view/WelcomeScreen.fxml"));
+            loader.setLocation(getClass().getResource("/view/WelcomeScreen.fxml"));
+            System.out.println("loader location: " + loader.getLocation());
             AnchorPane welcomeScreen = (AnchorPane) loader.load();
             
             Scene scene = new Scene(welcomeScreen);
             stage.setScene(scene);
             stage.setResizable(false);
             stage.show();
+            
+            WelcomeScreenController controller = loader.getController();
+            controller.setMainApp(this);
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("WelcomeScreen.fxml could not be loaded and/or displayed");
         }
     }
 
