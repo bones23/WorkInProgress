@@ -7,6 +7,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -29,7 +30,7 @@ import org.controlsfx.dialog.Dialogs;
 
 /**
  *
- * @author dblake
+ * @author dblake, lukenewman
  */
 public class WelcomeScreenController {
     //CHECKSTYLE: OFF
@@ -66,6 +67,7 @@ public class WelcomeScreenController {
     @FXML
     private Scene characterCreationScreen;
     
+    private MainGame mainGame;
     public MapController mc = new MapController();
     private int pointsRemaining = 20;
     public static Game game = new Game();
@@ -73,50 +75,41 @@ public class WelcomeScreenController {
 
 
     @FXML
-    public void initialize(final URL url, final ResourceBundle rb) {
-//        AnchorPane pane = null;
-//        try {
-//            pane = FXMLLoader
-//                .load(getClass().getResource("/view/WelcomeScreen.fxml"));
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-        
-//        this.welcomeScreen = new Scene(pane);
-//        this.stage = new Stage();
-        
-        System.out.println("this: " + this);
-        System.out.println("pilotSlider: " + this.pilotSlider);
-        this.pilotSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
-            pointAllocationChanged((int)oldValue, (int)newValue);
+    private void initialize() {
+        Platform.runLater(() -> {
+            System.out.println("this: " + this);
+            System.out.println("pilotSlider: " + this.pilotSlider);
+            this.pilotSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
+                pointAllocationChanged((int)oldValue, (int)newValue);
+            });
+            this.fighterSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
+                pointAllocationChanged((int)oldValue, (int)newValue);
+            });
+            this.traderSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
+                pointAllocationChanged((int)oldValue, (int)newValue);
+            });
+            this.engineerSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
+                pointAllocationChanged((int)oldValue, (int)newValue);
+            });
+
+
+            Font titleTextFont = Font.loadFont(getClass()
+                    .getResource("/supporting/slice.ttf").toExternalForm(), 90);
+            Font textButtonFont = Font.loadFont(getClass()
+                    .getResource("/supporting/CFDots-Regular.ttf").toExternalForm(), 34);
+            Font easterEggFont = Font.loadFont(getClass()
+                    .getResource("/supporting/Alien-Encounters-Regular.ttf").toExternalForm(), 19);
+
+            this.titleText.setFont(titleTextFont);
+            this.newGameText.setFont(textButtonFont);
+            this.loadGameText.setFont(textButtonFont);
+            this.optionsText.setFont(textButtonFont);
+            this.easterEgg.setFont(easterEggFont);
         });
-        this.fighterSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
-            pointAllocationChanged((int)oldValue, (int)newValue);
-        });
-        this.traderSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
-            pointAllocationChanged((int)oldValue, (int)newValue);
-        });
-        this.engineerSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
-            pointAllocationChanged((int)oldValue, (int)newValue);
-        });
-        
-        
-        Font titleTextFont = Font.loadFont(getClass()
-                .getResource("/supporting/slice.ttf").toExternalForm(), 90);
-        Font textButtonFont = Font.loadFont(getClass()
-                .getResource("/supporting/CFDots-Regular.ttf").toExternalForm(), 34);
-        Font easterEggFont = Font.loadFont(getClass()
-                .getResource("/supporting/Alien-Encounters-Regular.ttf").toExternalForm(), 19);
-        
-        this.titleText.setFont(titleTextFont);
-        this.newGameText.setFont(textButtonFont);
-        this.loadGameText.setFont(textButtonFont);
-        this.optionsText.setFont(textButtonFont);
-        this.easterEgg.setFont(easterEggFont);
-        
-//        this.stage.setScene(this.welcomeScreen);
-//        this.stage.setResizable(false);
-//        this.stage.show();
+    }
+    
+    public void setMainApp(MainGame mainGame) {
+        this.mainGame = mainGame;
     }
 
     @FXML
