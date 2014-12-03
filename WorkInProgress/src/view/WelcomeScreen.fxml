@@ -16,7 +16,7 @@
             <Image url="@../supporting/STARS.jpg" />
          </image>
       </ImageView>
-      <Text layoutX="23.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Space Trader">
+      <Text fx:id="titleText" layoutX="23.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Space Trader">
          <font>
             <Font name="Slice Regular" size="90.0" />
          </font>
@@ -34,12 +34,12 @@
             <Font name="CF Dots 521 Regular" size="34.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="378.0" layoutY="343.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Options">
+      <Text fx:id="optionsText" fill="WHITE" layoutX="378.0" layoutY="343.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Options">
          <font>
             <Font name="CF Dots 521 Regular" size="34.0" />
          </font>
       </Text>
-      <Text fx:id="easterEgg" fill="WHITE" layoutX="5.0" layoutY="533.0" onMouseClicked="#easterEggClicked" opacity="0.31" strokeType="OUTSIDE" strokeWidth="0.0" text="Work In Progress ©2014" wrappingWidth="243.5194854736328">
+      <Text fx:id="easterEgg" fill="WHITE" layoutX="5.0" layoutY="533.0" onMouseClicked="#easterEggClicked" opacity="0.31" strokeType="OUTSIDE" strokeWidth="0.0" text="Work In Progress 2014" wrappingWidth="243.5194854736328">
          <font>
             <Font name="Alien Encounters" size="19.0" />
          </font>

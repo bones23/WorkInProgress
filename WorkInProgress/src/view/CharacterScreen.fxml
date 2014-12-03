@@ -15,7 +15,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="540.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.WelcomeScreenController">
    <children>
-      <ImageView fx:id="imageView" fitHeight="540.0" fitWidth="968.0" layoutX="-7.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imageView" fitHeight="540.0" fitWidth="968.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../supporting/stars2.jpg" />
          </image>
@@ -32,35 +32,35 @@
             </FXCollections>
         </items>
       </ComboBox>
-      <Label layoutX="308.0" layoutY="36.0" text="Name:" textFill="WHITE">
+      <Label layoutX="330.0" layoutY="37.0" text="Name:" textFill="WHITE">
          <font>
             <Font name="Consolas" size="26.0" />
          </font></Label>
-      <Label layoutX="293.0" layoutY="82.0" text="Difficulty:" textFill="WHITE">
+      <Label layoutX="293.0" layoutY="84.0" text="Difficulty:" textFill="WHITE">
          <font>
             <Font size="27.0" />
          </font></Label>
-      <Slider fx:id="pilotSlider" layoutX="474.0" layoutY="166.0" majorTickUnit="1.0" max="10.0" minorTickCount="0" prefHeight="49.0" prefWidth="187.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
-      <Label layoutX="310.0" layoutY="157.0" text="Pilot:" textFill="WHITE">
+      <Slider fx:id="pilotSlider" layoutX="474.0" layoutY="182.0" majorTickUnit="1.0" max="10.0" minorTickCount="0" prefHeight="49.0" prefWidth="187.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" style="-fx-show-tick-marks: -fx-fill:null; -fx-stroke: white; -fx-show-tick-labels: -fx-stroke: white;" />
+      <Label layoutX="342.0" layoutY="178.0" text="Pilot:" textFill="WHITE">
          <font>
             <Font size="27.0" />
          </font></Label>
-      <Label layoutX="295.0" layoutY="227.0" text="Fighter:" textFill="WHITE">
+      <Label layoutX="309.0" layoutY="243.0" text="Fighter:" textFill="WHITE">
          <font>
             <Font size="27.0" />
          </font></Label>
-      <Label layoutX="299.0" layoutY="295.0" text="Trader:" textFill="WHITE">
+      <Label layoutX="314.0" layoutY="311.0" text="Trader:" textFill="WHITE">
          <font>
             <Font size="27.0" />
          </font></Label>
-      <Slider fx:id="fighterSlider" layoutX="474.0" layoutY="234.0" majorTickUnit="1.0" max="10.0" minorTickCount="0" prefHeight="49.0" prefWidth="187.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
-      <Slider fx:id="traderSlider" layoutX="474.0" layoutY="295.0" majorTickUnit="1.0" max="10.0" minorTickCount="0" prefHeight="57.0" prefWidth="187.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
-      <Label layoutX="285.0" layoutY="366.0" text="Engineer:" textFill="WHITE">
+      <Slider fx:id="fighterSlider" layoutX="474.0" layoutY="250.0" majorTickUnit="1.0" max="10.0" minorTickCount="0" prefHeight="49.0" prefWidth="187.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" style="-fx-show-tick-marks: -fx-fill:null; -fx-stroke: white; -fx-show-tick-labels: -fx-stroke: white;" />
+      <Slider fx:id="traderSlider" layoutX="474.0" layoutY="311.0" majorTickUnit="1.0" max="10.0" minorTickCount="0" prefHeight="57.0" prefWidth="187.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" style="-fx-show-tick-marks: -fx-fill:null; -fx-stroke: white; -fx-show-tick-labels: -fx-stroke: white;" />
+      <Label layoutX="285.0" layoutY="382.0" text="Engineer:" textFill="WHITE">
          <font>
             <Font size="27.0" />
          </font></Label>
-      <Slider fx:id="engineerSlider" layoutX="474.0" layoutY="372.0" majorTickUnit="1.0" max="10.0" minorTickCount="0" prefHeight="39.0" prefWidth="187.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
-      <Button fx:id="okButton" layoutX="284.0" layoutY="461.0" mnemonicParsing="false" onMouseClicked="#okButtonClicked" prefHeight="57.0" prefWidth="111.0" text="OK" textAlignment="CENTER">
+      <Slider fx:id="engineerSlider" layoutX="474.0" layoutY="388.0" majorTickUnit="1.0" max="10.0" minorTickCount="0" prefHeight="39.0" prefWidth="187.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" style="-fx-show-tick-marks: -fx-fill:null; -fx-stroke: white; -fx-show-tick-labels: -fx-stroke: white;" />
+      <Button fx:id="doneButton" layoutX="317.0" layoutY="461.0" mnemonicParsing="false" onMouseClicked="#doneButtonClicked" prefHeight="50.0" prefWidth="122.0" text="Done" textAlignment="CENTER">
          <font>
             <Font size="27.0" />
          </font></Button>
@@ -68,7 +68,7 @@
          <font>
             <Font size="27.0" />
          </font></Button>
-      <Label layoutX="360.0" layoutY="131.0" text="Must assign 20 skill points:" textFill="WHITE">
+      <Label fx:id="pointsRemainingLabel" layoutX="378.0" layoutY="139.0" text="20 skill points remaining:" textFill="WHITE">
          <font>
             <Font size="17.0" />
          </font>

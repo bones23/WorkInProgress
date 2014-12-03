@@ -7,17 +7,18 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -30,16 +31,22 @@ import org.controlsfx.dialog.Dialogs;
  *
  * @author dblake
  */
-public class WelcomeScreenController extends Application
-implements Initializable {
+public class WelcomeScreenController {
     //CHECKSTYLE: OFF
     @FXML
     public static Stage stage;
-    
+    @FXML
+    private Text titleText;
     @FXML
     private Text newGameText;
     @FXML
-    private Button okButton;
+    private Text loadGameText;
+    @FXML
+    private Text optionsText;
+    @FXML
+    private Label pointsRemainingLabel;
+    @FXML
+    private Button doneButton;
     @FXML
     private Button cancelButton;
     @FXML
@@ -54,39 +61,62 @@ implements Initializable {
     private Slider traderSlider;
     @FXML
     private Slider engineerSlider;
-    
     @FXML
     private static Scene welcomeScreen;
-    public MapController mc = new MapController();
     @FXML
     private Scene characterCreationScreen;
+    
+    public MapController mc = new MapController();
+    private int pointsRemaining = 20;
     public static Game game = new Game();
     //CHECKSTYLE: ON
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(final String[] args) {
-        launch(args);
-    }
 
-    @Override
+    @FXML
     public void initialize(final URL url, final ResourceBundle rb) {
-        // TODO
-    }
-
-    @Override
-    public final void start(final Stage s) throws Exception {
-        AnchorPane pane = FXMLLoader
-                .load(getClass().getResource("/view/WelcomeScreen.fxml"));
-        this.welcomeScreen = new Scene(pane);
-        this.stage = new Stage();
-        System.out.println("start: " + this.stage);
-        this.stage.setScene(this.welcomeScreen);
-        this.stage.setWidth(960);
-        this.stage.setHeight(565);
-        this.stage.setResizable(false);
-        this.stage.show();
+//        AnchorPane pane = null;
+//        try {
+//            pane = FXMLLoader
+//                .load(getClass().getResource("/view/WelcomeScreen.fxml"));
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+        
+//        this.welcomeScreen = new Scene(pane);
+//        this.stage = new Stage();
+        
+        System.out.println("this: " + this);
+        System.out.println("pilotSlider: " + this.pilotSlider);
+        this.pilotSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
+            pointAllocationChanged((int)oldValue, (int)newValue);
+        });
+        this.fighterSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
+            pointAllocationChanged((int)oldValue, (int)newValue);
+        });
+        this.traderSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
+            pointAllocationChanged((int)oldValue, (int)newValue);
+        });
+        this.engineerSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
+            pointAllocationChanged((int)oldValue, (int)newValue);
+        });
+        
+        
+        Font titleTextFont = Font.loadFont(getClass()
+                .getResource("/supporting/slice.ttf").toExternalForm(), 90);
+        Font textButtonFont = Font.loadFont(getClass()
+                .getResource("/supporting/CFDots-Regular.ttf").toExternalForm(), 34);
+        Font easterEggFont = Font.loadFont(getClass()
+                .getResource("/supporting/Alien-Encounters-Regular.ttf").toExternalForm(), 19);
+        
+        this.titleText.setFont(titleTextFont);
+        this.newGameText.setFont(textButtonFont);
+        this.loadGameText.setFont(textButtonFont);
+        this.optionsText.setFont(textButtonFont);
+        this.easterEgg.setFont(easterEggFont);
+        
+//        this.stage.setScene(this.welcomeScreen);
+//        this.stage.setResizable(false);
+//        this.stage.show();
     }
 
     @FXML
@@ -102,7 +132,6 @@ implements Initializable {
             this.stage.show();
         } else {
             this.stage.setScene(this.characterCreationScreen);
-            
         }
     }
 
@@ -130,6 +159,12 @@ implements Initializable {
             this.stage.setHeight(565);
             this.stage.show();
     }
+    
+    private void pointAllocationChanged(int oldValue, int newValue) {
+        this.pointsRemaining -= oldValue - newValue;
+        this.pointsRemainingLabel.setText(pointsRemaining + " skill points remaining");
+    }
+    
     /**
      * Sets difficulty to normal if none is selected
      * Displays error dialogue if skill points are not equal to 20
@@ -139,7 +174,7 @@ implements Initializable {
      * @throws IOException A
      */
     @FXML
-    private void okButtonClicked(final MouseEvent event) throws IOException {
+    private void doneButtonClicked(final MouseEvent event) throws IOException {
         int pilotSliderValue = (int) pilotSlider.getValue();
         int fighterSliderValue = (int) fighterSlider.getValue();
         int traderSliderValue = (int) traderSlider.getValue();
@@ -192,7 +227,6 @@ implements Initializable {
             this.stage.setWidth(960);
             this.stage.setHeight(565);
             this.stage.show();
-            //this.stage.setFullScreen(true);
         }
     }
 

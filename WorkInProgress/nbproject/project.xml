@@ -13,7 +13,7 @@
             </extension>
         </buildExtensions>
         <data xmlns="http://www.netbeans.org/ns/j2se-project/3">
-            <name>WorkInProgress2.0</name>
+            <name>WorkInProgress</name>
             <explicit-platform explicit-source-supported="true"/>
             <source-roots>
                 <root id="src.dir"/>

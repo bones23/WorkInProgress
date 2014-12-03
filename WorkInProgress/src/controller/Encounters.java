@@ -54,6 +54,7 @@ public class Encounters extends Application {
     private GraphicsContext graphicsContext;
     private ImageView ship_1, pirate_Ship, blackHole;
     private Random rand = new Random();
+    
     public static void main(String[] args) {
         Application.launch(args);
     }
