@@ -68,7 +68,13 @@ public class SolarSystem implements Serializable {
         } else {
             resource = resourceNames[resourceNum - NUM_RESOURCES];
         }
-
+        if (techLevel <= 2) {
+            policeIntensity = 1;
+        } else if (techLevel <= 5) {
+            policeIntensity = 3;
+        } else {
+            policeIntensity = 4;
+        }
         government = governmentNames[rand.nextInt(governmentNames.length)];
         if (government.equals("Anarchy")) {
             policeIntensity = 0;
