@@ -263,6 +263,8 @@ public class PirateEncounters extends Application {
                     flee.setVisible(false);
                     explosion("Pirate");
                     rotate("Ship");
+                } else {
+                    pirateMove(scene, 1, false);
                 }
             }
         });
@@ -274,7 +276,6 @@ public class PirateEncounters extends Application {
         tl.getKeyFrames().add(kf2);
         tl.play();
         myTurn = false;
-        pirateMove(scene, 1, false);
     }
     
     public void pirateMove(final Scene scene, int cycle, boolean reverse) {
