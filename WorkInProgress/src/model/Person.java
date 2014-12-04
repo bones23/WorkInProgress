@@ -60,7 +60,8 @@ public class Person {
                 DEFAULT_SHIP_BAYS_NUM);
         this.money = DEFAULT_PLAYER_CASH;
     }
-
+    
+    public Person(){}
     /**
      * @return the Person's pilot skill
      */
@@ -198,5 +199,18 @@ public class Person {
     
     public void increaseFighter() {
         fighterSkill++;
+    }
+    
+    public void addMercPoints(Mercenary m){
+        this.pilotSkill += m.getPilotSkill();
+        this.engineerSkill += m.getEngineerSkill();
+        this.traderSkill += m.getTraderSkill();
+        this.fighterSkill += m.getFighterSkill();
+    }
+    public void removeMercPoints(Mercenary m){
+        this.pilotSkill -= m.getPilotSkill();
+        this.engineerSkill -= m.getEngineerSkill();
+        this.traderSkill -= m.getTraderSkill();
+        this.fighterSkill -= m.getFighterSkill();
     }
 }

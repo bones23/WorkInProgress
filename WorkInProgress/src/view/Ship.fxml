@@ -23,5 +23,6 @@
       <Button fx:id="Shipyard" layoutX="388.0" layoutY="302.0" mnemonicParsing="false" onAction="#goToShipyard" text="Shipyard" />
       <Label fx:id="playerInfo" layoutX="421.0" layoutY="76.0" text="Player Info:" textFill="WHITE" />
       <Button fx:id="save" layoutX="50.0" layoutY="14.0" mnemonicParsing="false" onAction="#save" text="save" />
+      <Button fx:id="Mercenaries" layoutX="377.0" layoutY="406.0" mnemonicParsing="false" onAction="#goToMercenaries" text="Hire Mercenaries" />
    </children>
 </AnchorPane>

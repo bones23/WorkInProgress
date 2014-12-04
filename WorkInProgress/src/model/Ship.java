@@ -4,6 +4,7 @@ import java.util.Random;
 import javafx.stage.Stage;
 import controller.WelcomeScreenController;
 import java.io.Serializable;
+import java.util.LinkedList;
 /**
  * @author Matthew Taylor
  * @version 22 September 2014
@@ -18,11 +19,14 @@ public class Ship implements Serializable  {
     private String pilot;
     public int occupiedSlots;
     private TradeItem[] cargoManifest;
-    private Person player = WelcomeScreenController.game.getPlayer();
+    private Person player = new Person();
     private int bays;
+    private LinkedList<Mercenary> mercs = new LinkedList<Mercenary>();
+    private boolean barracksFull = false;
     private int fuelTank;
     private int health = 100;
-    private int attackDamage = 15;
+    private int damage = 15;
+    private int attackDamage = this.getDamage() + player.getFighterSkill();
     private Random rand = new Random();
     private int shields = 3, maxShields = 3;
     private final int DEFAULT_FUEL = 14;
@@ -34,6 +38,7 @@ public class Ship implements Serializable  {
     private final int FUEL_MULT = 10;
     private final int ESKILL_MULT = 5;
     private final int MAX_ROB_ATTEMPTS = 6;
+    
     private int kills;
     //CHECKSTYLE: OFF
 
@@ -358,7 +363,7 @@ public class Ship implements Serializable  {
     }
     
     public final int getAttackDamage() {
-        return attackDamage;
+        return this.getDamage() + player.getFighterSkill();
     }
     public final int getShields() {
         return shields;
@@ -369,16 +374,16 @@ public class Ship implements Serializable  {
     public final void setMaxShields(int maxShields) {
         this.maxShields = maxShields;
     }
-    public final void setAttackDamage(int attackDamage) {
-        this.attackDamage = attackDamage;
+    public final void setDamage(int attackDamage) {
+        this.damage = damage;
     }
     public final void setShields(int shields) {
         this.shields = shields;
     }
     
     public final int doDamage() {
-        return rand.nextInt(attackDamage + 2 - (attackDamage - 2))
-                + (attackDamage - 2);
+        return rand.nextInt(this.getAttackDamage() + 2 - (this.getAttackDamage() - 2))
+                + (this.getAttackDamage() - 2);
     }
     
     public final int deductShield() {
@@ -387,8 +392,8 @@ public class Ship implements Serializable  {
     }
 
     public final int addDamage() {
-        attackDamage += 1;
-        return attackDamage;
+        damage += 1;
+        return this.getAttackDamage();
     }
     
     public final int repairCost() {
@@ -413,12 +418,55 @@ public class Ship implements Serializable  {
     public void kill() {
         kills++;
         if (kills % 10 == 0) {
-            attackDamage++;
             player.increaseFighter();
         }
     }
     
     public int getKills() {
         return kills;
+    }
+
+    public boolean addMerc(Mercenary merc){
+        if(barracksFull == true)
+            return false;
+        else{
+            mercs.add(merc);
+            if(mercs.size() == 3){
+                barracksFull = true;
+            }
+            return true;
+        }
+    }
+    public LinkedList<Mercenary> getMercs(){
+        return mercs;
+    }
+    public void checkOnMercs(Person player){
+        //check if mercs leave
+        if(mercs.isEmpty() != true){
+            for(Mercenary merc : mercs){
+                if((player.getMoney() - merc.getAmountCharged()) < 0){
+                    removeMerc(merc);
+                    player.removeMercPoints(merc);
+                }else{
+                    player.setMoney((player.getMoney()-merc.getAmountCharged()));
+                }
+                //go through each merc and deduct money
+                //if money is not enough, remove merc and point bonuses
+            }
+        }
+    }
+    public void removeMerc(Mercenary merc){
+        if(barracksFull == true)
+            barracksFull = false;
+        mercs.remove(merc);
+    }
+    public boolean getBarracks(){
+        return barracksFull;
+    }
+    public void setPlayer(Person player) {
+        this.player = player;
+    }
+    public int getDamage() {
+        return damage;
     }
 }

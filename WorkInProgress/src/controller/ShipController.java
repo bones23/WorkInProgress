@@ -19,7 +19,7 @@ import model.Game;
 public class ShipController {
     Game game = WelcomeScreenController.game;
     @FXML
-    private Button marketPlaceButton, mapScreenButton, Shipyard, save;
+    private Button marketPlaceButton, mapScreenButton, Shipyard, Mercenaries, save;
     @FXML
     private Label fuelText, cargo, money, playerInfo;
     private final int STAGE_WIDTH = 960;
@@ -34,9 +34,11 @@ public class ShipController {
         playerInfo.setText("" + game.getPlayerString());
         if (game.getCurrentSystem().getTechLevel() > 3) {
             Shipyard.setVisible(true);
-        } //WHAT IS THIS CHECKSTYLE?!?
+            Mercenaries.setVisible(true);
+        } 
         else {
             Shipyard.setVisible(false);
+            Mercenaries.setVisible(false);
         }
     }
     
@@ -95,6 +97,25 @@ public class ShipController {
         }
         WelcomeScreenController.game.save(fileName,
                 WelcomeScreenController.game);
+    }
+
+    @FXML
+    private void goToMercenaries(final ActionEvent event) throws IOException{
+        Stage stage;
+        AnchorPane pane = null;
+        if(game.getCurrentSystem().getTechLevel() >= 7)
+            pane = FXMLLoader.load(getClass().getResource("/view/Mercenaries4Person.fxml"));
+        else if(game.getCurrentSystem().getTechLevel() >= 5)
+            pane = FXMLLoader.load(getClass().getResource("/view/Mercenaries3Person.fxml"));
+        else
+            pane = FXMLLoader.load(getClass().getResource("/view/Mercenaries2Person.fxml"));
+        Scene scene = new Scene(pane);
+        stage = WelcomeScreenController.stage;
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.setWidth(STAGE_WIDTH);
+        stage.setHeight(STAGE_HEIGHT);
+        stage.show();
     }
 }
     
