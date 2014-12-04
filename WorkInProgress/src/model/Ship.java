@@ -461,7 +461,9 @@ public class Ship implements Serializable  {
     public void removeMerc(Mercenary merc){
         if(barracksFull == true)
             barracksFull = false;
-        mercs.remove(merc);
+        System.out.println("successfully removed: " + mercs.remove(merc));
+        System.out.println("does mercs still contain merc: " + mercs.contains(merc));
+        System.out.println("size of mercs: " + mercs.size());
     }
     public boolean getBarracks(){
         return barracksFull;

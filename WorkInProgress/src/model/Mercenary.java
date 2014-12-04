@@ -40,4 +40,23 @@ public class Mercenary {
     public int getAmountCharged(){
         return amountCharged;
     }
+    
+    public boolean equals(Mercenary other) {
+        if (other == null) {
+            return false;
+        }
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof Mercenary)) {
+            return false;
+        }
+        Mercenary that = (Mercenary) other;
+        
+        if (this.amountCharged != that.amountCharged) {
+            return false;
+        }
+            
+        return true;
+    }
 }

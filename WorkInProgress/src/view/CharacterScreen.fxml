@@ -69,7 +69,7 @@
          <font>
             <Font size="27.0" />
          </font></Button>
-      <Label fx:id="pointsRemainingLabel" layoutX="367.0" layoutY="138.0" prefHeight="24.0" prefWidth="282.0" text="20 skill points remaining:" textFill="WHITE">
+      <Label fx:id="pointsRemainingLabel" layoutX="344.0" layoutY="138.0" prefHeight="24.0" prefWidth="307.0" text="20 skill points to allocate:" textFill="WHITE">
          <font>
             <Font name="Clubland" size="17.0" />
          </font>
