@@ -306,75 +306,95 @@ public class MercenariesController  {
     }
     @FXML
     private void fireMerc1(){
-        int merc1fSkill, merc1pSkill, merc1tSkill, merc1eSkill, merc1charge;
-        merc1fSkill = Integer.parseInt(merc1fighterSkill.getText());
-        merc1pSkill = Integer.parseInt(merc1pilotSkill.getText());
-        merc1tSkill = Integer.parseInt(merc1traderSkill.getText());
-        merc1eSkill = Integer.parseInt(merc1engineerSkill.getText());
-        merc1charge = Integer.parseInt(merc1price.getText());
-        Mercenary merc1object = new Mercenary(merc1.getText(), merc1pSkill, 
-                merc1fSkill, merc1tSkill, 
-                merc1eSkill, merc1charge);
-        game.ship.removeMerc(merc1object);
-        game.player.removeMercPoints(merc1object);
-        
-        HireMerc1.setDisable(false);
-        FireMerc1.setDisable(true);
-        attackAmount.setText("" + game.getShip().getAttackDamage());
+        if (game.ship.getMercs().size() > 0) {    
+            int merc1fSkill, merc1pSkill, merc1tSkill, merc1eSkill, merc1charge;
+            merc1fSkill = Integer.parseInt(merc1fighterSkill.getText());
+            merc1pSkill = Integer.parseInt(merc1pilotSkill.getText());
+            merc1tSkill = Integer.parseInt(merc1traderSkill.getText());
+            merc1eSkill = Integer.parseInt(merc1engineerSkill.getText());
+            merc1charge = Integer.parseInt(merc1price.getText());
+            Mercenary merc1object = new Mercenary(merc1.getText(), merc1pSkill, 
+                    merc1fSkill, merc1tSkill, 
+                    merc1eSkill, merc1charge);
+            game.ship.removeMerc(merc1object);
+            game.player.removeMercPoints(merc1object);
+
+            HireMerc1.setDisable(false);
+            FireMerc1.setDisable(true);
+            attackAmount.setText("" + game.getShip().getAttackDamage());
+        }
+        if (game.ship.getMercs().size() <= 0) {
+            noMoreFiring();
+        }
     }
     @FXML
     private void fireMerc2(){
-        int merc2fSkill, merc2pSkill, merc2tSkill, merc2eSkill, merc2charge;
-        merc2fSkill = Integer.parseInt(merc2fighterSkill.getText());
-        merc2pSkill = Integer.parseInt(merc2pilotSkill.getText());
-        merc2tSkill = Integer.parseInt(merc2traderSkill.getText());
-        merc2eSkill = Integer.parseInt(merc2engineerSkill.getText());
-        merc2charge = Integer.parseInt(merc2price.getText());
-        Mercenary merc2object = new Mercenary(merc2.getText(), merc2pSkill, 
-                merc2fSkill, merc2tSkill, 
-                merc2eSkill, merc2charge);
-        game.ship.removeMerc(merc2object);
-        game.player.removeMercPoints(merc2object);
-        
-        HireMerc1.setDisable(false);
-        FireMerc1.setDisable(true);
-        attackAmount.setText("" + game.getShip().getAttackDamage());
+        if (game.ship.getMercs().size() > 0) {     
+            int merc2fSkill, merc2pSkill, merc2tSkill, merc2eSkill, merc2charge;
+            merc2fSkill = Integer.parseInt(merc2fighterSkill.getText());
+            merc2pSkill = Integer.parseInt(merc2pilotSkill.getText());
+            merc2tSkill = Integer.parseInt(merc2traderSkill.getText());
+            merc2eSkill = Integer.parseInt(merc2engineerSkill.getText());
+            merc2charge = Integer.parseInt(merc2price.getText());
+            Mercenary merc2object = new Mercenary(merc2.getText(), merc2pSkill, 
+                    merc2fSkill, merc2tSkill, 
+                    merc2eSkill, merc2charge);
+            game.ship.removeMerc(merc2object);
+            game.player.removeMercPoints(merc2object);
+
+            HireMerc1.setDisable(false);
+            FireMerc1.setDisable(true);
+            attackAmount.setText("" + game.getShip().getAttackDamage());
+        }
+        if (game.ship.getMercs().size() <= 0) {
+            noMoreFiring();
+        }
     }
     @FXML
     private void fireMerc3(){
-        int merc3fSkill, merc3pSkill, merc3tSkill, merc3eSkill, merc3charge;
-        merc3fSkill = Integer.parseInt(merc3fighterSkill.getText());
-        merc3pSkill = Integer.parseInt(merc3pilotSkill.getText());
-        merc3tSkill = Integer.parseInt(merc3traderSkill.getText());
-        merc3eSkill = Integer.parseInt(merc3engineerSkill.getText());
-        merc3charge = Integer.parseInt(merc3price.getText());
-        Mercenary merc3object = new Mercenary(merc3.getText(), merc3pSkill, 
-                merc3fSkill, merc3tSkill, 
-                merc3eSkill, merc3charge);
-        game.ship.removeMerc(merc3object);
-        game.player.removeMercPoints(merc3object);
-        
-        HireMerc1.setDisable(false);
-        FireMerc1.setDisable(true);
-        attackAmount.setText("" + game.getShip().getAttackDamage());
+        if (game.ship.getMercs().size() > 0) {     
+            int merc3fSkill, merc3pSkill, merc3tSkill, merc3eSkill, merc3charge;
+            merc3fSkill = Integer.parseInt(merc3fighterSkill.getText());
+            merc3pSkill = Integer.parseInt(merc3pilotSkill.getText());
+            merc3tSkill = Integer.parseInt(merc3traderSkill.getText());
+            merc3eSkill = Integer.parseInt(merc3engineerSkill.getText());
+            merc3charge = Integer.parseInt(merc3price.getText());
+            Mercenary merc3object = new Mercenary(merc3.getText(), merc3pSkill, 
+                    merc3fSkill, merc3tSkill, 
+                    merc3eSkill, merc3charge);
+            game.ship.removeMerc(merc3object);
+            game.player.removeMercPoints(merc3object);
+
+            HireMerc1.setDisable(false);
+            FireMerc1.setDisable(true);
+            attackAmount.setText("" + game.getShip().getAttackDamage());
+        }
+        if (game.ship.getMercs().size() <= 0) {
+            noMoreFiring();
+        }
     }
     @FXML
     private void fireMerc4(){
-        int merc4fSkill, merc4pSkill, merc4tSkill, merc4eSkill, merc4charge;
-        merc4fSkill = Integer.parseInt(merc4fighterSkill.getText());
-        merc4pSkill = Integer.parseInt(merc4pilotSkill.getText());
-        merc4tSkill = Integer.parseInt(merc4traderSkill.getText());
-        merc4eSkill = Integer.parseInt(merc4engineerSkill.getText());
-        merc4charge = Integer.parseInt(merc4price.getText());
-        Mercenary merc4object = new Mercenary(merc4.getText(), merc4pSkill, 
-                merc4fSkill, merc4tSkill, 
-                merc4eSkill, merc4charge);
-        game.ship.removeMerc(merc4object);
-        game.player.removeMercPoints(merc4object);
-        
-        HireMerc1.setDisable(false);
-        FireMerc1.setDisable(true);
-        attackAmount.setText("" + game.getShip().getAttackDamage());
+        if (game.ship.getMercs().size() > 0) {     
+            int merc4fSkill, merc4pSkill, merc4tSkill, merc4eSkill, merc4charge;
+            merc4fSkill = Integer.parseInt(merc4fighterSkill.getText());
+            merc4pSkill = Integer.parseInt(merc4pilotSkill.getText());
+            merc4tSkill = Integer.parseInt(merc4traderSkill.getText());
+            merc4eSkill = Integer.parseInt(merc4engineerSkill.getText());
+            merc4charge = Integer.parseInt(merc4price.getText());
+            Mercenary merc4object = new Mercenary(merc4.getText(), merc4pSkill, 
+                    merc4fSkill, merc4tSkill, 
+                    merc4eSkill, merc4charge);
+            game.ship.removeMerc(merc4object);
+            game.player.removeMercPoints(merc4object);
+
+            HireMerc1.setDisable(false);
+            FireMerc1.setDisable(true);
+            attackAmount.setText("" + game.getShip().getAttackDamage());
+        }
+        if (game.ship.getMercs().size() <= 0) {
+            noMoreFiring();
+        }
     }
     @FXML
     private void leave() throws IOException {
@@ -390,6 +410,13 @@ public class MercenariesController  {
             stage.show();
     }
 
+    public void noMoreFiring() {
+        FireMerc1.setDisable(true);
+        FireMerc2.setDisable(true);
+        FireMerc3.setDisable(true);
+        FireMerc4.setDisable(true);
+        
+    }
     /**
      * Checks if player has enough money to buy new ship and
      * if so, the cost of ship is subtracted from the player's money.

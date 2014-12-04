@@ -14,7 +14,8 @@ public class MarketPlace implements Serializable {
     private int[] amount;
     private int[] sellPrice;
     private Random rand;
-
+    private int tradeSkill;
+    private double priceMult;
     private final int NUM_TRADE_ITEMS = 10;
     private final double LOW_PRICE_MULT = .8;
     private final double HIGH_PRICE_MULT = .85;
@@ -31,6 +32,7 @@ public class MarketPlace implements Serializable {
     private final int NARCOTICS_INDEX = 8;
     private final int ROBOTS_INDEX = 9;
     private final int MAX_AMT = 30;
+    private Person player = new Person();
     //CHECKSTYLE: ON
 
     /**
@@ -70,6 +72,8 @@ public class MarketPlace implements Serializable {
     private void calcAmtAndPrices() {
         calculateAmount();
         calculatePrices();
+        tradeSkill = player.getTraderSkill();
+        priceMult = ((double)tradeSkill / 100);
     }
 
     /**
@@ -100,6 +104,8 @@ public class MarketPlace implements Serializable {
             if (techLevel < items[i].getMTLP()) {
                 totalPrice[i] = 0;
             }
+            sellPrice[i] = (int) (sellPrice[i] * priceMult) + sellPrice[i];
+            totalPrice[i] = totalPrice[i] - (int) (totalPrice[i] * priceMult);
         }
     }
     /**
@@ -305,5 +311,9 @@ public class MarketPlace implements Serializable {
             i = totalPrice[index];
         }
         return i;
+    }
+    
+    public void setPlayer(Person player) {
+        this.player = player;
     }
 }
