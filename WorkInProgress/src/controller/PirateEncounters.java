@@ -272,6 +272,7 @@ public class PirateEncounters extends Application {
                     shield.setVisible(false);
                     flee.setVisible(false);
                     explosion("Pirate");
+                    player.kill();
                     rotate("Ship");
                     mp3.play();
                 } else {
@@ -323,6 +324,7 @@ public class PirateEncounters extends Application {
                         shield.setVisible(false);
                         flee.setVisible(false);
                         special.setVisible(false);
+                        player.kill();
                         explosion("Pirate");
                         rotate("Ship");
                         mp3.play();
@@ -522,6 +524,7 @@ public class PirateEncounters extends Application {
             }
         });
         parallelTransition.play();
+        player.kill();
     }
     
     public void rockets() {

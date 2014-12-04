@@ -195,4 +195,8 @@ public class Person {
                 + traderSkill + "\nEngineering Skill: " + engineerSkill;
                 
     }
+    
+    public void increaseFighter() {
+        fighterSkill++;
+    }
 }

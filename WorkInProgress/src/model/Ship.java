@@ -18,10 +18,11 @@ public class Ship implements Serializable  {
     private String pilot;
     public int occupiedSlots;
     private TradeItem[] cargoManifest;
+    private Person player = WelcomeScreenController.game.getPlayer();
     private int bays;
     private int fuelTank;
     private int health = 100;
-    private int attackDamage = 18;
+    private int attackDamage = 15;
     private Random rand = new Random();
     private int shields = 3, maxShields = 3;
     private final int DEFAULT_FUEL = 14;
@@ -33,6 +34,7 @@ public class Ship implements Serializable  {
     private final int FUEL_MULT = 10;
     private final int ESKILL_MULT = 5;
     private final int MAX_ROB_ATTEMPTS = 6;
+    private int kills;
     //CHECKSTYLE: OFF
 
     /**
@@ -406,5 +408,17 @@ public class Ship implements Serializable  {
     }
     public final void setSpecial(String special) {
         this.special = special;
+    }
+    
+    public void kill() {
+        kills++;
+        if (kills % 10 == 0) {
+            attackDamage++;
+            player.increaseFighter();
+        }
+    }
+    
+    public int getKills() {
+        return kills;
     }
 }

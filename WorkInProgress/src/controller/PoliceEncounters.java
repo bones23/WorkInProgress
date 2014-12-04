@@ -275,6 +275,7 @@ public class PoliceEncounters extends Application {
                     special.setVisible(false);
                     shield.setVisible(false);
                     bribe.setVisible(false);
+                    player.kill();
                     explosion("Police");
                     rotate("Ship");
                     mp3.play();
@@ -328,6 +329,7 @@ public class PoliceEncounters extends Application {
                         shield.setVisible(false);
                         bribe.setVisible(false);
                         special.setVisible(false);
+                        player.kill();
                         explosion("Police");
                         rotate("Ship");
                         mp3.play();;
@@ -528,6 +530,7 @@ public class PoliceEncounters extends Application {
             }
         });
         parallelTransition.play();
+        player.kill();
     }
     
     public void rockets() {
