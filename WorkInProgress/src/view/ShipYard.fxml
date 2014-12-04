@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
@@ -10,76 +12,212 @@
 
 <AnchorPane id="AnchorPane" prefHeight="565.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ShipYardController">
    <children>
-      <Label layoutX="60.0" layoutY="117.0" text="Ship: tug boat " />
-      <Label layoutX="198.0" layoutY="115.0" text="Ship: Barge" />
-      <Button fx:id="buyShip1" layoutX="62.0" layoutY="198.0" mnemonicParsing="false" onAction="#buyShip" text="Buy Ship 1" />
-      <Button fx:id="buyShip2" layoutX="192.0" layoutY="196.0" mnemonicParsing="false" onAction="#buyShip2" text="Buy Ship 2" />
-      <Label layoutX="73.0" layoutY="138.0" text="Cargo: 14" />
-      <Label layoutX="70.0" layoutY="172.0" text="Cost: 5000" />
-      <Label layoutX="44.0" layoutY="15.0" text="Current Money:" />
-      <Label fx:id="currentMoney" layoutX="140.0" layoutY="14.0" text="0" />
-      <Button fx:id="leave" layoutX="14.0" layoutY="511.0" mnemonicParsing="false" onAction="#leave" text="Go Back" />
-      <Label layoutX="45.0" layoutY="34.0" text="Current Cargo Space:" />
-      <Label fx:id="currentCargoSpace" layoutX="173.0" layoutY="34.0" text="0" />
-      <Label layoutX="196.0" layoutY="170.0" text="Cost: 10,000" />
+      <ImageView fitHeight="555.0" fitWidth="991.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../supporting/stars2.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="60.0" layoutY="192.0" text="Ship: Tug Boat " textFill="WHITE">
+         <font>
+            <Font name="Abduction2002" size="15.0" />
+         </font></Label>
+      <Label layoutX="60.0" layoutY="328.0" text="Ship: Barge" textFill="WHITE">
+         <font>
+            <Font name="Abduction2002" size="15.0" />
+         </font></Label>
+      <Button fx:id="buyShip1" layoutX="60.0" layoutY="270.0" mnemonicParsing="false" onAction="#buyShip" styleClass="dark-blue" stylesheets="@../supporting/style.css" text="Buy Ship 1" />
+      <Button fx:id="buyShip2" layoutX="58.0" layoutY="406.0" mnemonicParsing="false" onAction="#buyShip2" styleClass="dark-blue" stylesheets="@../supporting/style.css" text="Buy Ship 2" />
+      <Label layoutX="58.0" layoutY="211.0" text="Cargo: 14" textFill="WHITE">
+         <font>
+            <Font name="Abduction2002" size="15.0" />
+         </font></Label>
+      <Label layoutX="56.0" layoutY="248.0" text="Cost: 5000" textFill="WHITE">
+         <font>
+            <Font name="Abduction2002" size="15.0" />
+         </font></Label>
+      <Label layoutX="658.0" layoutY="14.0" text="Current Money:" textFill="WHITE">
+         <font>
+            <Font name="Abduction2002" size="13.0" />
+         </font></Label>
+      <Label fx:id="currentMoney" layoutX="777.0" layoutY="14.0" text="0" textFill="WHITE">
+         <font>
+            <Font name="Abduction2002" size="13.0" />
+         </font></Label>
+      <Button fx:id="leave" layoutX="7.0" layoutY="491.0" mnemonicParsing="false" onAction="#leave" styleClass="dark-blue" stylesheets="@../supporting/style.css" text="Back to Ship" />
+      <Label layoutX="658.0" layoutY="33.0" text="Current Cargo Space:" textFill="WHITE">
+         <font>
+            <Font name="Abduction2002" size="13.0" />
+         </font></Label>
+      <Label fx:id="currentCargoSpace" layoutX="821.0" layoutY="33.0" text="0" textFill="WHITE">
+         <font>
+            <Font name="Abduction2002" size="13.0" />
+         </font></Label>
+      <Label layoutX="58.0" layoutY="383.0" text="Cost: 10,000" textFill="WHITE">
+         <font>
+            <Font name="Abduction2002" size="15.0" />
+         </font></Label>
       <Separator layoutX="293.0" layoutY="120.0" orientation="VERTICAL" prefHeight="446.0" prefWidth="15.0" />
-      <Label layoutX="445.0" layoutY="14.0" text="Shipyard">
+      <Button fx:id="fuelUpgrade" layoutX="351.0" layoutY="280.0" mnemonicParsing="false" onAction="#buyFuelUpgrade" styleClass="dark-blue" stylesheets="@../supporting/style.css" text="Buy" />
+      <Label layoutX="59.0" layoutY="346.0" text="Cargo: 20" textFill="WHITE">
          <font>
-            <Font size="18.0" />
+            <Font name="Abduction2002" size="15.0" />
+         </font></Label>
+      <Label layoutX="346.0" layoutY="203.0" text="Fuel Upgrade" textFill="WHITE">
+         <font>
+            <Font name="Abduction2002" size="13.0" />
+         </font></Label>
+      <Label layoutX="351.0" layoutY="230.0" text="Adds 1 Fuel" textFill="WHITE">
+         <font>
+            <Font name="Abduction2002" size="13.0" />
+         </font></Label>
+      <Label layoutX="357.0" layoutY="258.0" text="Cost: 200" textFill="WHITE">
+         <font>
+            <Font name="Abduction2002" size="13.0" />
+         </font></Label>
+      <Label layoutX="497.0" layoutY="259.0" text="Cost: 1000" textFill="WHITE">
+         <font>
+            <Font name="Abduction2002" size="13.0" />
+         </font></Label>
+      <Label layoutX="491.0" layoutY="231.0" text="Adds 2 Cargo" textFill="WHITE">
+         <font>
+            <Font name="Abduction2002" size="13.0" />
+         </font></Label>
+      <Label layoutX="486.0" layoutY="204.0" text="Cargo Upgrade" textFill="WHITE">
+         <font>
+            <Font name="Abduction2002" size="13.0" />
+         </font></Label>
+      <Button fx:id="cargoUpgrade" layoutX="498.0" layoutY="280.0" mnemonicParsing="false" onAction="#buyCargoUpgrade" styleClass="dark-blue" stylesheets="@../supporting/style.css" text="Buy" />
+      <Label layoutX="658.0" layoutY="51.0" prefHeight="17.0" prefWidth="187.0" text="Current Fuel Tank Size:" textFill="WHITE">
+         <font>
+            <Font name="Abduction2002" size="13.0" />
+         </font></Label>
+      <Label fx:id="fuelTankSize" layoutX="843.0" layoutY="52.0" text="0" textFill="WHITE">
+         <font>
+            <Font name="Abduction2002" size="13.0" />
+         </font></Label>
+      <Label layoutX="57.0" layoutY="226.0" prefHeight="26.0" prefWidth="95.0" text="Fuel: 25" textFill="WHITE">
+         <font>
+            <Font name="Abduction2002" size="15.0" />
+         </font></Label>
+      <Label layoutX="59.0" layoutY="364.0" text="Fuel: 25" textFill="WHITE">
+         <font>
+            <Font name="Abduction2002" size="15.0" />
+         </font></Label>
+      <Label fx:id="weaponLabel3" layoutX="358.0" layoutY="396.0" text="Cost: 1000" textFill="WHITE">
+         <font>
+            <Font name="Abduction2002" size="13.0" />
+         </font></Label>
+      <Label fx:id="weaponLabel2" layoutX="323.0" layoutY="369.0" text="+1 Attack Damage" textFill="WHITE">
+         <font>
+            <Font name="Abduction2002" size="13.0" />
+         </font></Label>
+      <Label fx:id="weaponLabel1" layoutX="337.0" layoutY="341.0" text="Weapon Upgrade" textFill="WHITE">
+         <font>
+            <Font name="Abduction2002" size="13.0" />
+         </font></Label>
+      <Button fx:id="weaponUpgrade" layoutX="351.0" layoutY="426.0" mnemonicParsing="false" onAction="#buyWeaponUpgrade" styleClass="dark-blue" stylesheets="@../supporting/style.css" text="Buy" />
+      <Label layoutX="415.0" layoutY="145.0" text="Upgrades" textFill="WHITE">
+         <font>
+            <Font name="CF Dots 521 Regular" size="20.0" />
          </font>
       </Label>
-      <Button fx:id="fuelUpgrade" layoutX="358.0" layoutY="202.0" mnemonicParsing="false" onAction="#buyFuelUpgrade" text="Buy Upgrade" />
-      <Label layoutX="203.0" layoutY="136.0" text="Cargo: 20" />
-      <Label layoutX="364.0" layoutY="121.0" text="Fuel Upgrade" />
-      <Label layoutX="369.0" layoutY="148.0" text="Adds 1 Fuel" />
-      <Label layoutX="375.0" layoutY="176.0" text="Cost: 200" />
-      <Label layoutX="493.0" layoutY="175.0" text="Cost: 1000" />
-      <Label layoutX="487.0" layoutY="147.0" text="Adds 2 Cargo" />
-      <Label layoutX="482.0" layoutY="120.0" text="Cargo Upgrade" />
-      <Button fx:id="cargoUpgrade" layoutX="481.0" layoutY="199.0" mnemonicParsing="false" onAction="#buyCargoUpgrade" text="Buy Upgrade" />
-      <Label layoutX="46.0" layoutY="51.0" prefHeight="17.0" prefWidth="122.0" text="Current Fuel Tank Size:" />
-      <Label fx:id="fuelTankSize" layoutX="177.0" layoutY="51.0" text="0" />
-      <Label layoutX="78.0" layoutY="155.0" text="Fuel: 25" />
-      <Label layoutX="203.0" layoutY="153.0" text="Fuel: 25" />
-      <Label fx:id="weaponLabel3" layoutX="378.0" layoutY="298.0" text="Cost: 1000" />
-      <Label fx:id="weaponLabel2" layoutX="343.0" layoutY="272.0" text="Adds 1 Attack Damage" />
-      <Label fx:id="weaponLabel1" layoutX="357.0" layoutY="243.0" text="Weapon Upgrade" />
-      <Button fx:id="weaponUpgrade" layoutX="361.0" layoutY="324.0" mnemonicParsing="false" onAction="#buyWeaponUpgrade" text="Buy Upgrade" />
-      <Label layoutX="408.0" layoutY="78.0" text="Upgrades">
+      <Label layoutX="113.0" layoutY="145.0" text="Ships" textFill="WHITE">
          <font>
-            <Font size="20.0" />
+            <Font name="CF Dots 521 Regular" size="20.0" />
          </font>
       </Label>
-      <Label layoutX="134.0" layoutY="78.0" text="Ships">
+      <Label layoutX="717.0" layoutY="145.0" text="Maintenance" textFill="WHITE">
          <font>
-            <Font size="20.0" />
+            <Font name="CF Dots 521 Regular" size="20.0" />
          </font>
       </Label>
-      <Label layoutX="738.0" layoutY="78.0" text="Maintenance">
+      <Separator layoutX="634.0" layoutY="127.0" orientation="VERTICAL" prefHeight="446.0" prefWidth="15.0" />
+      <Label layoutX="802.0" layoutY="77.0" text="Shields:" textFill="WHITE">
          <font>
-            <Font size="20.0" />
+            <Font name="Abduction2002" size="13.0" />
+         </font></Label>
+      <Label layoutX="635.0" layoutY="76.0" text="Health:" textFill="WHITE">
+         <font>
+            <Font name="Abduction2002" size="13.0" />
+         </font></Label>
+      <Label layoutX="610.0" layoutY="93.0" text="Attack Damage:" textFill="WHITE">
+         <font>
+            <Font name="Abduction2002" size="13.0" />
+         </font></Label>
+      <Label fx:id="healthLabel" layoutX="692.0" layoutY="76.0" text="0" textFill="WHITE">
+         <font>
+            <Font name="Abduction2002" size="13.0" />
+         </font></Label>
+      <Label fx:id="damageLabel" layoutX="727.0" layoutY="93.0" text="0" textFill="WHITE">
+         <font>
+            <Font name="Abduction2002" size="13.0" />
+         </font></Label>
+      <Label fx:id="shieldLabel" layoutX="864.0" layoutY="77.0" text="0" textFill="WHITE">
+         <font>
+            <Font name="Abduction2002" size="13.0" />
+         </font></Label>
+      <Label layoutX="709.0" layoutY="229.0" text="Repair Ship" textFill="WHITE">
+         <font>
+            <Font name="Abduction2002" size="15.0" />
+         </font></Label>
+      <Label layoutX="709.0" layoutY="256.0" text="Cost:" textFill="WHITE">
+         <font>
+            <Font name="Abduction2002" size="13.0" />
+         </font></Label>
+      <Label fx:id="repairCost" layoutX="750.0" layoutY="256.0" text="0" textFill="WHITE">
+         <font>
+            <Font name="Abduction2002" size="13.0" />
+         </font></Label>
+      <Button fx:id="repairShip" layoutX="707.0" layoutY="286.0" mnemonicParsing="false" onAction="#repairShip" styleClass="dark-blue" stylesheets="@../supporting/style.css" text="Repair Ship" />
+      <Label fx:id="shieldRefillCost" layoutX="747.0" layoutY="388.0" text="0" textFill="WHITE">
+         <font>
+            <Font name="Abduction2002" size="13.0" />
+         </font></Label>
+      <Label layoutX="706.0" layoutY="388.0" text="Cost:" textFill="WHITE">
+         <font>
+            <Font name="Abduction2002" size="13.0" />
+         </font></Label>
+      <Label layoutX="706.0" layoutY="361.0" text="Refill Shields" textFill="WHITE">
+         <font>
+            <Font name="Abduction2002" size="15.0" />
+         </font></Label>
+      <Button fx:id="refillShields" layoutX="705.0" layoutY="417.0" mnemonicParsing="false" onAction="#refillShields" styleClass="dark-blue" stylesheets="@../supporting/style.css" text="Refill Shields" />
+      <Button fx:id="buyBlackHole" layoutX="498.0" layoutY="426.0" mnemonicParsing="false" onAction="#buyBlackHole" styleClass="dark-blue" stylesheets="@../supporting/style.css" text="Buy" />
+      <Label fx:id="holeLabel1" layoutX="483.0" layoutY="340.0" text="Special Weapons" textFill="WHITE">
+         <font>
+            <Font name="Abduction2002" size="13.0" />
+         </font></Label>
+      <Label fx:id="holeLabel2" layoutX="464.0" layoutY="369.0" text="Creates a Black Hole" textFill="WHITE">
+         <font>
+            <Font name="Abduction2002" size="13.0" />
+         </font></Label>
+      <Label fx:id="holeLabel3" layoutX="498.0" layoutY="395.0" text="Cost: 10000" textFill="WHITE">
+         <font>
+            <Font name="Abduction2002" size="13.0" />
+         </font></Label>
+      <Label layoutX="772.0" layoutY="95.0" text="Special:" textFill="WHITE">
+         <font>
+            <Font name="Abduction2002" size="13.0" />
+         </font></Label>
+      <Label fx:id="specialPower" layoutX="840.0" layoutY="95.0" text="nothing" textFill="WHITE">
+         <font>
+            <Font name="Abduction2002" size="13.0" />
+         </font></Label>
+      <Text layoutX="7.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SHIPyard">
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#ff9300" />
+                  <Stop color="#cd00ff" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+         <font>
+            <Font name="Slice Regular" size="90.0" />
          </font>
-      </Label>
-      <Separator layoutX="609.0" layoutY="120.0" orientation="VERTICAL" prefHeight="446.0" prefWidth="15.0" />
-      <Label layoutX="252.0" layoutY="51.0" text="Shields:" />
-      <Label layoutX="252.0" layoutY="16.0" text="Health:" />
-      <Label layoutX="252.0" layoutY="33.0" text="Attack Damage:" />
-      <Label fx:id="healthLabel" layoutX="305.0" layoutY="16.0" text="0" />
-      <Label fx:id="damageLabel" layoutX="343.0" layoutY="33.0" text="0" />
-      <Label fx:id="shieldLabel" layoutX="302.0" layoutY="51.0" text="0" />
-      <Label layoutX="656.0" layoutY="121.0" text="Repair Ship" />
-      <Label layoutX="656.0" layoutY="148.0" text="Cost:" />
-      <Label fx:id="repairCost" layoutX="697.0" layoutY="148.0" text="0" />
-      <Button fx:id="repairShip" layoutX="648.0" layoutY="172.0" mnemonicParsing="false" onAction="#repairShip" text="Repair Ship" />
-      <Label fx:id="shieldRefillCost" layoutX="837.0" layoutY="150.0" text="0" />
-      <Label layoutX="796.0" layoutY="150.0" text="Cost:" />
-      <Label layoutX="796.0" layoutY="123.0" text="Refill Shields" />
-      <Button fx:id="refillShields" layoutX="785.0" layoutY="172.0" mnemonicParsing="false" onAction="#refillShields" text="Refill Shields" />
-      <Button fx:id="buyBlackHole" layoutX="491.0" layoutY="324.0" mnemonicParsing="false" onAction="#buyBlackHole" text="Buy Upgrade" />
-      <Label fx:id="holeLabel1" layoutX="488.0" layoutY="243.0" text="Special Weapons" />
-      <Label fx:id="holeLabel2" layoutX="480.0" layoutY="272.0" text="Creates a Black Hole" />
-      <Label fx:id="holeLabel3" layoutX="503.0" layoutY="298.0" text="Cost: 10000" />
-      <Label layoutX="250.0" layoutY="70.0" text="Special:" />
-      <Label fx:id="specialPower" layoutX="298.0" layoutY="70.0" />
+      </Text>
+      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

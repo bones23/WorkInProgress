@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.paint.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.geometry.*?>
 <?import java.lang.*?>
@@ -12,24 +13,65 @@
 
 <AnchorPane id="AnchorPane" prefHeight="565.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MapController">
    <children>
-      <ImageView fitHeight="565.0" fitWidth="967.0" layoutX="-5.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="565.0" fitWidth="1007.0" layoutX="-5.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../supporting/starsEdit.jpg" />
+            <Image url="@../supporting/stars2.jpg" />
          </image>
       </ImageView>
-      <Label fx:id="currentLocation" layoutX="195.0" layoutY="320.0" text="Label" textFill="WHITE" />
-      <Label fx:id="map" layoutX="309.0" layoutY="79.0" text="Galatic Map" textFill="WHITE" />
-      <Label fx:id="selectedLocation" layoutX="698.0" layoutY="320.0" text="Choose Location" textFill="WHITE" />
-      <Label layoutX="624.0" layoutY="79.0" text="Mini Map" textFill="WHITE" />
-      <Canvas fx:id="miniMap" height="200.0" layoutX="507.0" layoutY="108.0" onMouseClicked="#handleMouseClick" width="300.0" />
-      <Canvas fx:id="universeMap" blendMode="DARKEN" height="200.0" layoutX="180.0" layoutY="112.0" width="300.0" />
-      <Button fx:id="TravelHere" layoutX="457.0" layoutY="375.0" mnemonicParsing="false" onAction="#Travel" text="Travel here" />
-      <Label fx:id="fuelCost" layoutX="417.0" layoutY="320.0" text="Fuel Cost:" textFill="WHITE" />
-      <Button fx:id="buyFuel" layoutX="382.0" layoutY="375.0" mnemonicParsing="false" onAction="#buyFuel" text="Buy Fuel" />
-      <Label fx:id="fuelText" layoutX="125.0" layoutY="218.0" text="0" textFill="WHITE" />
-      <Label layoutX="121.0" layoutY="195.0" text="Fuel" textFill="WHITE" />
-      <Button fx:id="goBackFromMap" layoutX="83.0" layoutY="446.0" mnemonicParsing="false" onAction="#leave" text="Back" />
-      <Label layoutX="118.0" layoutY="135.0" text="Money:" textFill="WHITE" />
-      <Label fx:id="money" layoutX="124.0" layoutY="152.0" text="Label" textFill="WHITE" />
+      <Label fx:id="currentLocation" layoutX="195.0" layoutY="346.0" text="Label" textFill="WHITE">
+         <font>
+            <Font name="Abduction2002" size="13.0" />
+         </font></Label>
+      <Label fx:id="map" layoutX="274.0" layoutY="105.0" text="Galatic Map" textFill="WHITE">
+         <font>
+            <Font name="Abduction2002" size="20.0" />
+         </font></Label>
+      <Label fx:id="selectedLocation" layoutX="612.0" layoutY="346.0" text="Choose Location" textFill="WHITE">
+         <font>
+            <Font name="Abduction2002" size="13.0" />
+         </font></Label>
+      <Label layoutX="634.0" layoutY="105.0" text="Mini Map" textFill="WHITE">
+         <font>
+            <Font name="Abduction2002" size="20.0" />
+         </font></Label>
+      <Canvas fx:id="miniMap" height="200.0" layoutX="522.0" layoutY="140.0" onMouseClicked="#handleMouseClick" width="300.0" />
+      <Canvas fx:id="universeMap" blendMode="DARKEN" height="200.0" layoutX="195.0" layoutY="140.0" width="300.0" />
+      <Button fx:id="TravelHere" layoutX="392.0" layoutY="494.0" mnemonicParsing="false" onAction="#Travel" styleClass="dark-blue" stylesheets="@../supporting/style.css" text="Travel here" />
+      <Label fx:id="fuelCost" layoutX="418.0" layoutY="346.0" text="Fuel Cost:" textFill="WHITE">
+         <font>
+            <Font name="Abduction2002" size="13.0" />
+         </font></Label>
+      <Button fx:id="buyFuel" layoutX="223.0" layoutY="494.0" mnemonicParsing="false" onAction="#buyFuel" styleClass="dark-blue" stylesheets="@../supporting/style.css" text="Buy Fuel" />
+      <Label fx:id="fuelText" layoutX="77.0" layoutY="253.0" text="0" textFill="WHITE">
+         <font>
+            <Font name="Abduction2002" size="16.0" />
+         </font></Label>
+      <Label layoutX="27.0" layoutY="253.0" text="Fuel:" textFill="WHITE">
+         <font>
+            <Font name="Abduction2002" size="16.0" />
+         </font></Label>
+      <Button fx:id="goBackFromMap" layoutX="6.0" layoutY="494.0" mnemonicParsing="false" onAction="#leave" styleClass="dark-blue" stylesheets="@../supporting/style.css" text="Back to Ship" />
+      <Label layoutX="27.0" layoutY="210.0" text="Money:" textFill="WHITE">
+         <font>
+            <Font name="Abduction2002" size="16.0" />
+         </font></Label>
+      <Label fx:id="money" layoutX="92.0" layoutY="210.0" text="Label" textFill="WHITE">
+         <font>
+            <Font name="Abduction2002" size="16.0" />
+         </font></Label>
+      <Text layoutX="17.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="galactic map">
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#ff9300" />
+                  <Stop color="#cd00ff" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+         <font>
+            <Font name="Slice Regular" size="90.0" />
+         </font>
+      </Text>
+      <Pane layoutX="195.0" layoutY="140.0" prefHeight="200.0" prefWidth="300.0" style="-fx-background-color: #FFFFFF;" />
    </children>
 </AnchorPane>

@@ -19,7 +19,8 @@ import model.Game;
 public class ShipController {
     Game game = WelcomeScreenController.game;
     @FXML
-    private Button marketPlaceButton, mapScreenButton, Shipyard, Mercenaries, save;
+    private Button marketPlaceButton, mapScreenButton, shipyardButton,
+            mercenariesButton, save;
     @FXML
     private Label fuelText, cargo, money, playerInfo, currentLocation;
     private final int STAGE_WIDTH = 960;
@@ -35,10 +36,10 @@ public class ShipController {
         currentLocation.setText("Current Location:\n----------------\n"
                 + game.getCurrentSystem());
         if (game.getCurrentSystem().getTechLevel() > 3) {
-            Shipyard.setVisible(true);
+            shipyardButton.setVisible(true);
         } else {
-            Shipyard.setVisible(false);
-            Mercenaries.setVisible(false);
+            shipyardButton.setVisible(false);
+            mercenariesButton.setVisible(false);
         }
     }
     
@@ -118,4 +119,3 @@ public class ShipController {
         stage.show();
     }
 }
-    
