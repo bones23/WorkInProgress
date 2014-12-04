@@ -68,6 +68,7 @@ public class Game {
         //Seems unnecessary
         player = new Person(name, pilot, fighter, trader, engineer,
                 DEFAULT_PLAYER_CASH);
+        ship.setPlayer(player);
     }
 
     /**

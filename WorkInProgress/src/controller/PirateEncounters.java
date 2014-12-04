@@ -1,4 +1,5 @@
 package controller;
+import java.io.File;
 import java.io.IOException;
 import java.util.Random;
 import java.util.logging.Level;
@@ -23,6 +24,8 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 
 import javafx.scene.shape.Rectangle;
@@ -213,6 +216,8 @@ public class PirateEncounters extends Application {
                 }
             }
         });
+        
+        
         root.getChildren().add(canvas);
         root.getChildren().add(attack);
         root.getChildren().add(shield);
@@ -243,11 +248,16 @@ public class PirateEncounters extends Application {
         rectangle2.setVisible(true);
         rectangle.setFill(Color.RED);
         rectangle2.setFill(Color.RED);
+        MediaPlayer mp = new MediaPlayer(new Media(
+        new File("src/supporting/trprsht1.mp3").toURI().toString()));
+        mp.play();
         final Group root = (Group) scene.getRoot();
         root.getChildren().add(rectangle);
         root.getChildren().add(rectangle2);
         Timeline tl = new Timeline();
         tl.setCycleCount(1);
+        MediaPlayer mp3 = new MediaPlayer(new Media(
+                new File("src/supporting/explosion.mp3").toURI().toString()));
         tl.setOnFinished(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -262,7 +272,9 @@ public class PirateEncounters extends Application {
                     shield.setVisible(false);
                     flee.setVisible(false);
                     explosion("Pirate");
+                    player.kill();
                     rotate("Ship");
+                    mp3.play();
                 } else {
                     pirateMove(scene, 1, false);
                 }
@@ -291,6 +303,12 @@ public class PirateEncounters extends Application {
         Timeline tl = new Timeline();
         tl.setCycleCount(cycle);
         tl.setAutoReverse(reverse);
+        MediaPlayer mp = new MediaPlayer(new Media(
+        new File("src/supporting/trprsht1.mp3").toURI().toString()));
+        mp.play();
+        MediaPlayer mp3 = new MediaPlayer(new Media(
+                new File("src/supporting/explosion.mp3").toURI().toString()));
+            
         tl.setOnFinished(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -306,8 +324,10 @@ public class PirateEncounters extends Application {
                         shield.setVisible(false);
                         flee.setVisible(false);
                         special.setVisible(false);
+                        player.kill();
                         explosion("Pirate");
                         rotate("Ship");
+                        mp3.play();
                     }
                     shields.setText("Shields:\n" + player.deductShield());
                 } else {
@@ -320,6 +340,7 @@ public class PirateEncounters extends Application {
                         special.setVisible(false);
                         flee.setVisible(false);
                         explosion("Player");
+                        mp3.play();
                     }
                 }
                 
@@ -329,6 +350,11 @@ public class PirateEncounters extends Application {
         KeyFrame kf = new KeyFrame(Duration.millis(750), kv);
         tl.getKeyFrames().add(kf);
         tl.play();
+        if (tl.getCurrentTime() == Duration.millis(750) && reverse) {
+            MediaPlayer mp2 = new MediaPlayer(new Media(
+                new File("src/supporting/shield.mp3").toURI().toString()));
+            mp2.play();
+        }
     }
     
     public void explosion(String death) {
@@ -498,6 +524,7 @@ public class PirateEncounters extends Application {
             }
         });
         parallelTransition.play();
+        player.kill();
     }
     
     public void rockets() {

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="565.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MercenariesController">
+   <children>
+      <Button fx:id="leave" layoutX="14.0" layoutY="511.0" mnemonicParsing="false" onAction="#leave" text="Go Back" />
+      <Separator layoutX="473.0" layoutY="105.0" orientation="VERTICAL" prefHeight="446.0" prefWidth="15.0" />
+      <Label layoutX="399.0" layoutY="24.0" text="Mercenaries for Hire">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="merc1" layoutX="234.0" layoutY="112.0" text="a" />
+      <Label fx:id="merc2" layoutX="711.0" layoutY="112.0" text="b" />
+      <Label fx:id="moneyAmount" layoutX="191.0" layoutY="25.0" text="0" />
+      <Label fx:id="moneyLabel" layoutX="54.0" layoutY="25.0" text="Current Money:" />
+      <Label fx:id="shieldAmount" layoutX="352.0" layoutY="60.0" text="0" />
+      <Label fx:id="attackAmount" layoutX="352.0" layoutY="42.0" text="0" />
+      <Label fx:id="healthAmount" layoutX="352.0" layoutY="25.0" text="0" />
+      <Label fx:id="attackLabel" layoutX="261.0" layoutY="42.0" text="Attack Damage:" />
+      <Label fx:id="healthLabel" layoutX="261.0" layoutY="25.0" text="Health:" />
+      <Label fx:id="shieldLabel" layoutX="261.0" layoutY="60.0" text="Shields:" />
+      <Label fx:id="tankSizeLabel" layoutX="55.0" layoutY="60.0" prefHeight="17.0" prefWidth="122.0" text="Current Fuel Tank Size:" />
+      <Label fx:id="cargoAmount" layoutX="191.0" layoutY="43.0" text="0" />
+      <Label fx:id="cargoLabel" layoutX="54.0" layoutY="43.0" text="Current Cargo Space:" />
+      <Label fx:id="tankSizeAmount" layoutX="191.0" layoutY="60.0" text="0" />
+      <Label fx:id="merc1price" layoutX="300.0" layoutY="182.0" text="0" />
+      <Label fx:id="merc1engineerSkill" layoutX="300.0" layoutY="266.0" text="0" />
+      <Label fx:id="merc1traderSkill" layoutX="300.0" layoutY="249.0" text="0" />
+      <Label fx:id="merc1pilotSkill" layoutX="300.0" layoutY="232.0" text="0" />
+      <Label fx:id="merc1fighterSkill" layoutX="300.0" layoutY="215.0" text="0" />
+      <Label layoutX="167.0" layoutY="249.0" text="Trader Skill: " />
+      <Label layoutX="167.0" layoutY="266.0" text="Engineer Skill: " />
+      <Label layoutX="167.0" layoutY="232.0" text="Pilot Skill: " />
+      <Label layoutX="167.0" layoutY="215.0" text="Fighter Skill: " />
+      <Label layoutX="167.0" layoutY="182.0" text="Price: " />
+      <Label layoutX="641.0" layoutY="190.0" text="Price: " />
+      <Label layoutX="641.0" layoutY="223.0" text="Fighter Skill: " />
+      <Label layoutX="641.0" layoutY="240.0" text="Pilot Skill: " />
+      <Label layoutX="641.0" layoutY="274.0" text="Engineer Skill: " />
+      <Label layoutX="641.0" layoutY="257.0" text="Trader Skill: " />
+      <Label fx:id="merc2fighterSkill" layoutX="774.0" layoutY="223.0" text="0" />
+      <Label fx:id="merc2pilotSkill" layoutX="774.0" layoutY="240.0" text="0" />
+      <Label fx:id="merc2traderSkill" layoutX="774.0" layoutY="257.0" text="0" />
+      <Label fx:id="merc2engineerSkill" layoutX="774.0" layoutY="274.0" text="0" />
+      <Label fx:id="merc2price" layoutX="774.0" layoutY="190.0" text="0" />
+      <Button fx:id="HireMerc1" layoutX="212.0" layoutY="432.0" mnemonicParsing="false" onAction="#hireMerc1" text="Hire" />
+      <Button fx:id="HireMerc2" layoutX="699.0" layoutY="432.0" mnemonicParsing="false" onAction="#hireMerc2" text="Hire" />
+      <Button fx:id="FireMerc1" layoutX="212.0" layoutY="474.0" mnemonicParsing="false" onAction="#fireMerc1" text="Fire" />
+      <Button fx:id="FireMerc2" layoutX="701.0" layoutY="474.0" mnemonicParsing="false" onAction="#fireMerc2" text="Fire" />
+      <Button fx:id="FireAllMercs" layoutX="812.0" layoutY="25.0" mnemonicParsing="false" onAction="#fireAllMercs" text="Fire All Mercenaries" />
+   </children>
+</AnchorPane>
