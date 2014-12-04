@@ -397,7 +397,10 @@ public class Ship implements Serializable  {
     }
     
     public final int repairCost() {
-        return (100 - health) * 5;
+        int cost = (100 - health) * 5;
+        int skill = player.getEngineerSkill();
+        cost = cost - (int)(((double)skill / 100) * cost);
+        return cost;
     }
     
     public final int refillShieldCost() {

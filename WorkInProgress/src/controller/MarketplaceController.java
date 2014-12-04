@@ -60,6 +60,7 @@ public class MarketplaceController {
     private void initialize() {
         game = WelcomeScreenController.game;
         market = game.currentSystem.getMarketPlace();
+        market.calculatePrices();
         refreshMarketplace();
     }
     
